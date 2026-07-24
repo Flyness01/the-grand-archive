@@ -5,12 +5,18 @@ const tiles = Array.from({ length: 625 }, (_, index) => index);
 
 export function GrandHall({
   onEnterLibrary,
+  onEnterMapRoom,
   revealedTiles,
   restored,
+  mapRoomUnlocked,
+  floorMechanismActive,
 }: {
   onEnterLibrary: () => void;
+  onEnterMapRoom: () => void;
   revealedTiles: number[];
   restored: boolean;
+  mapRoomUnlocked: boolean;
+  floorMechanismActive: boolean;
 }) {
   return (
     <section className={`hall ${restored ? "is-restored" : ""}`} aria-labelledby="room-title">
@@ -57,18 +63,28 @@ export function GrandHall({
       </button>
 
       <button
-        className="door door--locked"
-        aria-label="Map Room, locked"
-        disabled
+        className={`door ${mapRoomUnlocked ? "door--map" : "door--locked"}`}
+        aria-label={mapRoomUnlocked ? "Enter the Map Room" : "Map Room, locked"}
+        disabled={!mapRoomUnlocked}
+        onClick={onEnterMapRoom}
       >
+        {mapRoomUnlocked && <span className="door__glow door__glow--green" />}
         <span className="door__frame">
           <span className="door__panel" />
+          {mapRoomUnlocked && <span className="door__handle" />}
         </span>
         <span className="door__label">
-          <small>Sealed</small>
+          <small>{mapRoomUnlocked ? "An atlas has opened the way" : "Sealed"}</small>
           Map Room
         </span>
       </button>
+
+      <div
+        className={`hall-floor-mechanism ${floorMechanismActive ? "is-active" : ""}`}
+        aria-label={floorMechanismActive ? "The Grand Hall floor mechanism is active" : "A dormant mechanism lies beneath the floor"}
+      >
+        <i /><i /><i />
+      </div>
 
       <div className="pedestals" aria-label="Ten empty artifact pedestals">
         {pedestals.map((pedestal) => (

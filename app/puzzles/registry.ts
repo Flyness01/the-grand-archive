@@ -1,5 +1,10 @@
 import type { RoomId } from "../game/types";
 import {
+  cartographersRouteHints,
+  cartographersRouteMosaicTiles,
+} from "./cartographers-route/puzzleData";
+import { validateCartographersRoute } from "./cartographers-route/validator";
+import {
   librariansShelfHints,
   librariansShelfMosaicTiles,
 } from "./librarians-shelf/puzzleData";
@@ -28,5 +33,16 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
     solutionValidator: validateLibrariansShelf,
     artifactRewardId: "feather-bookmark",
     mosaicTileIds: librariansShelfMosaicTiles,
+  },
+  "cartographers-missing-route": {
+    id: "cartographers-missing-route",
+    title: "The Cartographer’s Missing Route",
+    roomId: "map-room",
+    difficulty: 4,
+    estimatedMinutes: 10,
+    hints: cartographersRouteHints,
+    solutionValidator: validateCartographersRoute,
+    artifactRewardId: "navigators-compass",
+    mosaicTileIds: cartographersRouteMosaicTiles,
   },
 };

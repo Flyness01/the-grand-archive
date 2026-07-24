@@ -39,9 +39,11 @@ export function InventoryCabinet({
               >
                 {artifact ? (
                   <>
-                    <div className="feather-icon" aria-hidden="true">
-                      <i />
-                    </div>
+                    {artifact.id === "navigators-compass" ? (
+                      <div className="compass-icon" aria-hidden="true"><i /></div>
+                    ) : (
+                      <div className="feather-icon" aria-hidden="true"><i /></div>
+                    )}
                     <h3>{artifact.name}</h3>
                     <p>“{artifact.shortDescription}”</p>
                     <small>{artifact.roomOfOrigin.replaceAll("-", " ")}</small>

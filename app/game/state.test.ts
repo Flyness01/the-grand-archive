@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { librariansShelfMosaicTiles } from "../puzzles/librarians-shelf/puzzleData";
+import { cartographersRouteMosaicTiles } from "../puzzles/cartographers-route/puzzleData";
 import { createInitialState, gameReducer } from "./state";
 
 describe("game progression", () => {
@@ -46,5 +47,22 @@ describe("game progression", () => {
       });
     }
     expect(state.usedHints["librarians-shelf"]).toBe(3);
+  });
+
+  it("unlocks the Lantern Wall after the route puzzle", () => {
+    const state = gameReducer(createInitialState(), {
+      type: "SOLVE_PUZZLE",
+      puzzleId: "cartographers-missing-route",
+      artifactId: "navigators-compass",
+      mosaicTileIds: cartographersRouteMosaicTiles,
+      restoreRoom: "map-room",
+      unlockPuzzleId: "lantern-wall",
+      clueId: "grand-hall-floor-mechanism",
+    });
+
+    expect(state.collectedArtifactIds).toContain("navigators-compass");
+    expect(state.restorationStages["map-room"]).toBe(1);
+    expect(state.unlockedPuzzleIds).toContain("lantern-wall");
+    expect(state.discoveredClueIds).toContain("grand-hall-floor-mechanism");
   });
 });

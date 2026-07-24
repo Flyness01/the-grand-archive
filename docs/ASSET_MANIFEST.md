@@ -13,6 +13,10 @@ layering and final aspect ratios can be tested without unrelated stock imagery.
 | `library-threshold.avif` | Library | Initial room establishing view | 2400×1350 | 1–3 | No | None | Required |
 | `mosaic-complete.avif` | Grand Hall | Final 25×25 mosaic image | 1600×1600 | 4 | No | Tile reveal | Required |
 | `intro-lantern.webp` | Intro | Lantern silhouette and glow mask | 600×900 | 4 | Yes | Flame/glow | Required |
+| `map-room-far.avif` | Map Room | Cabinets, framed maps, and architectural shell | 2400×1350 | 1–2 | No | None | Required |
+| `map-room-table.webp` | Map Room | Interactive cartography table and drawer | 1600×900 | 3–4 | Yes | Drawer opening | Required |
+| `cartographers-map.webp` | Map Room | Antique route-puzzle surface | 1800×1200 | 4 | No | Ink route overlay | Required |
+| `navigator-compass.webp` | Map Room | Collectible artifact close-up | 900×900 | 5 | Yes | Needle settle | Required |
 
 Audio is not included in Chunk 1. The captioned clock and match cues are
 purposeful silent placeholders until the audio manager is added.

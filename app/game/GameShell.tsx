@@ -5,6 +5,7 @@ import { GrandHall } from "./GrandHall";
 import { IntroSequence } from "./IntroSequence";
 import { InventoryCabinet } from "./InventoryCabinet";
 import { LibraryRoom } from "./LibraryRoom";
+import { MapRoom } from "./MapRoom";
 import { createInitialState, gameReducer, readSave, writeSave } from "./state";
 
 export function GameShell() {
@@ -58,11 +59,16 @@ export function GameShell() {
             <GrandHall
               revealedTiles={state.revealedMosaicTiles}
               restored={state.restorationStages["grand-hall"] > 0}
+              mapRoomUnlocked={state.solvedPuzzleIds.includes("librarians-shelf")}
+              floorMechanismActive={state.solvedPuzzleIds.includes("cartographers-missing-route")}
               onEnterLibrary={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "library" })
               }
+              onEnterMapRoom={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "map-room" })
+              }
             />
-          ) : (
+          ) : state.currentRoom === "library" ? (
             <LibraryRoom
               restored={state.restorationStages.library > 0}
               solved={state.solvedPuzzleIds.includes("librarians-shelf")}
@@ -79,6 +85,29 @@ export function GameShell() {
                   restoreRoom: "library",
                   unlockPuzzleId: "cartographers-missing-route",
                   clueId: "atlas-map-clue",
+                })
+              }
+              onReturn={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
+              }
+            />
+          ) : (
+            <MapRoom
+              restored={state.restorationStages["map-room"] > 0}
+              solved={state.solvedPuzzleIds.includes("cartographers-missing-route")}
+              hintCount={state.usedHints["cartographers-missing-route"] ?? 0}
+              onUseHint={() =>
+                dispatch({ type: "USE_HINT", puzzleId: "cartographers-missing-route" })
+              }
+              onSolve={(mosaicTileIds) =>
+                dispatch({
+                  type: "SOLVE_PUZZLE",
+                  puzzleId: "cartographers-missing-route",
+                  artifactId: "navigators-compass",
+                  mosaicTileIds,
+                  restoreRoom: "map-room",
+                  unlockPuzzleId: "lantern-wall",
+                  clueId: "grand-hall-floor-mechanism",
                 })
               }
               onReturn={() =>

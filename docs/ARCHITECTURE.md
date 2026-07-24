@@ -32,6 +32,15 @@ Future rooms and puzzles remain data-driven additions. They must not require
 changing the room state model, navigation contract, save envelope, artifact
 contract, or puzzle registry contract established during Milestone 1.
 
+### Chunk 3 — Cartographer’s route
+
+- Map Room unlocked by the atlas clue — implemented
+- Constraint-driven route puzzle — implemented
+- Navigator’s Compass reward — implemented
+- Map Room restoration and Grand Hall floor mechanism — implemented
+- Second curated mosaic cluster — implemented
+- Lantern Wall progression flag — implemented; puzzle intentionally deferred
+
 ## Current modules
 
 - `app/game/types.ts`: stable domain types
