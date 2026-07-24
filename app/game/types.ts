@@ -5,6 +5,7 @@ export type RoomId =
   | "workshop"
   | "conservatory"
   | "observatory"
+  | "archivists-outer-office"
   | "hall-of-reflections"
   | "archivists-study";
 
@@ -46,5 +47,15 @@ export type GameAction =
   | { type: "HYDRATE"; state: GameState }
   | { type: "ENTER_ROOM"; roomId: RoomId }
   | { type: "COMPLETE_INTRO" }
+  | { type: "USE_HINT"; puzzleId: string }
+  | {
+      type: "SOLVE_PUZZLE";
+      puzzleId: string;
+      artifactId: string;
+      mosaicTileIds: number[];
+      restoreRoom: RoomId;
+      unlockPuzzleId?: string;
+      clueId?: string;
+    }
   | { type: "UPDATE_SETTINGS"; settings: Partial<GameSettings> }
   | { type: "RESET_GAME" };

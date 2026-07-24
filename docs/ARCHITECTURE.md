@@ -18,13 +18,13 @@ puzzles.
 
 ### Chunk 2 — First complete gameplay loop
 
-- Reusable hotspot and puzzle-dialog systems
-- The Librarian’s Shelf puzzle and validator
-- Three progressive hints
-- Feather Bookmark reward and museum-cabinet inventory
-- Library restoration stage 1
-- Curated mosaic tile reveal
-- Tests for the complete happy path and persistence
+- Reusable hotspot and puzzle-dialog systems — implemented
+- The Librarian’s Shelf puzzle and validator — implemented
+- Three progressive hints — implemented
+- Feather Bookmark reward and museum-cabinet inventory — implemented
+- Library restoration stage 1 — implemented
+- Curated mosaic tile reveal — implemented
+- Focused validator and state-effect tests — implemented
 
 ### Later chunks
 
@@ -40,7 +40,10 @@ contract, or puzzle registry contract established during Milestone 1.
 - `app/game/GameShell.tsx`: hydration, autosave, utility controls, room selection
 - `app/game/IntroSequence.tsx`: opening presentation
 - `app/game/GrandHall.tsx`: layered hub scene
-- `app/game/LibraryThreshold.tsx`: first connected-room boundary
+- `app/game/LibraryRoom.tsx`: restored-state room and first puzzle hotspot
+- `app/puzzles/registry.ts`: data-driven puzzle registry
+- `app/puzzles/librarians-shelf/`: first puzzle data, validator, UI, and tests
+- `app/artifacts/artifactRegistry.ts`: revised ten-artifact catalog
 
 The reducer is the only place that changes game state. Browser persistence wraps
 the complete state in a versioned envelope so migrations can be introduced

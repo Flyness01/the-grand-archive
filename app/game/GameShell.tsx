@@ -3,13 +3,15 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
 import { GrandHall } from "./GrandHall";
 import { IntroSequence } from "./IntroSequence";
-import { LibraryThreshold } from "./LibraryThreshold";
+import { InventoryCabinet } from "./InventoryCabinet";
+import { LibraryRoom } from "./LibraryRoom";
 import { createInitialState, gameReducer, readSave, writeSave } from "./state";
 
 export function GameShell() {
   const [state, dispatch] = useReducer(gameReducer, undefined, createInitialState);
   const [hydrated, setHydrated] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [inventoryOpen, setInventoryOpen] = useState(false);
   const [saveVisible, setSaveVisible] = useState(false);
 
   useEffect(() => {
@@ -54,12 +56,31 @@ export function GameShell() {
         <>
           {state.currentRoom === "grand-hall" ? (
             <GrandHall
+              revealedTiles={state.revealedMosaicTiles}
+              restored={state.restorationStages["grand-hall"] > 0}
               onEnterLibrary={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "library" })
               }
             />
           ) : (
-            <LibraryThreshold
+            <LibraryRoom
+              restored={state.restorationStages.library > 0}
+              solved={state.solvedPuzzleIds.includes("librarians-shelf")}
+              hintCount={state.usedHints["librarians-shelf"] ?? 0}
+              onUseHint={() =>
+                dispatch({ type: "USE_HINT", puzzleId: "librarians-shelf" })
+              }
+              onSolve={(mosaicTileIds) =>
+                dispatch({
+                  type: "SOLVE_PUZZLE",
+                  puzzleId: "librarians-shelf",
+                  artifactId: "feather-bookmark",
+                  mosaicTileIds,
+                  restoreRoom: "library",
+                  unlockPuzzleId: "cartographers-missing-route",
+                  clueId: "atlas-map-clue",
+                })
+              }
               onReturn={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }
@@ -67,6 +88,10 @@ export function GameShell() {
           )}
 
           <div className="utility-bar" aria-label="Game controls">
+            <button onClick={() => setInventoryOpen(true)}>
+              <span aria-hidden="true">◇</span>
+              Collection {state.collectedArtifactIds.length}/10
+            </button>
             <button
               onClick={() =>
                 dispatch({
@@ -170,6 +195,12 @@ export function GameShell() {
                 </button>
               </section>
             </div>
+          )}
+          {inventoryOpen && (
+            <InventoryCabinet
+              artifactIds={state.collectedArtifactIds}
+              onClose={() => setInventoryOpen(false)}
+            />
           )}
         </>
       )}

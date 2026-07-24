@@ -7,7 +7,7 @@ import type {
 } from "./types";
 
 export const SAVE_KEY = "grand-archive-save";
-export const SAVE_VERSION = 1;
+export const SAVE_VERSION = 2;
 
 const roomIds: RoomId[] = [
   "grand-hall",
@@ -16,6 +16,7 @@ const roomIds: RoomId[] = [
   "workshop",
   "conservatory",
   "observatory",
+  "archivists-outer-office",
   "hall-of-reflections",
   "archivists-study",
 ];
@@ -67,6 +68,46 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         introComplete: true,
         startedAt: state.startedAt ?? new Date().toISOString(),
       };
+    case "USE_HINT":
+      return {
+        ...state,
+        usedHints: {
+          ...state.usedHints,
+          [action.puzzleId]: Math.min(
+            3,
+            (state.usedHints[action.puzzleId] ?? 0) + 1,
+          ),
+        },
+      };
+    case "SOLVE_PUZZLE":
+      if (state.solvedPuzzleIds.includes(action.puzzleId)) return state;
+      return {
+        ...state,
+        solvedPuzzleIds: [...state.solvedPuzzleIds, action.puzzleId],
+        collectedArtifactIds: [
+          ...state.collectedArtifactIds,
+          action.artifactId,
+        ],
+        revealedMosaicTiles: Array.from(
+          new Set([...state.revealedMosaicTiles, ...action.mosaicTileIds]),
+        ),
+        restorationStages: {
+          ...state.restorationStages,
+          [action.restoreRoom]: 1,
+          "grand-hall": Math.max(
+            1,
+            state.restorationStages["grand-hall"],
+          ) as RestorationStage,
+        },
+        unlockedPuzzleIds: action.unlockPuzzleId
+          ? Array.from(
+              new Set([...state.unlockedPuzzleIds, action.unlockPuzzleId]),
+            )
+          : state.unlockedPuzzleIds,
+        discoveredClueIds: action.clueId
+          ? Array.from(new Set([...state.discoveredClueIds, action.clueId]))
+          : state.discoveredClueIds,
+      };
     case "UPDATE_SETTINGS":
       return {
         ...state,
@@ -84,7 +125,17 @@ export function readSave(): GameState | null {
     const raw = window.localStorage.getItem(SAVE_KEY);
     if (!raw) return null;
     const saved = JSON.parse(raw) as { version: number; state: GameState };
-    return saved.version === SAVE_VERSION ? saved.state : null;
+    if (saved.version === SAVE_VERSION) return saved.state;
+    if (saved.version === 1) {
+      return {
+        ...saved.state,
+        restorationStages: {
+          ...saved.state.restorationStages,
+          "archivists-outer-office": 0,
+        },
+      };
+    }
+    return null;
   } catch {
     return null;
   }

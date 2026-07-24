@@ -1,11 +1,19 @@
 "use client";
 
-const pedestals = Array.from({ length: 20 }, (_, index) => index + 1);
-const tiles = Array.from({ length: 100 }, (_, index) => index);
+const pedestals = Array.from({ length: 10 }, (_, index) => index + 1);
+const tiles = Array.from({ length: 625 }, (_, index) => index);
 
-export function GrandHall({ onEnterLibrary }: { onEnterLibrary: () => void }) {
+export function GrandHall({
+  onEnterLibrary,
+  revealedTiles,
+  restored,
+}: {
+  onEnterLibrary: () => void;
+  revealedTiles: number[];
+  restored: boolean;
+}) {
   return (
-    <section className="hall" aria-labelledby="room-title">
+    <section className={`hall ${restored ? "is-restored" : ""}`} aria-labelledby="room-title">
       <div className="hall__rain" aria-hidden="true" />
       <div className="hall__architecture" aria-hidden="true">
         <div className="hall__arch hall__arch--left" />
@@ -25,9 +33,9 @@ export function GrandHall({ onEnterLibrary }: { onEnterLibrary: () => void }) {
 
       <div className="mosaic">
         <div className="mosaic__plaque">The Archive Restored</div>
-        <div className="mosaic__grid" aria-label="An empty mosaic frame">
+        <div className="mosaic__grid" aria-label={`${revealedTiles.length} mosaic tiles revealed`}>
           {tiles.map((tile) => (
-            <span key={tile} />
+            <span className={revealedTiles.includes(tile) ? "is-revealed" : ""} key={tile} />
           ))}
         </div>
       </div>
@@ -62,15 +70,15 @@ export function GrandHall({ onEnterLibrary }: { onEnterLibrary: () => void }) {
         </span>
       </button>
 
-      <div className="pedestals" aria-label="Twenty empty artifact pedestals">
+      <div className="pedestals" aria-label="Ten empty artifact pedestals">
         {pedestals.map((pedestal) => (
           <span key={pedestal} aria-hidden="true" />
         ))}
       </div>
       <div className="hall__dust" aria-hidden="true" />
       <p className="hall__invitation">
-        One doorway holds a little light.
-        <span>Move closer to inspect it.</span>
+        {restored ? "The first fragment has returned." : "One doorway holds a little light."}
+        <span>{restored ? "The mosaic remembers the Library." : "Move closer to inspect it."}</span>
       </p>
     </section>
   );

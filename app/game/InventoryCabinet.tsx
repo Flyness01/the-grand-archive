@@ -1,0 +1,59 @@
+"use client";
+
+import { artifacts } from "../artifacts/artifactRegistry";
+
+export function InventoryCabinet({
+  artifactIds,
+  onClose,
+}: {
+  artifactIds: string[];
+  onClose: () => void;
+}) {
+  return (
+    <div className="modal-backdrop" onMouseDown={onClose}>
+      <section
+        className="inventory"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="inventory-title"
+        onMouseDown={(event) => event.stopPropagation()}
+      >
+        <button
+          className="settings-panel__close"
+          onClick={onClose}
+          aria-label="Close inventory"
+        >
+          ×
+        </button>
+        <p className="settings-panel__eyebrow">The collection cabinet</p>
+        <h2 id="inventory-title">Recovered Objects</h2>
+        <div className="inventory__shelves">
+          {Array.from({ length: 10 }, (_, index) => {
+            const artifact = artifactIds[index]
+              ? artifacts[artifactIds[index]]
+              : undefined;
+            return (
+              <article
+                className={artifact ? "inventory__slot is-filled" : "inventory__slot"}
+                key={index}
+              >
+                {artifact ? (
+                  <>
+                    <div className="feather-icon" aria-hidden="true">
+                      <i />
+                    </div>
+                    <h3>{artifact.name}</h3>
+                    <p>“{artifact.shortDescription}”</p>
+                    <small>{artifact.roomOfOrigin.replaceAll("-", " ")}</small>
+                  </>
+                ) : (
+                  <span aria-label="Empty artifact position">{index + 1}</span>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      </section>
+    </div>
+  );
+}
