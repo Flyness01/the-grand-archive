@@ -15,9 +15,6 @@ export const shelfBooks: ShelfBook[] = [
     color: "emerald",
     passage:
       "A careful mapmaker leaves no road unnamed, even when the road has vanished.",
-    highlightedLine: "The third road is the one that lingers.",
-    goldLetter: "L",
-    orderMark: "III",
   },
   {
     id: "last-cartographer",
@@ -39,9 +36,9 @@ export const shelfBooks: ShelfBook[] = [
     color: "wine",
     passage:
       "Before electric light, the keeper began each evening at the eastern door.",
-    highlightedLine: "First, take hold of what gives light.",
+    highlightedLine: "Press where patience begins.",
     goldLetter: "P",
-    orderMark: "I",
+    orderMark: "First mark",
   },
   {
     id: "botanical-sketches",
@@ -84,9 +81,6 @@ export const shelfBooks: ShelfBook[] = [
     color: "indigo",
     passage:
       "The observer turned the dome until north rested behind her left shoulder.",
-    highlightedLine: "Under the second moon, the mechanism yielded.",
-    goldLetter: "U",
-    orderMark: "II",
   },
   {
     id: "keepers-ledger",
@@ -94,9 +88,9 @@ export const shelfBooks: ShelfBook[] = [
     color: "chestnut",
     passage:
       "Four entries remain legible beneath the dust; the last was never signed.",
-    highlightedLine: "Last, let the shelf answer the hand.",
+    highlightedLine: "The last letter lingers where the ledger ends.",
     goldLetter: "L",
-    orderMark: "IV",
+    orderMark: "Final mark",
   },
   {
     id: "songs-empty-hall",
@@ -107,17 +101,12 @@ export const shelfBooks: ShelfBook[] = [
   },
 ];
 
-export const librariansShelfSolution = [
-  "history-lanterns",
-  "astronomers-almanac",
-  "atlas-forgotten",
-  "keepers-ledger",
-];
+export const librariansShelfSolution = "PULL";
 
 export const librariansShelfHints = [
   "Some books seem different.",
-  "Gold often marks importance.",
-  "Read the gold marks in their numbered order. They describe what to do.",
+  "Two gold letters form the beginning and end of an instruction.",
+  "Complete P _ _ L with two letters. It describes what the shelf expects your hand to do.",
 ];
 
 export const librariansShelfMosaicTiles = [

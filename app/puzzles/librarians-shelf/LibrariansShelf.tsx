@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { HintPanel } from "../../game/HintPanel";
 import {
   librariansShelfHints,
@@ -21,28 +21,29 @@ export function LibrariansShelf({
   alreadySolved: boolean;
 }) {
   const [activeBook, setActiveBook] = useState<ShelfBook | null>(null);
-  const [sequence, setSequence] = useState<string[]>([]);
+  const [foundClues, setFoundClues] = useState<string[]>([]);
+  const [missingLetters, setMissingLetters] = useState(["", ""]);
   const [compartmentOpen, setCompartmentOpen] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
     alreadySolved ? "The hidden compartment stands open." : "",
   );
 
-  function pullBook(book: ShelfBook) {
-    if (!book.goldLetter || compartmentOpen) return;
-    const next = [...sequence, book.id];
+  function rememberClue(book: ShelfBook) {
+    if (!book.goldLetter) return;
+    setFoundClues((current) =>
+      current.includes(book.id) ? current : [...current, book.id],
+    );
     setActiveBook(null);
-    setSequence(next);
-    if (next.length === 4) {
-      if (validateLibrariansShelf(next)) {
-        setCompartmentOpen(true);
-        setFeedback("A low mechanical click travels through the shelf.");
-      } else {
-        setFeedback("The shelf settles back into place. The order matters.");
-        window.setTimeout(() => {
-          setSequence([]);
-          setFeedback("");
-        }, 1500);
-      }
+  }
+
+  function submitWord(event: FormEvent) {
+    event.preventDefault();
+    const word = `P${missingLetters.join("")}L`;
+    if (validateLibrariansShelf(word)) {
+      setCompartmentOpen(true);
+      setFeedback("A low mechanical click travels through the shelf.");
+    } else {
+      setFeedback("The word fades from the brass plate. Try another instruction.");
     }
   }
 
@@ -50,8 +51,8 @@ export function LibrariansShelf({
     <div className="shelf-puzzle">
       <div className="shelf-puzzle__workspace">
         <p className="shelf-puzzle__instruction">
-          Inspect the volumes. Pull any that seem meaningful, in the order you
-          believe the shelf expects.
+          Inspect the volumes. Two gold-marked pages hold the beginning and end
+          of an instruction.
         </p>
         <div className={`bookcase ${compartmentOpen ? "is-open" : ""}`}>
           <div className="bookcase__books">
@@ -60,9 +61,10 @@ export function LibrariansShelf({
                 key={book.id}
                 className={`book book--${book.color} ${
                   book.goldLetter ? "book--marked" : ""
-                } ${sequence.includes(book.id) ? "is-pulled" : ""}`}
+                } ${foundClues.includes(book.id) ? "is-pulled" : ""}`}
                 onClick={() => setActiveBook(book)}
                 aria-label={`Inspect ${book.title}`}
+                title={book.title}
               >
                 <span>{book.title}</span>
                 {book.orderMark && <i aria-label={`Gold mark ${book.orderMark}`}>{book.orderMark}</i>}
@@ -83,18 +85,42 @@ export function LibrariansShelf({
             </div>
           </div>
         </div>
-        <div className="pull-sequence" aria-live="polite">
-          <span>Books pulled</span>
-          <div>
-            {Array.from({ length: 4 }, (_, index) => {
-              const book = shelfBooks.find((item) => item.id === sequence[index]);
-              return <i key={index}>{book?.goldLetter ?? "·"}</i>;
-            })}
+        <form className="word-completion" onSubmit={submitWord}>
+          <span>Complete the instruction</span>
+          <div aria-label="Four-letter instruction">
+            <i>{foundClues.length > 0 ? "P" : "?"}</i>
+            <input
+              aria-label="Second letter"
+              maxLength={1}
+              value={missingLetters[0]}
+              disabled={foundClues.length < 2 || compartmentOpen}
+              onChange={(event) =>
+                setMissingLetters([
+                  event.target.value.replace(/[^a-z]/gi, "").toUpperCase(),
+                  missingLetters[1],
+                ])
+              }
+            />
+            <input
+              aria-label="Third letter"
+              maxLength={1}
+              value={missingLetters[1]}
+              disabled={foundClues.length < 2 || compartmentOpen}
+              onChange={(event) =>
+                setMissingLetters([
+                  missingLetters[0],
+                  event.target.value.replace(/[^a-z]/gi, "").toUpperCase(),
+                ])
+              }
+            />
+            <i>{foundClues.length > 1 ? "L" : "?"}</i>
           </div>
-          {sequence.length > 0 && !compartmentOpen && (
-            <button onClick={() => setSequence([])}>Reset selection</button>
+          {foundClues.length < 2 ? (
+            <small>Find both gold letters before completing the word.</small>
+          ) : (
+            !compartmentOpen && <button type="submit">Try the word</button>
           )}
-        </div>
+        </form>
         <p className="shelf-feedback" aria-live="polite">{feedback}</p>
       </div>
 
@@ -120,8 +146,8 @@ export function LibrariansShelf({
               </div>
             )}
             {activeBook.goldLetter ? (
-              <button className="pull-book-button" onClick={() => pullBook(activeBook)}>
-                Pull this book
+              <button className="pull-book-button" onClick={() => rememberClue(activeBook)}>
+                Remember this letter
               </button>
             ) : (
               <button className="pull-book-button" onClick={() => setActiveBook(null)}>
