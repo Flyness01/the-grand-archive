@@ -68,7 +68,10 @@ export function LibrariansShelf({
               >
                 <span>{book.title}</span>
                 {book.goldLetter && (
-                  <i aria-label={`Gold letter ${book.goldLetter}`}>
+                  <i
+                    className="book__gold-badge"
+                    aria-label={`Gold letter ${book.goldLetter}`}
+                  >
                     {book.goldLetter}
                   </i>
                 )}
@@ -90,7 +93,10 @@ export function LibrariansShelf({
           </div>
         </div>
         <form className="word-completion" onSubmit={submitWord}>
-          <span>Complete the instruction</span>
+          <span>
+            Complete the instruction
+            <small>Gold letters found: {foundClues.length}/3</small>
+          </span>
           <div aria-label="Seven-letter instruction">
             <i>{foundClues.includes("history-lanterns") ? "E" : "?"}</i>
             {[0, 1].map((index) => (
@@ -99,7 +105,7 @@ export function LibrariansShelf({
                 aria-label={`Missing letter ${index + 1} of 4`}
                 maxLength={1}
                 value={missingLetters[index]}
-                disabled={foundClues.length < 3 || compartmentOpen}
+                disabled={compartmentOpen}
                 onChange={(event) => {
                   const nextLetters = [...missingLetters];
                   nextLetters[index] = event.target.value.replace(/[^a-z]/gi, "").toUpperCase();
@@ -114,7 +120,7 @@ export function LibrariansShelf({
                 aria-label={`Missing letter ${index + 1} of 4`}
                 maxLength={1}
                 value={missingLetters[index]}
-                disabled={foundClues.length < 3 || compartmentOpen}
+                disabled={compartmentOpen}
                 onChange={(event) => {
                   const nextLetters = [...missingLetters];
                   nextLetters[index] = event.target.value.replace(/[^a-z]/gi, "").toUpperCase();
@@ -125,7 +131,7 @@ export function LibrariansShelf({
             <i>{foundClues.includes("keepers-ledger") ? "T" : "?"}</i>
           </div>
           {foundClues.length < 3 ? (
-            <small>Find all three gold letters before completing the word.</small>
+            <small>You may fill the blanks now. Find all three gold letters to try the completed word.</small>
           ) : (
             !compartmentOpen && <button type="submit">Try the word</button>
           )}
