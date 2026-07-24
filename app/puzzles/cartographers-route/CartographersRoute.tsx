@@ -62,7 +62,7 @@ export function CartographersRoute({
         window.setTimeout(() => {
           setPath(["west-gate"]);
           setFeedback("");
-        }, 1800);
+        }, 4500);
       }
     }
   }

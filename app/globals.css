@@ -269,7 +269,7 @@ button:focus-visible, input:focus-visible {
 .book-inspection blockquote { margin:1.5rem 0;padding:.7rem 1rem;border-left:3px solid #a57c35;background:rgba(187,149,78,.16);font-style:italic; }
 .gold-letter { text-align:center;color:#a57320;font-size:2.6rem;text-shadow:0 1px #fff0ba; }
 .pull-book-button { display:block;margin:1rem auto 0;color:#463719;background:#e1c992;border-color:#8d6d32; }
-.reward-moment { position:fixed;z-index:50;inset:0;display:grid;place-content:center;text-align:center;background:radial-gradient(circle,rgba(117,71,31,.78),rgba(3,5,4,.96) 55%);animation:reward-in 2.3s ease both; }
+.reward-moment { position:fixed;z-index:50;inset:0;display:grid;place-content:center;text-align:center;background:radial-gradient(circle,rgba(117,71,31,.78),rgba(3,5,4,.96) 55%);animation:reward-in 5.2s ease both; }
 .reward-moment p { margin:1.8rem 0 .4rem;font-size:1.6rem;letter-spacing:.08em; }
 .reward-moment blockquote { margin:.3rem;color:#d2c4aa;font-style:italic; }
 .reward-moment small { margin-top:1.5rem;color:#948b79;font:.6rem Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase; }
@@ -344,7 +344,7 @@ button:focus-visible, input:focus-visible {
 @keyframes dust-float { to{background-position:73px -91px,-107px -83px} }
 @keyframes tile-reveal { from{opacity:0;transform:scale(.2);filter:brightness(3)} }
 @keyframes fire-flicker { to{transform:translateX(-50%) scale(.92,1.08);filter:brightness(1.3)} }
-@keyframes reward-in { 0%{opacity:0} 18%,80%{opacity:1} 100%{opacity:0} }
+@keyframes reward-in { 0%{opacity:0} 10%,88%{opacity:1} 100%{opacity:0} }
 @keyframes floor-pulse { 50%{filter:brightness(1.35)} }
 @keyframes route-ink { from{stroke-dasharray:1 8;opacity:.2} }
 

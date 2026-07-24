@@ -30,7 +30,7 @@ export function MapRoom({
     window.setTimeout(() => {
       setRewardMoment(false);
       setPuzzleOpen(false);
-    }, 2300);
+    }, 5200);
   }
 
   return (

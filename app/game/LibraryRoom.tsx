@@ -33,7 +33,7 @@ export function LibraryRoom({
       setRewardMoment(false);
       setPuzzleOpen(false);
       onContinueToMapRoom();
-    }, 2300);
+    }, 5200);
   }
 
   return (

@@ -20,6 +20,19 @@ describe("The Cartographer's Missing Route validator", () => {
     ).toBe(false);
   });
 
+  it("rejects the tempting route that turns north too early", () => {
+    expect(
+      validateCartographersRoute([
+        "west-gate",
+        "stone-ford",
+        "ridge-lantern",
+        "north-ferry",
+        "lantern-cross",
+        "archive",
+      ]),
+    ).toBe(false);
+  });
+
   it("rejects malformed input", () => {
     expect(validateCartographersRoute(null)).toBe(false);
   });
