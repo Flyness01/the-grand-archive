@@ -45,3 +45,10 @@ contract, or puzzle registry contract established during Milestone 1.
 The reducer is the only place that changes game state. Browser persistence wraps
 the complete state in a versioned envelope so migrations can be introduced
 before the save schema changes.
+
+## Deployment
+
+The canonical deployment target is GitHub Pages. Pushes to `main` run the
+Pages workflow, produce a static export, and publish it beneath the repository
+path. The Cloudflare-compatible development build remains available locally,
+but future checkpoints should not be published through Sites.

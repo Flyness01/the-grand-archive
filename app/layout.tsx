@@ -1,31 +1,27 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import "./globals.css";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("host") ?? "localhost:3000";
-  const protocol = host.includes("localhost") ? "http" : "https";
-  const image = `${protocol}://${host}/og.png`;
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://flyness01.github.io/the-grand-archive";
 
-  return {
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: "The Grand Archive",
+  description:
+    "Enter a quiet, abandoned archive and restore the knowledge waiting within.",
+  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+  openGraph: {
     title: "The Grand Archive",
-    description:
-      "Enter a quiet, abandoned archive and restore the knowledge waiting within.",
-    icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
-    openGraph: {
-      title: "The Grand Archive",
-      description: "Knowledge is never truly lost. It only waits to be found.",
-      images: [{ url: image, width: 1536, height: 909 }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "The Grand Archive",
-      description: "Knowledge is never truly lost. It only waits to be found.",
-      images: [image],
-    },
-  };
-}
+    description: "Knowledge is never truly lost. It only waits to be found.",
+    images: [{ url: "/og.png", width: 1536, height: 909 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Grand Archive",
+    description: "Knowledge is never truly lost. It only waits to be found.",
+    images: ["/og.png"],
+  },
+};
 
 export default function RootLayout({
   children,
