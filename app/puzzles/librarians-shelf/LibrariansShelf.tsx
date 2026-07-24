@@ -67,14 +67,6 @@ export function LibrariansShelf({
                 title={book.title}
               >
                 <span>{book.title}</span>
-                {book.goldLetter && (
-                  <i
-                    className="book__gold-badge"
-                    aria-label={`Gold letter ${book.goldLetter}`}
-                  >
-                    {book.goldLetter}
-                  </i>
-                )}
               </button>
             ))}
           </div>
