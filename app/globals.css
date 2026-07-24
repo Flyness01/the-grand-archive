@@ -313,6 +313,10 @@ button:focus-visible, input:focus-visible {
 .map-routes line { stroke:rgba(70,47,24,.88);stroke-width:1.45;stroke-dasharray:3.5 2.2;stroke-linecap:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 1px 0 rgba(237,211,155,.32)); }
 .map-routes line.is-used { stroke:#315e48;stroke-width:3.4;stroke-dasharray:none;filter:drop-shadow(0 0 2px rgba(42,92,65,.7)) drop-shadow(0 1px 0 rgba(239,220,174,.55)); }
 .antique-map.is-solved .map-routes line.is-used { stroke:#3b6b53;animation:route-ink 1.2s ease both; }
+.map-legend { position:absolute;z-index:5;right:12px;bottom:10px;display:flex;gap:.9rem;padding:.55rem .7rem;background:rgba(223,199,147,.9);border:1px solid rgba(84,57,28,.48);color:#46351f;font:.48rem Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase;box-shadow:0 2px 8px rgba(0,0,0,.24); }
+.map-legend span { display:flex;align-items:center;gap:.35rem;white-space:nowrap; }
+.map-legend i { display:inline-block;width:22px;height:0;border-top:2px dashed #51351d; }
+.map-legend i.legend-route { border-top:3px solid #315e48; }
 .map-node { position:absolute;z-index:3;width:20px;height:20px;transform:translate(-50%,-50%);border:2px solid #745a36;border-radius:50%;background:#bda472;color:#3e3321;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,.4); }
 .map-node i { position:absolute;inset:4px;border-radius:50%;background:#57492e; }
 .map-node--lantern i { background:#c88e38;box-shadow:0 0 8px rgba(185,112,31,.5);clip-path:polygon(35% 0,65% 0,100% 35%,82% 100%,18% 100%,0 35%); }

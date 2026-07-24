@@ -108,6 +108,11 @@ export function CartographersRoute({
             })}
           </svg>
 
+          <div className="map-legend" aria-label="Map route legend">
+            <span><i className="legend-road" aria-hidden="true" /> Available road</span>
+            <span><i className="legend-route" aria-hidden="true" /> Your route</span>
+          </div>
+
           {mapNodes.map((node) => {
             const chosenIndex = path.indexOf(node.id);
             return (
