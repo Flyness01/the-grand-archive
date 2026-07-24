@@ -22,7 +22,7 @@ export function LibrariansShelf({
 }) {
   const [activeBook, setActiveBook] = useState<ShelfBook | null>(null);
   const [foundClues, setFoundClues] = useState<string[]>([]);
-  const [missingLetters, setMissingLetters] = useState(["", "", "", "", ""]);
+  const [missingLetters, setMissingLetters] = useState(["", "", "", ""]);
   const [compartmentOpen, setCompartmentOpen] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
     alreadySolved ? "The hidden compartment stands open." : "",
@@ -38,7 +38,7 @@ export function LibrariansShelf({
 
   function submitWord(event: FormEvent) {
     event.preventDefault();
-    const word = `E${missingLetters.join("")}T`;
+    const word = `E${missingLetters[0]}${missingLetters[1]}R${missingLetters[2]}${missingLetters[3]}T`;
     if (validateLibrariansShelf(word)) {
       setCompartmentOpen(true);
       setFeedback("A low mechanical click travels through the shelf.");
@@ -51,8 +51,8 @@ export function LibrariansShelf({
     <div className="shelf-puzzle">
       <div className="shelf-puzzle__workspace">
         <p className="shelf-puzzle__instruction">
-          Inspect the volumes. Two gold-marked pages hold the beginning and end
-          of an instruction.
+          Inspect the volumes. Three gold-marked pages hold fixed letters from
+          an instruction.
         </p>
         <div className={`bookcase ${compartmentOpen ? "is-open" : ""}`}>
           <div className="bookcase__books">
@@ -88,27 +88,40 @@ export function LibrariansShelf({
         <form className="word-completion" onSubmit={submitWord}>
           <span>Complete the instruction</span>
           <div aria-label="Seven-letter instruction">
-            <i>{foundClues.length > 0 ? "E" : "?"}</i>
-            {missingLetters.map((letter, index) => (
+            <i>{foundClues.includes("history-lanterns") ? "E" : "?"}</i>
+            {[0, 1].map((index) => (
               <input
                 key={index}
-                aria-label={`Missing letter ${index + 1} of 5`}
+                aria-label={`Missing letter ${index + 1} of 4`}
                 maxLength={1}
-                value={letter}
-                disabled={foundClues.length < 2 || compartmentOpen}
+                value={missingLetters[index]}
+                disabled={foundClues.length < 3 || compartmentOpen}
                 onChange={(event) => {
                   const nextLetters = [...missingLetters];
-                  nextLetters[index] = event.target.value
-                    .replace(/[^a-z]/gi, "")
-                    .toUpperCase();
+                  nextLetters[index] = event.target.value.replace(/[^a-z]/gi, "").toUpperCase();
                   setMissingLetters(nextLetters);
                 }}
               />
             ))}
-            <i>{foundClues.length > 1 ? "T" : "?"}</i>
+            <i>{foundClues.includes("atlas-forgotten") ? "R" : "?"}</i>
+            {[2, 3].map((index) => (
+              <input
+                key={index}
+                aria-label={`Missing letter ${index + 1} of 4`}
+                maxLength={1}
+                value={missingLetters[index]}
+                disabled={foundClues.length < 3 || compartmentOpen}
+                onChange={(event) => {
+                  const nextLetters = [...missingLetters];
+                  nextLetters[index] = event.target.value.replace(/[^a-z]/gi, "").toUpperCase();
+                  setMissingLetters(nextLetters);
+                }}
+              />
+            ))}
+            <i>{foundClues.includes("keepers-ledger") ? "T" : "?"}</i>
           </div>
-          {foundClues.length < 2 ? (
-            <small>Find both gold letters before completing the word.</small>
+          {foundClues.length < 3 ? (
+            <small>Find all three gold letters before completing the word.</small>
           ) : (
             !compartmentOpen && <button type="submit">Try the word</button>
           )}

@@ -15,6 +15,9 @@ export const shelfBooks: ShelfBook[] = [
     color: "emerald",
     passage:
       "A careful mapmaker leaves no road unnamed, even when the road has vanished.",
+    highlightedLine: "At the heart of every archive, a route turns inward.",
+    goldLetter: "R",
+    orderMark: "Central mark",
   },
   {
     id: "last-cartographer",
@@ -105,8 +108,8 @@ export const librariansShelfSolution = "EXTRACT";
 
 export const librariansShelfHints = [
   "Some books seem different.",
-  "Two gold letters form the beginning and end of a seven-letter instruction.",
-  "Complete E _ _ _ _ _ T. The word means to take something out from where it is held.",
+  "Three gold letters belong to fixed places in a seven-letter instruction.",
+  "Complete E _ _ R _ _ T. The word means to take something out from where it is held.",
 ];
 
 export const librariansShelfMosaicTiles = [
