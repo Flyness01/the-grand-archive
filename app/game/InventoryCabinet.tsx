@@ -41,6 +41,8 @@ export function InventoryCabinet({
                   <>
                     {artifact.id === "navigators-compass" ? (
                       <div className="compass-icon" aria-hidden="true"><i /></div>
+                    ) : artifact.id === "brass-lantern" ? (
+                      <div className="brass-lantern-icon" aria-hidden="true"><i /></div>
                     ) : (
                       <div className="feather-icon" aria-hidden="true"><i /></div>
                     )}

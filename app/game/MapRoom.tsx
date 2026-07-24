@@ -13,6 +13,7 @@ export function MapRoom({
   onUseHint,
   onSolve,
   onReturn,
+  onContinueToGrandHall,
 }: {
   restored: boolean;
   solved: boolean;
@@ -20,6 +21,7 @@ export function MapRoom({
   onUseHint: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onReturn: () => void;
+  onContinueToGrandHall: () => void;
 }) {
   const [puzzleOpen, setPuzzleOpen] = useState(false);
   const [rewardMoment, setRewardMoment] = useState(false);
@@ -30,6 +32,7 @@ export function MapRoom({
     window.setTimeout(() => {
       setRewardMoment(false);
       setPuzzleOpen(false);
+      onContinueToGrandHall();
     }, 5200);
   }
 

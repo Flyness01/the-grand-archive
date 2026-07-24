@@ -10,6 +10,9 @@ export function GrandHall({
   restored,
   mapRoomUnlocked,
   floorMechanismActive,
+  lanternWallUnlocked,
+  lanternWallSolved,
+  onInspectLanternWall,
 }: {
   onEnterLibrary: () => void;
   onEnterMapRoom: () => void;
@@ -17,9 +20,12 @@ export function GrandHall({
   restored: boolean;
   mapRoomUnlocked: boolean;
   floorMechanismActive: boolean;
+  lanternWallUnlocked: boolean;
+  lanternWallSolved: boolean;
+  onInspectLanternWall: () => void;
 }) {
   return (
-    <section className={`hall ${restored ? "is-restored" : ""}`} aria-labelledby="room-title">
+    <section className={`hall ${restored ? "is-restored" : ""} ${lanternWallSolved ? "is-lantern-restored" : ""}`} aria-labelledby="room-title">
       <div className="hall__rain" aria-hidden="true" />
       <div className="hall__architecture" aria-hidden="true">
         <div className="hall__arch hall__arch--left" />
@@ -80,11 +86,50 @@ export function GrandHall({
       </button>
 
       <div
+        className={`workshop-threshold ${lanternWallSolved ? "is-unlocked" : ""}`}
+        aria-label={
+          lanternWallSolved
+            ? "The Workshop door is unlocked"
+            : "The Workshop door is sealed"
+        }
+      >
+        <span><i /></span>
+        <b>Workshop</b>
+        <small>{lanternWallSolved ? "Unlocked" : "Sealed by shadow"}</small>
+      </div>
+
+      <div
         className={`hall-floor-mechanism ${floorMechanismActive ? "is-active" : ""}`}
         aria-label={floorMechanismActive ? "The Grand Hall floor mechanism is active" : "A dormant mechanism lies beneath the floor"}
       >
         <i /><i /><i />
       </div>
+
+      <button
+        className={`lantern-wall-hotspot ${
+          lanternWallUnlocked ? "is-unlocked" : ""
+        } ${lanternWallSolved ? "is-solved" : ""}`}
+        disabled={!lanternWallUnlocked}
+        onClick={onInspectLanternWall}
+        aria-label={
+          lanternWallUnlocked
+            ? lanternWallSolved
+              ? "Inspect the completed Lantern Wall"
+              : "Inspect the Lantern Wall"
+            : "A dark arrangement of lanterns"
+        }
+      >
+        {[0, 1, 2, 3].map((lantern) => (
+          <span key={lantern}><i /></span>
+        ))}
+        <b>
+          {lanternWallSolved
+            ? "A keyhole of shadow remains"
+            : lanternWallUnlocked
+              ? "Align the lantern shadows"
+              : "Dormant lanterns"}
+        </b>
+      </button>
 
       <div className="pedestals" aria-label="Ten empty artifact pedestals">
         {pedestals.map((pedestal) => (
@@ -93,8 +138,22 @@ export function GrandHall({
       </div>
       <div className="hall__dust" aria-hidden="true" />
       <p className="hall__invitation">
-        {restored ? "The first fragment has returned." : "One doorway holds a little light."}
-        <span>{restored ? "The mosaic remembers the Library." : "Move closer to inspect it."}</span>
+        {lanternWallSolved
+          ? "The central lantern burns without a flame."
+          : lanternWallUnlocked
+          ? "The floor mechanism points toward the lanterns."
+          : restored
+            ? "The first fragment has returned."
+            : "One doorway holds a little light."}
+        <span>
+          {lanternWallSolved
+            ? "Warm light reaches the newly opened Workshop."
+            : lanternWallUnlocked
+            ? "Four shadows wait to become one."
+            : restored
+              ? "The mosaic remembers the Library."
+              : "Move closer to inspect it."}
+        </span>
       </p>
     </section>
   );

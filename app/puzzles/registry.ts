@@ -9,6 +9,11 @@ import {
   librariansShelfMosaicTiles,
 } from "./librarians-shelf/puzzleData";
 import { validateLibrariansShelf } from "./librarians-shelf/validator";
+import {
+  lanternWallHints,
+  lanternWallMosaicTiles,
+} from "./lantern-wall/puzzleData";
+import { validateLanternWall } from "./lantern-wall/validator";
 
 export interface PuzzleDefinition {
   id: string;
@@ -44,5 +49,16 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
     solutionValidator: validateCartographersRoute,
     artifactRewardId: "navigators-compass",
     mosaicTileIds: cartographersRouteMosaicTiles,
+  },
+  "lantern-wall": {
+    id: "lantern-wall",
+    title: "The Lantern Wall",
+    roomId: "grand-hall",
+    difficulty: 5,
+    estimatedMinutes: 10,
+    hints: lanternWallHints,
+    solutionValidator: validateLanternWall,
+    artifactRewardId: "brass-lantern",
+    mosaicTileIds: lanternWallMosaicTiles,
   },
 };

@@ -6,6 +6,7 @@ import { IntroSequence } from "./IntroSequence";
 import { InventoryCabinet } from "./InventoryCabinet";
 import { LibraryRoom } from "./LibraryRoom";
 import { MapRoom } from "./MapRoom";
+import { LanternWallRoom } from "./LanternWallRoom";
 import { createInitialState, gameReducer, readSave, writeSave } from "./state";
 
 export function GameShell() {
@@ -14,6 +15,7 @@ export function GameShell() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [inventoryOpen, setInventoryOpen] = useState(false);
   const [saveVisible, setSaveVisible] = useState(false);
+  const [lanternWallOpen, setLanternWallOpen] = useState(false);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -61,6 +63,9 @@ export function GameShell() {
               restored={state.restorationStages["grand-hall"] > 0}
               mapRoomUnlocked={state.solvedPuzzleIds.includes("librarians-shelf")}
               floorMechanismActive={state.solvedPuzzleIds.includes("cartographers-missing-route")}
+              lanternWallUnlocked={state.unlockedPuzzleIds.includes("lantern-wall")}
+              lanternWallSolved={state.solvedPuzzleIds.includes("lantern-wall")}
+              onInspectLanternWall={() => setLanternWallOpen(true)}
               onEnterLibrary={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "library" })
               }
@@ -116,6 +121,31 @@ export function GameShell() {
               onReturn={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }
+              onContinueToGrandHall={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
+              }
+            />
+          )}
+
+          {state.currentRoom === "grand-hall" && lanternWallOpen && (
+            <LanternWallRoom
+              solved={state.solvedPuzzleIds.includes("lantern-wall")}
+              hintCount={state.usedHints["lantern-wall"] ?? 0}
+              onUseHint={() =>
+                dispatch({ type: "USE_HINT", puzzleId: "lantern-wall" })
+              }
+              onSolve={(mosaicTileIds) =>
+                dispatch({
+                  type: "SOLVE_PUZZLE",
+                  puzzleId: "lantern-wall",
+                  artifactId: "brass-lantern",
+                  mosaicTileIds,
+                  restoreRoom: "grand-hall",
+                  unlockPuzzleId: "stopped-clock",
+                  clueId: "workshop-door-unlocked",
+                })
+              }
+              onClose={() => setLanternWallOpen(false)}
             />
           )}
 

@@ -95,7 +95,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
           ...state.restorationStages,
           [action.restoreRoom]: 1,
           "grand-hall": Math.max(
-            1,
+            action.puzzleId === "lantern-wall" ? 2 : 1,
             state.restorationStages["grand-hall"],
           ) as RestorationStage,
         },
