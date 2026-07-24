@@ -3,16 +3,16 @@ import { validateLibrariansShelf } from "./validator";
 
 describe("The Librarian's Shelf validator", () => {
   it("accepts the completed instruction", () => {
-    expect(validateLibrariansShelf("PULL")).toBe(true);
-    expect(validateLibrariansShelf("pull")).toBe(true);
+    expect(validateLibrariansShelf("EXTRACT")).toBe(true);
+    expect(validateLibrariansShelf("extract")).toBe(true);
   });
 
   it("rejects incomplete or incorrect words", () => {
-    expect(validateLibrariansShelf("P__L")).toBe(false);
-    expect(validateLibrariansShelf("PUSH")).toBe(false);
+    expect(validateLibrariansShelf("E_____T")).toBe(false);
+    expect(validateLibrariansShelf("EJECT")).toBe(false);
   });
 
   it("rejects malformed input", () => {
-    expect(validateLibrariansShelf(["P", "U", "L", "L"])).toBe(false);
+    expect(validateLibrariansShelf(["E", "X", "T", "R", "A", "C", "T"])).toBe(false);
   });
 });

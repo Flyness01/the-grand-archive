@@ -36,8 +36,8 @@ export const shelfBooks: ShelfBook[] = [
     color: "wine",
     passage:
       "Before electric light, the keeper began each evening at the eastern door.",
-    highlightedLine: "Press where patience begins.",
-    goldLetter: "P",
+    highlightedLine: "Every mechanism begins with an invitation.",
+    goldLetter: "E",
     orderMark: "First mark",
   },
   {
@@ -88,8 +88,8 @@ export const shelfBooks: ShelfBook[] = [
     color: "chestnut",
     passage:
       "Four entries remain legible beneath the dust; the last was never signed.",
-    highlightedLine: "The last letter lingers where the ledger ends.",
-    goldLetter: "L",
+    highlightedLine: "The final instruction ends where the ledger is shut.",
+    goldLetter: "T",
     orderMark: "Final mark",
   },
   {
@@ -101,12 +101,12 @@ export const shelfBooks: ShelfBook[] = [
   },
 ];
 
-export const librariansShelfSolution = "PULL";
+export const librariansShelfSolution = "EXTRACT";
 
 export const librariansShelfHints = [
   "Some books seem different.",
-  "Two gold letters form the beginning and end of an instruction.",
-  "Complete P _ _ L with two letters. It describes what the shelf expects your hand to do.",
+  "Two gold letters form the beginning and end of a seven-letter instruction.",
+  "Complete E _ _ _ _ _ T. The word means to take something out from where it is held.",
 ];
 
 export const librariansShelfMosaicTiles = [

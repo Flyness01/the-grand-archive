@@ -22,7 +22,7 @@ export function LibrariansShelf({
 }) {
   const [activeBook, setActiveBook] = useState<ShelfBook | null>(null);
   const [foundClues, setFoundClues] = useState<string[]>([]);
-  const [missingLetters, setMissingLetters] = useState(["", ""]);
+  const [missingLetters, setMissingLetters] = useState(["", "", "", "", ""]);
   const [compartmentOpen, setCompartmentOpen] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
     alreadySolved ? "The hidden compartment stands open." : "",
@@ -38,7 +38,7 @@ export function LibrariansShelf({
 
   function submitWord(event: FormEvent) {
     event.preventDefault();
-    const word = `P${missingLetters.join("")}L`;
+    const word = `E${missingLetters.join("")}T`;
     if (validateLibrariansShelf(word)) {
       setCompartmentOpen(true);
       setFeedback("A low mechanical click travels through the shelf.");
@@ -87,33 +87,25 @@ export function LibrariansShelf({
         </div>
         <form className="word-completion" onSubmit={submitWord}>
           <span>Complete the instruction</span>
-          <div aria-label="Four-letter instruction">
-            <i>{foundClues.length > 0 ? "P" : "?"}</i>
-            <input
-              aria-label="Second letter"
-              maxLength={1}
-              value={missingLetters[0]}
-              disabled={foundClues.length < 2 || compartmentOpen}
-              onChange={(event) =>
-                setMissingLetters([
-                  event.target.value.replace(/[^a-z]/gi, "").toUpperCase(),
-                  missingLetters[1],
-                ])
-              }
-            />
-            <input
-              aria-label="Third letter"
-              maxLength={1}
-              value={missingLetters[1]}
-              disabled={foundClues.length < 2 || compartmentOpen}
-              onChange={(event) =>
-                setMissingLetters([
-                  missingLetters[0],
-                  event.target.value.replace(/[^a-z]/gi, "").toUpperCase(),
-                ])
-              }
-            />
-            <i>{foundClues.length > 1 ? "L" : "?"}</i>
+          <div aria-label="Seven-letter instruction">
+            <i>{foundClues.length > 0 ? "E" : "?"}</i>
+            {missingLetters.map((letter, index) => (
+              <input
+                key={index}
+                aria-label={`Missing letter ${index + 1} of 5`}
+                maxLength={1}
+                value={letter}
+                disabled={foundClues.length < 2 || compartmentOpen}
+                onChange={(event) => {
+                  const nextLetters = [...missingLetters];
+                  nextLetters[index] = event.target.value
+                    .replace(/[^a-z]/gi, "")
+                    .toUpperCase();
+                  setMissingLetters(nextLetters);
+                }}
+              />
+            ))}
+            <i>{foundClues.length > 1 ? "T" : "?"}</i>
           </div>
           {foundClues.length < 2 ? (
             <small>Find both gold letters before completing the word.</small>
