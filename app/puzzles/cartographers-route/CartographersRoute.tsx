@@ -73,10 +73,12 @@ export function CartographersRoute({
         <div className="margin-rules">
           <p>From the Cartographer’s margin</p>
           <ol>
-            <li>Cross each river no more than once.</li>
-            <li>Travel east before travelling north.</li>
+            <li>Each named river was crossed once, and never twice.</li>
+            <li>Two eastward roads came before the first northern turn.</li>
             <li>Avoid abandoned milestones.</li>
             <li>Stop only at lantern-marked locations.</li>
+            <li>Fruit was bought just before the watch bell was heard.</li>
+            <li>The final light had green glass and stood at a crossroads.</li>
           </ol>
         </div>
 
