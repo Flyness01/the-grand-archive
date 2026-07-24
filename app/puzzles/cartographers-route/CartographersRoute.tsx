@@ -26,13 +26,13 @@ export function CartographersRoute({
     alreadySolved ? "The compass drawer stands open." : "",
   );
 
-  const pathSegments = useMemo(
+  const usedEdges = useMemo(
     () =>
-      path.slice(1).map((nodeId, index) => ({
-        from: mapNodes.find((node) => node.id === path[index])!,
-        to: mapNodes.find((node) => node.id === nodeId)!,
-        order: index + 1,
-      })),
+      new Set(
+        path.slice(1).map((nodeId, index) =>
+          [path[index], nodeId].sort().join(":"),
+        ),
+      ),
     [path],
   );
 
@@ -91,19 +91,6 @@ export function CartographersRoute({
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            <defs>
-              <marker
-                id="route-arrow"
-                viewBox="0 0 10 10"
-                refX="8"
-                refY="5"
-                markerWidth="5"
-                markerHeight="5"
-                orient="auto-start-reverse"
-              >
-                <path d="M 0 0 L 10 5 L 0 10 z" />
-              </marker>
-            </defs>
             {mapRoutes.map((route) => {
               const from = mapNodes.find((node) => node.id === route.from)!;
               const to = mapNodes.find((node) => node.id === route.to)!;
@@ -115,35 +102,11 @@ export function CartographersRoute({
                   y1={from.y}
                   x2={to.x}
                   y2={to.y}
+                  className={usedEdges.has(edgeId) ? "is-used" : ""}
                 />
               );
             })}
-            {pathSegments.map((segment) => {
-              const midpointX = (segment.from.x + segment.to.x) / 2;
-              const midpointY = (segment.from.y + segment.to.y) / 2;
-              return (
-                <g className="route-segment" key={`${segment.from.id}:${segment.to.id}`}>
-                  <line
-                    x1={segment.from.x}
-                    y1={segment.from.y}
-                    x2={segment.to.x}
-                    y2={segment.to.y}
-                    markerEnd="url(#route-arrow)"
-                  />
-                  <circle cx={midpointX} cy={midpointY} r="1.9" />
-                  <text x={midpointX} y={midpointY + 0.75}>
-                    {segment.order}
-                  </text>
-                </g>
-              );
-            })}
           </svg>
-
-          <div className="map-legend" aria-hidden="true">
-            <span><i className="legend-road" /> Available road</span>
-            <span><i className="legend-route" /> Your route</span>
-            <small>Arrows and numbers show travel order</small>
-          </div>
 
           {mapNodes.map((node) => {
             const chosenIndex = path.indexOf(node.id);
