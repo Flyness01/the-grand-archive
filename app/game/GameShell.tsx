@@ -87,6 +87,9 @@ export function GameShell() {
                   clueId: "atlas-map-clue",
                 })
               }
+              onContinueToMapRoom={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "map-room" })
+              }
               onReturn={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }

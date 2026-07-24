@@ -12,6 +12,7 @@ export function LibraryRoom({
   hintCount,
   onUseHint,
   onSolve,
+  onContinueToMapRoom,
   onReturn,
 }: {
   restored: boolean;
@@ -19,6 +20,7 @@ export function LibraryRoom({
   hintCount: number;
   onUseHint: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
+  onContinueToMapRoom: () => void;
   onReturn: () => void;
 }) {
   const [puzzleOpen, setPuzzleOpen] = useState(false);
@@ -30,6 +32,7 @@ export function LibraryRoom({
     window.setTimeout(() => {
       setRewardMoment(false);
       setPuzzleOpen(false);
+      onContinueToMapRoom();
     }, 2300);
   }
 
@@ -87,7 +90,7 @@ export function LibraryRoom({
           <div className="feather-icon feather-icon--large" aria-hidden="true"><i /></div>
           <p>Feather Bookmark</p>
           <blockquote>“It waited patiently.”</blockquote>
-          <small>Somewhere in the Grand Hall, stone shifts.</small>
+          <small>The atlas opens. An inked route leads west.</small>
         </div>
       )}
     </section>
