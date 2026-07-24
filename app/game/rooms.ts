@@ -1,0 +1,68 @@
+import type { RoomDefinition, RoomId } from "./types";
+
+export const rooms: Record<RoomId, RoomDefinition> = {
+  "grand-hall": {
+    id: "grand-hall",
+    name: "Grand Hall",
+    eyebrow: "The heart of the Archive",
+    connections: [
+      "library",
+      "map-room",
+      "workshop",
+      "conservatory",
+      "observatory",
+      "hall-of-reflections",
+      "archivists-study",
+    ],
+    initiallyUnlocked: true,
+  },
+  library: {
+    id: "library",
+    name: "Library",
+    eyebrow: "A faint amber light remains",
+    connections: ["grand-hall"],
+    initiallyUnlocked: true,
+  },
+  "map-room": {
+    id: "map-room",
+    name: "Map Room",
+    eyebrow: "The door is sealed",
+    connections: ["grand-hall"],
+    initiallyUnlocked: false,
+  },
+  workshop: {
+    id: "workshop",
+    name: "Workshop",
+    eyebrow: "The mechanisms are still",
+    connections: ["grand-hall"],
+    initiallyUnlocked: false,
+  },
+  conservatory: {
+    id: "conservatory",
+    name: "Conservatory",
+    eyebrow: "Nothing stirs beyond the glass",
+    connections: ["grand-hall"],
+    initiallyUnlocked: false,
+  },
+  observatory: {
+    id: "observatory",
+    name: "Observatory",
+    eyebrow: "The dome is shuttered",
+    connections: ["grand-hall"],
+    initiallyUnlocked: false,
+  },
+  "hall-of-reflections": {
+    id: "hall-of-reflections",
+    name: "Hall of Reflections",
+    eyebrow: "The mirrors have gone dark",
+    connections: ["grand-hall"],
+    initiallyUnlocked: false,
+  },
+  "archivists-study": {
+    id: "archivists-study",
+    name: "Archivist’s Study",
+    eyebrow: "No keyhole can be found",
+    connections: ["grand-hall"],
+    initiallyUnlocked: false,
+  },
+};
