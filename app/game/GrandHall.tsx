@@ -20,6 +20,8 @@ export function GrandHall({
   onEnterObservatory,
   observatorySolved,
   onEnterOuterOffice,
+  typewriterSolved,
+  onEnterReflections,
 }: {
   onEnterLibrary: () => void;
   onEnterMapRoom: () => void;
@@ -37,6 +39,8 @@ export function GrandHall({
   onEnterObservatory: () => void;
   observatorySolved: boolean;
   onEnterOuterOffice: () => void;
+  typewriterSolved: boolean;
+  onEnterReflections: () => void;
 }) {
   return (
     <section className={`hall ${restored ? "is-restored" : ""} ${lanternWallSolved ? "is-lantern-restored" : ""}`} aria-labelledby="room-title">
@@ -80,6 +84,17 @@ export function GrandHall({
           <small>A faint light remains</small>
           Library
         </span>
+      </button>
+
+      <button
+        className={`reflections-threshold ${typewriterSolved ? "is-unlocked" : ""}`}
+        disabled={!typewriterSolved}
+        onClick={onEnterReflections}
+        aria-label={typewriterSolved ? "Enter the Hall of Reflections" : "The Hall of Reflections is sealed"}
+      >
+        <span><i /></span>
+        <b>Hall of Reflections</b>
+        <small>{typewriterSolved ? "The journal reveals the door" : "No door appears here"}</small>
       </button>
 
       <button
@@ -195,7 +210,9 @@ export function GrandHall({
       </div>
       <div className="hall__dust" aria-hidden="true" />
       <p className="hall__invitation">
-        {observatorySolved
+        {typewriterSolved
+          ? "A silver doorway appears where the Journal says it should."
+          : observatorySolved
           ? "A narrow office door opens beneath the newly revealed stars."
           : conservatorySolved
           ? "Vines curl away from a stair climbing into darkness."
@@ -209,7 +226,9 @@ export function GrandHall({
             ? "The first fragment has returned."
             : "One doorway holds a little light."}
         <span>
-          {observatorySolved
+          {typewriterSolved
+            ? "Its reflection opens before the door itself."
+            : observatorySolved
             ? "Inside, a typewriter strikes the wrong letter with perfect consistency."
             : conservatorySolved
             ? "Above, an unrecorded group of stars waits in the dome."

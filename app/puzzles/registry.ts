@@ -34,6 +34,11 @@ import {
   mirroredTypewriterMosaicTiles,
 } from "./mirrored-typewriter/puzzleData";
 import { validateMirroredTypewriter } from "./mirrored-typewriter/validator";
+import {
+  reflectionHints,
+  reflectionMosaicTiles,
+} from "./hall-of-reflections/puzzleData";
+import { validateHallOfReflections } from "./hall-of-reflections/validator";
 
 export interface PuzzleDefinition {
   id: string;
@@ -124,5 +129,16 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
     solutionValidator: validateMirroredTypewriter,
     artifactRewardId: "leather-journal",
     mosaicTileIds: mirroredTypewriterMosaicTiles,
+  },
+  "hall-of-reflections": {
+    id: "hall-of-reflections",
+    title: "The Hall of Reflections",
+    roomId: "hall-of-reflections",
+    difficulty: 7,
+    estimatedMinutes: 11,
+    hints: reflectionHints,
+    solutionValidator: validateHallOfReflections,
+    artifactRewardId: "prism-lens",
+    mosaicTileIds: reflectionMosaicTiles,
   },
 };

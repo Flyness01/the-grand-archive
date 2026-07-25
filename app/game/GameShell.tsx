@@ -11,6 +11,7 @@ import { WorkshopRoom } from "./WorkshopRoom";
 import { ConservatoryRoom } from "./ConservatoryRoom";
 import { ObservatoryRoom } from "./ObservatoryRoom";
 import { ArchivistsOuterOffice } from "./ArchivistsOuterOffice";
+import { HallOfReflectionsRoom } from "./HallOfReflectionsRoom";
 import { createInitialState, gameReducer, readSave, writeSave } from "./state";
 
 export function GameShell() {
@@ -79,11 +80,15 @@ export function GameShell() {
               }
               conservatorySolved={state.solvedPuzzleIds.includes("sleeping-conservatory")}
               observatorySolved={state.solvedPuzzleIds.includes("constellation-that-should-not-exist")}
+              typewriterSolved={state.solvedPuzzleIds.includes("mirrored-typewriter")}
               onEnterObservatory={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "observatory" })
               }
               onEnterOuterOffice={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "archivists-outer-office" })
+              }
+              onEnterReflections={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "hall-of-reflections" })
               }
               onEnterLibrary={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "library" })
@@ -222,7 +227,7 @@ export function GameShell() {
                 dispatch({ type: "ENTER_ROOM", roomId: "archivists-outer-office" })
               }
             />
-          ) : (
+          ) : state.currentRoom === "archivists-outer-office" ? (
             <ArchivistsOuterOffice
               restored={state.restorationStages["archivists-outer-office"] > 0}
               solved={state.solvedPuzzleIds.includes("mirrored-typewriter")}
@@ -245,7 +250,33 @@ export function GameShell() {
                 dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }
               onContinueToReflections={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "hall-of-reflections" })
+              }
+            />
+          ) : (
+            <HallOfReflectionsRoom
+              restored={state.restorationStages["hall-of-reflections"] > 0}
+              solved={state.solvedPuzzleIds.includes("hall-of-reflections")}
+              hintCount={state.usedHints["hall-of-reflections"] ?? 0}
+              onUseHint={() =>
+                dispatch({ type: "USE_HINT", puzzleId: "hall-of-reflections" })
+              }
+              onSolve={(mosaicTileIds) =>
+                dispatch({
+                  type: "SOLVE_PUZZLE",
+                  puzzleId: "hall-of-reflections",
+                  artifactId: "prism-lens",
+                  mosaicTileIds,
+                  restoreRoom: "hall-of-reflections",
+                  unlockPuzzleId: "master-blueprint",
+                  clueId: "artifact-pedestal-symbols-visible",
+                })
+              }
+              onReturn={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
+              }
+              onContinueToWorkshop={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "workshop" })
               }
             />
           )}

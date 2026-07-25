@@ -5,6 +5,7 @@ import { stoppedClockMosaicTiles } from "../puzzles/stopped-clock/puzzleData";
 import { sleepingConservatoryMosaicTiles } from "../puzzles/sleeping-conservatory/puzzleData";
 import { impossibleConstellationMosaicTiles } from "../puzzles/impossible-constellation/puzzleData";
 import { mirroredTypewriterMosaicTiles } from "../puzzles/mirrored-typewriter/puzzleData";
+import { reflectionMosaicTiles } from "../puzzles/hall-of-reflections/puzzleData";
 import { createInitialState, gameReducer } from "./state";
 
 describe("game progression", () => {
@@ -140,5 +141,23 @@ describe("game progression", () => {
     expect(state.restorationStages["archivists-outer-office"]).toBe(1);
     expect(state.unlockedPuzzleIds).toContain("hall-of-reflections");
     expect(state.discoveredClueIds).toContain("journal-clues-organized");
+  });
+
+  it("restores the Hall of Reflections and unlocks the Master Blueprint", () => {
+    const state = gameReducer(createInitialState(), {
+      type: "SOLVE_PUZZLE",
+      puzzleId: "hall-of-reflections",
+      artifactId: "prism-lens",
+      mosaicTileIds: reflectionMosaicTiles,
+      restoreRoom: "hall-of-reflections",
+      unlockPuzzleId: "master-blueprint",
+      clueId: "artifact-pedestal-symbols-visible",
+    });
+
+    expect(state.solvedPuzzleIds).toContain("hall-of-reflections");
+    expect(state.collectedArtifactIds).toContain("prism-lens");
+    expect(state.restorationStages["hall-of-reflections"]).toBe(1);
+    expect(state.unlockedPuzzleIds).toContain("master-blueprint");
+    expect(state.discoveredClueIds).toContain("artifact-pedestal-symbols-visible");
   });
 });
