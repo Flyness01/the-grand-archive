@@ -80,6 +80,7 @@ export function GameShell() {
                 dispatch({ type: "ENTER_ROOM", roomId: "conservatory" })
               }
               conservatorySolved={state.solvedPuzzleIds.includes("sleeping-conservatory")}
+              blueprintUnlocked={state.unlockedPuzzleIds.includes("master-blueprint")}
               blueprintSolved={state.solvedPuzzleIds.includes("master-blueprint")}
               finaleSolved={state.solvedPuzzleIds.includes("return-what-was-borrowed")}
               finaleHintCount={state.usedHints["return-what-was-borrowed"] ?? 0}

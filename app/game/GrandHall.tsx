@@ -27,6 +27,7 @@ export function GrandHall({
   onEnterOuterOffice,
   typewriterSolved,
   onEnterReflections,
+  blueprintUnlocked,
   blueprintSolved,
   finaleSolved,
   finaleHintCount,
@@ -52,6 +53,7 @@ export function GrandHall({
   onEnterOuterOffice: () => void;
   typewriterSolved: boolean;
   onEnterReflections: () => void;
+  blueprintUnlocked: boolean;
   blueprintSolved: boolean;
   finaleSolved: boolean;
   finaleHintCount: number;
@@ -197,18 +199,26 @@ export function GrandHall({
       </button>
 
       <button
-        className={`workshop-threshold ${lanternWallSolved ? "is-unlocked" : ""}`}
+        className={`workshop-threshold ${lanternWallSolved ? "is-unlocked" : ""} ${blueprintUnlocked && !blueprintSolved ? "has-drafting-plans" : ""}`}
         disabled={!lanternWallSolved}
         onClick={onEnterWorkshop}
         aria-label={
-          lanternWallSolved
+          blueprintUnlocked && !blueprintSolved
+            ? "Enter the Workshop Drafting Chamber for Puzzle 9"
+            : lanternWallSolved
             ? "The Workshop door is unlocked"
             : "The Workshop door is sealed"
         }
       >
         <span><i /></span>
-        <b>Workshop</b>
-        <small>{lanternWallSolved ? "Unlocked" : "Sealed by shadow"}</small>
+        <b>{blueprintUnlocked && !blueprintSolved ? "Drafting Chamber" : "Workshop"}</b>
+        <small>
+          {blueprintUnlocked && !blueprintSolved
+            ? "Puzzle 9 · Transparent plans revealed"
+            : lanternWallSolved
+              ? "Unlocked"
+              : "Sealed by shadow"}
+        </small>
       </button>
 
       <div
@@ -255,6 +265,8 @@ export function GrandHall({
           ? "Every borrowed object has returned to its remembered place."
           : blueprintSolved
           ? "The pedestal ring rises into the light."
+          : blueprintUnlocked
+          ? "The Prism reveals a second table inside the Workshop."
           : typewriterSolved
           ? "A silver doorway appears where the Journal says it should."
           : observatorySolved
@@ -275,6 +287,8 @@ export function GrandHall({
             ? "The living frame stands open to the Archivist’s Study."
             : blueprintSolved
             ? "Nine base shapes wait for everything the Archive lent you."
+            : blueprintUnlocked
+            ? "Three transparent plans wait in the Drafting Chamber."
             : typewriterSolved
             ? "Its reflection opens before the door itself."
             : observatorySolved
