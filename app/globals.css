@@ -413,27 +413,98 @@ button:focus-visible, input:focus-visible {
 @keyframes route-ink { from{stroke-dasharray:1 8;opacity:.2} }
 
 @media (max-width: 760px) {
+  button { touch-action:manipulation; }
+  .game { overflow:auto; }
   .hall { min-height:100svh; }
-  .mosaic { width:54vw; top:19vh; }
-  .door { top:48vh; width:23vw; height:28vh; }
-  .door--library { right:8vw; }.door--locked { left:8vw; }
-  .pedestals { opacity:.6; bottom:2vh; }
+  .room-title { top:2.5vh; }
+  .room-title p { font-size:.54rem;letter-spacing:.2em; }
+  .room-title h1 { font-size:clamp(1.65rem,8vw,2.15rem); }
+  .mosaic { width:54vw; top:19vh; padding:12px;border-width:6px; }
+  .mosaic__plaque { bottom:-28px;font-size:.46rem;padding:.28rem .65rem; }
+  .door { top:48vh;width:28vw;min-width:0;height:27vh; }
+  .door--library { right:7vw; }.door--locked,.door--map { left:7vw; }
+  .door__frame { padding:7px; }
+  .door__label { top:calc(100% + 12px);font-size:.76rem; }
+  .door__label small { max-width:36vw;overflow:hidden;text-overflow:ellipsis;font-size:.43rem; }
+  .door--library:hover .door__frame,.door--map:hover .door__frame { transform:none; }
+  .pedestals { opacity:.42;bottom:7.5vh; }
   .workshop-threshold { display:none; }
   .pedestals span { width:3vw; min-width:5px; }
-  .hall__invitation { bottom:18vh; width:70%; }
-  .room-title { top:3vh; }
-  .utility-bar { top:auto; bottom:1rem; right:1rem; }
-  .save-indicator { bottom:auto; top:1rem; }
-  .shelf-puzzle { grid-template-columns:1fr;overflow:auto; }
-  .hint-panel { border-left:0;border-top:1px solid rgba(159,127,72,.24); }
-  .bookcase { height:390px; }
+  .hall__invitation { top:82vh;bottom:auto;width:88%;font-size:.69rem;line-height:1.25; }
+  .hall__invitation span { margin-top:.25rem;font-size:.45rem; }
+  .lantern-wall-hotspot { top:7vh;width:210px;transform:translateX(-50%) scale(.78);transform-origin:top center; }
+  .lantern-wall-hotspot b { opacity:1;top:84px;font-size:.48rem; }
+  .utility-bar { left:.75rem;right:.75rem;top:auto;bottom:max(.7rem,env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem; }
+  .utility-bar button { min-height:44px;padding:.55rem .25rem;font-size:.51rem;letter-spacing:.055em;white-space:nowrap; }
+  .utility-bar button span { margin-right:.2rem; }
+  .save-indicator { left:.75rem;bottom:auto;top:.75rem;font-size:.48rem; }
+  .return-hall { left:.65rem;top:.65rem;min-height:44px;padding:.6rem .7rem;font-size:.55rem; }
+
+  .puzzle-backdrop { padding:0;display:block; }
+  .puzzle-modal { width:100%;height:100svh;max-height:none;border:0; }
+  .game:has(.puzzle-backdrop) .utility-bar { display:none; }
+  .puzzle-modal__header { min-height:86px;padding:.75rem 1rem; }
+  .puzzle-modal__header p { font-size:.48rem; }
+  .puzzle-modal__header h2 { max-width:76vw;font-size:1.12rem;line-height:1.15; }
+  .puzzle-modal__header>button { min-width:44px;min-height:44px;padding:0;font-size:1.8rem; }
+
+  .shelf-puzzle { display:block;overflow-y:auto; }
+  .shelf-puzzle__workspace { min-height:max-content;overflow:visible;padding:1rem .75rem 1.4rem; }
+  .shelf-puzzle__instruction { margin-bottom:.8rem;font-size:.74rem; }
+  .hint-panel { flex:none;overflow:visible;padding:1.15rem;border-left:0;border-top:1px solid rgba(159,127,72,.24); }
+  .hint-panel button { min-height:44px; }
+  .bookcase { width:100%;height:410px;padding:20px 14px 28px;border-width:7px; }
+  .bookcase__books { gap:25px 4px;padding:4px; }
+  .bookcase::after { left:8px;right:8px;height:12px; }
+  .book { padding:.4rem .18rem; }
+  .book span { font-size:.48rem; }
+  .word-completion { width:100%;margin-top:1rem;display:grid;grid-template-columns:1fr;gap:.65rem;text-align:center; }
+  .word-completion>div { justify-content:center;gap:.24rem; }
+  .word-completion i,.word-completion input { width:37px;height:40px;font-size:1rem; }
+  .word-completion small { max-width:290px;margin:auto; }
+  .word-completion>button { min-height:44px;justify-self:center; }
+  .book-inspection { position:fixed;padding:.6rem; }
+  .book-inspection__page { min-height:0;max-height:88svh;overflow:auto;padding:2.6rem 1.5rem 1.5rem; }
+  .pull-book-button { min-height:44px; }
   .library-room__fireplace { left:3vw; }
   .library-room__desk { right:2vw;width:30vw; }
-  .inventory__shelves { grid-template-columns:repeat(2,1fr); }
-  .route-puzzle { grid-template-columns:1fr;overflow:auto; }
-  .lantern-puzzle { grid-template-columns:1fr;overflow:auto; }
-  .lantern-controls { grid-template-columns:repeat(2,1fr); }
-  .antique-map { width:100%;min-height:440px; }
+  .inventory { width:100%;height:100svh;max-height:none;padding:1.5rem 1rem 5rem;border:0; }
+  .inventory h2 { font-size:1.55rem; }
+  .inventory__shelves { grid-template-columns:repeat(2,1fr);padding:9px;border-width:6px; }
+  .inventory__slot { min-height:160px;padding:.65rem; }
+
+  .route-puzzle { display:block;overflow-y:auto; }
+  .route-puzzle__workspace { min-height:max-content;overflow-x:auto;overflow-y:visible;padding:.8rem .55rem 1.2rem; }
+  .lantern-puzzle { display:block;overflow-y:auto; }
+  .lantern-puzzle__workspace { min-height:max-content;overflow:visible;padding:.9rem .65rem 1.2rem; }
+  .lantern-puzzle__instruction { font-size:.73rem; }
+  .shadow-wall { height:220px;border-width:5px; }
+  .lantern-controls { grid-template-columns:repeat(2,1fr);gap:.45rem; }
+  .lantern-controls section { padding:.6rem .45rem; }
+  .lantern-dial { grid-template-columns:40px 1fr 40px;gap:.2rem; }
+  .lantern-dial button { width:40px;height:40px;font-size:1rem; }
+  .lantern-dial span { font-size:.48rem; }
+  .lantern-dial small { font-size:.62rem; }
+  .lantern-actions { flex-direction:column;gap:.55rem;text-align:center; }
+  .lantern-actions button { min-height:44px; }
+
+  .antique-map { width:620px;max-width:none;height:520px;min-height:520px;margin-inline:0;border-width:6px; }
   .margin-rules { position:relative;left:auto;top:auto;width:min(100%,520px);margin:0 auto 1rem;transform:none; }
-  .map-node span { font-size:.52rem; }
+  .margin-rules li { font-size:.7rem;line-height:1.42; }
+  .map-node { width:30px;height:30px;border-width:2px; }
+  .map-node i { inset:7px; }
+  .map-node span { top:32px;max-width:78px;font-size:.5rem;line-height:1; }
+  .map-node b { right:-8px;top:-8px;width:18px;height:18px; }
+  .map-legend { right:5px;bottom:5px;gap:.5rem;padding:.45rem;font-size:.43rem; }
+  .route-controls { flex-direction:column;gap:.5rem;text-align:center; }
+  .route-controls button { min-height:44px; }
+  .compass-drawer { width:250px;height:145px; }
+}
+
+@media (max-width: 390px) {
+  .utility-bar button { font-size:.47rem; }
+  .door { width:30vw; }
+  .door--library { right:5vw; }.door--locked,.door--map { left:5vw; }
+  .word-completion i,.word-completion input { width:34px; }
+  .map-node span { font-size:.47rem; }
 }
