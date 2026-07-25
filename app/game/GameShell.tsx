@@ -8,6 +8,7 @@ import { LibraryRoom } from "./LibraryRoom";
 import { MapRoom } from "./MapRoom";
 import { LanternWallRoom } from "./LanternWallRoom";
 import { WorkshopRoom } from "./WorkshopRoom";
+import { ConservatoryRoom } from "./ConservatoryRoom";
 import { createInitialState, gameReducer, readSave, writeSave } from "./state";
 
 export function GameShell() {
@@ -70,6 +71,10 @@ export function GameShell() {
               onEnterWorkshop={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "workshop" })
               }
+              clockSolved={state.solvedPuzzleIds.includes("stopped-clock")}
+              onEnterConservatory={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "conservatory" })
+              }
               onEnterLibrary={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "library" })
               }
@@ -129,7 +134,7 @@ export function GameShell() {
                 dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }
             />
-          ) : (
+          ) : state.currentRoom === "workshop" ? (
             <WorkshopRoom
               restored={state.restorationStages.workshop > 0}
               solved={state.solvedPuzzleIds.includes("stopped-clock")}
@@ -146,6 +151,32 @@ export function GameShell() {
                   restoreRoom: "workshop",
                   unlockPuzzleId: "sleeping-conservatory",
                   clueId: "archive-irrigation-active",
+                })
+              }
+              onReturn={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
+              }
+              onContinueToConservatory={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "conservatory" })
+              }
+            />
+          ) : (
+            <ConservatoryRoom
+              restored={state.restorationStages.conservatory > 0}
+              solved={state.solvedPuzzleIds.includes("sleeping-conservatory")}
+              hintCount={state.usedHints["sleeping-conservatory"] ?? 0}
+              onUseHint={() =>
+                dispatch({ type: "USE_HINT", puzzleId: "sleeping-conservatory" })
+              }
+              onSolve={(mosaicTileIds) =>
+                dispatch({
+                  type: "SOLVE_PUZZLE",
+                  puzzleId: "sleeping-conservatory",
+                  artifactId: "botanical-specimen",
+                  mosaicTileIds,
+                  restoreRoom: "conservatory",
+                  unlockPuzzleId: "constellation-that-should-not-exist",
+                  clueId: "observatory-stair-uncovered",
                 })
               }
               onReturn={() =>

@@ -14,6 +14,8 @@ export function GrandHall({
   lanternWallSolved,
   onInspectLanternWall,
   onEnterWorkshop,
+  clockSolved,
+  onEnterConservatory,
 }: {
   onEnterLibrary: () => void;
   onEnterMapRoom: () => void;
@@ -25,6 +27,8 @@ export function GrandHall({
   lanternWallSolved: boolean;
   onInspectLanternWall: () => void;
   onEnterWorkshop: () => void;
+  clockSolved: boolean;
+  onEnterConservatory: () => void;
 }) {
   return (
     <section className={`hall ${restored ? "is-restored" : ""} ${lanternWallSolved ? "is-lantern-restored" : ""}`} aria-labelledby="room-title">
@@ -68,6 +72,21 @@ export function GrandHall({
           <small>A faint light remains</small>
           Library
         </span>
+      </button>
+
+      <button
+        className={`conservatory-threshold ${clockSolved ? "is-unlocked" : ""}`}
+        disabled={!clockSolved}
+        onClick={onEnterConservatory}
+        aria-label={
+          clockSolved
+            ? "The Conservatory door is unlocked"
+            : "The Conservatory door is sealed"
+        }
+      >
+        <span><i /><i /><i /></span>
+        <b>Conservatory</b>
+        <small>{clockSolved ? "Irrigation restored" : "Glass gone dark"}</small>
       </button>
 
       <button
@@ -142,7 +161,9 @@ export function GrandHall({
       </div>
       <div className="hall__dust" aria-hidden="true" />
       <p className="hall__invitation">
-        {lanternWallSolved
+        {clockSolved
+          ? "A measured pulse moves water through the walls."
+          : lanternWallSolved
           ? "The central lantern burns without a flame."
           : lanternWallUnlocked
           ? "The floor mechanism points toward the lanterns."
@@ -150,7 +171,9 @@ export function GrandHall({
             ? "The first fragment has returned."
             : "One doorway holds a little light."}
         <span>
-          {lanternWallSolved
+          {clockSolved
+            ? "Beyond the glass, six sleeping leaves begin to stir."
+            : lanternWallSolved
             ? "Warm light reaches the newly opened Workshop."
             : lanternWallUnlocked
             ? "Four shadows wait to become one."

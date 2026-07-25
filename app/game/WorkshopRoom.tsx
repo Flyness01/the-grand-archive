@@ -13,6 +13,7 @@ export function WorkshopRoom({
   onUseHint,
   onSolve,
   onReturn,
+  onContinueToConservatory,
 }: {
   restored: boolean;
   solved: boolean;
@@ -20,6 +21,7 @@ export function WorkshopRoom({
   onUseHint: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onReturn: () => void;
+  onContinueToConservatory: () => void;
 }) {
   const [puzzleOpen, setPuzzleOpen] = useState(false);
   const [rewardMoment, setRewardMoment] = useState(false);
@@ -30,6 +32,7 @@ export function WorkshopRoom({
     window.setTimeout(() => {
       setRewardMoment(false);
       setPuzzleOpen(false);
+      onContinueToConservatory();
     }, 5200);
   }
 
@@ -85,4 +88,3 @@ export function WorkshopRoom({
     </section>
   );
 }
-

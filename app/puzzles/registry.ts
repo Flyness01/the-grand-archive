@@ -19,6 +19,11 @@ import {
   stoppedClockMosaicTiles,
 } from "./stopped-clock/puzzleData";
 import { validateStoppedClock } from "./stopped-clock/validator";
+import {
+  sleepingConservatoryHints,
+  sleepingConservatoryMosaicTiles,
+} from "./sleeping-conservatory/puzzleData";
+import { validateSleepingConservatory } from "./sleeping-conservatory/validator";
 
 export interface PuzzleDefinition {
   id: string;
@@ -76,5 +81,16 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
     solutionValidator: validateStoppedClock,
     artifactRewardId: "clockwork-gear",
     mosaicTileIds: stoppedClockMosaicTiles,
+  },
+  "sleeping-conservatory": {
+    id: "sleeping-conservatory",
+    title: "The Sleeping Conservatory",
+    roomId: "conservatory",
+    difficulty: 6,
+    estimatedMinutes: 11,
+    hints: sleepingConservatoryHints,
+    solutionValidator: validateSleepingConservatory,
+    artifactRewardId: "botanical-specimen",
+    mosaicTileIds: sleepingConservatoryMosaicTiles,
   },
 };

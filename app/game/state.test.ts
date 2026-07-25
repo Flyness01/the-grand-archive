@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { librariansShelfMosaicTiles } from "../puzzles/librarians-shelf/puzzleData";
 import { cartographersRouteMosaicTiles } from "../puzzles/cartographers-route/puzzleData";
 import { stoppedClockMosaicTiles } from "../puzzles/stopped-clock/puzzleData";
+import { sleepingConservatoryMosaicTiles } from "../puzzles/sleeping-conservatory/puzzleData";
 import { createInitialState, gameReducer } from "./state";
 
 describe("game progression", () => {
@@ -83,5 +84,23 @@ describe("game progression", () => {
     expect(state.restorationStages.workshop).toBe(1);
     expect(state.unlockedPuzzleIds).toContain("sleeping-conservatory");
     expect(state.discoveredClueIds).toContain("archive-irrigation-active");
+  });
+
+  it("restores the Conservatory and uncovers the Observatory puzzle", () => {
+    const state = gameReducer(createInitialState(), {
+      type: "SOLVE_PUZZLE",
+      puzzleId: "sleeping-conservatory",
+      artifactId: "botanical-specimen",
+      mosaicTileIds: sleepingConservatoryMosaicTiles,
+      restoreRoom: "conservatory",
+      unlockPuzzleId: "constellation-that-should-not-exist",
+      clueId: "observatory-stair-uncovered",
+    });
+
+    expect(state.solvedPuzzleIds).toContain("sleeping-conservatory");
+    expect(state.collectedArtifactIds).toContain("botanical-specimen");
+    expect(state.restorationStages.conservatory).toBe(1);
+    expect(state.unlockedPuzzleIds).toContain("constellation-that-should-not-exist");
+    expect(state.discoveredClueIds).toContain("observatory-stair-uncovered");
   });
 });
