@@ -10,6 +10,7 @@ import { LanternWallRoom } from "./LanternWallRoom";
 import { WorkshopRoom } from "./WorkshopRoom";
 import { ConservatoryRoom } from "./ConservatoryRoom";
 import { ObservatoryRoom } from "./ObservatoryRoom";
+import { ArchivistsOuterOffice } from "./ArchivistsOuterOffice";
 import { createInitialState, gameReducer, readSave, writeSave } from "./state";
 
 export function GameShell() {
@@ -77,8 +78,12 @@ export function GameShell() {
                 dispatch({ type: "ENTER_ROOM", roomId: "conservatory" })
               }
               conservatorySolved={state.solvedPuzzleIds.includes("sleeping-conservatory")}
+              observatorySolved={state.solvedPuzzleIds.includes("constellation-that-should-not-exist")}
               onEnterObservatory={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "observatory" })
+              }
+              onEnterOuterOffice={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "archivists-outer-office" })
               }
               onEnterLibrary={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "library" })
@@ -191,7 +196,7 @@ export function GameShell() {
                 dispatch({ type: "ENTER_ROOM", roomId: "observatory" })
               }
             />
-          ) : (
+          ) : state.currentRoom === "observatory" ? (
             <ObservatoryRoom
               restored={state.restorationStages.observatory > 0}
               solved={state.solvedPuzzleIds.includes("constellation-that-should-not-exist")}
@@ -211,6 +216,35 @@ export function GameShell() {
                 })
               }
               onReturn={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
+              }
+              onContinueToOffice={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "archivists-outer-office" })
+              }
+            />
+          ) : (
+            <ArchivistsOuterOffice
+              restored={state.restorationStages["archivists-outer-office"] > 0}
+              solved={state.solvedPuzzleIds.includes("mirrored-typewriter")}
+              hintCount={state.usedHints["mirrored-typewriter"] ?? 0}
+              onUseHint={() =>
+                dispatch({ type: "USE_HINT", puzzleId: "mirrored-typewriter" })
+              }
+              onSolve={(mosaicTileIds) =>
+                dispatch({
+                  type: "SOLVE_PUZZLE",
+                  puzzleId: "mirrored-typewriter",
+                  artifactId: "leather-journal",
+                  mosaicTileIds,
+                  restoreRoom: "archivists-outer-office",
+                  unlockPuzzleId: "hall-of-reflections",
+                  clueId: "journal-clues-organized",
+                })
+              }
+              onReturn={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
+              }
+              onContinueToReflections={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }
             />

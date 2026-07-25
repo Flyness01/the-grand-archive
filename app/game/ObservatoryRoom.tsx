@@ -13,6 +13,7 @@ export function ObservatoryRoom({
   onUseHint,
   onSolve,
   onReturn,
+  onContinueToOffice,
 }: {
   restored: boolean;
   solved: boolean;
@@ -20,6 +21,7 @@ export function ObservatoryRoom({
   onUseHint: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onReturn: () => void;
+  onContinueToOffice: () => void;
 }) {
   const [puzzleOpen, setPuzzleOpen] = useState(false);
   const [rewardMoment, setRewardMoment] = useState(false);
@@ -30,6 +32,7 @@ export function ObservatoryRoom({
     window.setTimeout(() => {
       setRewardMoment(false);
       setPuzzleOpen(false);
+      onContinueToOffice();
     }, 5200);
   }
 
@@ -83,4 +86,3 @@ export function ObservatoryRoom({
     </section>
   );
 }
-

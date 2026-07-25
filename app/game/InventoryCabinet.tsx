@@ -49,6 +49,8 @@ export function InventoryCabinet({
                       <div className="specimen-icon" aria-hidden="true"><i /></div>
                     ) : artifact.id === "star-chart" ? (
                       <div className="star-chart-icon" aria-hidden="true"><i /><i /><i /></div>
+                    ) : artifact.id === "leather-journal" ? (
+                      <div className="journal-icon" aria-hidden="true"><i /></div>
                     ) : (
                       <div className="feather-icon" aria-hidden="true"><i /></div>
                     )}

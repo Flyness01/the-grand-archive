@@ -796,3 +796,80 @@ button:focus-visible, input:focus-visible {
   .word-completion i,.word-completion input { width:34px; }
   .map-node span { font-size:.47rem; }
 }
+
+.office-threshold { position:absolute;z-index:5;right:3vw;top:63vh;width:150px;border:0;background:none;text-align:center;opacity:.2;cursor:not-allowed; }
+.office-threshold>span { display:block;width:52px;height:58px;margin:auto;border:5px ridge #4f4438;border-radius:45% 45% 0 0;background:#171412; }
+.office-threshold>span i { display:block;width:5px;height:5px;margin:30px 0 0 32px;border-radius:50%;background:#80683e; }
+.office-threshold b { display:block;margin-top:.4rem;font-size:.62rem;font-weight:400;letter-spacing:.09em; }
+.office-threshold small { display:block;margin-top:.2rem;color:#777064;font:.43rem Arial,sans-serif;letter-spacing:.07em;text-transform:uppercase; }
+.office-threshold.is-unlocked { opacity:1;cursor:pointer; }
+.office-threshold.is-unlocked>span { border-color:#796246;background:linear-gradient(90deg,#241b18,#4a3026,#211816);box-shadow:0 0 20px rgba(152,71,45,.2); }
+
+.outer-office { position:relative;min-height:100svh;overflow:hidden;background:radial-gradient(ellipse at 52% 32%,#4a342c 0,#211917 38%,#090b0b 76%); }
+.outer-office::before { content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.68),transparent 30%,transparent 70%,rgba(0,0,0,.72)),repeating-linear-gradient(90deg,transparent 0 12%,rgba(128,89,62,.08) 12.2% 12.5%); }
+.outer-office__window { position:absolute;left:12%;top:17vh;width:18vw;height:43vh;border:10px ridge #4a3b2f;background:linear-gradient(135deg,#151f23,#34444b 48%,#101719);box-shadow:0 17px 34px #000,inset 0 0 35px #020405; }
+.outer-office__window::before,.outer-office__window::after { content:"";position:absolute;background:#594937; }.outer-office__window::before{left:48%;top:0;bottom:0;width:5px}.outer-office__window::after{left:0;right:0;top:48%;height:5px}
+.outer-office__desk { position:absolute;left:31%;right:13%;bottom:13vh;height:20vh;border:10px ridge #60452f;background:linear-gradient(#573722,#2b1d16);box-shadow:0 25px 30px #000; }
+.outer-office__desk::before { content:"";position:absolute;left:7%;right:7%;bottom:-21vh;height:22vh;background:linear-gradient(90deg,#39271d 0 12%,transparent 12% 88%,#39271d 88%); }
+.outer-office__desk i { position:absolute;right:8%;top:25%;width:24%;height:45%;border:4px double #6d4e35;background:#281b15; }.outer-office__desk i:nth-child(2){right:34%}
+.outer-office__files { position:absolute;right:4%;top:18vh;width:10vw;height:42vh;border:7px ridge #44372d;background:#171411;padding:10px;display:grid;gap:8px; }
+.outer-office__files i { border:1px solid #5b4634;background:linear-gradient(90deg,#34261d,#241a16); }
+.typewriter-hotspot { position:absolute;z-index:7;left:41%;top:30vh;width:37%;height:44vh; }
+.room-typewriter { position:absolute;left:50%;top:14%;width:210px;height:145px;transform:translateX(-50%);border-radius:15px 15px 30px 30px;background:linear-gradient(#242423,#090a0a);border:7px ridge #5d554a;box-shadow:0 15px 24px #000; }
+.room-typewriter::before { content:"";position:absolute;left:22px;right:22px;top:-78px;height:92px;border:7px ridge #595148;background:#d1c29f;box-shadow:inset 0 0 18px #8a7d63; }
+.room-typewriter::after { content:"Q W E R T Y U I O P";position:absolute;left:15px;right:15px;bottom:25px;padding:15px 7px;border:2px solid #47423b;color:#918675;font:.52rem Arial,sans-serif;letter-spacing:.42em;text-align:center; }
+.room-typewriter i { position:absolute;left:-22px;right:-22px;top:4px;border-top:8px ridge #5e574d; }
+.typewriter-hotspot>span:last-child { position:absolute;left:50%;bottom:3%;transform:translateX(-50%);width:max-content;padding:.6rem .85rem;border:1px solid #705343;background:rgba(13,9,8,.92);color:#bba895;opacity:0;font:.55rem Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase; }
+.typewriter-hotspot:hover>span:last-child,.typewriter-hotspot:focus-visible>span:last-child { opacity:1; }
+.outer-office.is-restored { background:radial-gradient(ellipse at 52% 32%,#63463a 0,#2c201c 40%,#0b0d0c 78%); }
+
+.typewriter-puzzle { min-height:0;flex:1;display:grid;grid-template-columns:minmax(0,1fr) 260px; }
+.typewriter-puzzle__workspace { min-height:0;overflow:auto;position:relative;padding:1.2rem;background:radial-gradient(circle at 50% 40%,#49362d,#161310 70%); }
+.typing-record { position:absolute;z-index:3;left:1.2rem;top:1.3rem;width:185px;padding:.9rem;background:#cbbc98;color:#3e3428;box-shadow:0 7px 18px #000;transform:rotate(-2deg); }
+.typing-record p { margin:0 0 .7rem;color:#725938;font:.5rem Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase; }
+.typing-record span { display:grid;grid-template-columns:52px 1fr;margin:.35rem 0;font:.59rem "Courier New",monospace;letter-spacing:.14em; }
+.typing-record b { letter-spacing:0;font-weight:400;color:#766344; }
+.typing-record small { display:block;margin-top:.65rem;padding-top:.55rem;border-top:1px solid #9e8c68;font-size:.54rem;line-height:1.35; }
+.antique-typewriter { position:relative;width:min(650px,76%);min-height:470px;margin:0 auto;padding:165px 38px 30px;border:10px ridge #5b5349;border-radius:18px 18px 45px 45px;background:linear-gradient(#302e2a,#0e1010 60%);box-shadow:0 22px 42px #000; }
+.typewriter-paper { position:absolute;left:13%;right:13%;top:18px;height:180px;padding:1.4rem 1.5rem;background:#d7c9a7;color:#312d27;box-shadow:inset 0 0 20px #96896d,0 -8px 0 #242321; }
+.typewriter-paper small { font:.46rem Arial,sans-serif;letter-spacing:.12em; }
+.typewriter-paper p { margin:2.3rem 0 .75rem;font-size:1rem; }
+.typewriter-paper strong { display:flex;gap:.35rem;font-weight:400; }
+.typewriter-paper strong i { width:30px;height:30px;border-bottom:1px solid #6d6250;text-align:center;font:1.15rem "Courier New",monospace; }
+.typewriter-carriage { position:absolute;left:4%;right:4%;top:184px;border-top:9px ridge #5b574f; }
+.typewriter-keyboard { position:relative;z-index:2;margin-top:70px;transform:perspective(440px) rotateX(15deg); }
+.typewriter-keyboard>div { display:flex;justify-content:center;gap:7px;margin:8px; }
+.typewriter-keyboard button { width:42px;height:42px;padding:0;border:4px double #6f675c;border-radius:50%;background:radial-gradient(circle,#302e2b,#101111);color:#d2c4a9;cursor:pointer;font:.68rem Arial,sans-serif;box-shadow:0 5px 0 #050606; }
+.typewriter-keyboard button:active { transform:translateY(4px);box-shadow:0 1px 0 #050606; }
+.typewriter-keyboard button:disabled { cursor:default; }
+.antique-typewriter.is-solved .typewriter-paper { box-shadow:inset 0 0 20px #96896d,0 -8px 0 #242321,0 0 32px rgba(184,123,76,.38); }
+.typewriter-actions { display:flex;align-items:center;justify-content:center;gap:.7rem;min-height:52px;margin:.75rem auto 0; }
+.typewriter-actions p { max-width:560px;margin:0;color:#ada395;font-size:.7rem;font-style:italic; }
+.typewriter-actions button { min-height:40px;border:1px solid #735846;background:#1d1512;color:#c7b7a2;padding:.55rem .8rem;cursor:pointer;font:.52rem Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase; }
+.journal-icon { position:relative;width:58px;height:70px;margin:auto;border:5px ridge #6f4938;border-radius:3px 7px 7px 3px;background:linear-gradient(90deg,#49291f,#783e2d 12%,#44241d);box-shadow:0 7px 14px #000; }
+.journal-icon::before { content:"";position:absolute;left:9px;right:7px;top:10px;height:2px;background:#ba8a5e;box-shadow:0 8px 0 #ba8a5e,0 16px 0 #ba8a5e;opacity:.5; }
+.journal-icon i { position:absolute;left:2px;top:0;bottom:0;border-left:2px solid #9d6548; }
+.journal-icon--large { transform:scale(1.45) rotate(-4deg);margin-bottom:2rem; }
+.reward-moment--journal { background:radial-gradient(circle,rgba(116,53,39,.84),rgba(5,3,3,.97) 58%); }
+
+@media (max-width: 760px) {
+  .office-threshold.is-unlocked { display:block;right:50%;top:auto;bottom:132px;width:120px;transform:translateX(50%); }
+  .office-threshold.is-unlocked>span { width:35px;height:34px;border-width:3px; }
+  .office-threshold.is-unlocked>span i { margin:17px 0 0 21px; }
+  .outer-office__window { left:5%;width:38vw; }
+  .outer-office__files { display:none; }
+  .outer-office__desk { left:5%;right:5%;bottom:9vh; }
+  .typewriter-hotspot { left:18%;top:31vh;width:64%;height:45vh; }
+  .room-typewriter { transform:translateX(-50%) scale(.78); }
+  .typewriter-hotspot>span:last-child { opacity:1;font-size:.48rem; }
+  .typewriter-puzzle { display:block;overflow-y:auto; }
+  .typewriter-puzzle__workspace { min-height:max-content;overflow:visible;padding:.75rem .6rem 1.2rem; }
+  .typing-record { position:relative;left:auto;top:auto;width:100%;margin:0 auto .75rem;transform:none; }
+  .antique-typewriter { width:100%;min-height:430px;padding-inline:8px;border-width:6px; }
+  .typewriter-paper { left:6%;right:6%;padding:1.2rem .8rem; }
+  .typewriter-paper p { font-size:.86rem; }
+  .typewriter-keyboard>div { gap:2px;margin:7px 0; }
+  .typewriter-keyboard button { width:32px;height:38px;border-width:3px; }
+  .typewriter-actions { flex-direction:column;text-align:center; }
+  .typewriter-actions button { min-height:44px; }
+}

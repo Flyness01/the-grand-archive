@@ -29,6 +29,11 @@ import {
   impossibleConstellationMosaicTiles,
 } from "./impossible-constellation/puzzleData";
 import { validateImpossibleConstellation } from "./impossible-constellation/validator";
+import {
+  mirroredTypewriterHints,
+  mirroredTypewriterMosaicTiles,
+} from "./mirrored-typewriter/puzzleData";
+import { validateMirroredTypewriter } from "./mirrored-typewriter/validator";
 
 export interface PuzzleDefinition {
   id: string;
@@ -108,5 +113,16 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
     solutionValidator: validateImpossibleConstellation,
     artifactRewardId: "star-chart",
     mosaicTileIds: impossibleConstellationMosaicTiles,
+  },
+  "mirrored-typewriter": {
+    id: "mirrored-typewriter",
+    title: "The Mirrored Typewriter",
+    roomId: "archivists-outer-office",
+    difficulty: 7,
+    estimatedMinutes: 10,
+    hints: mirroredTypewriterHints,
+    solutionValidator: validateMirroredTypewriter,
+    artifactRewardId: "leather-journal",
+    mosaicTileIds: mirroredTypewriterMosaicTiles,
   },
 };

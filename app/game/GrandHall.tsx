@@ -18,6 +18,8 @@ export function GrandHall({
   onEnterConservatory,
   conservatorySolved,
   onEnterObservatory,
+  observatorySolved,
+  onEnterOuterOffice,
 }: {
   onEnterLibrary: () => void;
   onEnterMapRoom: () => void;
@@ -33,6 +35,8 @@ export function GrandHall({
   onEnterConservatory: () => void;
   conservatorySolved: boolean;
   onEnterObservatory: () => void;
+  observatorySolved: boolean;
+  onEnterOuterOffice: () => void;
 }) {
   return (
     <section className={`hall ${restored ? "is-restored" : ""} ${lanternWallSolved ? "is-lantern-restored" : ""}`} aria-labelledby="room-title">
@@ -91,6 +95,17 @@ export function GrandHall({
         <span><i /><i /><i /></span>
         <b>Observatory</b>
         <small>{conservatorySolved ? "Stair uncovered" : "Lost beneath vines"}</small>
+      </button>
+
+      <button
+        className={`office-threshold ${observatorySolved ? "is-unlocked" : ""}`}
+        disabled={!observatorySolved}
+        onClick={onEnterOuterOffice}
+        aria-label={observatorySolved ? "Enter the Archivist’s Outer Office" : "The Archivist’s Outer Office is sealed"}
+      >
+        <span><i /></span>
+        <b>Outer Office</b>
+        <small>{observatorySolved ? "A ribbon stirs within" : "Sealed beyond the dome"}</small>
       </button>
 
       <button
@@ -180,7 +195,9 @@ export function GrandHall({
       </div>
       <div className="hall__dust" aria-hidden="true" />
       <p className="hall__invitation">
-        {conservatorySolved
+        {observatorySolved
+          ? "A narrow office door opens beneath the newly revealed stars."
+          : conservatorySolved
           ? "Vines curl away from a stair climbing into darkness."
           : clockSolved
           ? "A measured pulse moves water through the walls."
@@ -192,7 +209,9 @@ export function GrandHall({
             ? "The first fragment has returned."
             : "One doorway holds a little light."}
         <span>
-          {conservatorySolved
+          {observatorySolved
+            ? "Inside, a typewriter strikes the wrong letter with perfect consistency."
+            : conservatorySolved
             ? "Above, an unrecorded group of stars waits in the dome."
             : clockSolved
             ? "Beyond the glass, six sleeping leaves begin to stir."

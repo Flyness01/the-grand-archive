@@ -4,6 +4,7 @@ import { cartographersRouteMosaicTiles } from "../puzzles/cartographers-route/pu
 import { stoppedClockMosaicTiles } from "../puzzles/stopped-clock/puzzleData";
 import { sleepingConservatoryMosaicTiles } from "../puzzles/sleeping-conservatory/puzzleData";
 import { impossibleConstellationMosaicTiles } from "../puzzles/impossible-constellation/puzzleData";
+import { mirroredTypewriterMosaicTiles } from "../puzzles/mirrored-typewriter/puzzleData";
 import { createInitialState, gameReducer } from "./state";
 
 describe("game progression", () => {
@@ -121,5 +122,23 @@ describe("game progression", () => {
     expect(state.restorationStages.observatory).toBe(1);
     expect(state.unlockedPuzzleIds).toContain("mirrored-typewriter");
     expect(state.discoveredClueIds).toContain("artifact-color-resonance");
+  });
+
+  it("restores the Outer Office and unlocks the Hall of Reflections", () => {
+    const state = gameReducer(createInitialState(), {
+      type: "SOLVE_PUZZLE",
+      puzzleId: "mirrored-typewriter",
+      artifactId: "leather-journal",
+      mosaicTileIds: mirroredTypewriterMosaicTiles,
+      restoreRoom: "archivists-outer-office",
+      unlockPuzzleId: "hall-of-reflections",
+      clueId: "journal-clues-organized",
+    });
+
+    expect(state.solvedPuzzleIds).toContain("mirrored-typewriter");
+    expect(state.collectedArtifactIds).toContain("leather-journal");
+    expect(state.restorationStages["archivists-outer-office"]).toBe(1);
+    expect(state.unlockedPuzzleIds).toContain("hall-of-reflections");
+    expect(state.discoveredClueIds).toContain("journal-clues-organized");
   });
 });
