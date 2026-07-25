@@ -22,6 +22,7 @@ export function GrandHall({
   onEnterOuterOffice,
   typewriterSolved,
   onEnterReflections,
+  blueprintSolved,
 }: {
   onEnterLibrary: () => void;
   onEnterMapRoom: () => void;
@@ -41,9 +42,10 @@ export function GrandHall({
   onEnterOuterOffice: () => void;
   typewriterSolved: boolean;
   onEnterReflections: () => void;
+  blueprintSolved: boolean;
 }) {
   return (
-    <section className={`hall ${restored ? "is-restored" : ""} ${lanternWallSolved ? "is-lantern-restored" : ""}`} aria-labelledby="room-title">
+    <section className={`hall ${restored ? "is-restored" : ""} ${lanternWallSolved ? "is-lantern-restored" : ""} ${blueprintSolved ? "is-blueprint-restored" : ""}`} aria-labelledby="room-title">
       <div className="hall__rain" aria-hidden="true" />
       <div className="hall__architecture" aria-hidden="true">
         <div className="hall__arch hall__arch--left" />
@@ -210,7 +212,9 @@ export function GrandHall({
       </div>
       <div className="hall__dust" aria-hidden="true" />
       <p className="hall__invitation">
-        {typewriterSolved
+        {blueprintSolved
+          ? "The pedestal ring rises into the light."
+          : typewriterSolved
           ? "A silver doorway appears where the Journal says it should."
           : observatorySolved
           ? "A narrow office door opens beneath the newly revealed stars."
@@ -226,7 +230,9 @@ export function GrandHall({
             ? "The first fragment has returned."
             : "One doorway holds a little light."}
         <span>
-          {typewriterSolved
+          {blueprintSolved
+            ? "Nine base shapes wait for everything the Archive lent you."
+            : typewriterSolved
             ? "Its reflection opens before the door itself."
             : observatorySolved
             ? "Inside, a typewriter strikes the wrong letter with perfect consistency."

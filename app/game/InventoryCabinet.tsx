@@ -53,6 +53,8 @@ export function InventoryCabinet({
                       <div className="journal-icon" aria-hidden="true"><i /></div>
                     ) : artifact.id === "prism-lens" ? (
                       <div className="prism-icon" aria-hidden="true"><i /></div>
+                    ) : artifact.id === "master-blueprint" ? (
+                      <div className="blueprint-icon" aria-hidden="true"><i /><i /><i /></div>
                     ) : (
                       <div className="feather-icon" aria-hidden="true"><i /></div>
                     )}

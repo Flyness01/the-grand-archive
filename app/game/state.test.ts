@@ -6,6 +6,7 @@ import { sleepingConservatoryMosaicTiles } from "../puzzles/sleeping-conservator
 import { impossibleConstellationMosaicTiles } from "../puzzles/impossible-constellation/puzzleData";
 import { mirroredTypewriterMosaicTiles } from "../puzzles/mirrored-typewriter/puzzleData";
 import { reflectionMosaicTiles } from "../puzzles/hall-of-reflections/puzzleData";
+import { masterBlueprintMosaicTiles } from "../puzzles/master-blueprint/puzzleData";
 import { createInitialState, gameReducer } from "./state";
 
 describe("game progression", () => {
@@ -159,5 +160,23 @@ describe("game progression", () => {
     expect(state.restorationStages["hall-of-reflections"]).toBe(1);
     expect(state.unlockedPuzzleIds).toContain("master-blueprint");
     expect(state.discoveredClueIds).toContain("artifact-pedestal-symbols-visible");
+  });
+
+  it("completes the Master Blueprint and unlocks the final return", () => {
+    const state = gameReducer(createInitialState(), {
+      type: "SOLVE_PUZZLE",
+      puzzleId: "master-blueprint",
+      artifactId: "master-blueprint",
+      mosaicTileIds: masterBlueprintMosaicTiles,
+      restoreRoom: "workshop",
+      unlockPuzzleId: "return-what-was-borrowed",
+      clueId: "pedestal-ring-revealed",
+    });
+
+    expect(state.solvedPuzzleIds).toContain("master-blueprint");
+    expect(state.collectedArtifactIds).toContain("master-blueprint");
+    expect(state.unlockedPuzzleIds).toContain("return-what-was-borrowed");
+    expect(state.discoveredClueIds).toContain("pedestal-ring-revealed");
+    expect(state.revealedMosaicTiles).toHaveLength(562);
   });
 });

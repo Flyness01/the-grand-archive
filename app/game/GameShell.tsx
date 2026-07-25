@@ -79,6 +79,7 @@ export function GameShell() {
                 dispatch({ type: "ENTER_ROOM", roomId: "conservatory" })
               }
               conservatorySolved={state.solvedPuzzleIds.includes("sleeping-conservatory")}
+              blueprintSolved={state.solvedPuzzleIds.includes("master-blueprint")}
               observatorySolved={state.solvedPuzzleIds.includes("constellation-that-should-not-exist")}
               typewriterSolved={state.solvedPuzzleIds.includes("mirrored-typewriter")}
               onEnterObservatory={() =>
@@ -173,6 +174,26 @@ export function GameShell() {
               }
               onContinueToConservatory={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "conservatory" })
+              }
+              blueprintUnlocked={state.unlockedPuzzleIds.includes("master-blueprint")}
+              blueprintSolved={state.solvedPuzzleIds.includes("master-blueprint")}
+              blueprintHintCount={state.usedHints["master-blueprint"] ?? 0}
+              onUseBlueprintHint={() =>
+                dispatch({ type: "USE_HINT", puzzleId: "master-blueprint" })
+              }
+              onSolveBlueprint={(mosaicTileIds) =>
+                dispatch({
+                  type: "SOLVE_PUZZLE",
+                  puzzleId: "master-blueprint",
+                  artifactId: "master-blueprint",
+                  mosaicTileIds,
+                  restoreRoom: "workshop",
+                  unlockPuzzleId: "return-what-was-borrowed",
+                  clueId: "pedestal-ring-revealed",
+                })
+              }
+              onContinueToGrandHall={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }
             />
           ) : state.currentRoom === "conservatory" ? (

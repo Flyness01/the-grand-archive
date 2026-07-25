@@ -39,6 +39,11 @@ import {
   reflectionMosaicTiles,
 } from "./hall-of-reflections/puzzleData";
 import { validateHallOfReflections } from "./hall-of-reflections/validator";
+import {
+  masterBlueprintHints,
+  masterBlueprintMosaicTiles,
+} from "./master-blueprint/puzzleData";
+import { validateMasterBlueprint } from "./master-blueprint/validator";
 
 export interface PuzzleDefinition {
   id: string;
@@ -140,5 +145,16 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
     solutionValidator: validateHallOfReflections,
     artifactRewardId: "prism-lens",
     mosaicTileIds: reflectionMosaicTiles,
+  },
+  "master-blueprint": {
+    id: "master-blueprint",
+    title: "The Master Blueprint",
+    roomId: "workshop",
+    difficulty: 8,
+    estimatedMinutes: 12,
+    hints: masterBlueprintHints,
+    solutionValidator: validateMasterBlueprint,
+    artifactRewardId: "master-blueprint",
+    mosaicTileIds: masterBlueprintMosaicTiles,
   },
 };
