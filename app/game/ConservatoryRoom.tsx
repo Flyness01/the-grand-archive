@@ -13,6 +13,7 @@ export function ConservatoryRoom({
   onUseHint,
   onSolve,
   onReturn,
+  onContinueToObservatory,
 }: {
   restored: boolean;
   solved: boolean;
@@ -20,6 +21,7 @@ export function ConservatoryRoom({
   onUseHint: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onReturn: () => void;
+  onContinueToObservatory: () => void;
 }) {
   const [puzzleOpen, setPuzzleOpen] = useState(false);
   const [rewardMoment, setRewardMoment] = useState(false);
@@ -30,6 +32,7 @@ export function ConservatoryRoom({
     window.setTimeout(() => {
       setRewardMoment(false);
       setPuzzleOpen(false);
+      onContinueToObservatory();
     }, 5200);
   }
 
@@ -86,4 +89,3 @@ export function ConservatoryRoom({
     </section>
   );
 }
-

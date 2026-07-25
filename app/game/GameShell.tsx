@@ -9,6 +9,7 @@ import { MapRoom } from "./MapRoom";
 import { LanternWallRoom } from "./LanternWallRoom";
 import { WorkshopRoom } from "./WorkshopRoom";
 import { ConservatoryRoom } from "./ConservatoryRoom";
+import { ObservatoryRoom } from "./ObservatoryRoom";
 import { createInitialState, gameReducer, readSave, writeSave } from "./state";
 
 export function GameShell() {
@@ -74,6 +75,10 @@ export function GameShell() {
               clockSolved={state.solvedPuzzleIds.includes("stopped-clock")}
               onEnterConservatory={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "conservatory" })
+              }
+              conservatorySolved={state.solvedPuzzleIds.includes("sleeping-conservatory")}
+              onEnterObservatory={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "observatory" })
               }
               onEnterLibrary={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "library" })
@@ -160,7 +165,7 @@ export function GameShell() {
                 dispatch({ type: "ENTER_ROOM", roomId: "conservatory" })
               }
             />
-          ) : (
+          ) : state.currentRoom === "conservatory" ? (
             <ConservatoryRoom
               restored={state.restorationStages.conservatory > 0}
               solved={state.solvedPuzzleIds.includes("sleeping-conservatory")}
@@ -177,6 +182,32 @@ export function GameShell() {
                   restoreRoom: "conservatory",
                   unlockPuzzleId: "constellation-that-should-not-exist",
                   clueId: "observatory-stair-uncovered",
+                })
+              }
+              onReturn={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
+              }
+              onContinueToObservatory={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "observatory" })
+              }
+            />
+          ) : (
+            <ObservatoryRoom
+              restored={state.restorationStages.observatory > 0}
+              solved={state.solvedPuzzleIds.includes("constellation-that-should-not-exist")}
+              hintCount={state.usedHints["constellation-that-should-not-exist"] ?? 0}
+              onUseHint={() =>
+                dispatch({ type: "USE_HINT", puzzleId: "constellation-that-should-not-exist" })
+              }
+              onSolve={(mosaicTileIds) =>
+                dispatch({
+                  type: "SOLVE_PUZZLE",
+                  puzzleId: "constellation-that-should-not-exist",
+                  artifactId: "star-chart",
+                  mosaicTileIds,
+                  restoreRoom: "observatory",
+                  unlockPuzzleId: "mirrored-typewriter",
+                  clueId: "artifact-color-resonance",
                 })
               }
               onReturn={() =>

@@ -16,6 +16,8 @@ export function GrandHall({
   onEnterWorkshop,
   clockSolved,
   onEnterConservatory,
+  conservatorySolved,
+  onEnterObservatory,
 }: {
   onEnterLibrary: () => void;
   onEnterMapRoom: () => void;
@@ -29,6 +31,8 @@ export function GrandHall({
   onEnterWorkshop: () => void;
   clockSolved: boolean;
   onEnterConservatory: () => void;
+  conservatorySolved: boolean;
+  onEnterObservatory: () => void;
 }) {
   return (
     <section className={`hall ${restored ? "is-restored" : ""} ${lanternWallSolved ? "is-lantern-restored" : ""}`} aria-labelledby="room-title">
@@ -72,6 +76,21 @@ export function GrandHall({
           <small>A faint light remains</small>
           Library
         </span>
+      </button>
+
+      <button
+        className={`observatory-threshold ${conservatorySolved ? "is-unlocked" : ""}`}
+        disabled={!conservatorySolved}
+        onClick={onEnterObservatory}
+        aria-label={
+          conservatorySolved
+            ? "The Observatory stair is uncovered"
+            : "The Observatory stair is hidden"
+        }
+      >
+        <span><i /><i /><i /></span>
+        <b>Observatory</b>
+        <small>{conservatorySolved ? "Stair uncovered" : "Lost beneath vines"}</small>
       </button>
 
       <button
@@ -161,7 +180,9 @@ export function GrandHall({
       </div>
       <div className="hall__dust" aria-hidden="true" />
       <p className="hall__invitation">
-        {clockSolved
+        {conservatorySolved
+          ? "Vines curl away from a stair climbing into darkness."
+          : clockSolved
           ? "A measured pulse moves water through the walls."
           : lanternWallSolved
           ? "The central lantern burns without a flame."
@@ -171,7 +192,9 @@ export function GrandHall({
             ? "The first fragment has returned."
             : "One doorway holds a little light."}
         <span>
-          {clockSolved
+          {conservatorySolved
+            ? "Above, an unrecorded group of stars waits in the dome."
+            : clockSolved
             ? "Beyond the glass, six sleeping leaves begin to stir."
             : lanternWallSolved
             ? "Warm light reaches the newly opened Workshop."

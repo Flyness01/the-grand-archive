@@ -24,6 +24,11 @@ import {
   sleepingConservatoryMosaicTiles,
 } from "./sleeping-conservatory/puzzleData";
 import { validateSleepingConservatory } from "./sleeping-conservatory/validator";
+import {
+  impossibleConstellationHints,
+  impossibleConstellationMosaicTiles,
+} from "./impossible-constellation/puzzleData";
+import { validateImpossibleConstellation } from "./impossible-constellation/validator";
 
 export interface PuzzleDefinition {
   id: string;
@@ -92,5 +97,16 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
     solutionValidator: validateSleepingConservatory,
     artifactRewardId: "botanical-specimen",
     mosaicTileIds: sleepingConservatoryMosaicTiles,
+  },
+  "constellation-that-should-not-exist": {
+    id: "constellation-that-should-not-exist",
+    title: "The Constellation That Should Not Exist",
+    roomId: "observatory",
+    difficulty: 6,
+    estimatedMinutes: 10,
+    hints: impossibleConstellationHints,
+    solutionValidator: validateImpossibleConstellation,
+    artifactRewardId: "star-chart",
+    mosaicTileIds: impossibleConstellationMosaicTiles,
   },
 };

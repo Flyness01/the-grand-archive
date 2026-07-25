@@ -3,6 +3,7 @@ import { librariansShelfMosaicTiles } from "../puzzles/librarians-shelf/puzzleDa
 import { cartographersRouteMosaicTiles } from "../puzzles/cartographers-route/puzzleData";
 import { stoppedClockMosaicTiles } from "../puzzles/stopped-clock/puzzleData";
 import { sleepingConservatoryMosaicTiles } from "../puzzles/sleeping-conservatory/puzzleData";
+import { impossibleConstellationMosaicTiles } from "../puzzles/impossible-constellation/puzzleData";
 import { createInitialState, gameReducer } from "./state";
 
 describe("game progression", () => {
@@ -102,5 +103,23 @@ describe("game progression", () => {
     expect(state.restorationStages.conservatory).toBe(1);
     expect(state.unlockedPuzzleIds).toContain("constellation-that-should-not-exist");
     expect(state.discoveredClueIds).toContain("observatory-stair-uncovered");
+  });
+
+  it("restores the Observatory and unlocks the mirrored typewriter", () => {
+    const state = gameReducer(createInitialState(), {
+      type: "SOLVE_PUZZLE",
+      puzzleId: "constellation-that-should-not-exist",
+      artifactId: "star-chart",
+      mosaicTileIds: impossibleConstellationMosaicTiles,
+      restoreRoom: "observatory",
+      unlockPuzzleId: "mirrored-typewriter",
+      clueId: "artifact-color-resonance",
+    });
+
+    expect(state.solvedPuzzleIds).toContain("constellation-that-should-not-exist");
+    expect(state.collectedArtifactIds).toContain("star-chart");
+    expect(state.restorationStages.observatory).toBe(1);
+    expect(state.unlockedPuzzleIds).toContain("mirrored-typewriter");
+    expect(state.discoveredClueIds).toContain("artifact-color-resonance");
   });
 });
