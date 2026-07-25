@@ -1,5 +1,10 @@
 "use client";
 
+import { useState } from "react";
+import { ReturnBorrowed } from "../puzzles/return-borrowed/ReturnBorrowed";
+import { finalMosaicTiles } from "../puzzles/return-borrowed/puzzleData";
+import { PuzzleModal } from "./PuzzleModal";
+
 const pedestals = Array.from({ length: 10 }, (_, index) => index + 1);
 const tiles = Array.from({ length: 625 }, (_, index) => index);
 
@@ -23,6 +28,11 @@ export function GrandHall({
   typewriterSolved,
   onEnterReflections,
   blueprintSolved,
+  finaleSolved,
+  finaleHintCount,
+  onUseFinaleHint,
+  onSolveFinale,
+  onEnterStudy,
 }: {
   onEnterLibrary: () => void;
   onEnterMapRoom: () => void;
@@ -43,9 +53,27 @@ export function GrandHall({
   typewriterSolved: boolean;
   onEnterReflections: () => void;
   blueprintSolved: boolean;
+  finaleSolved: boolean;
+  finaleHintCount: number;
+  onUseFinaleHint: () => void;
+  onSolveFinale: (mosaicTileIds: number[]) => void;
+  onEnterStudy: () => void;
 }) {
+  const [finaleOpen, setFinaleOpen] = useState(false);
+  const [finalRewardMoment, setFinalRewardMoment] = useState(false);
+
+  function completeFinale() {
+    onSolveFinale(finalMosaicTiles);
+    setFinalRewardMoment(true);
+    window.setTimeout(() => {
+      setFinalRewardMoment(false);
+      setFinaleOpen(false);
+      onEnterStudy();
+    }, 6200);
+  }
+
   return (
-    <section className={`hall ${restored ? "is-restored" : ""} ${lanternWallSolved ? "is-lantern-restored" : ""} ${blueprintSolved ? "is-blueprint-restored" : ""}`} aria-labelledby="room-title">
+    <section className={`hall ${restored ? "is-restored" : ""} ${lanternWallSolved ? "is-lantern-restored" : ""} ${blueprintSolved ? "is-blueprint-restored" : ""} ${finaleSolved ? "is-fully-restored" : ""}`} aria-labelledby="room-title">
       <div className="hall__rain" aria-hidden="true" />
       <div className="hall__architecture" aria-hidden="true">
         <div className="hall__arch hall__arch--left" />
@@ -71,6 +99,17 @@ export function GrandHall({
           ))}
         </div>
       </div>
+
+      {blueprintSolved && (
+        <button
+          className="final-meta-hotspot"
+          onClick={() => setFinaleOpen(true)}
+          aria-label={finaleSolved ? "Inspect the completed Archive Emblem" : "Return the borrowed artifacts"}
+        >
+          <span aria-hidden="true">✦</span>
+          {finaleSolved ? "The living mosaic" : "Return what was borrowed"}
+        </button>
+      )}
 
       <button
         className="door door--library"
@@ -212,7 +251,9 @@ export function GrandHall({
       </div>
       <div className="hall__dust" aria-hidden="true" />
       <p className="hall__invitation">
-        {blueprintSolved
+        {finaleSolved
+          ? "Every borrowed object has returned to its remembered place."
+          : blueprintSolved
           ? "The pedestal ring rises into the light."
           : typewriterSolved
           ? "A silver doorway appears where the Journal says it should."
@@ -230,7 +271,9 @@ export function GrandHall({
             ? "The first fragment has returned."
             : "One doorway holds a little light."}
         <span>
-          {blueprintSolved
+          {finaleSolved
+            ? "The living frame stands open to the Archivist’s Study."
+            : blueprintSolved
             ? "Nine base shapes wait for everything the Archive lent you."
             : typewriterSolved
             ? "Its reflection opens before the door itself."
@@ -249,6 +292,31 @@ export function GrandHall({
               : "Move closer to inspect it."}
         </span>
       </p>
+
+      {finaleOpen && (
+        <PuzzleModal
+          title="Return What Was Borrowed"
+          subtitle="Grand Hall · Artifact placement and final restoration"
+          onClose={() => setFinaleOpen(false)}
+        >
+          <ReturnBorrowed
+            hintCount={finaleHintCount}
+            onUseHint={onUseFinaleHint}
+            onComplete={completeFinale}
+            onEnterStudy={onEnterStudy}
+            alreadySolved={finaleSolved}
+          />
+        </PuzzleModal>
+      )}
+
+      {finalRewardMoment && (
+        <div className="reward-moment reward-moment--manuscript" role="status">
+          <div className="manuscript-icon manuscript-icon--large" aria-hidden="true"><i /></div>
+          <p>Final Manuscript</p>
+          <blockquote>“The final record was the journey itself.”</blockquote>
+          <small>The last mosaic tiles return. The frame becomes a doorway.</small>
+        </div>
+      )}
     </section>
   );
 }

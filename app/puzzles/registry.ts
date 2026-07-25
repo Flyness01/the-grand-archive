@@ -44,6 +44,11 @@ import {
   masterBlueprintMosaicTiles,
 } from "./master-blueprint/puzzleData";
 import { validateMasterBlueprint } from "./master-blueprint/validator";
+import {
+  finaleHints,
+  finalMosaicTiles,
+} from "./return-borrowed/puzzleData";
+import { validateReturnBorrowed } from "./return-borrowed/validator";
 
 export interface PuzzleDefinition {
   id: string;
@@ -156,5 +161,16 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
     solutionValidator: validateMasterBlueprint,
     artifactRewardId: "master-blueprint",
     mosaicTileIds: masterBlueprintMosaicTiles,
+  },
+  "return-what-was-borrowed": {
+    id: "return-what-was-borrowed",
+    title: "Return What Was Borrowed",
+    roomId: "grand-hall",
+    difficulty: 9,
+    estimatedMinutes: 12,
+    hints: finaleHints,
+    solutionValidator: validateReturnBorrowed,
+    artifactRewardId: "final-manuscript",
+    mosaicTileIds: finalMosaicTiles,
   },
 };

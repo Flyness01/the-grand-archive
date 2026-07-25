@@ -12,6 +12,7 @@ import { ConservatoryRoom } from "./ConservatoryRoom";
 import { ObservatoryRoom } from "./ObservatoryRoom";
 import { ArchivistsOuterOffice } from "./ArchivistsOuterOffice";
 import { HallOfReflectionsRoom } from "./HallOfReflectionsRoom";
+import { ArchivistsStudy } from "./ArchivistsStudy";
 import { createInitialState, gameReducer, readSave, writeSave } from "./state";
 
 export function GameShell() {
@@ -80,6 +81,24 @@ export function GameShell() {
               }
               conservatorySolved={state.solvedPuzzleIds.includes("sleeping-conservatory")}
               blueprintSolved={state.solvedPuzzleIds.includes("master-blueprint")}
+              finaleSolved={state.solvedPuzzleIds.includes("return-what-was-borrowed")}
+              finaleHintCount={state.usedHints["return-what-was-borrowed"] ?? 0}
+              onUseFinaleHint={() =>
+                dispatch({ type: "USE_HINT", puzzleId: "return-what-was-borrowed" })
+              }
+              onSolveFinale={(mosaicTileIds) =>
+                dispatch({
+                  type: "SOLVE_PUZZLE",
+                  puzzleId: "return-what-was-borrowed",
+                  artifactId: "final-manuscript",
+                  mosaicTileIds,
+                  restoreRoom: "grand-hall",
+                  clueId: "archivists-study-open",
+                })
+              }
+              onEnterStudy={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "archivists-study" })
+              }
               observatorySolved={state.solvedPuzzleIds.includes("constellation-that-should-not-exist")}
               typewriterSolved={state.solvedPuzzleIds.includes("mirrored-typewriter")}
               onEnterObservatory={() =>
@@ -274,7 +293,7 @@ export function GameShell() {
                 dispatch({ type: "ENTER_ROOM", roomId: "hall-of-reflections" })
               }
             />
-          ) : (
+          ) : state.currentRoom === "hall-of-reflections" ? (
             <HallOfReflectionsRoom
               restored={state.restorationStages["hall-of-reflections"] > 0}
               solved={state.solvedPuzzleIds.includes("hall-of-reflections")}
@@ -298,6 +317,12 @@ export function GameShell() {
               }
               onContinueToWorkshop={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "workshop" })
+              }
+            />
+          ) : (
+            <ArchivistsStudy
+              onReturn={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }
             />
           )}

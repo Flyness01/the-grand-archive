@@ -7,6 +7,7 @@ import { impossibleConstellationMosaicTiles } from "../puzzles/impossible-conste
 import { mirroredTypewriterMosaicTiles } from "../puzzles/mirrored-typewriter/puzzleData";
 import { reflectionMosaicTiles } from "../puzzles/hall-of-reflections/puzzleData";
 import { masterBlueprintMosaicTiles } from "../puzzles/master-blueprint/puzzleData";
+import { finalMosaicTiles } from "../puzzles/return-borrowed/puzzleData";
 import { createInitialState, gameReducer } from "./state";
 
 describe("game progression", () => {
@@ -178,5 +179,21 @@ describe("game progression", () => {
     expect(state.unlockedPuzzleIds).toContain("return-what-was-borrowed");
     expect(state.discoveredClueIds).toContain("pedestal-ring-revealed");
     expect(state.revealedMosaicTiles).toHaveLength(562);
+  });
+
+  it("completes the artifact return and restores every mosaic tile", () => {
+    const state = gameReducer(createInitialState(), {
+      type: "SOLVE_PUZZLE",
+      puzzleId: "return-what-was-borrowed",
+      artifactId: "final-manuscript",
+      mosaicTileIds: finalMosaicTiles,
+      restoreRoom: "grand-hall",
+      clueId: "archivists-study-open",
+    });
+
+    expect(state.solvedPuzzleIds).toContain("return-what-was-borrowed");
+    expect(state.collectedArtifactIds).toContain("final-manuscript");
+    expect(state.revealedMosaicTiles).toHaveLength(625);
+    expect(state.discoveredClueIds).toContain("archivists-study-open");
   });
 });
