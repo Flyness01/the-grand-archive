@@ -13,6 +13,7 @@ export function GrandHall({
   lanternWallUnlocked,
   lanternWallSolved,
   onInspectLanternWall,
+  onEnterWorkshop,
 }: {
   onEnterLibrary: () => void;
   onEnterMapRoom: () => void;
@@ -23,6 +24,7 @@ export function GrandHall({
   lanternWallUnlocked: boolean;
   lanternWallSolved: boolean;
   onInspectLanternWall: () => void;
+  onEnterWorkshop: () => void;
 }) {
   return (
     <section className={`hall ${restored ? "is-restored" : ""} ${lanternWallSolved ? "is-lantern-restored" : ""}`} aria-labelledby="room-title">
@@ -85,8 +87,10 @@ export function GrandHall({
         </span>
       </button>
 
-      <div
+      <button
         className={`workshop-threshold ${lanternWallSolved ? "is-unlocked" : ""}`}
+        disabled={!lanternWallSolved}
+        onClick={onEnterWorkshop}
         aria-label={
           lanternWallSolved
             ? "The Workshop door is unlocked"
@@ -96,7 +100,7 @@ export function GrandHall({
         <span><i /></span>
         <b>Workshop</b>
         <small>{lanternWallSolved ? "Unlocked" : "Sealed by shadow"}</small>
-      </div>
+      </button>
 
       <div
         className={`hall-floor-mechanism ${floorMechanismActive ? "is-active" : ""}`}

@@ -14,6 +14,11 @@ import {
   lanternWallMosaicTiles,
 } from "./lantern-wall/puzzleData";
 import { validateLanternWall } from "./lantern-wall/validator";
+import {
+  stoppedClockHints,
+  stoppedClockMosaicTiles,
+} from "./stopped-clock/puzzleData";
+import { validateStoppedClock } from "./stopped-clock/validator";
 
 export interface PuzzleDefinition {
   id: string;
@@ -60,5 +65,16 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
     solutionValidator: validateLanternWall,
     artifactRewardId: "brass-lantern",
     mosaicTileIds: lanternWallMosaicTiles,
+  },
+  "stopped-clock": {
+    id: "stopped-clock",
+    title: "The Stopped Clock",
+    roomId: "workshop",
+    difficulty: 5,
+    estimatedMinutes: 10,
+    hints: stoppedClockHints,
+    solutionValidator: validateStoppedClock,
+    artifactRewardId: "clockwork-gear",
+    mosaicTileIds: stoppedClockMosaicTiles,
   },
 };

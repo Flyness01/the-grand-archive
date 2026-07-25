@@ -7,6 +7,7 @@ import { InventoryCabinet } from "./InventoryCabinet";
 import { LibraryRoom } from "./LibraryRoom";
 import { MapRoom } from "./MapRoom";
 import { LanternWallRoom } from "./LanternWallRoom";
+import { WorkshopRoom } from "./WorkshopRoom";
 import { createInitialState, gameReducer, readSave, writeSave } from "./state";
 
 export function GameShell() {
@@ -66,6 +67,9 @@ export function GameShell() {
               lanternWallUnlocked={state.unlockedPuzzleIds.includes("lantern-wall")}
               lanternWallSolved={state.solvedPuzzleIds.includes("lantern-wall")}
               onInspectLanternWall={() => setLanternWallOpen(true)}
+              onEnterWorkshop={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "workshop" })
+              }
               onEnterLibrary={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "library" })
               }
@@ -99,7 +103,7 @@ export function GameShell() {
                 dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }
             />
-          ) : (
+          ) : state.currentRoom === "map-room" ? (
             <MapRoom
               restored={state.restorationStages["map-room"] > 0}
               solved={state.solvedPuzzleIds.includes("cartographers-missing-route")}
@@ -125,6 +129,29 @@ export function GameShell() {
                 dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }
             />
+          ) : (
+            <WorkshopRoom
+              restored={state.restorationStages.workshop > 0}
+              solved={state.solvedPuzzleIds.includes("stopped-clock")}
+              hintCount={state.usedHints["stopped-clock"] ?? 0}
+              onUseHint={() =>
+                dispatch({ type: "USE_HINT", puzzleId: "stopped-clock" })
+              }
+              onSolve={(mosaicTileIds) =>
+                dispatch({
+                  type: "SOLVE_PUZZLE",
+                  puzzleId: "stopped-clock",
+                  artifactId: "clockwork-gear",
+                  mosaicTileIds,
+                  restoreRoom: "workshop",
+                  unlockPuzzleId: "sleeping-conservatory",
+                  clueId: "archive-irrigation-active",
+                })
+              }
+              onReturn={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
+              }
+            />
           )}
 
           {state.currentRoom === "grand-hall" && lanternWallOpen && (
@@ -146,6 +173,9 @@ export function GameShell() {
                 })
               }
               onClose={() => setLanternWallOpen(false)}
+              onContinueToWorkshop={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "workshop" })
+              }
             />
           )}
 

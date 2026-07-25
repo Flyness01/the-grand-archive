@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { librariansShelfMosaicTiles } from "../puzzles/librarians-shelf/puzzleData";
 import { cartographersRouteMosaicTiles } from "../puzzles/cartographers-route/puzzleData";
+import { stoppedClockMosaicTiles } from "../puzzles/stopped-clock/puzzleData";
 import { createInitialState, gameReducer } from "./state";
 
 describe("game progression", () => {
@@ -64,5 +65,23 @@ describe("game progression", () => {
     expect(state.restorationStages["map-room"]).toBe(1);
     expect(state.unlockedPuzzleIds).toContain("lantern-wall");
     expect(state.discoveredClueIds).toContain("grand-hall-floor-mechanism");
+  });
+
+  it("restores the Workshop and unlocks the Conservatory puzzle", () => {
+    const state = gameReducer(createInitialState(), {
+      type: "SOLVE_PUZZLE",
+      puzzleId: "stopped-clock",
+      artifactId: "clockwork-gear",
+      mosaicTileIds: stoppedClockMosaicTiles,
+      restoreRoom: "workshop",
+      unlockPuzzleId: "sleeping-conservatory",
+      clueId: "archive-irrigation-active",
+    });
+
+    expect(state.solvedPuzzleIds).toContain("stopped-clock");
+    expect(state.collectedArtifactIds).toContain("clockwork-gear");
+    expect(state.restorationStages.workshop).toBe(1);
+    expect(state.unlockedPuzzleIds).toContain("sleeping-conservatory");
+    expect(state.discoveredClueIds).toContain("archive-irrigation-active");
   });
 });

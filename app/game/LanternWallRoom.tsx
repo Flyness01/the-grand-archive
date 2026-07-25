@@ -11,12 +11,14 @@ export function LanternWallRoom({
   onUseHint,
   onSolve,
   onClose,
+  onContinueToWorkshop,
 }: {
   solved: boolean;
   hintCount: number;
   onUseHint: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onClose: () => void;
+  onContinueToWorkshop: () => void;
 }) {
   const [rewardMoment, setRewardMoment] = useState(false);
 
@@ -26,6 +28,7 @@ export function LanternWallRoom({
     window.setTimeout(() => {
       setRewardMoment(false);
       onClose();
+      onContinueToWorkshop();
     }, 5200);
   }
 
