@@ -6,19 +6,19 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "The Grand Archive",
+  title: "Ship It — An Internship Story",
   description:
-    "Enter a quiet, abandoned archive and restore the knowledge waiting within.",
+    "A Slack-inspired puzzle journey through the questions, challenges, and growth of an internship.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   openGraph: {
-    title: "The Grand Archive",
-    description: "Knowledge is never truly lost. It only waits to be found.",
+    title: "Ship It — An Internship Story",
+    description: "Ten milestones. One internship. A story about learning to belong on the team.",
     images: [{ url: "/og.png", width: 1536, height: 909 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Grand Archive",
-    description: "Knowledge is never truly lost. It only waits to be found.",
+    title: "Ship It — An Internship Story",
+    description: "Ten milestones. One internship. A story about learning to belong on the team.",
     images: ["/og.png"],
   },
 };

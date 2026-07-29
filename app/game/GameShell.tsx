@@ -13,6 +13,7 @@ import { ObservatoryRoom } from "./ObservatoryRoom";
 import { ArchivistsOuterOffice } from "./ArchivistsOuterOffice";
 import { HallOfReflectionsRoom } from "./HallOfReflectionsRoom";
 import { ArchivistsStudy } from "./ArchivistsStudy";
+import { JourneyThread } from "../story/JourneyThread";
 import { createInitialState, gameReducer, readSave, writeSave } from "./state";
 
 export function GameShell() {
@@ -20,6 +21,7 @@ export function GameShell() {
   const [hydrated, setHydrated] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [inventoryOpen, setInventoryOpen] = useState(false);
+  const [journeyOpen, setJourneyOpen] = useState(false);
   const [saveVisible, setSaveVisible] = useState(false);
   const [lanternWallOpen, setLanternWallOpen] = useState(false);
 
@@ -354,9 +356,13 @@ export function GameShell() {
           )}
 
           <div className="utility-bar" aria-label="Game controls">
+            <button onClick={() => setJourneyOpen(true)}>
+              <span aria-hidden="true">#</span>
+              Journey {state.solvedPuzzleIds.length}/10
+            </button>
             <button onClick={() => setInventoryOpen(true)}>
               <span aria-hidden="true">◇</span>
-              Collection {state.collectedArtifactIds.length}/10
+              Wins {state.collectedArtifactIds.length}/10
             </button>
             <button
               onClick={() =>
@@ -377,8 +383,15 @@ export function GameShell() {
           </div>
 
           <div className={`save-indicator ${saveVisible ? "is-visible" : ""}`}>
-            <span /> Archive saved
+            <span /> Progress synced
           </div>
+
+          {journeyOpen && (
+            <JourneyThread
+              completedMilestones={state.solvedPuzzleIds.length}
+              onClose={() => setJourneyOpen(false)}
+            />
+          )}
 
           {settingsOpen && (
             <div className="modal-backdrop" onMouseDown={() => setSettingsOpen(false)}>

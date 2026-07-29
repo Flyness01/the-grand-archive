@@ -22,17 +22,25 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
       <button className="intro__skip" onClick={onComplete}>
         Skip intro
       </button>
-      <div className="intro__match" aria-hidden="true" />
-      <div className="intro__lantern" aria-hidden="true">
-        <span />
+      <div className="intro-workspace" aria-hidden="true">
+        <aside>
+          <b>◎</b>
+          <i />
+          <i />
+          <i />
+        </aside>
+        <div>
+          <small># team-interns</small>
+          <p><b>YM</b><span>Your Mentor is typing…</span></p>
+        </div>
       </div>
       <div className="intro__copy" aria-live="polite">
-        <p>Knowledge is never truly lost.</p>
-        <p>It only waits to be found.</p>
+        <p>Welcome to your first day.</p>
+        <p>You do not have to know everything. You just have to begin.</p>
       </div>
       <div className="intro__caption" aria-hidden={phase < 1}>
         <span className="sound-wave" />
-        {phase < 2 ? "A faint clock ticks" : "A match strikes"}
+        {phase < 2 ? "Monday · 9:02 AM" : "You joined #team-interns"}
       </div>
     </section>
   );

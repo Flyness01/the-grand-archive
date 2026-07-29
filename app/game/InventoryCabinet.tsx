@@ -25,8 +25,8 @@ export function InventoryCabinet({
         >
           ×
         </button>
-        <p className="settings-panel__eyebrow">The collection cabinet</p>
-        <h2 id="inventory-title">Recovered Objects</h2>
+        <p className="settings-panel__eyebrow">Milestones you earned</p>
+        <h2 id="inventory-title">Wins & Lessons</h2>
         <div className="inventory__shelves">
           {Array.from({ length: 10 }, (_, index) => {
             const artifact = artifactIds[index]
