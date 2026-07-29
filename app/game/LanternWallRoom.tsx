@@ -35,8 +35,8 @@ export function LanternWallRoom({
   return (
     <>
       <PuzzleModal
-        title="The Lantern Wall"
-        subtitle="Team Hub · Light and shadow"
+        title="Signal Alignment"
+        subtitle="Team Hub · Cross-functional alignment"
         onClose={onClose}
       >
         <LanternWall
@@ -48,10 +48,10 @@ export function LanternWallRoom({
       </PuzzleModal>
       {rewardMoment && (
         <div className="reward-moment reward-moment--lantern" role="status">
-          <div className="brass-lantern-icon brass-lantern-icon--large" aria-hidden="true"><i /></div>
-          <p>Brass Lantern</p>
-          <blockquote>“Light remembers every hand.”</blockquote>
-          <small>The Team Hub brightens. The Workshop door unlocks.</small>
+          <div className="alignment-note-icon alignment-note-icon--large" aria-hidden="true"><i /></div>
+          <p>Alignment Note</p>
+          <blockquote>“Alignment begins when everyone can describe the same outcome.”</blockquote>
+          <small>The decision is clear. Build Lab unlocks.</small>
         </div>
       )}
     </>

@@ -76,7 +76,7 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   },
   "cartographers-missing-route": {
     id: "cartographers-missing-route",
-    title: "The Cartographer’s Missing Route",
+    title: "The Missing Request Path",
     roomId: "map-room",
     difficulty: 4,
     estimatedMinutes: 10,
@@ -87,7 +87,7 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   },
   "lantern-wall": {
     id: "lantern-wall",
-    title: "The Lantern Wall",
+    title: "Signal Alignment",
     roomId: "grand-hall",
     difficulty: 5,
     estimatedMinutes: 10,

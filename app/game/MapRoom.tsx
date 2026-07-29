@@ -45,18 +45,18 @@ export function MapRoom({
       <div className="map-room__globe" aria-hidden="true"><i /></div>
       <div className="map-room__table" aria-hidden="true" />
       <header className="library-room__title">
-        <p>The western gallery</p>
-        <h1 id="map-room-title">Map Room</h1>
-        <small>{restored ? "Forgotten roads return to the parchment" : "The shortest road is not always the right one"}</small>
+        <p>Trace an unfamiliar system</p>
+        <h1 id="map-room-title">System Map</h1>
+        <small>{restored ? "The request path is documented" : "A shortcut is not useful until you understand its boundaries"}</small>
       </header>
 
       <Hotspot
         className="map-hotspot"
-        label={solved ? "Inspect the restored route map" : "Inspect the unfinished antique map"}
+        label={solved ? "Inspect the documented request flow" : "Inspect the incomplete system diagram"}
         onActivate={() => setPuzzleOpen(true)}
       >
         <span className="map-hotspot__paper" aria-hidden="true" />
-        <span>{solved ? "Restored route" : "Trace the missing route"}</span>
+        <span>{solved ? "Documented flow" : "Trace the request"}</span>
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
@@ -65,8 +65,8 @@ export function MapRoom({
 
       {puzzleOpen && (
         <PuzzleModal
-          title="The Cartographer’s Missing Route"
-          subtitle="Map Room · Spatial reasoning"
+          title="The Missing Request Path"
+          subtitle="System Map · Architecture tracing"
           onClose={() => setPuzzleOpen(false)}
         >
           <CartographersRoute
@@ -80,10 +80,10 @@ export function MapRoom({
 
       {rewardMoment && (
         <div className="reward-moment" role="status">
-          <div className="compass-icon compass-icon--large" aria-hidden="true"><i /></div>
-          <p>Navigator’s Compass</p>
-          <blockquote>“It always pointed home.”</blockquote>
-          <small>A mechanism turns beneath the Team Hub floor.</small>
+          <div className="flow-trace-icon flow-trace-icon--large" aria-hidden="true"><i /></div>
+          <p>Flow Trace</p>
+          <blockquote>“A working route is useful. An understood route is reusable.”</blockquote>
+          <small>The trace reveals four conflicting signals. Signal Alignment unlocks.</small>
         </div>
       )}
     </section>

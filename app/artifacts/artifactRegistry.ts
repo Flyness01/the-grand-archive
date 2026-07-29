@@ -22,8 +22,8 @@ export const artifacts: Record<string, Artifact> = {
   },
   "navigators-compass": {
     id: "navigators-compass",
-    name: "Navigator’s Compass",
-    shortDescription: "It always pointed home.",
+    name: "Flow Trace",
+    shortDescription: "Understanding a request path turns a fix into reusable knowledge.",
     roomOfOrigin: "map-room",
     symbol: "Star",
     glowGroup: "Green",
@@ -31,8 +31,8 @@ export const artifacts: Record<string, Artifact> = {
   },
   "brass-lantern": {
     id: "brass-lantern",
-    name: "Brass Lantern",
-    shortDescription: "Light remembers every hand.",
+    name: "Alignment Note",
+    shortDescription: "Shared understanding made four perspectives actionable.",
     roomOfOrigin: "grand-hall",
     symbol: "Bowl",
     glowGroup: "Amber",

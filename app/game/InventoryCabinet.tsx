@@ -40,9 +40,9 @@ export function InventoryCabinet({
                 {artifact ? (
                   <>
                     {artifact.id === "navigators-compass" ? (
-                      <div className="compass-icon" aria-hidden="true"><i /></div>
+                      <div className="flow-trace-icon" aria-hidden="true"><i /></div>
                     ) : artifact.id === "brass-lantern" ? (
-                      <div className="brass-lantern-icon" aria-hidden="true"><i /></div>
+                      <div className="alignment-note-icon" aria-hidden="true"><i /></div>
                     ) : artifact.id === "clockwork-gear" ? (
                       <div className="clockwork-gear-icon" aria-hidden="true">IV</div>
                     ) : artifact.id === "botanical-specimen" ? (

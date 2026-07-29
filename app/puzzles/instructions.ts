@@ -14,23 +14,23 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     ],
     tip: "The highlighted letters are fixed in place; the remaining letters are yours to infer.",
   },
-  "The Cartographer’s Missing Route": {
-    objective: "Reconstruct the two-stage route by reading the map’s landmarks and constraints.",
+  "The Missing Request Path": {
+    objective: "Trace a user request through an unfamiliar system without crossing architectural boundaries.",
     steps: [
-      "Study the legend and every numbered landmark.",
-      "Build the first path before beginning the second.",
-      "Check the completed route only when both paths obey the margin notes.",
+      "Inspect each component and the documented connections.",
+      "Trace the client-side flow before continuing through the service layer.",
+      "Validate the request only when every architecture note is satisfied.",
     ],
-    tip: "A valid path is not necessarily the intended path—order matters.",
+    tip: "A connection can exist without belonging in this request path—follow responsibilities, not proximity.",
   },
-  "The Lantern Wall": {
-    objective: "Rotate the lanterns until their four shadows combine into the required figure.",
+  "Signal Alignment": {
+    objective: "Reconcile four team perspectives into one shared implementation plan.",
     steps: [
-      "Inspect the target silhouette.",
-      "Rotate each lantern independently.",
-      "Test the alignment when the overlapping shadows form one clean shape.",
+      "Review the signals from Design, Frontend, API, and Product.",
+      "Adjust each team’s direction and priority independently.",
+      "Check alignment when the four fragments describe one coherent outcome.",
     ],
-    tip: "Watch the negative space between shadows, not only their outer edges.",
+    tip: "Local certainty is not shared alignment; judge every decision by the combined plan.",
   },
   "The Stopped Clock": {
     objective: "Use the maintenance records to restore the clock’s missing sequence.",

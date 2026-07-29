@@ -11,9 +11,9 @@ export const lanternWallSolution: LanternSetting[] = [
 ];
 
 export const lanternWallHints = [
-  "The scratched brass marks are not damage. Each lantern has one angle and one height whose marks meet cleanly.",
-  "Watch the pale shapes on the wall, not the lantern flames. A correct adjustment brings a fragment closer to the center.",
-  "From left to right, set the angles to 2, 0, 3, 1 and the heights to middle, high, low, high.",
+  "Each team signal has one direction and one priority that supports the shared implementation.",
+  "Watch the combined plan, not one team in isolation. A useful adjustment moves its fragment toward the center.",
+  "From Design through Product, set directions to reviewed, exploring, committed, proposed; priorities to medium, high, low, high.",
 ];
 
 export const lanternWallMosaicTiles = [
@@ -26,4 +26,3 @@ export const lanternWallMosaicTiles = [
   336, 343,
   361, 362, 363, 364, 365, 366, 367, 368,
 ];
-

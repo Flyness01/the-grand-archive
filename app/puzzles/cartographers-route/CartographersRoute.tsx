@@ -23,7 +23,7 @@ export function CartographersRoute({
   const [path, setPath] = useState<string[]>(["west-gate"]);
   const [drawerOpen, setDrawerOpen] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
-    alreadySolved ? "The compass drawer stands open." : "",
+    alreadySolved ? "The completed flow trace remains pinned to the board." : "",
   );
 
   const usedEdges = useMemo(
@@ -45,7 +45,7 @@ export function CartographersRoute({
         (route.to === last && route.from === nodeId),
     );
     if (!connection) {
-      setFeedback("No road connects those two places.");
+      setFeedback("Those components do not communicate directly.");
       return;
     }
 
@@ -56,9 +56,9 @@ export function CartographersRoute({
     if (nodeId === "archive") {
       if (validateCartographersRoute(nextPath)) {
         setDrawerOpen(true);
-        setFeedback("Ink blooms along the route. A drawer releases beneath the map.");
+        setFeedback("The request reaches production. The full flow is now documented.");
       } else {
-        setFeedback("The ink fades. One or more of the Archivist’s habits was ignored.");
+        setFeedback("The request failed. One or more documented constraints was ignored.");
         window.setTimeout(() => {
           setPath(["west-gate"]);
           setFeedback("");
@@ -71,20 +71,20 @@ export function CartographersRoute({
     <div className="route-puzzle">
       <div className="route-puzzle__workspace">
         <div className="margin-rules">
-          <p>From the Cartographer’s margin</p>
+          <p>From the architecture review</p>
           <ol>
-            <li>Each named river was crossed once, and never twice.</li>
-            <li>Two eastward roads came before the first northern turn.</li>
-            <li>Avoid abandoned milestones.</li>
-            <li>Stop only at lantern-marked locations.</li>
-            <li>Fruit was bought just before the watch bell was heard.</li>
-            <li>The final light had green glass and stood at a crossroads.</li>
+            <li>Cross each system boundary once, never twice.</li>
+            <li>Complete two client-side transitions before the first server-side turn.</li>
+            <li>Avoid deprecated or stale components.</li>
+            <li>Use only monitored integration points.</li>
+            <li>The UI Layer feeds directly into the State Manager.</li>
+            <li>The Integration Point is the final stop before production.</li>
           </ol>
         </div>
 
         <div className={`antique-map ${drawerOpen ? "is-solved" : ""}`}>
-          <div className="map-water map-water--lark">River Lark</div>
-          <div className="map-water map-water--grey">Greywater</div>
+          <div className="map-water map-water--lark">Client Boundary</div>
+          <div className="map-water map-water--grey">Service Boundary</div>
           <svg
             className="map-routes"
             viewBox="0 0 100 100"
@@ -108,9 +108,9 @@ export function CartographersRoute({
             })}
           </svg>
 
-          <div className="map-legend" aria-label="Map route legend">
-            <span><i className="legend-road" aria-hidden="true" /> Available road</span>
-            <span><i className="legend-route" aria-hidden="true" /> Your route</span>
+          <div className="map-legend" aria-label="System flow legend">
+            <span><i className="legend-road" aria-hidden="true" /> Available connection</span>
+            <span><i className="legend-route" aria-hidden="true" /> Request flow</span>
           </div>
 
           {mapNodes.map((node) => {
@@ -138,9 +138,9 @@ export function CartographersRoute({
             <div className="compass-icon" aria-hidden="true">
               <i />
             </div>
-            <p>A brass compass waits inside.</p>
+            <p>The completed request trace is ready to keep.</p>
             {!alreadySolved ? (
-              <button onClick={onCollectReward}>Take the compass</button>
+              <button onClick={onCollectReward}>Save the flow trace</button>
             ) : (
               <small>The drawer is empty.</small>
             )}
@@ -148,9 +148,9 @@ export function CartographersRoute({
         </div>
 
         <div className="route-controls">
-          <p aria-live="polite">{feedback || "Choose the next stop along the route."}</p>
+          <p aria-live="polite">{feedback || "Choose the next component in the request flow."}</p>
           {!drawerOpen && (
-            <button onClick={() => setPath(["west-gate"])}>Clear route</button>
+            <button onClick={() => setPath(["west-gate"])}>Clear flow</button>
           )}
         </div>
       </div>

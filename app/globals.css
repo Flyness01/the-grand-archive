@@ -337,6 +337,11 @@ button:focus-visible, input:focus-visible {
 .compass-icon::after { transform:translate(-50%,-50%) rotate(90deg);height:62%;background:#293d36; }
 .compass-icon i { position:absolute;z-index:2;left:50%;top:50%;width:8px;height:8px;border-radius:50%;background:#caa45c;transform:translate(-50%,-50%); }
 .compass-icon--large { transform:scale(1.45);margin-bottom:1.8rem; }
+.flow-trace-icon { position:relative;width:58px;height:44px;margin:auto;border:1px solid rgba(184,138,71,.75);border-radius:6px;background:linear-gradient(145deg,#eee4cf,#cbbd9f);box-shadow:0 8px 18px rgba(20,16,12,.25); }
+.flow-trace-icon::before { content:"";position:absolute;left:10px;right:10px;top:20px;height:2px;background:#775f43;transform:rotate(-8deg);box-shadow:0 0 0 1px rgba(255,255,255,.25); }
+.flow-trace-icon::after { content:"";position:absolute;left:9px;top:15px;width:8px;height:8px;border-radius:50%;background:#936449;box-shadow:18px 3px 0 #63778a,36px -2px 0 #b18a55; }
+.flow-trace-icon i { position:absolute;right:6px;bottom:5px;width:16px;height:6px;border-bottom:2px solid #936449;border-right:2px solid #936449;transform:skewX(-25deg); }
+.flow-trace-icon--large { transform:scale(1.5);margin-bottom:1.8rem; }
 .route-controls { display:flex;justify-content:center;align-items:center;gap:1rem;margin:.7rem auto 0;color:#a4957e;font-size:.72rem;font-style:italic; }
 .route-controls p { min-height:1rem;margin:0; }
 .route-controls button { border:0;border-bottom:1px solid #665536;background:none;color:#8f8778;cursor:pointer;font:.55rem Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase; }
@@ -421,6 +426,11 @@ button:focus-visible, input:focus-visible {
 .brass-lantern-icon::before { left:8px;right:8px;top:-22px;height:25px;border-width:3px; }
 .brass-lantern-icon i { bottom:12px;width:13px;height:24px; }
 .brass-lantern-icon--large { transform:scale(1.35);margin-bottom:2rem; }
+.alignment-note-icon { position:relative;width:54px;height:44px;margin:auto;border:1px solid rgba(156,126,108,.7);border-radius:5px;background:linear-gradient(145deg,#f1e7df,#cdbbb0);box-shadow:0 8px 18px rgba(20,16,12,.22); }
+.alignment-note-icon::before { content:"";position:absolute;left:9px;right:9px;top:11px;height:3px;background:#a98275;box-shadow:0 9px 0 #7e91a1,0 18px 0 #b19779; }
+.alignment-note-icon::after { content:"✓";position:absolute;right:-6px;bottom:-7px;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;color:#f7f1e9;background:#718573;border:2px solid #e8ded2;font:700 14px/1 sans-serif; }
+.alignment-note-icon i { display:none; }
+.alignment-note-icon--large { transform:scale(1.5);margin-bottom:2rem; }
 .reward-moment--lantern { background:radial-gradient(circle,rgba(143,91,30,.82),rgba(3,5,4,.97) 57%); }
 
 .workshop-room { min-height:100svh;position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 60%,#3a2d20,#171713 53%,#080907 84%);transition:1.4s; }
