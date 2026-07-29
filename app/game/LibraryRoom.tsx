@@ -45,25 +45,25 @@ export function LibraryRoom({
       <div className="library-room__shelves" aria-hidden="true">
         {Array.from({ length: 72 }, (_, index) => <span key={index} />)}
       </div>
-      <div className="library-room__fireplace" aria-label={restored ? "A warm fire is burning" : "The fireplace is cold"}>
+      <div className="library-room__fireplace" aria-label={restored ? "The project room is active" : "The project room is quiet"}>
         <i aria-hidden="true" />
       </div>
       <div className="library-room__desk" aria-hidden="true">
         <span className={restored ? "atlas is-open" : "atlas"} />
       </div>
       <header className="library-room__title">
-        <p>The east wing</p>
-        <h1 id="library-title">Library</h1>
-        <small>{restored ? "Warmth returns to the shelves" : "The books hold their breath"}</small>
+        <p>Your first assignment</p>
+        <h1 id="library-title">Docs Room</h1>
+        <small>{restored ? "The codebase has begun to make sense" : "Start with what the team has already learned"}</small>
       </header>
 
       <Hotspot
         className="shelf-hotspot"
-        label={solved ? "Inspect the opened Librarian’s Shelf" : "Inspect the unusual bookshelf"}
+        label={solved ? "Review the completed onboarding shelf" : "Review the onboarding shelf"}
         onActivate={() => setPuzzleOpen(true)}
       >
         <span className="shelf-hotspot__bracket" aria-hidden="true" />
-        <span>{solved ? "Hidden shelf" : "Inspect bookshelf"}</span>
+        <span>{solved ? "Onboarding complete" : "Review team docs"}</span>
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
@@ -72,8 +72,8 @@ export function LibraryRoom({
 
       {puzzleOpen && (
         <PuzzleModal
-          title="The Librarian’s Shelf"
-          subtitle="Library · Observation"
+          title="The Documentation Shelf"
+          subtitle="Docs Room · Codebase orientation"
           onClose={() => setPuzzleOpen(false)}
         >
           <LibrariansShelf
@@ -87,10 +87,10 @@ export function LibraryRoom({
 
       {rewardMoment && (
         <div className="reward-moment" role="status">
-          <div className="feather-icon feather-icon--large" aria-hidden="true"><i /></div>
-          <p>Feather Bookmark</p>
-          <blockquote>“It waited patiently.”</blockquote>
-          <small>The atlas opens. An inked route leads west.</small>
+          <div className="context-card-icon context-card-icon--large" aria-hidden="true"><i /></div>
+          <p>Context Card</p>
+          <blockquote>“Understanding the system was the first contribution.”</blockquote>
+          <small>A teammate shares the system map for your next task.</small>
         </div>
       )}
     </section>

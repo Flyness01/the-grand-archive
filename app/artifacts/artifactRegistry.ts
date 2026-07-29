@@ -13,8 +13,8 @@ export interface Artifact {
 export const artifacts: Record<string, Artifact> = {
   "feather-bookmark": {
     id: "feather-bookmark",
-    name: "Feather Bookmark",
-    shortDescription: "It waited patiently.",
+    name: "Context Card",
+    shortDescription: "Understanding the system was the first contribution.",
     roomOfOrigin: "library",
     symbol: "Crescent",
     glowGroup: "Amber",

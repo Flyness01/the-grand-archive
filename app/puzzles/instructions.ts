@@ -5,14 +5,14 @@ export type PuzzleInstructions = {
 };
 
 export const puzzleInstructions: Record<string, PuzzleInstructions> = {
-  "The Librarian’s Shelf": {
-    objective: "Inspect the shelf, uncover three fixed letters, then complete the hidden instruction.",
+  "The Documentation Shelf": {
+    objective: "Review the onboarding documents, uncover three fixed letters, then complete the engineering instruction.",
     steps: [
-      "Open books and examine their full pages.",
-      "Record the three letters marked in gold.",
+      "Open documents and read the team’s notes.",
+      "Record the three letters attached to highlighted lessons.",
       "Type the missing letters into the empty boxes and test the completed word.",
     ],
-    tip: "The gold letters are fixed in place; the remaining letters are yours to infer.",
+    tip: "The highlighted letters are fixed in place; the remaining letters are yours to infer.",
   },
   "The Cartographer’s Missing Route": {
     objective: "Reconstruct the two-stage route by reading the map’s landmarks and constraints.",

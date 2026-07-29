@@ -1258,6 +1258,42 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
 .inventory__slot p { color:#b5c0c9; }
 .inventory__slot small { color:#8999a6; }
 
+.context-card-icon {
+  position:relative;
+  width:54px;
+  height:40px;
+  border:2px solid #9db1c1;
+  border-radius:5px;
+  background:linear-gradient(145deg,#e9eef1,#b8c7d1);
+  box-shadow:0 7px 14px rgba(5,9,13,.45);
+  transform:rotate(-3deg);
+}
+.context-card-icon::before {
+  content:"";
+  position:absolute;
+  left:8px;
+  right:8px;
+  top:10px;
+  height:2px;
+  background:#60798c;
+  box-shadow:0 7px 0 #8499a8,0 14px 0 #8499a8;
+}
+.context-card-icon i {
+  position:absolute;
+  right:5px;
+  top:5px;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#c98f99;
+}
+.context-card-icon--large {
+  width:82px;
+  height:58px;
+  margin:0 auto 1rem;
+  transform:rotate(-4deg);
+}
+
 @media (max-width:760px) {
   .puzzle-guide { padding:.75rem; }
   .puzzle-guide article { max-height:94svh;padding:1.35rem;border-radius:12px; }

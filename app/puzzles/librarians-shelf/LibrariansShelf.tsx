@@ -25,7 +25,7 @@ export function LibrariansShelf({
   const [missingLetters, setMissingLetters] = useState(["", "", "", ""]);
   const [compartmentOpen, setCompartmentOpen] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
-    alreadySolved ? "The hidden compartment stands open." : "",
+    alreadySolved ? "The team’s welcome drawer stands open." : "",
   );
 
   function rememberClue(book: ShelfBook) {
@@ -41,9 +41,9 @@ export function LibrariansShelf({
     const word = `E${missingLetters[0]}${missingLetters[1]}R${missingLetters[2]}${missingLetters[3]}T`;
     if (validateLibrariansShelf(word)) {
       setCompartmentOpen(true);
-      setFeedback("A low mechanical click travels through the shelf.");
+      setFeedback("The documentation drawer unlocks with a quiet click.");
     } else {
-      setFeedback("The word fades from the brass plate. Try another instruction.");
+      setFeedback("That instruction does not fit the highlighted notes yet.");
     }
   }
 
@@ -51,8 +51,8 @@ export function LibrariansShelf({
     <div className="shelf-puzzle">
       <div className="shelf-puzzle__workspace">
         <p className="shelf-puzzle__instruction">
-          Inspect the volumes. Three gold-marked pages hold fixed letters from
-          an instruction.
+          Review the team’s onboarding documents. Three highlighted notes hold
+          fixed letters from an engineering instruction.
         </p>
         <div className={`bookcase ${compartmentOpen ? "is-open" : ""}`}>
           <div className="bookcase__books">
@@ -72,12 +72,12 @@ export function LibrariansShelf({
           </div>
           <div className="hidden-compartment">
             <div className="feather-reward">
-              <div className="feather-icon feather-icon--large" aria-hidden="true">
+              <div className="context-card-icon context-card-icon--large" aria-hidden="true">
                 <i />
               </div>
-              <p>Something pale rests inside.</p>
+              <p>A handwritten card waits inside.</p>
               {!alreadySolved ? (
-                <button onClick={onCollectReward}>Take the bookmark</button>
+                <button onClick={onCollectReward}>Keep the context card</button>
               ) : (
                 <small>The compartment is empty.</small>
               )}
@@ -141,7 +141,7 @@ export function LibrariansShelf({
         <div className="book-inspection" role="dialog" aria-modal="true" aria-label={activeBook.title}>
           <div className="book-inspection__page">
             <button onClick={() => setActiveBook(null)} aria-label="Close book">×</button>
-            <p className="book-inspection__folio">{activeBook.orderMark ? `Gold folio ${activeBook.orderMark}` : "Archive folio"}</p>
+            <p className="book-inspection__folio">{activeBook.orderMark ? `Highlighted note · ${activeBook.orderMark}` : "Team documentation"}</p>
             <h3>{activeBook.title}</h3>
             <p>{activeBook.passage}</p>
             {activeBook.highlightedLine && (
@@ -158,7 +158,7 @@ export function LibrariansShelf({
               </button>
             ) : (
               <button className="pull-book-button" onClick={() => setActiveBook(null)}>
-                Return book
+                Close document
               </button>
             )}
           </div>

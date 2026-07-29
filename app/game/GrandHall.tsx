@@ -116,7 +116,7 @@ export function GrandHall({
       <button
         className="door door--library"
         onClick={onEnterLibrary}
-        aria-label="Enter the Library"
+        aria-label="Enter the Docs Room"
       >
         <span className="door__glow" />
         <span className="door__frame">
@@ -124,8 +124,8 @@ export function GrandHall({
           <span className="door__handle" />
         </span>
         <span className="door__label">
-          <small>A faint light remains</small>
-          Library
+          <small>Your first assignment</small>
+          Docs Room
         </span>
       </button>
 
@@ -193,7 +193,7 @@ export function GrandHall({
           {mapRoomUnlocked && <span className="door__handle" />}
         </span>
         <span className="door__label">
-          <small>{mapRoomUnlocked ? "An atlas has opened the way" : "Sealed"}</small>
+          <small>{mapRoomUnlocked ? "A teammate shared the system map" : "Waiting for context"}</small>
           Map Room
         </span>
       </button>

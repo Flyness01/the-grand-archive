@@ -65,7 +65,7 @@ export interface PuzzleDefinition {
 export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   "librarians-shelf": {
     id: "librarians-shelf",
-    title: "The Librarian’s Shelf",
+    title: "The Documentation Shelf",
     roomId: "library",
     difficulty: 3,
     estimatedMinutes: 8,

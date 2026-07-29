@@ -11,104 +11,104 @@ export interface ShelfBook {
 export const shelfBooks: ShelfBook[] = [
   {
     id: "atlas-forgotten",
-    title: "Atlas of Forgotten Places",
+    title: "README — Start Here",
     color: "emerald",
     passage:
-      "A careful mapmaker leaves no road unnamed, even when the road has vanished.",
-    highlightedLine: "At the heart of every archive, a route turns inward.",
+      "The repository was unfamiliar, but the team had left a path through it for anyone willing to slow down and read.",
+    highlightedLine: "Read the system before you rush to change it.",
     goldLetter: "R",
-    orderMark: "Central mark",
+    orderMark: "Position 4",
   },
   {
     id: "last-cartographer",
-    title: "The Last Cartographer",
+    title: "Service Overview",
     color: "umber",
     passage:
-      "She drew coastlines from memory and left the inland country untouched.",
+      "A short explanation of what the service owns, who depends on it, and why the boundaries matter.",
   },
   {
     id: "constellations-above",
-    title: "Constellations Above",
+    title: "Frontend Architecture",
     color: "midnight",
     passage:
-      "Every constellation is an agreement between patient eyes and distant light.",
+      "Components become a product only when their states, data, and user needs are understood together.",
   },
   {
     id: "history-lanterns",
-    title: "A History of Lanterns",
+    title: "Pull Request Guide",
     color: "wine",
     passage:
-      "Before electric light, the keeper began each evening at the eastern door.",
-    highlightedLine: "Every mechanism begins with an invitation.",
+      "A good pull request makes the change understandable, gives reviewers context, and welcomes better ideas.",
+    highlightedLine: "Every good first contribution begins with context.",
     goldLetter: "E",
-    orderMark: "First mark",
+    orderMark: "Position 1",
   },
   {
     id: "botanical-sketches",
-    title: "Botanical Sketches",
+    title: "Design System Notes",
     color: "moss",
     passage:
-      "The margins are crowded with sleeping bulbs and notes about spring rain.",
+      "Consistency is care made visible: each shared pattern saves the next person from solving the same problem again.",
   },
   {
     id: "mechanical-wonders",
-    title: "Mechanical Wonders",
+    title: "API Contracts",
     color: "copper",
     passage:
-      "A machine is a promise made by many small and reliable movements.",
+      "An interface is a promise between systems. Clear promises make dependable software.",
   },
   {
     id: "silent-valley",
-    title: "The Silent Valley",
+    title: "Known Issues",
     color: "slate",
     passage:
-      "No bell rang there, though every tower still held its rope.",
+      "The team records unfinished work without shame so the next investigation begins with evidence instead of guesswork.",
   },
   {
     id: "journeys-east",
-    title: "Journeys East",
+    title: "Release Checklist",
     color: "ochre",
     passage:
-      "The traveler refused the shortest road and arrived exactly on time.",
+      "Shipping is not a final leap. It is a sequence of small checks performed with attention.",
   },
   {
     id: "rivers-roads",
-    title: "Rivers and Roads",
+    title: "Testing Strategy",
     color: "blue",
     passage:
-      "Water remembers the routes that stone would rather forget.",
+      "Tests preserve the decisions a team cannot afford to rediscover after every change.",
   },
   {
     id: "astronomers-almanac",
-    title: "The Astronomer’s Almanac",
+    title: "Observability Runbook",
     color: "indigo",
     passage:
-      "The observer turned the dome until north rested behind her left shoulder.",
+      "When production behaves differently from expectation, traces and logs turn uncertainty into a question that can be answered.",
   },
   {
     id: "keepers-ledger",
-    title: "The Keeper’s Ledger",
+    title: "Team Working Agreement",
     color: "chestnut",
     passage:
-      "Four entries remain legible beneath the dust; the last was never signed.",
-    highlightedLine: "The final instruction ends where the ledger is shut.",
+      "Ask early. Share context. Review generously. Leave the code and the conversation clearer than you found them.",
+    highlightedLine: "Take what you learned and leave the path clearer.",
     goldLetter: "T",
-    orderMark: "Final mark",
+    orderMark: "Position 7",
   },
   {
     id: "songs-empty-hall",
-    title: "Songs for an Empty Hall",
+    title: "Lessons from Last Sprint",
     color: "plum",
     passage:
-      "The final song has no notes, only a long rest where the chorus should be.",
+      "The strongest retrospective note simply says: someone made space for me to learn, so I will make space for the next person.",
   },
 ];
 
 export const librariansShelfSolution = "EXTRACT";
 
 export const librariansShelfHints = [
-  "Some books seem different.",
-  "Three gold letters belong to fixed places in a seven-letter instruction.",
+  "Three documents carry highlighted lines.",
+  "Their gold letters belong to fixed places in a seven-letter engineering instruction.",
   "Complete E _ _ R _ _ T. The word means to take something out from where it is held.",
 ];
 

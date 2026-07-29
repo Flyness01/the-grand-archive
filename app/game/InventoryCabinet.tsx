@@ -57,12 +57,14 @@ export function InventoryCabinet({
                       <div className="blueprint-icon" aria-hidden="true"><i /><i /><i /></div>
                     ) : artifact.id === "final-manuscript" ? (
                       <div className="manuscript-icon" aria-hidden="true"><i /></div>
+                    ) : artifact.id === "feather-bookmark" ? (
+                      <div className="context-card-icon" aria-hidden="true"><i /></div>
                     ) : (
                       <div className="feather-icon" aria-hidden="true"><i /></div>
                     )}
                     <h3>{artifact.name}</h3>
                     <p>“{artifact.shortDescription}”</p>
-                    <small>{artifact.roomOfOrigin.replaceAll("-", " ")}</small>
+                    <small>{artifact.roomOfOrigin === "library" ? "docs room" : artifact.roomOfOrigin.replaceAll("-", " ")}</small>
                   </>
                 ) : (
                   <span aria-label="Empty artifact position">{index + 1}</span>
