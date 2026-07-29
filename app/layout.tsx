@@ -6,19 +6,19 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Ship It — An Internship Story",
+  title: "Ship It — A Team Story",
   description:
-    "A Slack-inspired puzzle journey through the questions, challenges, and growth of an internship.",
+    "A Slack-inspired puzzle mystery about questions, challenges, and the work that changes you.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   openGraph: {
-    title: "Ship It — An Internship Story",
-    description: "Ten milestones. One internship. A story about learning to belong on the team.",
+    title: "Ship It — A Team Story",
+    description: "Ten milestones. One project. A story hidden in the work.",
     images: [{ url: "/og.png", width: 1536, height: 909 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ship It — An Internship Story",
-    description: "Ten milestones. One internship. A story about learning to belong on the team.",
+    title: "Ship It — A Team Story",
+    description: "Ten milestones. One project. A story hidden in the work.",
     images: ["/og.png"],
   },
 };

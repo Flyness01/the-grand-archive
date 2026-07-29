@@ -24,11 +24,11 @@ export function JourneyThread({
       >
         <header className="journey-thread__header">
           <div>
-            <small>Internship workspace</small>
-            <h2 id="journey-title"># intern-journey</h2>
-            <p>Your summer, told through the messages that mattered.</p>
+            <small>Team workspace</small>
+            <h2 id="journey-title"># field-notes</h2>
+            <p>The messages that changed how you saw the work.</p>
           </div>
-          <button onClick={onClose} aria-label="Close internship journey">×</button>
+          <button onClick={onClose} aria-label="Close field notes">×</button>
         </header>
 
         <div className="journey-thread__progress">
@@ -37,7 +37,7 @@ export function JourneyThread({
         </div>
 
         <div className="journey-thread__messages">
-          <div className="journey-date"><span />Your internship began<span /></div>
+          <div className="journey-date"><span />You joined the channel<span /></div>
           {visibleMessages.map((message) => (
             <article className="journey-message" key={message.milestone}>
               <div className={`journey-avatar journey-avatar--${message.color}`}>

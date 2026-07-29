@@ -89,12 +89,12 @@ export function GrandHall({
       </div>
 
       <header className="room-title">
-        <p>Your internship workspace</p>
+        <p>Your team workspace</p>
         <h1 id="room-title">Team Hub</h1>
       </header>
 
       <div className="mosaic">
-        <div className="mosaic__plaque">Your internship story</div>
+        <div className="mosaic__plaque">What the work revealed</div>
         <div className="mosaic__grid" aria-label={`${revealedTiles.length} mosaic tiles revealed`}>
           {tiles.map((tile) => (
             <span className={revealedTiles.includes(tile) ? "is-revealed" : ""} key={tile} />

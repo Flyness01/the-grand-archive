@@ -30,7 +30,7 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
           <i />
         </aside>
         <div>
-          <small># team-interns</small>
+          <small># project-room</small>
           <p><b>YM</b><span>Your Mentor is typing…</span></p>
         </div>
       </div>
@@ -40,7 +40,7 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
       </div>
       <div className="intro__caption" aria-hidden={phase < 1}>
         <span className="sound-wave" />
-        {phase < 2 ? "Monday · 9:02 AM" : "You joined #team-interns"}
+        {phase < 2 ? "Monday · 9:02 AM" : "You joined #project-room"}
       </div>
     </section>
   );
