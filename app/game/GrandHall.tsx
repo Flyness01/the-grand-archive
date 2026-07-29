@@ -333,7 +333,7 @@ export function GrandHall({
 
       {finalRewardMoment && (
         <div className="reward-moment reward-moment--manuscript" role="status">
-          <div className="project-card-burst" aria-hidden="true">
+          <div className="project-lantern-burst" aria-hidden="true">
             {[
               "Context",
               "Trace",
