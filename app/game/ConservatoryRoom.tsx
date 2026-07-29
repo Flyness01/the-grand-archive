@@ -43,20 +43,20 @@ export function ConservatoryRoom({
         {Array.from({ length: 12 }, (_, index) => <span key={index}><i /></span>)}
       </div>
       <header className="library-room__title">
-        <p>The glass wing</p>
-        <h1 id="conservatory-title">Conservatory</h1>
-        <small>{restored ? "Even the forgotten leaves have turned toward light" : "Six plants sleep beneath clouded glass"}</small>
+        <p>Ship with intention</p>
+        <h1 id="conservatory-title">Release Cycle</h1>
+        <small>{restored ? "The release is healthy in production" : "Six gates stand between a change and its users"}</small>
       </header>
 
       <Hotspot
         className="garden-hotspot"
-        label={solved ? "Inspect the restored garden" : "Inspect the sleeping plant beds"}
+        label={solved ? "Inspect the completed release record" : "Inspect the release checklist"}
         onActivate={() => setPuzzleOpen(true)}
       >
         <span className="garden-hotspot__beds" aria-hidden="true">
           {Array.from({ length: 6 }, (_, index) => <i key={index} />)}
         </span>
-        <span>{solved ? "The cycle continues" : "Wake the conservatory"}</span>
+        <span>{solved ? "Release healthy" : "Run the release"}</span>
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
@@ -65,8 +65,8 @@ export function ConservatoryRoom({
 
       {puzzleOpen && (
         <PuzzleModal
-          title="The Sleeping Conservatory"
-          subtitle="Conservatory · Cycles and timing"
+          title="The Release Runbook"
+          subtitle="Release Cycle · Sequencing and verification"
           onClose={() => setPuzzleOpen(false)}
         >
           <SleepingConservatory
@@ -80,10 +80,10 @@ export function ConservatoryRoom({
 
       {rewardMoment && (
         <div className="reward-moment reward-moment--specimen" role="status">
-          <div className="specimen-icon specimen-icon--large" aria-hidden="true"><i /></div>
-          <p>Botanical Specimen</p>
-          <blockquote>“Even forgotten things grow.”</blockquote>
-          <small>Vines uncover the Observatory stair. Rain softens against the glass.</small>
+          <div className="release-record-icon release-record-icon--large" aria-hidden="true"><i /></div>
+          <p>Release Record</p>
+          <blockquote>“Shipping well means staying present after deploy.”</blockquote>
+          <small>Healthy metrics reveal a recurring signal. Pattern Review unlocks.</small>
         </div>
       )}
     </section>

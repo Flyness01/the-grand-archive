@@ -98,7 +98,7 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   },
   "stopped-clock": {
     id: "stopped-clock",
-    title: "The Stopped Clock",
+    title: "Incident 14",
     roomId: "workshop",
     difficulty: 5,
     estimatedMinutes: 10,
@@ -109,7 +109,7 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   },
   "sleeping-conservatory": {
     id: "sleeping-conservatory",
-    title: "The Sleeping Conservatory",
+    title: "The Release Runbook",
     roomId: "conservatory",
     difficulty: 6,
     estimatedMinutes: 11,

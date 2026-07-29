@@ -32,23 +32,23 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     ],
     tip: "Local certainty is not shared alignment; judge every decision by the combined plan.",
   },
-  "The Stopped Clock": {
-    objective: "Use the maintenance records to restore the clock’s missing sequence.",
+  "Incident 14": {
+    objective: "Recover a production system by reconstructing and reversing its dependency failure.",
     steps: [
-      "Read the failure log and movement notes.",
-      "Set each mechanism in the order supported by the evidence.",
-      "Run the clock to test the full sequence.",
+      "Read the incident timeline and identify which services actually failed.",
+      "Arrange the recovery steps by unwinding the dependency cascade.",
+      "Run the recovery and verify that the entire system becomes healthy.",
     ],
-    tip: "Every failed repair eliminates one tempting arrangement.",
+    tip: "Do not restart a healthy service just because it appears in the dashboard.",
   },
-  "The Sleeping Conservatory": {
-    objective: "Wake every plant by matching its moisture needs to the correct phase of the day.",
+  "The Release Runbook": {
+    objective: "Move one release candidate through every validation and delivery gate in the correct order.",
     steps: [
-      "Read each specimen note.",
-      "Change the time phase and water only when the conditions match.",
-      "Bring all six plants into bloom.",
+      "Read each check’s required release stage and dependency mode.",
+      "Advance the stage and toggle dependencies to satisfy each requirement.",
+      "Complete all six checks from initial scope through live monitoring.",
     ],
-    tip: "Some plants react to timing first and water second.",
+    tip: "Deploy is not the end of the release; observation is part of shipping.",
   },
   "The Constellation That Should Not Exist": {
     objective: "Rotate and compare the star fragments until the impossible constellation appears.",

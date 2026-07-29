@@ -26,7 +26,7 @@ export function StoppedClock({
   );
   const [running, setRunning] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
-    alreadySolved ? "The repaired movement keeps perfect time." : "",
+    alreadySolved ? "The recovered services remain healthy." : "",
   );
 
   function chooseGear(gearId: string) {
@@ -43,18 +43,18 @@ export function StoppedClock({
 
   function testRepair() {
     if (sequence.length < 4) {
-      setFeedback("Four restoration steps are required before the key will turn.");
+      setFeedback("Four recovery steps are required before the incident can be resolved.");
       return;
     }
     if (validateStoppedClock(sequence)) {
       setRunning(true);
       setFeedback(
-        "The escapement catches. One tick becomes two, then every clock in the Archive answers.",
+        "The dependency chain recovers cleanly. Requests are flowing and every service reports healthy.",
       );
       return;
     }
     setFeedback(
-      "The gears fit, but the movement binds. The service plate insists the silence must be reversed.",
+      "The recovery stalls and rolls back safely. Recheck the failure timeline and unwind it in reverse.",
     );
     window.setTimeout(() => {
       setSequence([]);
@@ -67,29 +67,29 @@ export function StoppedClock({
       <div className="clock-puzzle__workspace">
         <div className="clock-documents">
           <section className="failure-log">
-            <p>Maintenance Log · 14 October</p>
+            <p>Incident Timeline · Release 14</p>
             <ol>
-              <li><time>9:03</time> Mainspring slipped; reserve power lost.</li>
-              <li><time>9:08</time> Minute train ceased advancing.</li>
-              <li><time>9:12</time> Escapement gave its final beat.</li>
-              <li><time>9:17</time> Chime wheel fell silent.</li>
+              <li><time>9:03</time> Auth Service began rejecting valid sessions.</li>
+              <li><time>9:08</time> API Handler exhausted its retries.</li>
+              <li><time>9:12</time> Job Queue stopped processing events.</li>
+              <li><time>9:17</time> Notifier stopped delivering updates.</li>
             </ol>
-            <small>Governor inspected — sound. Leave in tray.</small>
+            <small>Health Monitor checked — healthy. Do not restart it.</small>
           </section>
           <blockquote>
-            Service plate No. 4
-            <strong>“To wake the movement, reverse the order of its silence.”</strong>
+            Recovery note · Incident commander
+            <strong>“Restore dependents first. Unwind the failure cascade in reverse.”</strong>
           </blockquote>
         </div>
 
         <div className={`clock-movement ${running ? "is-running" : ""}`}>
-          <div className="clock-face" aria-label={running ? "The clock is running" : "The clock is stopped at 9:17"}>
+          <div className="clock-face" aria-label={running ? "All services are healthy" : "Incident active since 9:17"}>
             <span className="clock-hand clock-hand--hour" />
             <span className="clock-hand clock-hand--minute" />
             <i />
-            <b>{running ? "The Archive keeps time" : "Stopped · 9:17"}</b>
+            <b>{running ? "SYSTEM HEALTHY" : "INCIDENT · 9:17"}</b>
           </div>
-          <div className="repair-sequence" aria-label="Four-step gear restoration sequence">
+          <div className="repair-sequence" aria-label="Four-step service recovery sequence">
             {Array.from({ length: 4 }, (_, index) => {
               const gear = clockGears.find((item) => item.id === sequence[index]);
               return (
@@ -100,19 +100,19 @@ export function StoppedClock({
                   disabled={!gear || running}
                   aria-label={
                     gear
-                      ? `Step ${index + 1}: ${gear.name}. Remove from sequence`
-                      : `Empty restoration step ${index + 1}`
+                      ? `Recovery step ${index + 1}: ${gear.name}. Remove from sequence`
+                      : `Empty recovery step ${index + 1}`
                   }
                 >
                   <span className="sequence-number">{index + 1}</span>
-                  {gear ? <><i style={{ "--teeth": gear.teeth } as CSSProperties} /><small>{gear.name}</small></> : <em>Empty shaft</em>}
+                  {gear ? <><i style={{ "--teeth": gear.teeth } as CSSProperties} /><small>{gear.name}</small></> : <em>Add service</em>}
                 </button>
               );
             })}
           </div>
         </div>
 
-        <div className="gear-tray" aria-label="Gear tray">
+        <div className="gear-tray" aria-label="Service list">
           {clockGears.map((gear) => {
             const used = sequence.includes(gear.id);
             return (
@@ -124,23 +124,23 @@ export function StoppedClock({
               >
                 <i style={{ "--teeth": gear.teeth } as CSSProperties}>{gear.mark}</i>
                 <span>{gear.name}</span>
-                <small>{used ? "Placed" : `${gear.teeth} teeth`}</small>
+                <small>{used ? "Queued" : gear.id === "governor" ? "healthy" : "failed"}</small>
               </button>
             );
           })}
         </div>
 
         <div className="clock-actions">
-          <p aria-live="polite">{feedback || "Select the first gear in the restoration sequence."}</p>
+          <p aria-live="polite">{feedback || "Choose the first service in the recovery sequence."}</p>
           {!running ? (
             <>
-              <button onClick={() => { setSequence([]); setFeedback(""); }} disabled={sequence.length === 0}>Clear sequence</button>
-              <button className="clock-key" onClick={testRepair}>Turn the key</button>
+              <button onClick={() => { setSequence([]); setFeedback(""); }} disabled={sequence.length === 0}>Clear recovery</button>
+              <button className="clock-key" onClick={testRepair}>Run recovery</button>
             </>
           ) : !alreadySolved ? (
-            <button className="clock-key" onClick={onCollectReward}>Open the gear drawer</button>
+            <button className="clock-key" onClick={onCollectReward}>Save incident review</button>
           ) : (
-            <small>The gear drawer is empty.</small>
+            <small>The incident review has been saved.</small>
           )}
         </div>
       </div>

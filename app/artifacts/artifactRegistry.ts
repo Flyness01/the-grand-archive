@@ -40,8 +40,8 @@ export const artifacts: Record<string, Artifact> = {
   },
   "clockwork-gear": {
     id: "clockwork-gear",
-    name: "Clockwork Gear",
-    shortDescription: "Someone stopped time.",
+    name: "Incident Review",
+    shortDescription: "A clear timeline transformed failure into shared knowledge.",
     roomOfOrigin: "workshop",
     symbol: "Toothed circle",
     glowGroup: "Copper",
@@ -49,8 +49,8 @@ export const artifacts: Record<string, Artifact> = {
   },
   "botanical-specimen": {
     id: "botanical-specimen",
-    name: "Botanical Specimen",
-    shortDescription: "Even forgotten things grow.",
+    name: "Release Record",
+    shortDescription: "The work was not finished until users and metrics were healthy.",
     roomOfOrigin: "conservatory",
     symbol: "Teardrop",
     glowGroup: "Green",

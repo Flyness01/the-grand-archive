@@ -70,18 +70,18 @@ export function WorkshopRoom({
       </div>
       <div className="workshop-room__bench" aria-hidden="true" />
       <header className="library-room__title">
-        <p>The mechanical wing</p>
-        <h1 id="workshop-title">Workshop</h1>
-        <small>{restored ? "Every measured second has returned" : "The clocks stopped in sympathy"}</small>
+        <p>Recover a failing system</p>
+        <h1 id="workshop-title">Build Lab</h1>
+        <small>{restored ? "The incident is resolved and documented" : "Production is down, but the timeline tells the story"}</small>
       </header>
 
       <Hotspot
         className="clock-hotspot"
-        label={solved ? "Inspect the repaired master clock" : "Inspect the stopped master clock"}
+        label={solved ? "Inspect the resolved incident" : "Inspect the active production incident"}
         onActivate={() => setPuzzleOpen(true)}
       >
         <span className="master-clock" aria-hidden="true"><i /><b /></span>
-        <span>{solved ? "The movement is running" : "Repair the stopped clock"}</span>
+        <span>{solved ? "Incident resolved" : "Recover the services"}</span>
       </Hotspot>
 
       {blueprintUnlocked && (
@@ -101,8 +101,8 @@ export function WorkshopRoom({
 
       {puzzleOpen && (
         <PuzzleModal
-          title="The Stopped Clock"
-          subtitle="Workshop · Mechanical sequencing"
+          title="Incident 14"
+          subtitle="Build Lab · Debugging a dependency cascade"
           onClose={() => setPuzzleOpen(false)}
         >
           <StoppedClock
@@ -116,10 +116,10 @@ export function WorkshopRoom({
 
       {rewardMoment && (
         <div className="reward-moment reward-moment--gear" role="status">
-          <div className="clockwork-gear-icon clockwork-gear-icon--large" aria-hidden="true">IV</div>
-          <p>Clockwork Gear</p>
-          <blockquote>“Someone stopped time.”</blockquote>
-          <small>Clocks answer throughout the Archive. The Conservatory stirs.</small>
+          <div className="incident-review-icon incident-review-icon--large" aria-hidden="true">✓</div>
+          <p>Incident Review</p>
+          <blockquote>“The timeline turned a production failure into a lesson the team could reuse.”</blockquote>
+          <small>The recovery becomes a runbook. Release Cycle unlocks.</small>
         </div>
       )}
 

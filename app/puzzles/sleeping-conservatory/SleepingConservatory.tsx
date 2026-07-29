@@ -13,10 +13,20 @@ import {
 import { validateSleepingConservatory } from "./validator";
 
 const phaseSymbols: Record<LightPhase, string> = {
-  dawn: "◐",
-  day: "☼",
-  dusk: "◑",
-  night: "☾",
+  dawn: "1",
+  day: "2",
+  dusk: "3",
+  night: "4",
+};
+const phaseLabels: Record<LightPhase, string> = {
+  dawn: "scope",
+  day: "validate",
+  dusk: "approve",
+  night: "observe",
+};
+const modeLabels: Record<Moisture, string> = {
+  dry: "isolated",
+  wet: "connected",
 };
 
 export function SleepingConservatory({
@@ -37,7 +47,7 @@ export function SleepingConservatory({
   );
   const [complete, setComplete] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
-    alreadySolved ? "The restored garden follows its cycle without assistance." : "",
+    alreadySolved ? "The release checklist remains complete." : "",
   );
 
   function advanceLight() {
@@ -52,7 +62,7 @@ export function SleepingConservatory({
     const plant = conservatoryPlants.find((item) => item.id === plantId)!;
     if (plant.phase !== phase || plant.moisture !== moisture) {
       setFeedback(
-        `${plant.name} remains closed. Its tag calls for ${plant.phase} light and ${plant.moisture} soil.`,
+        `${plant.name} is blocked. Its card requires the ${phaseLabels[plant.phase]} stage in ${modeLabels[plant.moisture]} mode.`,
       );
       return;
     }
@@ -60,7 +70,7 @@ export function SleepingConservatory({
     const expectedPlant = sleepingConservatorySolution[blooms.length];
     if (plantId !== expectedPlant) {
       setFeedback(
-        `${plant.name} opens too early and shades an unopened neighbor. The garden slowly folds back to sleep.`,
+        `${plant.name} ran out of order. The release candidate resets so the checklist can be repeated safely.`,
       );
       window.setTimeout(() => {
         setBlooms([]);
@@ -76,10 +86,10 @@ export function SleepingConservatory({
     if (validateSleepingConservatory(nextBlooms)) {
       setComplete(true);
       setFeedback(
-        "Six blooms answer one another. Vines climb the glass and uncover a narrow stair beneath the Observatory.",
+        "Every release gate passes in order. The candidate ships cleanly and monitoring confirms it is healthy.",
       );
     } else {
-      setFeedback(`${plant.name} opens. The next brass tag catches the changing light.`);
+      setFeedback(`${plant.name} passes. Continue through the release sequence.`);
     }
   }
 
@@ -87,16 +97,16 @@ export function SleepingConservatory({
     <div className="garden-puzzle">
       <div className={`garden-puzzle__workspace phase--${phase}`}>
         <div className="gardener-card">
-          <p>The Gardener’s Cycle</p>
-          <blockquote>“Wake them as the day wakes—dawn to stars.”</blockquote>
-          <small>When two share one light, dry petals open before watered roots.</small>
+          <p>Release Runbook</p>
+          <blockquote>“A safe release is a sequence, not a button.”</blockquote>
+          <small>Move from scope to observation. At one stage, isolated checks run before connected checks.</small>
         </div>
 
         <div className="garden-canopy" aria-hidden="true">
           <i /><i /><i />
         </div>
 
-        <div className="plant-beds" aria-label={`${blooms.length} of six plants blooming`}>
+        <div className="plant-beds" aria-label={`${blooms.length} of six release checks complete`}>
           {conservatoryPlants.map((plant) => {
             const bloomed = blooms.includes(plant.id);
             return (
@@ -105,14 +115,14 @@ export function SleepingConservatory({
                 className={`plant-pot plant--${plant.color} ${bloomed ? "is-blooming" : ""}`}
                 onClick={() => tryBloom(plant.id)}
                 disabled={bloomed || complete}
-                aria-label={`${plant.name}. ${plant.note}${bloomed ? " Blooming." : ""}`}
+                aria-label={`${plant.name}. ${plant.note}${bloomed ? " Complete." : ""}`}
               >
                 <span className="plant-stem" aria-hidden="true"><i /><i /><i /></span>
                 <b>{plant.name}</b>
                 <small>
-                  <span aria-hidden="true">{phaseSymbols[plant.phase]}</span> {plant.phase}
+                  <span aria-hidden="true">{phaseSymbols[plant.phase]}</span> {phaseLabels[plant.phase]}
                   {" · "}
-                  <span aria-hidden="true">{plant.moisture === "wet" ? "●" : "○"}</span> {plant.moisture}
+                  <span aria-hidden="true">{plant.moisture === "wet" ? "●" : "○"}</span> {modeLabels[plant.moisture]}
                 </small>
               </button>
             );
@@ -120,14 +130,14 @@ export function SleepingConservatory({
         </div>
 
         <div className="garden-console">
-          <div className="light-dial" aria-label={`Current light: ${phase}`}>
+          <div className="light-dial" aria-label={`Current release stage: ${phaseLabels[phase]}`}>
             {lightPhases.map((lightPhase) => (
               <span className={phase === lightPhase ? "is-current" : ""} key={lightPhase}>
-                <i aria-hidden="true">{phaseSymbols[lightPhase]}</i>{lightPhase}
+                <i aria-hidden="true">{phaseSymbols[lightPhase]}</i>{phaseLabels[lightPhase]}
               </span>
             ))}
           </div>
-          <button onClick={advanceLight} disabled={complete}>Advance the light</button>
+          <button onClick={advanceLight} disabled={complete}>Advance stage</button>
           <button
             className={`water-valve ${moisture === "wet" ? "is-wet" : ""}`}
             onClick={() => {
@@ -136,18 +146,18 @@ export function SleepingConservatory({
             }}
             disabled={complete}
           >
-            Water valve: {moisture}
+            Dependencies: {modeLabels[moisture]}
           </button>
         </div>
 
         <div className="garden-actions">
-          <p aria-live="polite">{feedback || "Dawn enters through the eastern glass. The soil is dry."}</p>
+          <p aria-live="polite">{feedback || "The release candidate is scoped. Dependencies are isolated."}</p>
           {!complete ? (
-            <button onClick={() => { setBlooms([]); setPhase("dawn"); setMoisture("dry"); setFeedback(""); }} disabled={blooms.length === 0}>Let the garden sleep</button>
+            <button onClick={() => { setBlooms([]); setPhase("dawn"); setMoisture("dry"); setFeedback(""); }} disabled={blooms.length === 0}>Reset release</button>
           ) : !alreadySolved ? (
-            <button onClick={onCollectReward}>Press the sixth bloom</button>
+            <button onClick={onCollectReward}>Save release record</button>
           ) : (
-            <small>The specimen frame is empty.</small>
+            <small>The release record has been saved.</small>
           )}
         </div>
       </div>
@@ -160,4 +170,3 @@ export function SleepingConservatory({
     </div>
   );
 }
-

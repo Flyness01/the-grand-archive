@@ -495,6 +495,8 @@ button:focus-visible, input:focus-visible {
 .clock-actions .clock-key { padding:.55rem .8rem;border:1px solid #80623b;background:#1d1912;color:#d1bd96; }
 .clockwork-gear-icon { display:grid;place-items:center;width:62px;aspect-ratio:1;margin:auto;background:#a8793d;color:#2b1c10;font:700 .6rem Georgia,serif;clip-path:polygon(42% 0,58% 0,63% 12%,74% 7%,86% 18%,81% 29%,100% 42%,100% 58%,86% 63%,93% 75%,82% 86%,70% 81%,58% 100%,42% 100%,37% 87%,25% 93%,14% 82%,19% 70%,0 58%,0 42%,13% 37%,7% 25%,18% 14%,30% 19%);box-shadow:inset 0 0 0 17px rgba(43,28,16,.56); }
 .clockwork-gear-icon--large { width:92px;transform:rotate(12deg);animation:gear-reward 5s ease both; }
+.incident-review-icon { display:grid;place-items:center;width:58px;aspect-ratio:1;margin:auto;border:2px solid #8d7568;border-radius:12px;color:#f4eee8;background:linear-gradient(145deg,#8e7770,#566777);box-shadow:inset 0 0 0 7px rgba(244,238,232,.12),0 8px 18px rgba(20,16,12,.25);font:700 1.35rem/1 sans-serif; }
+.incident-review-icon--large { width:86px;transform:rotate(-3deg);margin-bottom:1.7rem; }
 .reward-moment--gear { background:radial-gradient(circle,rgba(121,76,37,.82),rgba(3,5,4,.97) 57%); }
 
 .conservatory-room { min-height:100svh;position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 65%,#263126,#121914 53%,#070a08 86%);transition:1.4s; }
@@ -555,6 +557,11 @@ button:focus-visible, input:focus-visible {
 .specimen-icon i::before,.specimen-icon i::after { content:"";position:absolute;left:-14px;top:24%;width:16px;height:27px;border-radius:100% 0;background:#62805b;transform:rotate(-28deg); }
 .specimen-icon i::after { left:2px;top:46%;transform:scaleX(-1) rotate(-28deg); }
 .specimen-icon--large { transform:scale(1.35) rotate(3deg);margin-bottom:1.8rem; }
+.release-record-icon { position:relative;width:54px;height:68px;margin:auto;border:1px solid #8c7468;border-radius:5px;background:linear-gradient(145deg,#eee5dc,#cdbdb2);box-shadow:0 8px 18px rgba(20,16,12,.22); }
+.release-record-icon::before { content:"";position:absolute;left:10px;right:10px;top:14px;height:3px;background:#788b92;box-shadow:0 10px 0 #9d8074,0 20px 0 #788b92,0 30px 0 #9d8074; }
+.release-record-icon::after { content:"✓";position:absolute;right:-7px;bottom:-7px;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;color:#f7f1e9;background:#718573;border:2px solid #e8ded2;font:700 15px/1 sans-serif; }
+.release-record-icon i { display:none; }
+.release-record-icon--large { transform:scale(1.4) rotate(2deg);margin-bottom:2rem; }
 .reward-moment--specimen { background:radial-gradient(circle,rgba(64,104,56,.8),rgba(3,6,4,.97) 57%); }
 
 .observatory-room { min-height:100svh;position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(circle at 50% 30%,#1e2930,#0d1217 48%,#050708 85%);transition:1.4s; }
