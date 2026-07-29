@@ -11,9 +11,9 @@ import {
 import { normalizeBlueprintRotation, validateMasterBlueprint } from "./validator";
 
 const layerLabels: Record<BlueprintLayerId, string> = {
-  architecture: "Architectural layout",
-  mechanical: "Mechanical systems",
-  pedestals: "Pedestal positions",
+  architecture: "User experience",
+  mechanical: "Service architecture",
+  pedestals: "Reliability plan",
 };
 
 export function MasterBlueprint({
@@ -32,7 +32,7 @@ export function MasterBlueprint({
   );
   const [solved, setSolved] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
-    alreadySolved ? "The three plans remain registered as a single drawing." : "",
+    alreadySolved ? "The three system perspectives remain aligned." : "",
   );
 
   function rotateLayer(layer: BlueprintLayerId, direction: number) {
@@ -47,14 +47,14 @@ export function MasterBlueprint({
   function inspectComposite() {
     if (validateMasterBlueprint(rotations)) {
       setSolved(true);
-      setFeedback("Every line meets its counterpart. Hidden ink gathers into a single instruction.");
+      setFeedback("Experience, services, and reliability now support one coherent system design.");
       return;
     }
     const alignedCount = blueprintLayerOrder.filter(
       (layer) => rotations[layer] === blueprintSolution[layer],
     ).length;
     setFeedback(
-      `${alignedCount} of 3 registration landmarks agree with the building. The remaining sheets still divide the plan.`,
+      `${alignedCount} of 3 system constraints align. The remaining perspective still conflicts with the design.`,
     );
   }
 
@@ -62,11 +62,11 @@ export function MasterBlueprint({
     <div className="blueprint-puzzle">
       <div className="blueprint-puzzle__workspace">
         <aside className="drafting-reference">
-          <p>Surveyor’s fixed landmarks</p>
-          <span><i>→</i><b>Library notch</b> East</span>
-          <span><i>←</i><b>Clock gear</b> West</span>
-          <span><i>↓</i><b>Pedestal opening</b> South</span>
-          <small>The building does not rotate. Make the plans agree with it.</small>
+          <p>Fixed system constraints</p>
+          <span><i>→</i><b>Client boundary</b> East</span>
+          <span><i>←</i><b>Data service</b> West</span>
+          <span><i>↓</i><b>Recovery path</b> South</span>
+          <small>The constraints do not move. Make every system perspective agree with them.</small>
         </aside>
 
         <div className={`blueprint-composite ${solved ? "is-solved" : ""}`}>
@@ -81,7 +81,7 @@ export function MasterBlueprint({
               <i /><i /><i /><i />
             </div>
           ))}
-          {solved && <strong>RETURN WHAT WAS BORROWED</strong>}
+          {solved && <strong>REVIEW THE WHOLE SYSTEM</strong>}
         </div>
 
         <div className="blueprint-controls">
@@ -98,10 +98,10 @@ export function MasterBlueprint({
         </div>
 
         <div className="blueprint-actions">
-          <p aria-live="polite">{feedback || "Three incomplete drawings overlap without meaning."}</p>
-          {!solved ? <button onClick={inspectComposite}>Inspect the composite</button> :
-            !alreadySolved ? <button onClick={onCollectReward}>Lift the completed blueprint</button> :
-              <small>The drafting table holds only registration pins.</small>}
+          <p aria-live="polite">{feedback || "Three individually reasonable plans disagree as one system."}</p>
+          {!solved ? <button onClick={inspectComposite}>Review system design</button> :
+            !alreadySolved ? <button onClick={onCollectReward}>Save architecture decision</button> :
+              <small>The architecture decision has been saved.</small>}
         </div>
       </div>
 

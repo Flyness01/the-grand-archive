@@ -13,9 +13,9 @@ export const blueprintSolution: Record<BlueprintLayerId, number> = {
 };
 
 export const masterBlueprintHints = [
-  "Use the actual Archive as the fixed reference: the Library lies east, the clock mechanism west, and the pedestal opening faces south.",
-  "Rotate the architectural sheet until the Library notch points east. Turn the mechanical sheet until the clock gear sits west. Face the open pedestal arc south.",
-  "Set Architecture to 90°, Mechanical to 270°, and Pedestals to 180°, then inspect the composite.",
+  "Use the fixed system constraints as anchors: the client boundary is east, the data service west, and the recovery path south.",
+  "Rotate User Experience toward the client boundary, Service Architecture toward the data service, and Reliability toward the recovery path.",
+  "Set User Experience to 90°, Service Architecture to 270°, and Reliability Plan to 180°, then review the design.",
 ];
 
 export const masterBlueprintMosaicTiles = Array.from(

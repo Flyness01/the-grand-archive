@@ -87,11 +87,11 @@ export function WorkshopRoom({
       {blueprintUnlocked && (
         <Hotspot
           className="drafting-hotspot"
-          label={blueprintSolved ? "Inspect the completed Master Blueprint" : "Inspect the transparent drafting plans"}
+          label={blueprintSolved ? "Inspect the architecture decision" : "Inspect the competing system plans"}
           onActivate={() => setBlueprintOpen(true)}
         >
           <span className="drafting-table" aria-hidden="true"><i /><i /><i /></span>
-          <span>{blueprintSolved ? "The instruction remains visible" : "Three plans share one set of pins"}</span>
+          <span>{blueprintSolved ? "The system remains aligned" : "Align three system perspectives"}</span>
         </Hotspot>
       )}
 
@@ -125,8 +125,8 @@ export function WorkshopRoom({
 
       {blueprintOpen && (
         <PuzzleModal
-          title="The Master Blueprint"
-          subtitle="Workshop Drafting Chamber · Transparent-layer alignment"
+          title="The Architecture Decision"
+          subtitle="System Design · Constraint alignment"
           onClose={() => setBlueprintOpen(false)}
         >
           <MasterBlueprint
@@ -140,10 +140,10 @@ export function WorkshopRoom({
 
       {blueprintRewardMoment && (
         <div className="reward-moment reward-moment--blueprint" role="status">
-          <div className="blueprint-icon blueprint-icon--large" aria-hidden="true"><i /><i /><i /></div>
-          <p>Master Blueprint</p>
-          <blockquote>“The building knew the answer.”</blockquote>
-          <small>Every pedestal rises. Their base shapes wait for the borrowed objects.</small>
+          <div className="architecture-decision-icon architecture-decision-icon--large" aria-hidden="true"><i /><i /><i /></div>
+          <p>Architecture Decision</p>
+          <blockquote>“A strong design lets every constraint tell the same story.”</blockquote>
+          <small>The complete body of work is ready for one final review. Debrief Room unlocks.</small>
         </div>
       )}
     </section>

@@ -7,9 +7,9 @@ export const reflectionDifferences = [
 ] as const;
 
 export const reflectionHints = [
-  "A true mirror reverses positions and lettering. Do not mark an object merely because it has moved to the opposite side.",
-  "Look for behavior, presence, quantity, and lettering that contradict what a reflection should preserve.",
-  "Mark the backward clock, misplaced artifact, phantom door, seven-point star, and the label that remains readable.",
+  "The current layout intentionally reverses some positions. Do not file a defect merely because content moved to its corresponding side.",
+  "Prioritize changes to behavior, presence, quantity, semantics, and text transformation.",
+  "Mark the backward progress, misplaced action, extra navigation, incorrect status icon, and label that skipped encoding.",
 ];
 
 export const reflectionMosaicTiles = [
@@ -25,4 +25,3 @@ export const reflectionMosaicTiles = [
   501, 511,
   526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536,
 ];
-

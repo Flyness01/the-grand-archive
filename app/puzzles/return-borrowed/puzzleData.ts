@@ -23,7 +23,7 @@ export const pedestalSolution = {
 export const finaleHints = [
   "The Journal belongs to the central manuscript stand. Arrange the other eight objects around the ring first.",
   "Match each artifact’s hidden base shape to a pedestal, then use glow color and engraved symbol as confirmation.",
-  "Crescent Context Card, star Flow Trace, bowl Alignment Note, toothed Incident Review, teardrop Release Record, five-point Pattern Report, angled Handoff Note, triangle Prism, and square Blueprint.",
+  "Crescent Context Card, star Flow Trace, bowl Alignment Note, toothed Incident Review, teardrop Release Record, five-point Pattern Report, angled Handoff Note, triangle Defect Report, and square Architecture Decision.",
 ];
 
 export const finalMosaicTiles = Array.from({ length: 625 }, (_, index) => index);

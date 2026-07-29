@@ -68,23 +68,23 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     ],
     tip: "Treat surprising output as data: a consistent error is a pattern you can explain.",
   },
-  "The Hall of Reflections": {
-    objective: "Find the meaningful differences between the room and its reflection.",
+  "The Meaningful Difference": {
+    objective: "Compare a reference interface with the current build and report only meaningful defects.",
     steps: [
-      "Compare paired objects rather than scanning randomly.",
-      "Select only differences that change identity or meaning.",
-      "Submit the marked reflection when the set is complete.",
+      "Compare corresponding interface elements systematically.",
+      "Separate expected layout changes from differences in behavior, meaning, or access.",
+      "Submit the five actionable findings as a QA report.",
     ],
-    tip: "Lighting and perspective can distract you from structural differences.",
+    tip: "Pixel difference is evidence, not automatically a defect.",
   },
-  "The Master Blueprint": {
-    objective: "Align the transparent plans to reveal the shared construction.",
+  "The Architecture Decision": {
+    objective: "Align user experience, service architecture, and reliability around fixed system constraints.",
     steps: [
-      "Inspect each layer separately.",
-      "Rotate and position the plans over the drafting surface.",
-      "Lock the arrangement when all reference points coincide.",
+      "Review each system perspective and the constraints it must satisfy.",
+      "Rotate each plan toward its corresponding fixed boundary.",
+      "Approve the design only when all three perspectives agree.",
     ],
-    tip: "Use the smallest repeated marks as anchors.",
+    tip: "A locally elegant plan can still fail when combined with the rest of the system.",
   },
   "Return What Was Borrowed": {
     objective: "Return every collected object to the pedestal that matches its hidden symbol.",

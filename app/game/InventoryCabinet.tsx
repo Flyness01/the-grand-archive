@@ -52,9 +52,9 @@ export function InventoryCabinet({
                     ) : artifact.id === "leather-journal" ? (
                       <div className="handoff-note-icon" aria-hidden="true"><i /></div>
                     ) : artifact.id === "prism-lens" ? (
-                      <div className="prism-icon" aria-hidden="true"><i /></div>
+                      <div className="defect-report-icon" aria-hidden="true"><i /></div>
                     ) : artifact.id === "master-blueprint" ? (
-                      <div className="blueprint-icon" aria-hidden="true"><i /><i /><i /></div>
+                      <div className="architecture-decision-icon" aria-hidden="true"><i /><i /><i /></div>
                     ) : artifact.id === "final-manuscript" ? (
                       <div className="manuscript-icon" aria-hidden="true"><i /></div>
                     ) : artifact.id === "feather-bookmark" ? (

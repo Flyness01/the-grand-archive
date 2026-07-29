@@ -142,7 +142,7 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   },
   "hall-of-reflections": {
     id: "hall-of-reflections",
-    title: "The Hall of Reflections",
+    title: "The Meaningful Difference",
     roomId: "hall-of-reflections",
     difficulty: 7,
     estimatedMinutes: 11,
@@ -153,7 +153,7 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   },
   "master-blueprint": {
     id: "master-blueprint",
-    title: "The Master Blueprint",
+    title: "The Architecture Decision",
     roomId: "workshop",
     difficulty: 8,
     estimatedMinutes: 12,

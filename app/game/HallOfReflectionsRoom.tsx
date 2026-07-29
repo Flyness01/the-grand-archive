@@ -41,26 +41,26 @@ export function HallOfReflectionsRoom({
       <div className="reflections-room__floor" aria-hidden="true" />
       <div className="reflections-room__mirrors" aria-hidden="true"><i /><i /><i /><i /><i /></div>
       <header className="library-room__title">
-        <p>The hidden layer</p>
-        <h1 id="reflections-title">Hall of Reflections</h1>
-        <small>{restored ? "Five silver fractures remain visible in the glass" : "Not every reversal belongs to the mirror"}</small>
+        <p>Test what meaningfully changed</p>
+        <h1 id="reflections-title">QA Review</h1>
+        <small>{restored ? "Five actionable defects remain after the noise is removed" : "Not every visual difference is a product defect"}</small>
       </header>
 
       <Hotspot
         className="central-mirror-hotspot"
-        label={solved ? "Inspect the opened central mirror" : "Inspect the altered reflections"}
+        label={solved ? "Inspect the completed defect report" : "Compare the reference with the current build"}
         onActivate={() => setPuzzleOpen(true)}
       >
         <span className="central-mirror" aria-hidden="true"><i /></span>
-        <span>{solved ? "The silver recess is open" : "Compare the hall with its reflection"}</span>
+        <span>{solved ? "Review complete" : "Compare the interfaces"}</span>
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Team Hub</button>
 
       {puzzleOpen && (
         <PuzzleModal
-          title="The Hall of Reflections"
-          subtitle="Hall of Reflections · Difference and perspective"
+          title="The Meaningful Difference"
+          subtitle="QA Review · Behavioral and visual comparison"
           onClose={() => setPuzzleOpen(false)}
         >
           <HallOfReflectionsPuzzle
@@ -74,10 +74,10 @@ export function HallOfReflectionsRoom({
 
       {rewardMoment && (
         <div className="reward-moment reward-moment--prism" role="status">
-          <div className="prism-icon prism-icon--large" aria-hidden="true"><i /></div>
-          <p>Prism Lens</p>
-          <blockquote>“Truth changes with the angle.”</blockquote>
-          <small>Hidden markings appear on the artifacts. A drafting chamber wakes below.</small>
+          <div className="defect-report-icon defect-report-icon--large" aria-hidden="true"><i /></div>
+          <p>Defect Report</p>
+          <blockquote>“Good QA protects meaning, not pixel sameness.”</blockquote>
+          <small>The findings expose three system constraints. System Design unlocks.</small>
         </div>
       )}
     </section>

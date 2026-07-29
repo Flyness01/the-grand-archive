@@ -135,7 +135,7 @@ export function ReturnBorrowed({
         )}
 
         <div className="finale-actions">
-          <p aria-live="polite">{feedback || "Nine objects wait where the blueprint said the pedestals would rise."}</p>
+          <p aria-live="polite">{feedback || "Nine records wait where the architecture decision mapped the final review."}</p>
           {!outerAligned && <button onClick={testRing}>Test the pedestal ring</button>}
           {journalOnStand && !alreadySolved && <button onClick={onComplete}>Enter the living mosaic</button>}
           {journalOnStand && alreadySolved && <button onClick={onEnterStudy}>Enter the Archivist’s Study</button>}

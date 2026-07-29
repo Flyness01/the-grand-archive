@@ -76,8 +76,8 @@ export const artifacts: Record<string, Artifact> = {
   },
   "prism-lens": {
     id: "prism-lens",
-    name: "Prism Lens",
-    shortDescription: "Truth changes with the angle.",
+    name: "Defect Report",
+    shortDescription: "Careful comparison separated actionable problems from harmless noise.",
     roomOfOrigin: "hall-of-reflections",
     symbol: "Triangle",
     glowGroup: "Violet",
@@ -85,8 +85,8 @@ export const artifacts: Record<string, Artifact> = {
   },
   "master-blueprint": {
     id: "master-blueprint",
-    name: "Master Blueprint",
-    shortDescription: "The building knew the answer.",
+    name: "Architecture Decision",
+    shortDescription: "Experience, services, and reliability became one coherent design.",
     roomOfOrigin: "workshop",
     symbol: "Square",
     glowGroup: "Blue",
