@@ -133,11 +133,11 @@ export function GrandHall({
         className={`reflections-threshold ${typewriterSolved ? "is-unlocked" : ""}`}
         disabled={!typewriterSolved}
         onClick={onEnterReflections}
-        aria-label={typewriterSolved ? "Enter the Hall of Reflections" : "The Hall of Reflections is sealed"}
+        aria-label={typewriterSolved ? "Enter QA Review" : "QA Review is locked"}
       >
         <span><i /></span>
-        <b>Hall of Reflections</b>
-        <small>{typewriterSolved ? "The journal reveals the door" : "No door appears here"}</small>
+        <b>QA Review</b>
+        <small>{typewriterSolved ? "Feedback checklist ready" : "Waiting for a clear update"}</small>
       </button>
 
       <button
@@ -146,13 +146,13 @@ export function GrandHall({
         onClick={onEnterObservatory}
         aria-label={
           conservatorySolved
-            ? "The Observatory stair is uncovered"
-            : "The Observatory stair is hidden"
+            ? "Enter Pattern Review"
+            : "Pattern Review is locked"
         }
       >
         <span><i /><i /><i /></span>
-        <b>Observatory</b>
-        <small>{conservatorySolved ? "Stair uncovered" : "Lost beneath vines"}</small>
+        <b>Pattern Review</b>
+        <small>{conservatorySolved ? "Runtime signals available" : "Waiting for release data"}</small>
       </button>
 
       <button
@@ -163,7 +163,7 @@ export function GrandHall({
       >
         <span><i /></span>
         <b>Team Lead’s Office</b>
-        <small>{observatorySolved ? "A ribbon stirs within" : "Sealed beyond the dome"}</small>
+        <small>{observatorySolved ? "A feedback thread is waiting" : "Waiting for pattern review"}</small>
       </button>
 
       <button
@@ -172,18 +172,18 @@ export function GrandHall({
         onClick={onEnterConservatory}
         aria-label={
           clockSolved
-            ? "The Conservatory door is unlocked"
-            : "The Conservatory door is sealed"
+            ? "Enter the Release Cycle"
+            : "The Release Cycle is locked"
         }
       >
         <span><i /><i /><i /></span>
-        <b>Conservatory</b>
-        <small>{clockSolved ? "Irrigation restored" : "Glass gone dark"}</small>
+        <b>Release Cycle</b>
+        <small>{clockSolved ? "Build dependency repaired" : "Waiting for a stable build"}</small>
       </button>
 
       <button
         className={`door ${mapRoomUnlocked ? "door--map" : "door--locked"}`}
-        aria-label={mapRoomUnlocked ? "Enter the Map Room" : "Map Room, locked"}
+        aria-label={mapRoomUnlocked ? "Enter the System Map" : "System Map, locked"}
         disabled={!mapRoomUnlocked}
         onClick={onEnterMapRoom}
       >
@@ -194,7 +194,7 @@ export function GrandHall({
         </span>
         <span className="door__label">
           <small>{mapRoomUnlocked ? "A teammate shared the system map" : "Waiting for context"}</small>
-          Map Room
+          System Map
         </span>
       </button>
 
@@ -204,26 +204,26 @@ export function GrandHall({
         onClick={onEnterWorkshop}
         aria-label={
           blueprintUnlocked && !blueprintSolved
-            ? "Enter the Workshop Drafting Chamber for Puzzle 9"
+            ? "Enter System Design for Puzzle 9"
             : lanternWallSolved
-            ? "The Workshop door is unlocked"
-            : "The Workshop door is sealed"
+            ? "Enter the Build Lab"
+            : "The Build Lab is locked"
         }
       >
         <span><i /></span>
-        <b>{blueprintUnlocked && !blueprintSolved ? "Drafting Chamber" : "Workshop"}</b>
+        <b>{blueprintUnlocked && !blueprintSolved ? "System Design" : "Build Lab"}</b>
         <small>
           {blueprintUnlocked && !blueprintSolved
-            ? "Puzzle 9 · Transparent plans revealed"
+            ? "Puzzle 9 · Architecture layers ready"
             : lanternWallSolved
-              ? "Unlocked"
-              : "Sealed by shadow"}
+              ? "Signal alignment complete"
+              : "Waiting for aligned signals"}
         </small>
       </button>
 
       <div
         className={`hall-floor-mechanism ${floorMechanismActive ? "is-active" : ""}`}
-        aria-label={floorMechanismActive ? "The Team Hub floor mechanism is active" : "A dormant mechanism lies beneath the floor"}
+        aria-label={floorMechanismActive ? "The project workflow is active" : "The project workflow is waiting for context"}
       >
         <i /><i /><i />
       </div>
@@ -237,9 +237,9 @@ export function GrandHall({
         aria-label={
           lanternWallUnlocked
             ? lanternWallSolved
-              ? "Inspect the completed Lantern Wall"
-              : "Inspect the Lantern Wall"
-            : "A dark arrangement of lanterns"
+              ? "Review the completed signal alignment"
+              : "Open signal alignment"
+            : "Signal alignment is locked"
         }
       >
         {[0, 1, 2, 3].map((lantern) => (
@@ -247,10 +247,10 @@ export function GrandHall({
         ))}
         <b>
           {lanternWallSolved
-            ? "A keyhole of shadow remains"
+            ? "Signals aligned"
             : lanternWallUnlocked
-              ? "Align the lantern shadows"
-              : "Dormant lanterns"}
+              ? "Align the four signals"
+              : "Waiting for the system map"}
         </b>
       </button>
 
@@ -264,21 +264,21 @@ export function GrandHall({
         {finaleSolved
           ? "Every part of the project is finally in place."
           : blueprintSolved
-          ? "The pedestal ring rises into the light."
+          ? "The final handoff is ready."
           : blueprintUnlocked
-          ? "The Prism reveals a second table inside the Workshop."
+          ? "QA feedback reveals one final architecture task."
           : typewriterSolved
-          ? "A silver doorway appears where the Journal says it should."
+          ? "Your written update unlocks QA Review."
           : observatorySolved
-          ? "A narrow office door opens beneath the newly revealed stars."
+          ? "The patterns are clear enough to discuss with your team lead."
           : conservatorySolved
-          ? "Vines curl away from a stair climbing into darkness."
+          ? "Release data is ready for Pattern Review."
           : clockSolved
-          ? "A measured pulse moves water through the walls."
+          ? "The repaired build unlocks the Release Cycle."
           : lanternWallSolved
-          ? "The central lantern burns without a flame."
+          ? "Aligned signals unlock the Build Lab."
           : lanternWallUnlocked
-          ? "The floor mechanism points toward the lanterns."
+          ? "The System Map reveals four signals that must agree."
           : restored
             ? "The first piece of the board has returned."
             : "One doorway holds a little light."}
@@ -286,21 +286,21 @@ export function GrandHall({
           {finaleSolved
             ? "The living frame stands open to the Debrief Room."
             : blueprintSolved
-            ? "Nine base shapes wait for everything the Archive lent you."
+            ? "Nine lessons are ready to become the final project story."
             : blueprintUnlocked
-            ? "Three transparent plans wait in the Drafting Chamber."
+            ? "Three architecture layers wait in System Design."
             : typewriterSolved
-            ? "Its reflection opens before the door itself."
+            ? "Compare intention with the user’s actual experience."
             : observatorySolved
-            ? "Inside, a typewriter strikes the wrong letter with perfect consistency."
+            ? "Inside, a communication problem needs a precise correction."
             : conservatorySolved
-            ? "Above, an unrecorded group of stars waits in the dome."
+            ? "The runtime behavior contains a pattern nobody documented."
             : clockSolved
-            ? "Beyond the glass, six sleeping leaves begin to stir."
+            ? "The next task is understanding timing, dependencies, and release order."
             : lanternWallSolved
-            ? "Warm light reaches the newly opened Workshop."
+            ? "The build is ready for investigation."
             : lanternWallUnlocked
-            ? "Four shadows wait to become one."
+            ? "Four independent signals must resolve into one result."
             : restored
               ? "The Project Board records the first breakthrough."
               : "Move closer to inspect it."}
