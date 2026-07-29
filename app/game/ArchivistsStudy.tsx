@@ -18,7 +18,7 @@ export function ArchivistsStudy({ onReturn }: { onReturn: () => void }) {
 
       <button className="appreciation-envelope" onClick={() => setLetterOpen(true)}>
         <span aria-hidden="true">✦</span>
-        Open the team’s note
+        Open my thank-you note
       </button>
       <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Team Hub</button>
 
@@ -27,24 +27,24 @@ export function ArchivistsStudy({ onReturn }: { onReturn: () => void }) {
           <article className="appreciation-letter" role="dialog" aria-modal="true" aria-labelledby="letter-title" onMouseDown={(event) => event.stopPropagation()}>
             <button onClick={() => setLetterOpen(false)} aria-label="Close appreciation letter">×</button>
             <p className="letter-eyebrow">For the team who made two summers unforgettable</p>
-            <h2 id="letter-title">Two summers, countless lessons, one very full heart.</h2>
+            <h2 id="letter-title">Thank You for Two Amazing Summers</h2>
+            <blockquote>“The best part of everything I built was getting to build it with you.”</blockquote>
             <p>
-              Thank you for the past two summers on Enterprise: for teaching me to slow down and really read code,
-              for making 1:1s feel like a place to grow, and for helping me understand that engineering is as much
-              communication as implementation.
+              Thank you for welcoming me onto this team and giving me two summers filled with learning, laughter, challenges,
+              and opportunities I will carry with me for a long time. I came ready to learn, and you gave me the space to ask questions,
+              try unfamiliar things, make mistakes, and grow into a more thoughtful engineer.
             </p>
             <p>
-              I learned from broken PRs, thoughtful reviews, patient explanations, careful handoffs, and all the small
-              moments where someone lent a helping hand before I even knew how to ask.
+              I am grateful for every patient explanation, thoughtful review, honest piece of feedback, shared joke, and moment when someone
+              took the time to help me understand not just what we were building, but why it mattered. You made difficult work feel shared,
+              and every contribution feel valued.
             </p>
             <p>
-              To my mentor: words genuinely fail me a little. Thank you for the countless lessons, the trust, the kindness,
-              and the way you made me feel capable while I was still becoming capable.
+              These two summers gave me more than projects to talk about. They gave me confidence, perspective, friendships,
+              and an example of the kind of teammate I hope to be. Thank you for such an amazing summer, for the summer before it,
+              and for making both experiences so meaningful. I feel incredibly lucky that I got to be part of this team.
             </p>
-            <p>
-              I am leaving with better instincts, more confidence, a deeper appreciation for teams that care, and a mental
-              scrapbook that includes code, trails, pets, and people I will be grateful for long after this internship.
-            </p>
+            <p className="letter-signature">With so much appreciation,<br />Flyness</p>
           </article>
         </div>
       )}
