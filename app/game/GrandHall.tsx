@@ -344,9 +344,18 @@ export function GrandHall({
               "Handoff",
               "QA",
               "Design",
+              "Trust",
+              "Mentorship",
+              "Reviews",
+              "1:1s",
+              "Kindness",
+              "Teamwork",
+              "Trails",
+              "Pets",
+              "Growth",
             ].map((lesson, index) => (
               <span style={{ "--card-index": index } as CSSProperties} key={lesson}>
-                <i>0{index + 1}</i>
+                <i>{String(index + 1).padStart(2, "0")}</i>
                 <b>{lesson}</b>
               </span>
             ))}
