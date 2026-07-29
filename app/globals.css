@@ -620,6 +620,10 @@ button:focus-visible, input:focus-visible {
 .star-chart-icon::before { content:"";position:absolute;inset:9px;background:radial-gradient(circle at 25% 22%,#f3e0a7 0 2px,transparent 2.5px),radial-gradient(circle at 68% 31%,#f3e0a7 0 1.5px,transparent 2px),radial-gradient(circle at 44% 70%,#f3e0a7 0 2px,transparent 2.5px),radial-gradient(circle at 78% 81%,#f3e0a7 0 1.6px,transparent 2px); }
 .star-chart-icon i { position:absolute;left:15px;top:23px;width:31px;border-top:1px solid #c5b77f;transform:rotate(17deg); }.star-chart-icon i:nth-child(2){top:40px;transform:rotate(-34deg)}.star-chart-icon i:nth-child(3){top:51px;transform:rotate(28deg)}
 .star-chart-icon--large { transform:scale(1.4) rotate(-4deg);margin-bottom:2rem; }
+.pattern-report-icon { position:relative;width:62px;height:72px;margin:auto;border:1px solid #71828f;border-radius:5px;background:linear-gradient(145deg,#e8e2dc,#c4cbd0);box-shadow:0 8px 18px rgba(20,16,12,.24); }
+.pattern-report-icon::before { content:"";position:absolute;inset:10px;background:radial-gradient(circle at 18% 22%,#6f8290 0 2px,transparent 2.5px),radial-gradient(circle at 70% 30%,#9a776d 0 2px,transparent 2.5px),radial-gradient(circle at 42% 66%,#6f8290 0 2px,transparent 2.5px),radial-gradient(circle at 78% 82%,#9a776d 0 2px,transparent 2.5px); }
+.pattern-report-icon i { position:absolute;left:15px;top:23px;width:32px;border-top:2px solid #7c7270;transform:rotate(17deg); }.pattern-report-icon i:nth-child(2){top:40px;transform:rotate(-34deg)}.pattern-report-icon i:nth-child(3){top:52px;transform:rotate(28deg)}
+.pattern-report-icon--large { transform:scale(1.4) rotate(-3deg);margin-bottom:2rem; }
 .reward-moment--stars { background:radial-gradient(circle,rgba(45,78,106,.82),rgba(2,5,8,.97) 58%); }
 
 .large-text { font-size:118%; }
@@ -1630,6 +1634,11 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
 .journal-icon::before { content:"";position:absolute;left:9px;right:7px;top:10px;height:2px;background:#ba8a5e;box-shadow:0 8px 0 #ba8a5e,0 16px 0 #ba8a5e;opacity:.5; }
 .journal-icon i { position:absolute;left:2px;top:0;bottom:0;border-left:2px solid #9d6548; }
 .journal-icon--large { transform:scale(1.45) rotate(-4deg);margin-bottom:2rem; }
+.handoff-note-icon { position:relative;width:60px;height:70px;margin:auto;border:1px solid #8c776d;border-radius:5px;background:linear-gradient(145deg,#f1e9e2,#d2c3b9);box-shadow:0 8px 18px rgba(20,16,12,.24); }
+.handoff-note-icon::before { content:"HANDOFF";position:absolute;left:8px;right:8px;top:9px;padding-bottom:5px;border-bottom:2px solid #7e8f9b;color:#6d615c;font:700 7px/1 sans-serif;letter-spacing:.08em; }
+.handoff-note-icon::after { content:"";position:absolute;left:9px;right:9px;top:32px;height:2px;background:#a78b7c;box-shadow:0 9px 0 #7e8f9b,0 18px 0 #a78b7c; }
+.handoff-note-icon i { display:none; }
+.handoff-note-icon--large { transform:scale(1.45) rotate(-2deg);margin-bottom:2rem; }
 .reward-moment--journal { background:radial-gradient(circle,rgba(116,53,39,.84),rgba(5,3,3,.97) 58%); }
 
 @media (max-width: 760px) {

@@ -110,7 +110,7 @@ export function ReturnBorrowed({
             onClick={placeJournal}
             disabled={!outerAligned || journalOnStand}
           >
-            {journalOnStand ? "Final Manuscript" : outerAligned ? "Place the Leather Journal" : "Manuscript stand sealed"}
+            {journalOnStand ? "Final Manuscript" : outerAligned ? "Place the Handoff Note" : "Manuscript stand sealed"}
           </button>
           <div className="archive-emblem" aria-hidden="true">✦</div>
         </div>

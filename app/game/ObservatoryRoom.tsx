@@ -42,18 +42,18 @@ export function ObservatoryRoom({
       <div className="observatory-room__stars" aria-hidden="true" />
       <div className="observatory-room__platform" aria-hidden="true" />
       <header className="library-room__title">
-        <p>The highest chamber</p>
-        <h1 id="observatory-title">Observatory</h1>
-        <small>{restored ? "The dome stands open to an impossible sky" : "One cluster belongs to no recorded heaven"}</small>
+        <p>Find signal inside noise</p>
+        <h1 id="observatory-title">Pattern Review</h1>
+        <small>{restored ? "The recurring behavior is now reproducible" : "One production trace matches no known healthy pattern"}</small>
       </header>
 
       <Hotspot
         className="telescope-hotspot"
-        label={solved ? "Inspect the aligned star dome" : "Inspect the unfiled constellation"}
+        label={solved ? "Inspect the documented production pattern" : "Inspect the unclassified telemetry"}
         onActivate={() => setPuzzleOpen(true)}
       >
         <span className="telescope" aria-hidden="true"><i /></span>
-        <span>{solved ? "The quill remains above" : "Rotate the star dome"}</span>
+        <span>{solved ? "Pattern documented" : "Group the telemetry"}</span>
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
@@ -62,8 +62,8 @@ export function ObservatoryRoom({
 
       {puzzleOpen && (
         <PuzzleModal
-          title="The Constellation That Should Not Exist"
-          subtitle="Observatory · Rotation and abstraction"
+          title="The Unclassified Trace"
+          subtitle="Pattern Review · Rotation and abstraction"
           onClose={() => setPuzzleOpen(false)}
         >
           <ImpossibleConstellation
@@ -77,10 +77,10 @@ export function ObservatoryRoom({
 
       {rewardMoment && (
         <div className="reward-moment reward-moment--stars" role="status">
-          <div className="star-chart-icon star-chart-icon--large" aria-hidden="true"><i /><i /><i /></div>
-          <p>Star Chart</p>
-          <blockquote>“The sky kept its records.”</blockquote>
-          <small>The Observatory dome opens. Stars appear above the Team Hub.</small>
+          <div className="pattern-report-icon pattern-report-icon--large" aria-hidden="true"><i /><i /><i /></div>
+          <p>Pattern Report</p>
+          <blockquote>“Noise became useful when the right context made it repeatable.”</blockquote>
+          <small>The finding needs a clear handoff. Team Lead’s Office unlocks.</small>
         </div>
       )}
     </section>

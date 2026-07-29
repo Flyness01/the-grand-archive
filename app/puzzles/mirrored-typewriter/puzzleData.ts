@@ -2,9 +2,9 @@ export const mirroredTypewriterTarget = "ENDS";
 export const mirroredTypewriterKeys = "IXJK";
 
 export const mirroredTypewriterHints = [
-  "The machine is consistent, not broken. Compare each pressed key with the character printed beneath it.",
+  "The output is consistently transformed, not random. Compare each input with the character it produces.",
   "Each keyboard row has been reflected horizontally: Q faces P, A faces L, and Z faces M.",
-  "To print ENDS, press the keys opposite E, N, D, and S: I, X, J, K.",
+  "To output ENDS, enter the keys opposite E, N, D, and S: I, X, J, K.",
 ];
 
 export const mirroredTypewriterMosaicTiles = [
@@ -20,4 +20,3 @@ export const mirroredTypewriterMosaicTiles = [
 ];
 
 export const keyboardRows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
-

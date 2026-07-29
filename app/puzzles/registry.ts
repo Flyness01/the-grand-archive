@@ -120,7 +120,7 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   },
   "constellation-that-should-not-exist": {
     id: "constellation-that-should-not-exist",
-    title: "The Constellation That Should Not Exist",
+    title: "The Unclassified Trace",
     roomId: "observatory",
     difficulty: 6,
     estimatedMinutes: 10,
@@ -131,7 +131,7 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   },
   "mirrored-typewriter": {
     id: "mirrored-typewriter",
-    title: "The Mirrored Typewriter",
+    title: "The Unclear Handoff",
     roomId: "archivists-outer-office",
     difficulty: 7,
     estimatedMinutes: 10,

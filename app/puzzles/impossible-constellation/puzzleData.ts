@@ -26,9 +26,9 @@ export const quillConnections = [
 ];
 
 export const impossibleConstellationHints = [
-  "The old charts are fixed. The unfiled stars are fixed. Only the Observatory dome can change its bearing.",
-  "Set the dome’s brass bearing to the same direction held by the Navigator’s Compass: southwest.",
-  "At SW, compare the connected outline to an Archivist’s tool. Choose the quill.",
+  "The known patterns and recorded events are fixed. Change only the service handoff used to group them.",
+  "Set the handoff to the southwest marker recorded in the earlier Flow Trace.",
+  "At SW, follow repeated calls returning to the same chain. Diagnose the retry loop.",
 ];
 
 export const impossibleConstellationMosaicTiles = [
@@ -44,4 +44,3 @@ export const impossibleConstellationMosaicTiles = [
   240, 246,
   265, 266, 267, 268, 269, 270, 271,
 ];
-

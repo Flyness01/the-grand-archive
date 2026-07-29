@@ -12,10 +12,10 @@ import {
 import { validateImpossibleConstellation } from "./validator";
 
 const shapeChoices = [
-  { id: "crown", label: "A crown" },
-  { id: "key", label: "A key" },
-  { id: "quill", label: "A quill" },
-  { id: "branch", label: "A branch" },
+  { id: "crown", label: "A traffic spike" },
+  { id: "key", label: "An auth failure" },
+  { id: "quill", label: "A retry loop" },
+  { id: "branch", label: "A stale branch" },
 ];
 
 export function ImpossibleConstellation({
@@ -33,7 +33,7 @@ export function ImpossibleConstellation({
   const [alignmentFound, setAlignmentFound] = useState(alreadySolved);
   const [solved, setSolved] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
-    alreadySolved ? "The quill remains written across the open dome." : "",
+    alreadySolved ? "The recurring retry loop remains documented." : "",
   );
 
   const starsById = useMemo(
@@ -52,12 +52,12 @@ export function ImpossibleConstellation({
     if (rotation === correctDomeRotation) {
       setAlignmentFound(true);
       setFeedback(
-        "The scattered points settle into a deliberate outline. It appears in none of the old charts.",
+        "The scattered events settle into a recurring trace. It matches none of the known healthy patterns.",
       );
       return;
     }
     setFeedback(
-      `At ${domeDirections[rotation]}, the cluster still resembles no recorded constellation. The Compass needle does not rest here.`,
+      `At ${domeDirections[rotation]}, the events still form no reliable pattern. The earlier Flow Trace marks a different handoff.`,
     );
   }
 
@@ -65,10 +65,10 @@ export function ImpossibleConstellation({
     if (validateImpossibleConstellation({ rotation, shape })) {
       setSolved(true);
       setFeedback(
-        "A quill burns between the stars. The dome answers by opening to the true night.",
+        "The trace resolves into a retry loop. What looked random is now a reproducible engineering signal.",
       );
     } else {
-      setFeedback("The lines refuse that reading. Follow the long central shaft and its feathered edge.");
+      setFeedback("That diagnosis does not explain the repeated path. Follow the long request chain and the calls folding back into it.");
     }
   }
 
@@ -77,20 +77,20 @@ export function ImpossibleConstellation({
   return (
     <div className="constellation-puzzle">
       <div className="constellation-puzzle__workspace">
-        <div className="chart-cabinet" aria-label="Reference constellation charts">
-          <p>Filed constellations</p>
-          <span><i className="chart-mark chart-mark--crown" />The Brass Crown</span>
-          <span><i className="chart-mark chart-mark--stag" />The Winter Stag</span>
-          <span><i className="chart-mark chart-mark--ship" />The Returning Ship</span>
-          <small>Unfiled cluster: no match at the present bearing.</small>
+        <div className="chart-cabinet" aria-label="Known telemetry patterns">
+          <p>Known production patterns</p>
+          <span><i className="chart-mark chart-mark--crown" />Normal traffic</span>
+          <span><i className="chart-mark chart-mark--stag" />Cache miss burst</span>
+          <span><i className="chart-mark chart-mark--ship" />Scheduled batch</span>
+          <small>Unclassified events: no match at the current service handoff.</small>
         </div>
 
         <div className={`star-dome ${alignmentFound ? "is-aligned" : ""} ${solved ? "is-solved" : ""}`}>
-          <div className="dome-bearing" aria-label={`Dome bearing ${domeDirections[rotation]}`}>
+          <div className="dome-bearing" aria-label={`Service handoff ${domeDirections[rotation]}`}>
             <b>{domeDirections[rotation]}</b>
-            <small>Dome bearing</small>
+            <small>Service handoff</small>
           </div>
-          <svg viewBox="0 0 100 100" role="img" aria-label={alignmentFound ? "Connected stars forming an unidentified figure" : "A scattered unfiled group of stars"}>
+          <svg viewBox="0 0 100 100" role="img" aria-label={alignmentFound ? "Connected events forming an unidentified trace" : "A scattered group of production events"}>
             <g style={{ transform: `rotate(${rotationDegrees}deg)`, transformOrigin: "50% 50%" }}>
               {quillConnections.map(([fromId, toId]) => {
                 const from = starsById.get(fromId)!;
@@ -103,21 +103,21 @@ export function ImpossibleConstellation({
             </g>
           </svg>
           <div className="dome-rotation-controls">
-            <button onClick={() => rotateDome(-1)} aria-label="Rotate dome counterclockwise">↶</button>
-            <button onClick={compareCharts}>Compare the charts</button>
-            <button onClick={() => rotateDome(1)} aria-label="Rotate dome clockwise">↷</button>
+            <button onClick={() => rotateDome(-1)} aria-label="Move to previous service handoff">↶</button>
+            <button onClick={compareCharts}>Compare patterns</button>
+            <button onClick={() => rotateDome(1)} aria-label="Move to next service handoff">↷</button>
           </div>
         </div>
 
         <div className="compass-bearing-card">
-          <div className="compass-icon compass-icon--small" aria-hidden="true"><i /></div>
-          <p>Navigator’s Compass</p>
-          <strong>Needle at rest: SW</strong>
-          <small>“Home is found when the room agrees with the needle.”</small>
+          <div className="flow-trace-icon compass-icon--small" aria-hidden="true"><i /></div>
+          <p>Flow Trace</p>
+          <strong>Marked handoff: SW</strong>
+          <small>“Compare the unknown behavior where the documented request crosses services.”</small>
         </div>
 
         <div className={`shape-identification ${alignmentFound ? "is-visible" : ""}`}>
-          <p>What figure has the unfiled cluster drawn?</p>
+          <p>Which engineering pattern best explains this trace?</p>
           <div>
             {shapeChoices.map((choice) => (
               <button key={choice.id} onClick={() => identifyShape(choice.id)} disabled={!alignmentFound || solved}>
@@ -128,11 +128,11 @@ export function ImpossibleConstellation({
         </div>
 
         <div className="constellation-actions">
-          <p aria-live="polite">{feedback || "The unfiled stars drift at the dome’s current bearing."}</p>
+          <p aria-live="polite">{feedback || "The unclassified events remain noisy at the current service handoff."}</p>
           {solved && !alreadySolved ? (
-            <button onClick={onCollectReward}>Lower the star chart</button>
+            <button onClick={onCollectReward}>Save the pattern report</button>
           ) : solved ? (
-            <small>The chart cradle is empty.</small>
+            <small>The pattern report has been saved.</small>
           ) : null}
         </div>
       </div>
@@ -145,4 +145,3 @@ export function ImpossibleConstellation({
     </div>
   );
 }
-

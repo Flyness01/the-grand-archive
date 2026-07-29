@@ -50,23 +50,23 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     ],
     tip: "Deploy is not the end of the release; observation is part of shipping.",
   },
-  "The Constellation That Should Not Exist": {
-    objective: "Rotate and compare the star fragments until the impossible constellation appears.",
+  "The Unclassified Trace": {
+    objective: "Regroup noisy production events until a recurring engineering pattern becomes visible.",
     steps: [
-      "Inspect the recorded star groups.",
-      "Rotate fragments without changing their internal shape.",
-      "Confirm the arrangement when every shared star aligns.",
+      "Compare the unclassified telemetry with known healthy patterns.",
+      "Change the service handoff without changing the recorded events.",
+      "Identify the behavior once the events form a reproducible trace.",
     ],
-    tip: "Ignore the drawing’s orientation; preserve the distances between stars.",
+    tip: "Use the Flow Trace from Puzzle 2 to choose the most meaningful system boundary.",
   },
-  "The Mirrored Typewriter": {
-    objective: "Decode the mistyped message by mapping each printed key to its mirrored counterpart.",
+  "The Unclear Handoff": {
+    objective: "Decode a transformed message and complete an actionable engineering handoff.",
     steps: [
-      "Compare the physical keyboard with the printed output.",
-      "Infer the substitution pattern from repeated letters.",
-      "Type the corrected message.",
+      "Compare the sample inputs with their resulting outputs.",
+      "Infer the consistent row-by-row transformation.",
+      "Enter the inputs that produce the missing word in the handoff.",
     ],
-    tip: "The machine is consistent—even when it is wrong.",
+    tip: "Treat surprising output as data: a consistent error is a pattern you can explain.",
   },
   "The Hall of Reflections": {
     objective: "Find the meaningful differences between the room and its reflection.",

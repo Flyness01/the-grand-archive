@@ -42,26 +42,26 @@ export function ArchivistsOuterOffice({
       <div className="outer-office__desk" aria-hidden="true"><i /><i /></div>
       <div className="outer-office__files" aria-hidden="true"><i /><i /><i /><i /></div>
       <header className="library-room__title">
-        <p>Beyond the dome</p>
+        <p>Turn a finding into shared context</p>
         <h1 id="outer-office-title">Team Lead’s Office</h1>
-        <small>{restored ? "A completed sentence waits beneath the ribbon" : "One machine has preserved its peculiar error"}</small>
+        <small>{restored ? "The handoff is concise, clear, and actionable" : "A correct finding is useful only when someone else can act on it"}</small>
       </header>
 
       <Hotspot
         className="typewriter-hotspot"
-        label={solved ? "Inspect the completed manuscript" : "Inspect the mirrored typewriter"}
+        label={solved ? "Inspect the completed engineering handoff" : "Inspect the encoded handoff"}
         onActivate={() => setPuzzleOpen(true)}
       >
         <span className="room-typewriter" aria-hidden="true"><i /></span>
-        <span>{solved ? "The drawer is open" : "The keys answer from across the row"}</span>
+        <span>{solved ? "Handoff saved" : "Decode the message"}</span>
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Team Hub</button>
 
       {puzzleOpen && (
         <PuzzleModal
-          title="The Mirrored Typewriter"
-          subtitle="Team Lead’s Office · Spatial substitution"
+          title="The Unclear Handoff"
+          subtitle="Team Lead’s Office · Technical communication"
           onClose={() => setPuzzleOpen(false)}
         >
           <MirroredTypewriter
@@ -75,10 +75,10 @@ export function ArchivistsOuterOffice({
 
       {rewardMoment && (
         <div className="reward-moment reward-moment--journal" role="status">
-          <div className="journal-icon journal-icon--large" aria-hidden="true"><i /></div>
-          <p>Leather Journal</p>
-          <blockquote>“Every page was filled. Except one.”</blockquote>
-          <small>The earlier clues arrange themselves. The Hall of Reflections opens.</small>
+          <div className="handoff-note-icon handoff-note-icon--large" aria-hidden="true"><i /></div>
+          <p>Handoff Note</p>
+          <blockquote>“Clarity is part of the implementation.”</blockquote>
+          <small>The next review can begin with shared context. QA Review unlocks.</small>
         </div>
       )}
     </section>

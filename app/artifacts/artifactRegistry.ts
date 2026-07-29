@@ -58,8 +58,8 @@ export const artifacts: Record<string, Artifact> = {
   },
   "star-chart": {
     id: "star-chart",
-    name: "Star Chart",
-    shortDescription: "The sky kept its records.",
+    name: "Pattern Report",
+    shortDescription: "The right context turned noisy events into reproducible behavior.",
     roomOfOrigin: "observatory",
     symbol: "Five-point star",
     glowGroup: "Blue",
@@ -67,8 +67,8 @@ export const artifacts: Record<string, Artifact> = {
   },
   "leather-journal": {
     id: "leather-journal",
-    name: "Leather Journal",
-    shortDescription: "Every page was filled. Except one.",
+    name: "Handoff Note",
+    shortDescription: "Clarity made the technical finding useful to the whole team.",
     roomOfOrigin: "archivists-outer-office",
     symbol: "Angled stand",
     glowGroup: "Red",
