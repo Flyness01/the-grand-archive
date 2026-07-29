@@ -71,7 +71,7 @@ export function GrandHall({
       setFinalRewardMoment(false);
       setFinaleOpen(false);
       onEnterStudy();
-    }, 6200);
+    }, 10200);
   }
 
   return (
