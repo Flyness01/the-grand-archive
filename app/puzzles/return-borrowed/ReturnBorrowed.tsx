@@ -11,14 +11,14 @@ import {
 import { validateOuterPedestals, validateReturnBorrowed } from "./validator";
 
 const pedestalLabels: Record<string, string> = {
-  crescent: "Crescent · Amber · patience",
-  star: "Four-point star · Green · home",
-  bowl: "Bowl · Amber · light",
-  "toothed-circle": "Toothed circle · Copper · time",
-  teardrop: "Teardrop · Green · growth",
-  "five-point-star": "Five-point star · Blue · sky",
-  triangle: "Triangle · Violet · truth",
-  square: "Square · Blue · structure",
+  crescent: "Crescent · learning the context",
+  star: "Four-point star · tracing the system",
+  bowl: "Bowl · aligning the team",
+  "toothed-circle": "Toothed circle · recovering production",
+  teardrop: "Teardrop · shipping responsibly",
+  "five-point-star": "Five-point star · finding the pattern",
+  triangle: "Triangle · protecting quality",
+  square: "Square · designing the system",
 };
 
 export function ReturnBorrowed({
@@ -41,13 +41,13 @@ export function ReturnBorrowed({
   const [outerAligned, setOuterAligned] = useState(alreadySolved);
   const [journalOnStand, setJournalOnStand] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
-    alreadySolved ? "The completed emblem holds every borrowed object in its remembered place." : "",
+    alreadySolved ? "The final review holds every lesson in its place." : "",
   );
 
   function selectArtifact(artifactId: string) {
     if (outerAligned) return;
     setSelectedArtifact(artifactId);
-    setFeedback(`${artifacts[artifactId].name} glows ${artifacts[artifactId].glowGroup.toLowerCase()} in your hand.`);
+    setFeedback(`${artifacts[artifactId].name} is selected for the final review.`);
   }
 
   function placeOnPedestal(shape: string) {
@@ -59,15 +59,15 @@ export function ReturnBorrowed({
     next[shape] = selectedArtifact;
     setPlacements(next);
     setSelectedArtifact(null);
-    setFeedback(`${artifacts[selectedArtifact].name} settles onto the ${shape.replaceAll("-", " ")} pedestal.`);
+    setFeedback(`${artifacts[selectedArtifact].name} is connected to the ${shape.replaceAll("-", " ")} lesson.`);
   }
 
   function testRing() {
     if (validateOuterPedestals(placements)) {
       setOuterAligned(true);
-      setFeedback("Eight lines of light join around the ring. The central manuscript stand unfolds.");
+      setFeedback("Eight lessons form one coherent body of work. The central handoff is ready.");
     } else {
-      setFeedback("Several lights cross or fade. Check shape first, then confirm the glow and engraved relationship.");
+      setFeedback("Some records do not support the lesson beneath them. Check the symbol, then the relationship each record represents.");
     }
   }
 
@@ -76,17 +76,17 @@ export function ReturnBorrowed({
     const complete = validateReturnBorrowed({ placements, journalOnStand: true });
     if (!complete) return;
     setJournalOnStand(true);
-    setFeedback("The Journal opens to its empty page. White-gold ink writes the journey back into the Archive.");
+    setFeedback("The Handoff Note connects every lesson into one final project story. The review is complete.");
   }
 
   return (
     <div className="finale-puzzle">
       <div className="finale-puzzle__workspace">
         <div className="finale-ledger">
-          <p>The Prism’s hidden catalog</p>
-          <span>Shape chooses the place.</span>
-          <span>Glow confirms its family.</span>
-          <span>The engraving confirms its story.</span>
+          <p>Final project review</p>
+          <span>Match each record to the lesson it proves.</span>
+          <span>Use its symbol as the first clue.</span>
+          <span>Use its meaning to confirm the relationship.</span>
         </div>
 
         <div className={`artifact-ring ${outerAligned ? "is-aligned" : ""} ${journalOnStand ? "is-complete" : ""}`}>
@@ -110,13 +110,13 @@ export function ReturnBorrowed({
             onClick={placeJournal}
             disabled={!outerAligned || journalOnStand}
           >
-            {journalOnStand ? "Final Manuscript" : outerAligned ? "Place the Handoff Note" : "Manuscript stand sealed"}
+            {journalOnStand ? "Project Retrospective" : outerAligned ? "Complete with the Handoff Note" : "Final handoff locked"}
           </button>
           <div className="archive-emblem" aria-hidden="true">✦</div>
         </div>
 
         {!outerAligned && (
-          <div className="finale-artifact-tray" aria-label="Artifacts awaiting placement">
+          <div className="finale-artifact-tray" aria-label="Project records awaiting review">
             {outerArtifactIds.map((artifactId) => {
               const placed = Object.values(placements).includes(artifactId);
               return (
@@ -135,10 +135,10 @@ export function ReturnBorrowed({
         )}
 
         <div className="finale-actions">
-          <p aria-live="polite">{feedback || "Nine records wait where the architecture decision mapped the final review."}</p>
-          {!outerAligned && <button onClick={testRing}>Test the pedestal ring</button>}
-          {journalOnStand && !alreadySolved && <button onClick={onComplete}>Enter the living mosaic</button>}
-          {journalOnStand && alreadySolved && <button onClick={onEnterStudy}>Enter the Archivist’s Study</button>}
+          <p aria-live="polite">{feedback || "Nine records are ready to become one final project story."}</p>
+          {!outerAligned && <button onClick={testRing}>Review the connections</button>}
+          {journalOnStand && !alreadySolved && <button onClick={onComplete}>Complete the project story</button>}
+          {journalOnStand && alreadySolved && <button onClick={onEnterStudy}>Enter the Debrief Room</button>}
         </div>
       </div>
 

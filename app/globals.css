@@ -1368,6 +1368,12 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
 .manuscript-icon::before { content:"";position:absolute;inset:10px;background:repeating-linear-gradient(#e0c98e 0 1px,transparent 1px 9px);opacity:.65; }
 .manuscript-icon i { position:absolute;left:4px;top:-7px;width:45px;height:8px;border:3px solid #d0b476;border-radius:50%; }
 .manuscript-icon--large { transform:scale(1.45);margin-bottom:2rem; }
+.retrospective-icon { position:relative;width:64px;height:74px;margin:auto;border:1px solid #8b776d;border-radius:6px;background:linear-gradient(145deg,#f1e9e2,#cfc0b7);box-shadow:0 8px 20px rgba(20,16,12,.25); }
+.retrospective-icon::before { content:"RETRO";position:absolute;left:9px;right:9px;top:10px;padding-bottom:6px;border-bottom:2px solid #778b95;color:#71635d;font:700 8px/1 sans-serif;letter-spacing:.14em; }
+.retrospective-icon::after { content:"CONTEXT  •  TRACE\\AALIGN  •  SHIP\\AREVIEW  •  DESIGN";white-space:pre;position:absolute;left:9px;top:32px;color:#8c7167;font:700 6px/12px sans-serif;letter-spacing:.05em; }
+.retrospective-icon i { position:absolute;right:-7px;bottom:-7px;width:23px;height:23px;border:2px solid #e9dfd6;border-radius:50%;background:#748777; }
+.retrospective-icon i::after { content:"✓";display:grid;place-items:center;height:100%;color:#fff;font:700 13px/1 sans-serif; }
+.retrospective-icon--large { transform:scale(1.45) rotate(-2deg);margin-bottom:2rem; }
 .reward-moment--manuscript { animation-duration:6.2s;background:radial-gradient(circle,rgba(145,112,55,.9),rgba(4,5,3,.98) 60%); }
 
 .archivists-study { position:relative;min-height:100svh;overflow:hidden;background:radial-gradient(ellipse at 50% 35%,#745742,#34271f 42%,#0b0c0a 78%); }

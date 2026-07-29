@@ -164,7 +164,7 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   },
   "return-what-was-borrowed": {
     id: "return-what-was-borrowed",
-    title: "Return What Was Borrowed",
+    title: "The Final Handoff",
     roomId: "grand-hall",
     difficulty: 9,
     estimatedMinutes: 12,

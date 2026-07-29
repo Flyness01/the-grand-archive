@@ -51,7 +51,7 @@ export function GameShell() {
     [],
   );
 
-  if (!hydrated) return <div className="loading-screen">Opening the Archive…</div>;
+  if (!hydrated) return <div className="loading-screen">Opening the workspace…</div>;
 
   const rootClasses = [
     "game",

@@ -106,10 +106,10 @@ export function GrandHall({
         <button
           className="final-meta-hotspot"
           onClick={() => setFinaleOpen(true)}
-          aria-label={finaleSolved ? "Inspect the completed Project Board" : "Return the borrowed artifacts"}
+          aria-label={finaleSolved ? "Inspect the completed Project Board" : "Begin the final project review"}
         >
           <span aria-hidden="true">✦</span>
-          {finaleSolved ? "Completed Project Board" : "Return what was borrowed"}
+          {finaleSolved ? "Completed Project Board" : "Assemble the final handoff"}
         </button>
       )}
 
@@ -254,7 +254,7 @@ export function GrandHall({
         </b>
       </button>
 
-      <div className="pedestals" aria-label="Ten empty artifact pedestals">
+      <div className="pedestals" aria-label="Ten project record positions">
         {pedestals.map((pedestal) => (
           <span key={pedestal} aria-hidden="true" />
         ))}
@@ -309,8 +309,8 @@ export function GrandHall({
 
       {finaleOpen && (
         <PuzzleModal
-          title="Return What Was Borrowed"
-          subtitle="Team Hub · Artifact placement and final restoration"
+          title="The Final Handoff"
+          subtitle="Team Hub · Project retrospective"
           onClose={() => setFinaleOpen(false)}
         >
           <ReturnBorrowed
@@ -325,10 +325,10 @@ export function GrandHall({
 
       {finalRewardMoment && (
         <div className="reward-moment reward-moment--manuscript" role="status">
-          <div className="manuscript-icon manuscript-icon--large" aria-hidden="true"><i /></div>
-          <p>Final Manuscript</p>
-          <blockquote>“The final record was the journey itself.”</blockquote>
-          <small>The last pieces complete the Project Board. The frame becomes a doorway.</small>
+          <div className="retrospective-icon retrospective-icon--large" aria-hidden="true"><i /></div>
+          <p>Project Retrospective</p>
+          <blockquote>“The work mattered. So did the person you became while doing it.”</blockquote>
+          <small>Nine lessons complete one project story. The Debrief Room opens.</small>
         </div>
       )}
     </section>

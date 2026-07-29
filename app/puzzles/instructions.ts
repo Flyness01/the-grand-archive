@@ -86,13 +86,13 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     ],
     tip: "A locally elegant plan can still fail when combined with the rest of the system.",
   },
-  "Return What Was Borrowed": {
-    objective: "Return every collected object to the pedestal that matches its hidden symbol.",
+  "The Final Handoff": {
+    objective: "Connect every project record to the lesson it represents, then complete the retrospective.",
     steps: [
-      "Review the objects and the clues gathered in earlier rooms.",
-      "Match each artifact to a pedestal by meaning, shape, and color.",
-      "Confirm the full arrangement to complete the restoration.",
+      "Review the records earned from the previous nine challenges.",
+      "Match the first eight records to their lessons using symbol and meaning.",
+      "Place the Handoff Note at the center to turn the evidence into one project story.",
     ],
-    tip: "The final puzzle remembers what the earlier puzzles taught you.",
+    tip: "This is not a memory test alone—each record’s description explains why it belongs.",
   },
 };

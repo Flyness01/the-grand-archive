@@ -94,8 +94,8 @@ export const artifacts: Record<string, Artifact> = {
   },
   "final-manuscript": {
     id: "final-manuscript",
-    name: "Final Manuscript",
-    shortDescription: "The final record was the journey itself.",
+    name: "Project Retrospective",
+    shortDescription: "Nine lessons became one story of thoughtful engineering and growth.",
     roomOfOrigin: "archivists-study",
     symbol: "Manuscript",
     glowGroup: "White-gold",
