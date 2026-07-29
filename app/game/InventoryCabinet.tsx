@@ -1,14 +1,37 @@
 "use client";
 
+import { useState } from "react";
 import { artifacts } from "../artifacts/artifactRegistry";
+import type { RoomId } from "./types";
+
+const levels: { puzzleId: string; title: string; lesson: string; roomId: RoomId }[] = [
+  { puzzleId: "librarians-shelf", title: "Documentation Shelf", lesson: "Learn the context", roomId: "library" },
+  { puzzleId: "cartographers-missing-route", title: "Missing Request Path", lesson: "Trace the system", roomId: "map-room" },
+  { puzzleId: "lantern-wall", title: "Signal Alignment", lesson: "Align the team", roomId: "grand-hall" },
+  { puzzleId: "stopped-clock", title: "Incident 14", lesson: "Recover production", roomId: "workshop" },
+  { puzzleId: "sleeping-conservatory", title: "Release Runbook", lesson: "Ship responsibly", roomId: "conservatory" },
+  { puzzleId: "constellation-that-should-not-exist", title: "Unclassified Trace", lesson: "Find the pattern", roomId: "observatory" },
+  { puzzleId: "mirrored-typewriter", title: "Unclear Handoff", lesson: "Communicate clearly", roomId: "archivists-outer-office" },
+  { puzzleId: "hall-of-reflections", title: "Meaningful Difference", lesson: "Protect quality", roomId: "hall-of-reflections" },
+  { puzzleId: "master-blueprint", title: "Architecture Decision", lesson: "Design the system", roomId: "workshop" },
+  { puzzleId: "return-what-was-borrowed", title: "Final Handoff", lesson: "Tell the project story", roomId: "grand-hall" },
+];
 
 export function InventoryCabinet({
   artifactIds,
+  solvedPuzzleIds,
+  unlockedPuzzleIds,
+  onSelectLevel,
   onClose,
 }: {
   artifactIds: string[];
+  solvedPuzzleIds: string[];
+  unlockedPuzzleIds: string[];
+  onSelectLevel: (roomId: RoomId, levelNumber: number) => void;
   onClose: () => void;
 }) {
+  const [activeTab, setActiveTab] = useState<"wins" | "levels">("levels");
+
   return (
     <div className="modal-backdrop" onMouseDown={onClose}>
       <section
@@ -27,7 +50,15 @@ export function InventoryCabinet({
         </button>
         <p className="settings-panel__eyebrow">Milestones you earned</p>
         <h2 id="inventory-title">Wins & Lessons</h2>
-        <div className="inventory__shelves">
+        <div className="inventory__tabs" role="tablist" aria-label="Wins and levels">
+          <button role="tab" aria-selected={activeTab === "wins"} onClick={() => setActiveTab("wins")}>
+            Wins <small>{artifactIds.length}/10</small>
+          </button>
+          <button role="tab" aria-selected={activeTab === "levels"} onClick={() => setActiveTab("levels")}>
+            Levels <small>{solvedPuzzleIds.length}/10</small>
+          </button>
+        </div>
+        {activeTab === "wins" ? <div className="inventory__shelves">
           {Array.from({ length: 10 }, (_, index) => {
             const artifact = artifactIds[index]
               ? artifacts[artifactIds[index]]
@@ -72,7 +103,29 @@ export function InventoryCabinet({
               </article>
             );
           })}
-        </div>
+        </div> : (
+          <div className="level-tab" role="tabpanel" aria-label="Level navigator">
+            {levels.map((level, index) => {
+              const completed = solvedPuzzleIds.includes(level.puzzleId);
+              const unlocked = completed || unlockedPuzzleIds.includes(level.puzzleId) || index === 0;
+              return (
+                <button
+                  key={level.puzzleId}
+                  className={`${completed ? "is-completed" : ""} ${unlocked ? "is-unlocked" : "is-locked"}`}
+                  disabled={!unlocked}
+                  onClick={() => onSelectLevel(level.roomId, index + 1)}
+                >
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <b>{level.title}</b>
+                    <small>{level.lesson}</small>
+                  </div>
+                  <em>{completed ? "Replay →" : unlocked ? "Continue →" : `Complete level ${index}`}</em>
+                </button>
+              );
+            })}
+          </div>
+        )}
       </section>
     </div>
   );

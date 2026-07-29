@@ -1278,6 +1278,29 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
 .inventory__slot h3 { color:#e1e7eb; }
 .inventory__slot p { color:#b5c0c9; }
 .inventory__slot small { color:#8999a6; }
+.inventory__tabs { display:flex;gap:.45rem;margin:-.8rem 0 1rem;border-bottom:1px solid rgba(169,186,200,.22); }
+.inventory__tabs button { min-width:120px;padding:.7rem 1rem;border:0;border-bottom:2px solid transparent;background:none;color:#91a0ad;cursor:pointer;font:.65rem Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase; }
+.inventory__tabs button small { margin-left:.35rem;color:#758695;font-size:.48rem; }
+.inventory__tabs button[aria-selected="true"] { border-bottom-color:#d19aaa;color:#f0e7eb; }
+.inventory__tabs button[aria-selected="true"] small { color:#d6aeb9; }
+.level-tab { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem; }
+.level-tab>button { display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:.7rem;min-height:76px;padding:.75rem;border:1px solid #566879;border-radius:9px;background:linear-gradient(145deg,#34414e,#27313c);color:#c5d0d8;text-align:left;cursor:pointer;box-shadow:0 8px 18px rgba(12,17,25,.22); }
+.level-tab>button>span { display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#455568;color:#e1b8c3;font:700 .68rem Arial,sans-serif; }
+.level-tab b,.level-tab small { display:block; }
+.level-tab b { color:#edf1f4;font:600 .72rem/1.25 Arial,sans-serif; }
+.level-tab small { margin-top:.25rem;color:#9eadb9;font:.51rem/1.25 Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em; }
+.level-tab em { color:#d6aeb9;font:normal .5rem Arial,sans-serif;white-space:nowrap; }
+.level-tab>button.is-completed { border-color:#879bac;background:linear-gradient(145deg,#40505f,#2d3945); }
+.level-tab>button.is-completed>span { background:#708399;color:#fff1f4;box-shadow:0 0 14px rgba(209,154,170,.25); }
+.level-tab>button.is-locked { opacity:.42;cursor:not-allowed;filter:saturate(.45); }
+.level-tab>button:not(:disabled):hover { transform:translateY(-2px);border-color:#d19aaa;box-shadow:0 10px 22px rgba(12,17,25,.32),0 0 16px rgba(209,154,170,.12); }
+
+@media (max-width:700px) {
+  .inventory__tabs { margin-top:0; }
+  .inventory__tabs button { flex:1;min-width:0; }
+  .level-tab { grid-template-columns:1fr; }
+  .level-tab>button { min-height:70px;grid-template-columns:38px minmax(0,1fr) auto; }
+}
 
 .context-card-icon {
   position:relative;

@@ -502,6 +502,13 @@ export function GameShell() {
           {inventoryOpen && (
             <InventoryCabinet
               artifactIds={state.collectedArtifactIds}
+              solvedPuzzleIds={state.solvedPuzzleIds}
+              unlockedPuzzleIds={state.unlockedPuzzleIds}
+              onSelectLevel={(roomId, levelNumber) => {
+                setInventoryOpen(false);
+                dispatch({ type: "ENTER_ROOM", roomId });
+                if (levelNumber === 3) setLanternWallOpen(true);
+              }}
               onClose={() => setInventoryOpen(false)}
             />
           )}
