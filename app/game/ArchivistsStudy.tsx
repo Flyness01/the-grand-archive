@@ -26,6 +26,7 @@ export function ArchivistsStudy({ onReturn }: { onReturn: () => void }) {
         <div className="letter-backdrop" onMouseDown={() => setLetterOpen(false)}>
           <article className="appreciation-letter" role="dialog" aria-modal="true" aria-labelledby="letter-title" onMouseDown={(event) => event.stopPropagation()}>
             <button onClick={() => setLetterOpen(false)} aria-label="Close appreciation letter">×</button>
+            <p className="letter-eyebrow">For the team who made two summers unforgettable</p>
             <h2 id="letter-title">Two summers, countless lessons, one very full heart.</h2>
             <p>
               Thank you for the past two summers on Enterprise: for teaching me to slow down and really read code,
