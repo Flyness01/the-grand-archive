@@ -105,7 +105,11 @@ export function InventoryCabinet({
           })}
         </div> : (
           <div className="level-tab" role="tabpanel" aria-label="Level navigator">
-            {levels.map((level, index) => {
+            {levels.map((level, index) => ({ level, index })).filter(({ level, index }) =>
+              index < 8 ||
+              solvedPuzzleIds.includes(level.puzzleId) ||
+              unlockedPuzzleIds.includes(level.puzzleId),
+            ).map(({ level, index }) => {
               const completed = solvedPuzzleIds.includes(level.puzzleId);
               const unlocked = completed || unlockedPuzzleIds.includes(level.puzzleId) || index === 0;
               return (
