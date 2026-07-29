@@ -926,6 +926,147 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
   .journey-message time { display:block;margin:.15rem 0 0; }
 }
 
+/* Softer hub palette, guided puzzle entry, and a non-overlapping door plan */
+.hall,
+.hall.is-restored,
+.hall.is-lantern-restored,
+.hall.is-blueprint-restored,
+.hall.is-fully-restored {
+  background:
+    radial-gradient(circle at 50% 24%,rgba(145,178,210,.25),transparent 28%),
+    radial-gradient(ellipse at 50% 34%,#756f91 0,#47445f 34%,#252638 68%,#171824 100%);
+}
+.hall::before {
+  opacity:.16;
+  background-image:repeating-linear-gradient(90deg,transparent 0 12.4%,rgba(202,193,220,.34) 12.5% 12.7%);
+}
+.hall__rain { opacity:.08; }
+.hall__arch { border-color:rgba(196,180,211,.2); }
+.hall__arch::after { border-color:rgba(232,204,190,.18); }
+.hall__ceiling { border-color:rgba(221,202,228,.22); }
+.hall.is-fully-restored .mosaic__grid span {
+  background:linear-gradient(135deg,#8fc7dc,#8e7dcc 45%,#e9b879 72%,#d87891);
+}
+
+.puzzle-modal { position:relative; }
+.puzzle-guide {
+  position:absolute;
+  z-index:20;
+  inset:0;
+  display:grid;
+  place-items:center;
+  padding:1.5rem;
+  background:rgba(25,20,35,.8);
+  backdrop-filter:blur(10px);
+}
+.puzzle-guide article {
+  width:min(560px,100%);
+  max-height:min(720px,88svh);
+  overflow:auto;
+  padding:2rem;
+  border:1px solid #c7b8d4;
+  border-radius:16px;
+  background:#faf7fc;
+  color:#302b38;
+  box-shadow:0 28px 80px rgba(13,10,20,.48);
+}
+.puzzle-guide article>small {
+  color:#795b88;
+  font-size:.58rem;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.puzzle-guide h3 {
+  margin:.35rem 0 .65rem;
+  color:#33233b;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.65rem;
+  font-weight:400;
+}
+.puzzle-guide p {
+  margin:0 0 1rem;
+  color:#5e5664;
+  font-size:.9rem;
+  line-height:1.55;
+}
+.puzzle-guide ol {
+  margin:.8rem 0 1.1rem;
+  padding-left:1.3rem;
+}
+.puzzle-guide li {
+  margin:.55rem 0;
+  padding-left:.3rem;
+  font-size:.82rem;
+  line-height:1.5;
+}
+.puzzle-guide aside {
+  margin:1rem 0 1.3rem;
+  padding:.8rem 1rem;
+  border-left:3px solid #7890a7;
+  border-radius:0 8px 8px 0;
+  background:#eeeaf8;
+  color:#554d5e;
+  font-size:.76rem;
+  line-height:1.5;
+}
+.puzzle-guide aside b {
+  display:block;
+  margin-bottom:.2rem;
+  color:#4a154b;
+  font-size:.58rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.puzzle-guide button {
+  width:100%;
+  min-height:46px;
+  border:0;
+  border-radius:8px;
+  background:linear-gradient(135deg,#455b70,#70869a);
+  color:#fff;
+  cursor:pointer;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+@media (min-width:761px) {
+  .hall .door { top:30vh;width:10vw;min-width:105px;height:39vh; }
+  .hall .door--map,.hall .door--locked { left:4vw; }
+  .hall .door--library { right:4vw; }
+
+  .hall .conservatory-threshold,
+  .hall .reflections-threshold,
+  .hall .observatory-threshold,
+  .hall .office-threshold,
+  .hall .workshop-threshold {
+    top:56vh;
+    right:auto;
+    bottom:auto;
+    transform:none;
+  }
+  .hall .conservatory-threshold { left:19vw;width:9vw;min-width:90px;height:22vh; }
+  .hall .reflections-threshold { left:32vw;width:9vw;min-width:90px; }
+  .hall .observatory-threshold { left:45.5vw;width:9vw;min-width:110px;height:90px; }
+  .hall .office-threshold { left:59vw;width:10vw;min-width:110px; }
+  .hall .workshop-threshold { left:72vw;width:9vw;min-width:90px;height:22vh; }
+
+  .hall .reflections-threshold>span,
+  .hall .office-threshold>span { height:78px; }
+  .hall .observatory-threshold>span { height:48px; }
+  .hall__invitation { bottom:4vh; }
+}
+
+@media (max-width:760px) {
+  .puzzle-guide { padding:.75rem; }
+  .puzzle-guide article { max-height:94svh;padding:1.35rem;border-radius:12px; }
+  .puzzle-guide h3 { font-size:1.35rem; }
+  .puzzle-guide p { font-size:.82rem; }
+  .puzzle-guide li { font-size:.78rem; }
+}
+
 .final-meta-hotspot { position:absolute;z-index:8;left:50%;top:47vh;transform:translateX(-50%);padding:.65rem 1rem;border:1px solid #b18d50;background:rgba(14,14,11,.94);color:#d0b97e;cursor:pointer;font:.58rem Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 0 20px rgba(207,167,86,.25); }
 .final-meta-hotspot span { margin-right:.5rem; }
 .hall.is-fully-restored { background:radial-gradient(ellipse at 50% 28%,#6b7057 0,#34463b 38%,#101713 78%); }
@@ -1259,4 +1400,43 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
   .typewriter-keyboard button { width:32px;height:38px;border-width:3px; }
   .typewriter-actions { flex-direction:column;text-align:center; }
   .typewriter-actions button { min-height:44px; }
+}
+
+/* Final hub overrides live after every room-specific rule. */
+.hall,
+.hall.is-restored,
+.hall.is-lantern-restored,
+.hall.is-blueprint-restored,
+.hall.is-fully-restored {
+  background:
+    radial-gradient(circle at 50% 24%,rgba(197,213,221,.18),transparent 28%),
+    radial-gradient(ellipse at 50% 34%,#667380 0,#46515d 34%,#29323c 68%,#181e26 100%);
+}
+.hall.is-fully-restored .mosaic__grid span {
+  background:linear-gradient(135deg,#a8c8d2,#8295ac 45%,#d9b98e 72%,#c98f99);
+}
+
+@media (min-width:761px) {
+  .hall .door { top:30vh;width:10vw;min-width:105px;height:39vh; }
+  .hall .door--map,.hall .door--locked { left:4vw;right:auto; }
+  .hall .door--library { right:4vw;left:auto; }
+  .hall .conservatory-threshold,
+  .hall .reflections-threshold,
+  .hall .observatory-threshold,
+  .hall .office-threshold,
+  .hall .workshop-threshold {
+    top:56vh;
+    right:auto;
+    bottom:auto;
+    transform:none;
+  }
+  .hall .conservatory-threshold { left:19vw;width:9vw;min-width:90px;height:22vh; }
+  .hall .reflections-threshold { left:32vw;width:9vw;min-width:90px; }
+  .hall .observatory-threshold { left:45.5vw;width:9vw;min-width:110px;height:90px; }
+  .hall .office-threshold { left:59vw;width:10vw;min-width:110px; }
+  .hall .workshop-threshold { left:72vw;width:9vw;min-width:90px;height:22vh; }
+  .hall .reflections-threshold>span,
+  .hall .office-threshold>span { height:78px; }
+  .hall .observatory-threshold>span { height:48px; }
+  .hall__invitation { bottom:4vh; }
 }

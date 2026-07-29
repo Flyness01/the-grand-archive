@@ -12,7 +12,7 @@ export function HintPanel({
   return (
     <aside className="hint-panel" aria-label="Hints">
       <div className="hint-panel__heading">
-        <span>Archivist’s notes</span>
+        <span>Team notes</span>
         <small>{revealedCount} / {hints.length}</small>
       </div>
       {revealedCount === 0 ? (

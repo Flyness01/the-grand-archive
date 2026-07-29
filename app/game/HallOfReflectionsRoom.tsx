@@ -55,7 +55,7 @@ export function HallOfReflectionsRoom({
         <span>{solved ? "The silver recess is open" : "Compare the hall with its reflection"}</span>
       </Hotspot>
 
-      <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Grand Hall</button>
+      <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Team Hub</button>
 
       {puzzleOpen && (
         <PuzzleModal

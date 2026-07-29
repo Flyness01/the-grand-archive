@@ -57,7 +57,7 @@ export function ObservatoryRoom({
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
-        <span aria-hidden="true">←</span> Grand Hall
+        <span aria-hidden="true">←</span> Team Hub
       </button>
 
       {puzzleOpen && (
@@ -80,7 +80,7 @@ export function ObservatoryRoom({
           <div className="star-chart-icon star-chart-icon--large" aria-hidden="true"><i /><i /><i /></div>
           <p>Star Chart</p>
           <blockquote>“The sky kept its records.”</blockquote>
-          <small>The Observatory dome opens. Stars appear above the Grand Hall.</small>
+          <small>The Observatory dome opens. Stars appear above the Team Hub.</small>
         </div>
       )}
     </section>

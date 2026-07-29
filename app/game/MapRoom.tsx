@@ -60,7 +60,7 @@ export function MapRoom({
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
-        <span aria-hidden="true">←</span> Grand Hall
+        <span aria-hidden="true">←</span> Team Hub
       </button>
 
       {puzzleOpen && (
@@ -83,7 +83,7 @@ export function MapRoom({
           <div className="compass-icon compass-icon--large" aria-hidden="true"><i /></div>
           <p>Navigator’s Compass</p>
           <blockquote>“It always pointed home.”</blockquote>
-          <small>A mechanism turns beneath the Grand Hall floor.</small>
+          <small>A mechanism turns beneath the Team Hub floor.</small>
         </div>
       )}
     </section>

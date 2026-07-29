@@ -94,8 +94,8 @@ export function GrandHall({
       </header>
 
       <div className="mosaic">
-        <div className="mosaic__plaque">What the work revealed</div>
-        <div className="mosaic__grid" aria-label={`${revealedTiles.length} mosaic tiles revealed`}>
+        <div className="mosaic__plaque">Project Board · Progress collected</div>
+        <div className="mosaic__grid" aria-label={`${revealedTiles.length} project board pieces revealed`}>
           {tiles.map((tile) => (
             <span className={revealedTiles.includes(tile) ? "is-revealed" : ""} key={tile} />
           ))}
@@ -106,10 +106,10 @@ export function GrandHall({
         <button
           className="final-meta-hotspot"
           onClick={() => setFinaleOpen(true)}
-          aria-label={finaleSolved ? "Inspect the completed Archive Emblem" : "Return the borrowed artifacts"}
+          aria-label={finaleSolved ? "Inspect the completed Project Board" : "Return the borrowed artifacts"}
         >
           <span aria-hidden="true">✦</span>
-          {finaleSolved ? "The living mosaic" : "Return what was borrowed"}
+          {finaleSolved ? "Completed Project Board" : "Return what was borrowed"}
         </button>
       )}
 
@@ -159,10 +159,10 @@ export function GrandHall({
         className={`office-threshold ${observatorySolved ? "is-unlocked" : ""}`}
         disabled={!observatorySolved}
         onClick={onEnterOuterOffice}
-        aria-label={observatorySolved ? "Enter the Archivist’s Outer Office" : "The Archivist’s Outer Office is sealed"}
+        aria-label={observatorySolved ? "Enter the Team Lead’s Office" : "The Team Lead’s Office is sealed"}
       >
         <span><i /></span>
-        <b>Outer Office</b>
+        <b>Team Lead’s Office</b>
         <small>{observatorySolved ? "A ribbon stirs within" : "Sealed beyond the dome"}</small>
       </button>
 
@@ -223,7 +223,7 @@ export function GrandHall({
 
       <div
         className={`hall-floor-mechanism ${floorMechanismActive ? "is-active" : ""}`}
-        aria-label={floorMechanismActive ? "The Grand Hall floor mechanism is active" : "A dormant mechanism lies beneath the floor"}
+        aria-label={floorMechanismActive ? "The Team Hub floor mechanism is active" : "A dormant mechanism lies beneath the floor"}
       >
         <i /><i /><i />
       </div>
@@ -262,7 +262,7 @@ export function GrandHall({
       <div className="hall__dust" aria-hidden="true" />
       <p className="hall__invitation">
         {finaleSolved
-          ? "Every borrowed object has returned to its remembered place."
+          ? "Every part of the project is finally in place."
           : blueprintSolved
           ? "The pedestal ring rises into the light."
           : blueprintUnlocked
@@ -280,11 +280,11 @@ export function GrandHall({
           : lanternWallUnlocked
           ? "The floor mechanism points toward the lanterns."
           : restored
-            ? "The first fragment has returned."
+            ? "The first piece of the board has returned."
             : "One doorway holds a little light."}
         <span>
           {finaleSolved
-            ? "The living frame stands open to the Archivist’s Study."
+            ? "The living frame stands open to the Debrief Room."
             : blueprintSolved
             ? "Nine base shapes wait for everything the Archive lent you."
             : blueprintUnlocked
@@ -302,7 +302,7 @@ export function GrandHall({
             : lanternWallUnlocked
             ? "Four shadows wait to become one."
             : restored
-              ? "The mosaic remembers the Library."
+              ? "The Project Board records the first breakthrough."
               : "Move closer to inspect it."}
         </span>
       </p>
@@ -310,7 +310,7 @@ export function GrandHall({
       {finaleOpen && (
         <PuzzleModal
           title="Return What Was Borrowed"
-          subtitle="Grand Hall · Artifact placement and final restoration"
+          subtitle="Team Hub · Artifact placement and final restoration"
           onClose={() => setFinaleOpen(false)}
         >
           <ReturnBorrowed
@@ -328,7 +328,7 @@ export function GrandHall({
           <div className="manuscript-icon manuscript-icon--large" aria-hidden="true"><i /></div>
           <p>Final Manuscript</p>
           <blockquote>“The final record was the journey itself.”</blockquote>
-          <small>The last mosaic tiles return. The frame becomes a doorway.</small>
+          <small>The last pieces complete the Project Board. The frame becomes a doorway.</small>
         </div>
       )}
     </section>

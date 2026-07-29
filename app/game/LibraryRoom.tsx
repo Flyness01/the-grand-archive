@@ -67,7 +67,7 @@ export function LibraryRoom({
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
-        <span aria-hidden="true">←</span> Grand Hall
+        <span aria-hidden="true">←</span> Team Hub
       </button>
 
       {puzzleOpen && (

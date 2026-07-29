@@ -43,7 +43,7 @@ export function ArchivistsOuterOffice({
       <div className="outer-office__files" aria-hidden="true"><i /><i /><i /><i /></div>
       <header className="library-room__title">
         <p>Beyond the dome</p>
-        <h1 id="outer-office-title">Archivist’s Outer Office</h1>
+        <h1 id="outer-office-title">Team Lead’s Office</h1>
         <small>{restored ? "A completed sentence waits beneath the ribbon" : "One machine has preserved its peculiar error"}</small>
       </header>
 
@@ -56,12 +56,12 @@ export function ArchivistsOuterOffice({
         <span>{solved ? "The drawer is open" : "The keys answer from across the row"}</span>
       </Hotspot>
 
-      <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Grand Hall</button>
+      <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Team Hub</button>
 
       {puzzleOpen && (
         <PuzzleModal
           title="The Mirrored Typewriter"
-          subtitle="Archivist’s Outer Office · Spatial substitution"
+          subtitle="Team Lead’s Office · Spatial substitution"
           onClose={() => setPuzzleOpen(false)}
         >
           <MirroredTypewriter

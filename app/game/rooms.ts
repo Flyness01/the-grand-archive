@@ -54,7 +54,7 @@ export const rooms: Record<RoomId, RoomDefinition> = {
   },
   "archivists-outer-office": {
     id: "archivists-outer-office",
-    name: "Archivist’s Outer Office",
+    name: "Team Lead’s Office",
     eyebrow: "A typewriter waits behind the glass",
     connections: ["grand-hall", "hall-of-reflections"],
     initiallyUnlocked: false,
@@ -68,7 +68,7 @@ export const rooms: Record<RoomId, RoomDefinition> = {
   },
   "archivists-study": {
     id: "archivists-study",
-    name: "Archivist’s Study",
+    name: "The Debrief Room",
     eyebrow: "No keyhole can be found",
     connections: ["grand-hall"],
     initiallyUnlocked: false,

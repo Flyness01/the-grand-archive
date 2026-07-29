@@ -36,7 +36,7 @@ export function LanternWallRoom({
     <>
       <PuzzleModal
         title="The Lantern Wall"
-        subtitle="Grand Hall · Light and shadow"
+        subtitle="Team Hub · Light and shadow"
         onClose={onClose}
       >
         <LanternWall
@@ -51,7 +51,7 @@ export function LanternWallRoom({
           <div className="brass-lantern-icon brass-lantern-icon--large" aria-hidden="true"><i /></div>
           <p>Brass Lantern</p>
           <blockquote>“Light remembers every hand.”</blockquote>
-          <small>The Grand Hall brightens. The Workshop door unlocks.</small>
+          <small>The Team Hub brightens. The Workshop door unlocks.</small>
         </div>
       )}
     </>
