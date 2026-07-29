@@ -22,6 +22,7 @@ export function GameShell() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [inventoryOpen, setInventoryOpen] = useState(false);
   const [journeyOpen, setJourneyOpen] = useState(false);
+  const [resetOpen, setResetOpen] = useState(false);
   const [saveVisible, setSaveVisible] = useState(false);
   const [lanternWallOpen, setLanternWallOpen] = useState(false);
 
@@ -464,14 +465,37 @@ export function GameShell() {
                 <button
                   className="reset-button"
                   onClick={() => {
-                    if (window.confirm("Reset all progress and replay the opening?")) {
-                      dispatch({ type: "RESET_GAME" });
-                      setSettingsOpen(false);
-                    }
+                    dispatch({ type: "REPLAY_INTRO" });
+                    setSettingsOpen(false);
                   }}
                 >
-                  Reset progress
+                  Replay opening
                 </button>
+                <button
+                  className="reset-button reset-button--danger"
+                  onClick={() => setResetOpen(true)}
+                >
+                  Start the whole story over
+                </button>
+                {resetOpen && (
+                  <div className="reset-confirmation">
+                    <small>Entire game</small>
+                    <h3>Start over from the beginning?</h3>
+                    <p>This erases every solved puzzle, collected win, hint, and unlocked room. Use “Restart level” inside a puzzle if you only want another attempt there.</p>
+                    <div>
+                      <button onClick={() => setResetOpen(false)}>Cancel</button>
+                      <button
+                        onClick={() => {
+                          dispatch({ type: "RESET_GAME" });
+                          setResetOpen(false);
+                          setSettingsOpen(false);
+                        }}
+                      >
+                        Erase progress
+                      </button>
+                    </div>
+                  </div>
+                )}
               </section>
             </div>
           )}

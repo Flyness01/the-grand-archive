@@ -47,6 +47,7 @@ export type GameAction =
   | { type: "HYDRATE"; state: GameState }
   | { type: "ENTER_ROOM"; roomId: RoomId }
   | { type: "COMPLETE_INTRO" }
+  | { type: "REPLAY_INTRO" }
   | { type: "USE_HINT"; puzzleId: string }
   | {
       type: "SOLVE_PUZZLE";

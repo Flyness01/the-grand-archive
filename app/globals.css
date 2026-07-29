@@ -1059,6 +1059,170 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
   .hall__invitation { bottom:4vh; }
 }
 
+.puzzle-modal__tools {
+  display:flex;
+  align-items:center;
+  gap:.65rem;
+}
+.puzzle-modal__tools button {
+  min-height:38px;
+  border:1px solid #64778a;
+  border-radius:6px;
+  background:#202936;
+  color:#cbd5de;
+  padding:.45rem .7rem;
+  cursor:pointer;
+  font-size:.56rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.puzzle-modal__tools button:last-child {
+  min-width:38px;
+  border:0;
+  background:none;
+  color:#aaa6ad;
+  padding:0;
+  font-size:1.6rem;
+}
+.puzzle-restart-backdrop {
+  position:absolute;
+  z-index:24;
+  inset:0;
+  display:grid;
+  place-items:center;
+  padding:1rem;
+  background:rgba(18,23,30,.84);
+  backdrop-filter:blur(9px);
+}
+.puzzle-restart-backdrop article,
+.reset-confirmation {
+  width:min(430px,100%);
+  padding:1.6rem;
+  border:1px solid #aebbc6;
+  border-radius:14px;
+  background:#f7f5f3;
+  color:#312f32;
+  box-shadow:0 24px 65px rgba(10,13,18,.45);
+}
+.puzzle-restart-backdrop small,
+.reset-confirmation>small {
+  color:#63788b;
+  font-size:.56rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.puzzle-restart-backdrop h3,
+.reset-confirmation h3 {
+  margin:.35rem 0 .6rem;
+  color:#323942;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.45rem;
+  font-weight:400;
+}
+.puzzle-restart-backdrop p,
+.reset-confirmation p {
+  margin:0 0 1.2rem;
+  color:#66636a;
+  font-size:.8rem;
+  line-height:1.55;
+}
+.puzzle-restart-backdrop article>div,
+.reset-confirmation>div {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.6rem;
+}
+.puzzle-restart-backdrop article>div button,
+.reset-confirmation>div button {
+  min-height:44px;
+  border:1px solid #aeb7bf;
+  border-radius:7px;
+  background:#fff;
+  color:#48515a;
+  cursor:pointer;
+  font-size:.62rem;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.puzzle-restart-backdrop article>div button:last-child {
+  border-color:#526a7f;
+  background:#526a7f;
+  color:#fff;
+}
+.settings-panel { overflow:hidden; }
+.reset-button { display:block; }
+.reset-button--danger { color:#c99595; }
+.reset-confirmation {
+  position:absolute;
+  z-index:3;
+  left:1rem;
+  right:1rem;
+  top:50%;
+  width:auto;
+  transform:translateY(-50%);
+}
+.reset-confirmation>div button:last-child {
+  border-color:#a75f64;
+  background:#a75f64;
+  color:#fff;
+}
+
+@media (max-width:760px) {
+  .puzzle-modal__header h2 { max-width:58vw; }
+  .puzzle-modal__tools { gap:.2rem; }
+  .puzzle-modal__tools button { min-height:44px;padding:.35rem .45rem;font-size:.48rem; }
+  .puzzle-modal__tools button:last-child { min-width:44px;font-size:1.7rem; }
+  .puzzle-restart-backdrop article { padding:1.25rem; }
+}
+
+/* One visual system across all ten puzzle workspaces. */
+.puzzle-backdrop { background:rgba(13,18,24,.9); }
+.puzzle-modal {
+  border-color:#627487;
+  background:#1b222b;
+  box-shadow:0 30px 100px rgba(4,7,10,.8);
+}
+.puzzle-modal__header {
+  border-bottom-color:rgba(157,177,194,.24);
+  background:#161c24;
+}
+.puzzle-modal__header p { color:#91a7b9; }
+.shelf-puzzle__workspace,
+.route-puzzle__workspace,
+.lantern-puzzle__workspace,
+.clock-puzzle__workspace,
+.garden-puzzle__workspace,
+.constellation-puzzle__workspace,
+.typewriter-puzzle__workspace,
+.reflections-puzzle__workspace,
+.blueprint-puzzle__workspace,
+.finale-puzzle__workspace {
+  background:
+    radial-gradient(circle at 50% 22%,rgba(145,167,185,.16),transparent 38%),
+    linear-gradient(145deg,#303946,#202832 58%,#161d25);
+}
+.garden-puzzle__workspace.phase--day {
+  background:radial-gradient(circle at 50% 4%,rgba(214,199,163,.22),transparent 44%),#28323a;
+}
+.garden-puzzle__workspace.phase--dusk {
+  background:radial-gradient(circle at 50% 4%,rgba(199,143,145,.2),transparent 44%),#2b2d37;
+}
+.garden-puzzle__workspace.phase--night {
+  background:radial-gradient(circle at 50% 4%,rgba(119,143,174,.22),transparent 44%),#1c2530;
+}
+.hint-panel {
+  border-color:rgba(139,160,178,.25);
+  background:#1b232c;
+}
+.hint-panel>span,.hint-panel>small { color:#8da2b4; }
+.hint-panel button {
+  border-color:#60768a;
+  background:#25313d;
+  color:#d4dde5;
+}
+
 @media (max-width:760px) {
   .puzzle-guide { padding:.75rem; }
   .puzzle-guide article { max-height:94svh;padding:1.35rem;border-radius:12px; }

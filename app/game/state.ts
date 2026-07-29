@@ -68,6 +68,12 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         introComplete: true,
         startedAt: state.startedAt ?? new Date().toISOString(),
       };
+    case "REPLAY_INTRO":
+      return {
+        ...state,
+        currentRoom: "grand-hall",
+        introComplete: false,
+      };
     case "USE_HINT":
       return {
         ...state,
