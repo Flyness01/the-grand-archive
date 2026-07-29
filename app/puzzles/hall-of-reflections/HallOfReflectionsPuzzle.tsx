@@ -34,9 +34,16 @@ export function HallOfReflectionsPuzzle({
 
   function toggleObservation(id: string) {
     if (solved) return;
-    setSelected((current) =>
-      current.includes(id) ? current.filter((item) => item !== id) : [...current, id],
-    );
+    if (selected.includes(id)) {
+      setSelected((current) => current.filter((item) => item !== id));
+      setFeedback("");
+      return;
+    }
+    if (selected.length >= 5) {
+      setFeedback("The report can contain only five defects. Remove one selection before adding another.");
+      return;
+    }
+    setSelected((current) => [...current, id]);
     setFeedback("");
   }
 
@@ -83,7 +90,7 @@ export function HallOfReflectionsPuzzle({
                 aria-label={observation.label}
                 aria-pressed={selected.includes(observation.id)}
                 onClick={() => toggleObservation(observation.id)}
-                disabled={solved}
+                disabled={solved || (selected.length >= 5 && !selected.includes(observation.id))}
               >
                 {observation.id === "seven-point-star" ? "✷" :
                   observation.id === "unmirrored-label" ? "STATUS" :
