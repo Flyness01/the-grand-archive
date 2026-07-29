@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export function ArchivistsStudy({ onReturn }: { onReturn: () => void }) {
-  const [letterOpen, setLetterOpen] = useState(false);
+  const [letterOpen, setLetterOpen] = useState(true);
 
   return (
     <section className="archivists-study" aria-labelledby="study-title">
