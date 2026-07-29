@@ -102,16 +102,28 @@ export function GrandHall({
         </div>
       </div>
 
-      {blueprintSolved && (
+      <nav className="late-level-shortcuts" aria-label="Final project levels">
         <button
-          className="final-meta-hotspot"
-          onClick={() => setFinaleOpen(true)}
-          aria-label={finaleSolved ? "Inspect the completed Project Board" : "Begin the final project review"}
+          className={blueprintUnlocked ? "is-unlocked" : ""}
+          disabled={!blueprintUnlocked}
+          onClick={onEnterWorkshop}
+          aria-label={blueprintUnlocked ? "Enter Level 9, System Design" : "Level 9, System Design, locked until QA Review is complete"}
         >
-          <span aria-hidden="true">✦</span>
-          {finaleSolved ? "Completed Project Board" : "Assemble the final handoff"}
+          <small>Level 09</small>
+          <b>System Design</b>
+          <span>{blueprintSolved ? "Decision complete" : blueprintUnlocked ? "Architecture task ready" : "Complete QA Review"}</span>
         </button>
-      )}
+        <button
+          className={blueprintSolved ? "is-unlocked" : ""}
+          disabled={!blueprintSolved}
+          onClick={() => setFinaleOpen(true)}
+          aria-label={blueprintSolved ? "Enter Level 10, Final Handoff" : "Level 10, Final Handoff, locked until System Design is complete"}
+        >
+          <small>Level 10</small>
+          <b>Final Handoff</b>
+          <span>{finaleSolved ? "Project story complete" : blueprintSolved ? "Retrospective ready" : "Complete System Design"}</span>
+        </button>
+      </nav>
 
       <button
         className="door door--library"
@@ -199,23 +211,19 @@ export function GrandHall({
       </button>
 
       <button
-        className={`workshop-threshold ${lanternWallSolved ? "is-unlocked" : ""} ${blueprintUnlocked && !blueprintSolved ? "has-drafting-plans" : ""}`}
+        className={`workshop-threshold ${lanternWallSolved ? "is-unlocked" : ""}`}
         disabled={!lanternWallSolved}
         onClick={onEnterWorkshop}
         aria-label={
-          blueprintUnlocked && !blueprintSolved
-            ? "Enter System Design for Puzzle 9"
-            : lanternWallSolved
+          lanternWallSolved
             ? "Enter the Build Lab"
             : "The Build Lab is locked"
         }
       >
         <span><i /></span>
-        <b>{blueprintUnlocked && !blueprintSolved ? "System Design" : "Build Lab"}</b>
+        <b>Build Lab</b>
         <small>
-          {blueprintUnlocked && !blueprintSolved
-            ? "Puzzle 9 · Architecture layers ready"
-            : lanternWallSolved
+          {lanternWallSolved
               ? "Signal alignment complete"
               : "Waiting for aligned signals"}
         </small>
