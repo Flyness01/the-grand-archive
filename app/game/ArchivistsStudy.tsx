@@ -26,22 +26,25 @@ export function ArchivistsStudy({ onReturn }: { onReturn: () => void }) {
         <div className="letter-backdrop" onMouseDown={() => setLetterOpen(false)}>
           <article className="appreciation-letter" role="dialog" aria-modal="true" aria-labelledby="letter-title" onMouseDown={(event) => event.stopPropagation()}>
             <button onClick={() => setLetterOpen(false)} aria-label="Close appreciation letter">×</button>
-            <p>For the person behind every thoughtful contribution</p>
-            <h2 id="letter-title">You Made a Difference Here</h2>
-            <blockquote>“The work mattered. So did the person you became while doing it.”</blockquote>
+            <p>For the team who made two summers unforgettable</p>
+            <h2 id="letter-title">Thank You for Two Amazing Summers</h2>
+            <blockquote>“The best part of everything I built was getting to build it with you.”</blockquote>
             <p>
-              You arrived willing to learn an unfamiliar system. Then you traced what others had missed, asked the question that clarified the room,
-              stayed steady when the build failed, and remained present long enough to see the work reach real people.
+              Thank you for welcoming me onto this team and giving me two summers filled with learning, laughter, challenges,
+              and opportunities I will carry with me for a long time. I came ready to learn, and you gave me the space to ask questions,
+              try unfamiliar things, make mistakes, and grow into a more thoughtful engineer.
             </p>
             <p>
-              Your contribution was never only the code. It was the context you gathered, the care you brought to reviews,
-              the clarity of your handoffs, and the way you made difficult work feel shared. Those things changed the project—and they changed us.
+              I am grateful for every patient explanation, thoughtful review, honest piece of feedback, shared joke, and moment when someone
+              took the time to help me understand not just what we were building, but why it mattered. You made difficult work feel shared,
+              and every contribution feel valued.
             </p>
             <p>
-              Wherever you build next, keep the curiosity, judgment, resilience, and generosity represented on the Project Board.
-              We are grateful we had the chance to build beside you.
+              These two summers gave me more than projects to talk about. They gave me confidence, perspective, friendships,
+              and an example of the kind of teammate I hope to be. Thank you for such an amazing summer, for the summer before it,
+              and for making both experiences so meaningful. I feel incredibly lucky that I got to be part of this team.
             </p>
-            <p className="letter-signature">With genuine appreciation,<br />Your Team</p>
+            <p className="letter-signature">With so much appreciation,<br />Flyness</p>
           </article>
         </div>
       )}

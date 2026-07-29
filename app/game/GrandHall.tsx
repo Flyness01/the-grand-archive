@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { ReturnBorrowed } from "../puzzles/return-borrowed/ReturnBorrowed";
 import { finalMosaicTiles } from "../puzzles/return-borrowed/puzzleData";
 import { PuzzleModal } from "./PuzzleModal";
@@ -333,10 +333,28 @@ export function GrandHall({
 
       {finalRewardMoment && (
         <div className="reward-moment reward-moment--manuscript" role="status">
+          <div className="project-card-burst" aria-hidden="true">
+            {[
+              "Context",
+              "Trace",
+              "Align",
+              "Recover",
+              "Ship",
+              "Patterns",
+              "Handoff",
+              "QA",
+              "Design",
+            ].map((lesson, index) => (
+              <span style={{ "--card-index": index } as CSSProperties} key={lesson}>
+                <i>0{index + 1}</i>
+                <b>{lesson}</b>
+              </span>
+            ))}
+          </div>
           <div className="retrospective-icon retrospective-icon--large" aria-hidden="true"><i /></div>
           <p>Project Retrospective</p>
-          <blockquote>“The work mattered. So did the person you became while doing it.”</blockquote>
-          <small>Nine lessons complete one project story. The Debrief Room opens.</small>
+          <blockquote>“Two summers. Nine lessons. One unforgettable team.”</blockquote>
+          <small>The Project Board comes alive. A thank-you note waits in the Debrief Room.</small>
         </div>
       )}
     </section>
