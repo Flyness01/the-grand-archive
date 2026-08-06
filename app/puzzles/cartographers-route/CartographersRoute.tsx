@@ -56,7 +56,7 @@ export function CartographersRoute({
     if (nodeId === "archive") {
       if (validateCartographersRoute(nextPath)) {
         setDrawerOpen(true);
-        setFeedback("The request reaches production. The full flow is now documented.");
+        setFeedback("The request reaches the Live Service. The full flow is now documented.");
       } else {
         setFeedback("The request failed. One or more documented constraints was ignored.");
         window.setTimeout(() => {
@@ -78,7 +78,7 @@ export function CartographersRoute({
             <li>After authentication, reuse the Shared Service; its result still needs the Data Adapter.</li>
             <li>Queues, workers, and analytics belong to other flows—not this interactive request.</li>
             <li>Avoid shortcuts, deprecated paths, legacy bridges, dead code, stale dependencies, and caches.</li>
-            <li>The Integration Point is the final stop before production.</li>
+            <li>The Integration Point is the final stop before the Live Service.</li>
           </ol>
         </div>
 

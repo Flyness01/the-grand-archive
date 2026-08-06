@@ -160,11 +160,11 @@ export const mapNodes: MapNode[] = [
   },
   {
     id: "archive",
-    name: "Production Target",
+    name: "Live Service",
     x: 94,
     y: 12,
     kind: "lantern",
-    description: "The intended result reaches the user.",
+    description: "The live destination where the requested action completes.",
   },
 ];
 
@@ -217,7 +217,7 @@ export const cartographersRouteSolution = [
 export const cartographersRouteHints = [
   "Several request paths reach the target. Only one respects every documented system constraint.",
   "Keep the interactive client flow together before crossing the API boundary. Queues, workers, and analytics belong to other flows.",
-  "Follow UI Layer, State Manager, API Gateway, and Auth Check. Then use Shared Service, Data Adapter, and Integration Point before production.",
+  "Follow UI Layer, State Manager, API Gateway, and Auth Check. Then use Shared Service, Data Adapter, and Integration Point before the Live Service.",
 ];
 
 export const cartographersRouteMosaicTiles = [
