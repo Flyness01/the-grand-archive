@@ -49,7 +49,7 @@ export const mapNodes: MapNode[] = [
   {
     id: "bell-tower",
     name: "Event Queue",
-    x: 22,
+    x: 29,
     y: 58,
     kind: "lantern",
     description: "An asynchronous branch waiting for a consumer.",
@@ -57,7 +57,7 @@ export const mapNodes: MapNode[] = [
   {
     id: "orchard-lamp",
     name: "UI Layer",
-    x: 23,
+    x: 29,
     y: 70,
     kind: "lantern",
     description: "The interface translates the user’s intent.",
