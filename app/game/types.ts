@@ -12,7 +12,6 @@ export type RoomId =
 export type RestorationStage = 0 | 1 | 2 | 3 | 4;
 
 export interface GameSettings {
-  muted: boolean;
   reducedMotion: boolean;
   highContrast: boolean;
   textScale: "default" | "large";

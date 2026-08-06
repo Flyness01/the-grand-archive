@@ -30,7 +30,6 @@ const restorationStages = Object.fromEntries(
 ) as Record<RoomId, RestorationStage>;
 
 export const defaultSettings: GameSettings = {
-  muted: true,
   reducedMotion: false,
   highContrast: false,
   textScale: "default",
