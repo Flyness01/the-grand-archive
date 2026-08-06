@@ -413,6 +413,7 @@ button:focus-visible, input:focus-visible {
 .lantern-puzzle__instruction { max-width:680px;margin:0 auto 1rem;text-align:center;color:#aaa18f;font-size:.78rem;font-style:italic;line-height:1.5; }
 .alignment-brief { width:min(780px,100%);margin:0 auto .85rem;padding:.75rem .9rem;border:1px solid rgba(144,157,176,.38);border-radius:7px;background:rgba(31,39,50,.82);color:#c6d0d8; }
 .alignment-brief p { margin:0 0 .5rem;color:#ddaab8;font:.52rem Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase; }
+.alignment-brief>small { display:block;margin:-.12rem 0 .55rem;color:#aeb9c1;font:.62rem/1.4 Arial,sans-serif; }
 .alignment-brief ul { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.35rem 1rem;margin:0;padding-left:1.15rem; }
 .alignment-brief li { font-size:.62rem;line-height:1.4; }
 .alignment-brief b { color:#eef2f5; }
