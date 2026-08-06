@@ -11,16 +11,34 @@ export type JourneyMessage = {
 export const journeyMessages: JourneyMessage[] = [
   {
     milestone: 0,
+    author: "Your Recruiter",
+    role: "recruiter",
+    time: "Before the first summer",
+    color: "cyan",
+    text: "Welcome to Enterprise. We’re excited to have you here, and there are people ready to help whenever you need them.",
+    reaction: "🎉 6",
+  },
+  {
+    milestone: 0,
+    author: "Your Manager",
+    role: "manager",
+    time: "First summer · Day 1",
+    color: "indigo",
+    text: "Take time to learn how the team works, ask questions, and build understanding.",
+    reaction: "🌱 4",
+  },
+  {
+    milestone: 0,
     author: "Your Mentor",
     role: "mentor",
     time: "First summer · Week 1",
     color: "aubergine",
-    text: "Welcome to Enterprise. Start with the docs, ask questions, and give yourself time to understand the system. Nobody expects you to know it all on day one.",
+    text: "Start with the docs, then we’ll trace the system together. Give yourself time; unfamiliar code becomes manageable one piece at a time.",
     reaction: "👋 8",
   },
   {
     milestone: 1,
-    author: "You",
+    author: "Flyness",
     role: "reflection",
     time: "First summer · Week 2",
     color: "cyan",
@@ -29,7 +47,7 @@ export const journeyMessages: JourneyMessage[] = [
   },
   {
     milestone: 2,
-    author: "You",
+    author: "Flyness",
     role: "reflection",
     time: "First summer · Week 3",
     color: "indigo",
@@ -38,7 +56,7 @@ export const journeyMessages: JourneyMessage[] = [
   },
   {
     milestone: 3,
-    author: "You",
+    author: "Flyness",
     role: "reflection",
     time: "First summer · Week 5",
     color: "yellow",
@@ -47,7 +65,7 @@ export const journeyMessages: JourneyMessage[] = [
   },
   {
     milestone: 4,
-    author: "You",
+    author: "Flyness",
     role: "reflection",
     time: "Second summer · Returning",
     color: "aubergine",
@@ -56,7 +74,7 @@ export const journeyMessages: JourneyMessage[] = [
   },
   {
     milestone: 5,
-    author: "You",
+    author: "Flyness",
     role: "to the team",
     time: "Last day",
     color: "indigo",
