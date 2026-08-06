@@ -12,10 +12,10 @@ export const journeyMessages: JourneyMessage[] = [
   {
     milestone: 0,
     author: "Team Enterprise",
-    role: "welcome",
-    time: "First summer · Week 1",
+    role: "one last thread",
+    time: "Last day · Before sign-off",
     color: "aubergine",
-    text: "Welcome to Enterprise, Flyness. Start with the docs, ask questions, and give yourself time to understand how the team and the system work. There are people here ready to help.",
+    text: "Before you sign off, there is one last thread to follow. Five moments from your two summers are waiting—each one holds something you learned and something worth carrying forward.",
     reaction: "👋 8",
   },
   {
