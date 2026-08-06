@@ -21,6 +21,12 @@ const boundaryLabels: Record<BoundaryId, string> = {
   "worker-recovery": "Queue / worker recovery",
 };
 
+const boundaryExplanations: Record<BoundaryId, string> = {
+  "api-write": "Where Save requests enter the API",
+  "data-call": "Where the API waits for stored data",
+  "worker-recovery": "Where background jobs wait and run",
+};
+
 export function MasterBlueprint({
   hintCount,
   onUseHint,
@@ -49,7 +55,7 @@ export function MasterBlueprint({
     setResults((current) => ({ ...current, [test.id]: passed ? "pass" : "fail" }));
     setFeedback(passed
       ? `${test.name}: PASS — the required guarantee holds under failure.`
-      : `${test.name}: FAIL — ${test.evidence}. Read the failed guarantee, then place a safeguard.`);
+      : `${test.name}: FAIL — ${test.plainEvidence} (${test.evidence}). Match that plain-language failure to a safeguard description.`);
   }
 
   function placeSafeguard(boundary: BoundaryId) {
@@ -83,6 +89,7 @@ export function MasterBlueprint({
       <div className="blueprint-puzzle__workspace resilience-lab__workspace">
         <header className="resilience-requirements">
           <p>Architecture review · failure guarantees</p>
+          <small>No computer-science background required: run a test, read what went wrong, and match it to a safeguard description.</small>
           <span>One write per request key</span>
           <span>Response within 500ms</span>
           <span>Accepted jobs are never lost</span>
@@ -101,17 +108,20 @@ export function MasterBlueprint({
           <div className="system-component is-client">Web Client</div>
           <button className="system-boundary boundary-api" onClick={() => placeSafeguard("api-write")} disabled={!selected || solved}>
             <span>API write boundary</span>
+            <small>{boundaryExplanations["api-write"]}</small>
             <b>{placements["api-write"] ? architectureSafeguards.find((item) => item.id === placements["api-write"])?.name : "Attach safeguard"}</b>
           </button>
           <div className="system-component is-api">API</div>
           <button className="system-boundary boundary-data" onClick={() => placeSafeguard("data-call")} disabled={!selected || solved}>
             <span>Data service call</span>
+            <small>{boundaryExplanations["data-call"]}</small>
             <b>{placements["data-call"] ? architectureSafeguards.find((item) => item.id === placements["data-call"])?.name : "Attach safeguard"}</b>
           </button>
           <div className="system-component is-data">Data Service</div>
           <div className="system-component is-queue">Job Queue</div>
           <button className="system-boundary boundary-worker" onClick={() => placeSafeguard("worker-recovery")} disabled={!selected || solved}>
             <span>Queue / worker recovery</span>
+            <small>{boundaryExplanations["worker-recovery"]}</small>
             <b>{placements["worker-recovery"] ? architectureSafeguards.find((item) => item.id === placements["worker-recovery"])?.name : "Attach safeguard"}</b>
           </button>
           <div className="system-component is-worker">Worker</div>

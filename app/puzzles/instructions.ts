@@ -78,10 +78,11 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     tip: "Severity follows user and system impact—not how visually noticeable a finding appears.",
   },
   "The Architecture Resilience Review": {
-    objective: "Inject three realistic failures, read the resulting evidence, and place safeguards where they protect the broken guarantees.",
+    objective: "Run three failure tests, describe each result in plain language, and place the safeguard whose description fixes that exact problem.",
     steps: [
-      "Run the duplicate-request, slow-dependency, and worker-failure tests.",
-      "Select each safeguard and attach it to a system boundary.",
+      "Run each test and ask: did something happen twice, wait too long, or disappear?",
+      "Read the plain-language sentence beneath each safeguard; technical vocabulary is not required.",
+      "Select a safeguard and attach it to the labeled place where that failure happened.",
       "Rerun the complete resilience suite and approve only when every guarantee passes.",
     ],
     tip: "Place protection at the boundary where a guarantee can actually be enforced.",
