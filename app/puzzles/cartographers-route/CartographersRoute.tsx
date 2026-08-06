@@ -73,11 +73,11 @@ export function CartographersRoute({
         <div className="margin-rules">
           <p>From the request trace notes</p>
           <ol>
-            <li>Begin at the Entry Point and pass the Auth Check before entering the application.</li>
-            <li>Stay with the interactive request; queues, workers, and analytics belong to other flows.</li>
+            <li>User intent is translated by the UI Layer before the State Manager records it.</li>
+            <li>The client sends that state through the public API Gateway, where the Auth Check protects the backend.</li>
+            <li>After authentication, reuse the Shared Service; its result still needs the Data Adapter.</li>
+            <li>Queues, workers, and analytics belong to other flows—not this interactive request.</li>
             <li>Avoid shortcuts, deprecated paths, legacy bridges, dead code, stale dependencies, and caches.</li>
-            <li>The UI Layer feeds directly into the State Manager.</li>
-            <li>The State Manager passes the request to the Data Adapter.</li>
             <li>The Integration Point is the final stop before production.</li>
           </ol>
         </div>

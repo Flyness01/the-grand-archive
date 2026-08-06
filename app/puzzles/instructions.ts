@@ -15,7 +15,7 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     tip: "The gold letters fix three positions. The highlighted notes also describe the word you need.",
   },
   "The Missing Request Path": {
-    objective: "Trace a user request through an unfamiliar system without crossing architectural boundaries.",
+    objective: "Use the review notes to trace one interactive request through an unfamiliar system.",
     steps: [
       "Inspect each component and the documented connections.",
       "Trace the client-side flow before continuing through the service layer.",
