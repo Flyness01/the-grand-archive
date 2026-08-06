@@ -55,8 +55,9 @@ export function MirroredTypewriter({
     <div className="typewriter-puzzle">
       <div className="typewriter-puzzle__workspace">
         <p className="typewriter-puzzle__instruction">
-          Each example uses the same keyboard transformation. Infer the rule,
-          then use it to complete the missing four-letter word.
+          First, complete the sentence by identifying its missing four-letter
+          word. Then infer the keyboard transformation and press the keys that
+          produce that word.
         </p>
         <aside className="typing-record">
           <p>Decoder samples</p>

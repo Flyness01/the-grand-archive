@@ -60,7 +60,7 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     tip: "Treat the labels as moments in one journey rather than a repeating loop. Your name is a signature, not another answer to guess.",
   },
   "The Word-Ends Handoff": {
-    objective: "Infer the keyboard transformation, then use it to complete the missing four-letter word in the handoff.",
+    objective: "Identify the missing four-letter word in the handoff, then infer which keys will produce it.",
     steps: [
       "Compare the sample inputs with their resulting outputs.",
       "Infer the consistent row-by-row transformation.",
