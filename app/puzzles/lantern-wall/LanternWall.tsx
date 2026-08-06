@@ -91,10 +91,10 @@ export function LanternWall({
         <aside className="alignment-brief" aria-label="Alignment brief">
           <p>Notes from the decision thread</p>
           <ul>
-            <li><b>Design</b> has reached review and carries medium priority.</li>
-            <li><b>Frontend</b> is still exploring; its user-facing work matters more immediately than Design&apos;s.</li>
-            <li><b>API</b> is the most committed direction, but its immediate priority sits below Design&apos;s.</li>
-            <li><b>Product</b> sits between exploring and reviewed, and shares Frontend&apos;s priority.</li>
+            <li>No two teams are at the same point: <b>Frontend</b> is earliest and <b>API</b> is furthest along.</li>
+            <li><b>Product</b> is one step ahead of Frontend; <b>Design</b> is one step behind API.</li>
+            <li><b>Frontend</b> and <b>Product</b> share the strongest immediate priority.</li>
+            <li><b>Design</b>&apos;s priority falls between theirs and API&apos;s.</li>
           </ul>
         </aside>
 
