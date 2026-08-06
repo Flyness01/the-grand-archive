@@ -11,29 +11,11 @@ export type JourneyMessage = {
 export const journeyMessages: JourneyMessage[] = [
   {
     milestone: 0,
-    author: "Your Recruiter",
-    role: "recruiter",
-    time: "Before the first summer",
-    color: "cyan",
-    text: "Welcome to Enterprise. We’re excited to have you here, and there are people ready to help whenever you need them.",
-    reaction: "🎉 6",
-  },
-  {
-    milestone: 0,
-    author: "Your Manager",
-    role: "manager",
-    time: "First summer · Day 1",
-    color: "indigo",
-    text: "Take time to learn how the team works, ask questions, and build understanding.",
-    reaction: "🌱 4",
-  },
-  {
-    milestone: 0,
-    author: "Your Mentor",
-    role: "mentor",
+    author: "Team Enterprise",
+    role: "welcome",
     time: "First summer · Week 1",
     color: "aubergine",
-    text: "Start with the docs, then we’ll trace the system together. Give yourself time; unfamiliar code becomes manageable one piece at a time.",
+    text: "Welcome to Enterprise, Flyness. Start with the docs, ask questions, and give yourself time to understand how the team and the system work. There are people here ready to help.",
     reaction: "👋 8",
   },
   {

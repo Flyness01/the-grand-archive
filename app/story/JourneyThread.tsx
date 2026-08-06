@@ -37,7 +37,7 @@ export function JourneyThread({
         </div>
 
         <div className="journey-thread__messages">
-          <div className="journey-date"><span />The thread begins with the people who welcomed you<span /></div>
+          <div className="journey-date"><span />The thread begins with a welcome<span /></div>
           {visibleMessages.map((message) => (
             <article className="journey-message" key={`${message.milestone}-${message.author}`}>
               <div className={`journey-avatar journey-avatar--${message.color}`}>
