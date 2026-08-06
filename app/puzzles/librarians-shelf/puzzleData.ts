@@ -109,7 +109,7 @@ export const librariansShelfSolution = "CONTEXT";
 export const librariansShelfHints = [
   "Three documents carry highlighted lines.",
   "Their gold letters belong to fixed places in a seven-letter engineering instruction.",
-  "Complete C _ _ T _ _ T. It is what you need before changing an unfamiliar system.",
+  "You gain this by reading code, reading documentation, and asking questions.",
 ];
 
 export const librariansShelfMosaicTiles = [
