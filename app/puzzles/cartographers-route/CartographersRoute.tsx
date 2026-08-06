@@ -71,13 +71,13 @@ export function CartographersRoute({
     <div className="route-puzzle">
       <div className="route-puzzle__workspace">
         <div className="margin-rules">
-          <p>From the architecture review</p>
+          <p>From the request trace notes</p>
           <ol>
-            <li>Cross each system boundary once, never twice.</li>
-            <li>Complete two client-side transitions before the first server-side turn.</li>
-            <li>Avoid deprecated or stale components.</li>
-            <li>Use only monitored integration points.</li>
+            <li>Begin at the Entry Point and pass the Auth Check before entering the application.</li>
+            <li>Stay with the interactive request; queues, workers, and analytics belong to other flows.</li>
+            <li>Avoid shortcuts, deprecated paths, legacy bridges, dead code, stale dependencies, and caches.</li>
             <li>The UI Layer feeds directly into the State Manager.</li>
+            <li>The State Manager passes the request to the Data Adapter.</li>
             <li>The Integration Point is the final stop before production.</li>
           </ol>
         </div>
