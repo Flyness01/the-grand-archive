@@ -31,11 +31,11 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
         </aside>
         <div>
           <small># two-summers</small>
-          <p><b>YM</b><span>Your Mentor pinned one last thread…</span></p>
+          <p><b>F</b><span>Flyness pinned one last thread…</span></p>
         </div>
       </div>
       <div className="intro__copy" aria-live="polite">
-        <p>Before you sign off, there is one last thread to follow.</p>
+        <p>Before I sign off, there is one last thread I want to share.</p>
         <p>Five moments return as visual pieces. Solve each lesson to unlock the next.</p>
       </div>
       <div className="intro__caption" aria-hidden={phase < 1}>
