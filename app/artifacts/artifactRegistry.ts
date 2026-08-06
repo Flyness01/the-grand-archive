@@ -25,9 +25,9 @@ export const artifacts: Record<string, Artifact> = {
     name: "Flow Trace",
     shortDescription: "Understanding a request path turns a fix into reusable knowledge.",
     roomOfOrigin: "map-room",
-    symbol: "Star",
+    symbol: "Connected path",
     glowGroup: "Green",
-    pedestalShape: "star",
+    pedestalShape: "path",
   },
   "brass-lantern": {
     id: "brass-lantern",
@@ -61,9 +61,9 @@ export const artifacts: Record<string, Artifact> = {
     name: "Pattern Report",
     shortDescription: "The right context turned noisy events into reproducible behavior.",
     roomOfOrigin: "observatory",
-    symbol: "Five-point star",
+    symbol: "Loop",
     glowGroup: "Blue",
-    pedestalShape: "five-point-star",
+    pedestalShape: "loop",
   },
   "leather-journal": {
     id: "leather-journal",

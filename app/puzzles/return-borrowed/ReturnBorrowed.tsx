@@ -12,11 +12,11 @@ import { validateOuterPedestals, validateReturnBorrowed } from "./validator";
 
 const pedestalLabels: Record<string, string> = {
   crescent: "Crescent · learning the context",
-  star: "Four-point star · tracing the system",
+  path: "Connected path · tracing the system",
   bowl: "Bowl · aligning the team",
   "toothed-circle": "Toothed circle · recovering production",
   teardrop: "Teardrop · shipping responsibly",
-  "five-point-star": "Five-point star · finding the pattern",
+  loop: "Loop · finding repeated behavior",
   triangle: "Triangle · protecting quality",
   square: "Square · designing the system",
 };
@@ -112,7 +112,7 @@ export function ReturnBorrowed({
           >
             {journalOnStand ? "Project Retrospective" : outerAligned ? "Complete with the Handoff Note" : "Final handoff locked"}
           </button>
-          <div className="archive-emblem" aria-hidden="true">✦</div>
+          <div className="archive-emblem" aria-hidden="true">↝</div>
         </div>
 
         {!outerAligned && (

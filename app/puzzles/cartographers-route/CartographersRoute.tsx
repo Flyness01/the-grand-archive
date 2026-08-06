@@ -82,7 +82,7 @@ export function CartographersRoute({
           </ol>
         </div>
 
-        <div className={`antique-map ${drawerOpen ? "is-solved" : ""}`}>
+        <div className={`antique-map ${drawerOpen ? "is-solved" : ""}`} aria-label="Interactive system architecture diagram">
           <div className="map-water map-water--lark">Client Boundary</div>
           <div className="map-water map-water--grey">Service Boundary</div>
           <svg
@@ -135,9 +135,7 @@ export function CartographersRoute({
           })}
 
           <div className="compass-drawer">
-            <div className="compass-icon" aria-hidden="true">
-              <i />
-            </div>
+            <div className="flow-trace-icon" aria-hidden="true"><i /></div>
             <p>The completed request trace is ready to keep.</p>
             {!alreadySolved ? (
               <button onClick={onCollectReward}>Save the flow trace</button>

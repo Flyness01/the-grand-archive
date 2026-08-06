@@ -42,7 +42,7 @@ export function MapRoom({
       aria-labelledby="map-room-title"
     >
       <div className="map-room__walls" aria-hidden="true" />
-      <div className="map-room__globe" aria-hidden="true"><i /></div>
+      <div className="map-room__network" aria-hidden="true"><i /><i /><i /><i /></div>
       <div className="map-room__table" aria-hidden="true" />
       <header className="library-room__title">
         <p>Trace an unfamiliar system</p>
