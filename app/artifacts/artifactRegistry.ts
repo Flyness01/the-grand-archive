@@ -58,10 +58,10 @@ export const artifacts: Record<string, Artifact> = {
   },
   "star-chart": {
     id: "star-chart",
-    name: "Production Finding",
-    shortDescription: "Staying after deployment turned production signals into a useful finding.",
+    name: "Shared Timeline",
+    shortDescription: "Five moments became one reflection on learning, communication, and growth.",
     roomOfOrigin: "observatory",
-    symbol: "Loop",
+    symbol: "Timeline",
     glowGroup: "Blue",
     pedestalShape: "loop",
   },
@@ -95,7 +95,7 @@ export const artifacts: Record<string, Artifact> = {
   "final-manuscript": {
     id: "final-manuscript",
     name: "Project Retrospective",
-    shortDescription: "Nine lessons became one story of thoughtful engineering and growth.",
+    shortDescription: "Five lessons became one story of thoughtful engineering and growth.",
     roomOfOrigin: "archivists-study",
     symbol: "Manuscript",
     glowGroup: "White-gold",

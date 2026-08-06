@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 import { GrandHall } from "./GrandHall";
 import { IntroSequence } from "./IntroSequence";
 import { InventoryCabinet } from "./InventoryCabinet";
@@ -41,6 +41,28 @@ export function GameShell() {
   const [resetOpen, setResetOpen] = useState(false);
   const [saveVisible, setSaveVisible] = useState(false);
   const [lanternWallOpen, setLanternWallOpen] = useState(false);
+  const audioContextRef = useRef<AudioContext | null>(null);
+
+  const playInterfaceSound = useCallback((kind: "click" | "confirm" = "click") => {
+    const AudioContextClass = window.AudioContext;
+    if (!AudioContextClass) return;
+    const context = audioContextRef.current ?? new AudioContextClass();
+    audioContextRef.current = context;
+    void context.resume();
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    const now = context.currentTime;
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(kind === "confirm" ? 620 : 360, now);
+    if (kind === "confirm") oscillator.frequency.exponentialRampToValueAtTime(820, now + 0.09);
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(kind === "confirm" ? 0.045 : 0.025, now + 0.012);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + (kind === "confirm" ? 0.16 : 0.08));
+    oscillator.connect(gain);
+    gain.connect(context.destination);
+    oscillator.start(now);
+    oscillator.stop(now + (kind === "confirm" ? 0.17 : 0.09));
+  }, []);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -61,6 +83,26 @@ export function GameShell() {
       window.clearTimeout(hideTimer);
     };
   }, [hydrated, state]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle(
+      "large-text-mode",
+      state.settings.textScale === "large",
+    );
+    return () => document.documentElement.classList.remove("large-text-mode");
+  }, [state.settings.textScale]);
+
+  useEffect(() => {
+    if (state.settings.muted) return;
+    const playClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (!target.closest("button,input") || target.closest("[data-sound-toggle]")) return;
+      playInterfaceSound();
+    };
+    document.addEventListener("click", playClick);
+    return () => document.removeEventListener("click", playClick);
+  }, [playInterfaceSound, state.settings.muted]);
 
   const completeIntro = useCallback(
     () => dispatch({ type: "COMPLETE_INTRO" }),
@@ -100,6 +142,9 @@ export function GameShell() {
               finaleUnlocked={state.unlockedPuzzleIds.includes("constellation-that-should-not-exist")}
               onEnterObservatory={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "observatory" })
+              }
+              onEnterDebrief={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "archivists-study" })
               }
               onEnterOuterOffice={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "archivists-outer-office" })
@@ -373,12 +418,14 @@ export function GameShell() {
               Wins {activeCollectedIds.length}/5
             </button>
             <button
-              onClick={() =>
+              data-sound-toggle
+              onClick={() => {
+                if (state.settings.muted) playInterfaceSound("confirm");
                 dispatch({
                   type: "UPDATE_SETTINGS",
                   settings: { muted: !state.settings.muted },
-                })
-              }
+                });
+              }}
               aria-pressed={!state.settings.muted}
             >
               <span aria-hidden="true">{state.settings.muted ? "◌" : "◉"}</span>

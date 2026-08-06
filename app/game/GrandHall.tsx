@@ -22,6 +22,7 @@ export function GrandHall({
   finaleUnlocked,
   onEnterObservatory,
   finaleSolved,
+  onEnterDebrief,
 }: {
   onEnterLibrary: () => void;
   onEnterMapRoom: () => void;
@@ -38,6 +39,7 @@ export function GrandHall({
   finaleUnlocked: boolean;
   onEnterObservatory: () => void;
   finaleSolved: boolean;
+  onEnterDebrief: () => void;
 }) {
   const [replayingLanterns, setReplayingLanterns] = useState(false);
 
@@ -92,7 +94,10 @@ export function GrandHall({
         </button>}
       </nav>}
 
-      {finaleSolved && <button className="replay-lanterns" onClick={replayLanternScene}><span aria-hidden="true">◌</span> Replay lantern finale</button>}
+      {finaleSolved && <div className="finale-actions">
+        <button className="open-thank-you" onClick={onEnterDebrief}><span aria-hidden="true">✦</span> Open thank-you note</button>
+        <button className="replay-lanterns" onClick={replayLanternScene}><span aria-hidden="true">◌</span> Replay lantern finale</button>
+      </div>}
 
       <div className="pedestals" aria-label="Five project record positions">{pedestals.map((pedestal) => <span key={pedestal} aria-hidden="true" />)}</div>
       <div className="hall__dust" aria-hidden="true" />

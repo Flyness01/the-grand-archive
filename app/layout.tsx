@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "The Work We Shared — A Team Story",
   description:
-    "Ten connected moments from two summers of learning, building, and growing with a team.",
+    "Five connected moments from two summers of learning, building, and growing with a team.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   openGraph: {
     title: "The Work We Shared — A Team Story",

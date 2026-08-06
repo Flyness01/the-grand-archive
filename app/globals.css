@@ -681,9 +681,12 @@ button:focus-visible, input:focus-visible {
 .pattern-report-icon--large { transform:scale(1.4) rotate(-3deg);margin-bottom:2rem; }
 .reward-moment--stars { background:radial-gradient(circle,rgba(45,78,106,.82),rgba(2,5,8,.97) 58%); }
 
-.large-text { font-size:118%; }
-.high-contrast { --ivory:#fff8e6; --muted:#d1cab9; }
-.high-contrast .door__frame,.high-contrast .utility-bar button { border-color:#d8ac65; }
+html.large-text-mode { font-size:118.75%; }
+.high-contrast { --ivory:#fff;--muted:#fff;background:#000; }
+.high-contrast :is(.hall,.library-room,.map-room,.outer-office,.observatory-room,.puzzle-modal,.puzzle-modal__header,.settings-panel,.inventory,.journey-thread) { filter:contrast(1.28); }
+.high-contrast :is(.door__frame,.utility-bar button,.puzzle-modal button,.settings-panel,.settings-panel input,.inventory,.journey-thread) { border-color:#ffd86a!important; }
+.high-contrast :is(button,p,small,li,label,h1,h2,h3,strong,b) { color:#fff; }
+.high-contrast :is(.utility-bar button,.puzzle-modal button,.settings-panel button) { outline-color:#ffd86a; }
 .reduce-motion *,.reduce-motion *::before,.reduce-motion *::after { animation-duration:.001ms!important; animation-iteration-count:1!important; transition-duration:.001ms!important; }
 @keyframes rain-drift { to{transform:translateX(80px)} }
 @keyframes glow-breathe { 50%{opacity:.7;transform:scale(1.04)} }
@@ -1437,7 +1440,8 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
 .reflection-platform__dais { position:absolute;left:22px;right:22px;top:24px;height:18px;border:1px solid #718397;border-radius:2px;background:linear-gradient(#536477,#303d4c);box-shadow:0 8px 0 -2px #26323f,0 14px 14px rgba(4,7,12,.5);transform:perspective(140px) rotateX(48deg); }
 .reflection-platform__dais::after { content:"";position:absolute;left:18%;right:18%;top:7px;border-top:1px solid rgba(203,157,173,.55);box-shadow:0 0 7px rgba(203,157,173,.18); }
 .reflection-platform__dais i { display:none; }
-.replay-lanterns { position:absolute;z-index:10;right:3vw;bottom:4vh;min-height:42px;padding:.55rem .75rem;border:1px solid #8191a3;border-radius:999px;background:rgba(31,40,51,.9);color:#d9dfe4;cursor:pointer;font:.52rem Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 8px 18px rgba(7,11,18,.35); }.replay-lanterns span{margin-right:.35rem;color:#d5a5b3}.replay-lanterns:hover{border-color:#c79aaa;background:#3a4350}
+.finale-actions { position:absolute;z-index:10;right:3vw;bottom:4vh;display:flex;gap:.55rem; }
+.finale-actions button { min-height:42px;padding:.55rem .75rem;border:1px solid #8191a3;border-radius:999px;background:rgba(31,40,51,.9);color:#d9dfe4;cursor:pointer;font:.52rem Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 8px 18px rgba(7,11,18,.35); }.finale-actions button span{margin-right:.35rem;color:#d5a5b3}.finale-actions button:hover{border-color:#c79aaa;background:#3a4350}
 .hall.is-fully-restored { background:radial-gradient(ellipse at 50% 28%,#6b7057 0,#34463b 38%,#101713 78%); }
 .hall.is-fully-restored .mosaic { box-shadow:0 15px 50px #000,0 0 55px rgba(230,194,115,.42),inset 0 0 0 2px #d0a85e; }
 .hall.is-fully-restored .mosaic__grid span { background:linear-gradient(135deg,#b37a37,#f0d28d 52%,#5d8b76); }
@@ -1517,7 +1521,7 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
   .five-puzzle-hall .five-level-shortcuts button { width:100%;min-height:124px;padding-inline:.25rem; }
   .project-stairway__steps { left:0;right:0;gap:4px; }.project-stairway__steps i{width:35px}
   .reflection-platform__dais { left:8px;right:8px; }
-  .replay-lanterns { right:50%;bottom:2.5vh;transform:translateX(50%);white-space:nowrap; }
+  .finale-actions { right:50%;bottom:2.5vh;transform:translateX(50%);flex-direction:column;gap:.35rem;white-space:nowrap; }
   .alignment-brief ul { grid-template-columns:1fr; }
   .project-lantern-burst span { width:52px;height:70px;padding-bottom:6px;border-width:3px; }
   .project-lantern-burst span::after { top:24px;width:10px;height:20px; }
