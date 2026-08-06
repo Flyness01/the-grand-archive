@@ -33,7 +33,7 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
       setAligned(true);
       setFeedback("The whole journey now lines up, from the first week to the last day. Finish the sentence below.");
     } else {
-      setFeedback("The journey is still out of order. Align matching labels, with Week 1 at the left and Last day at the right.");
+      setFeedback("The journey is still out of order. Align matching labels, then read each row as one continuous timeline.");
     }
   }
 
@@ -52,7 +52,7 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
         <header className="production-check__header">
           <p>Two summers · three scrambled viewpoints</p>
           <strong>Align the three timelines to reveal one shared journey.</strong>
-          <small><b>How it works:</b> matching moments belong in the same vertical column. The finished journey begins with “Week 1” and ends with “Last day.”</small>
+          <small><b>How it works:</b> matching moments belong in the same vertical column. Read the labels as a timeline, not a loop.</small>
         </header>
 
         <div className="telemetry-board" aria-label="Three movable journey timelines">

@@ -55,9 +55,9 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     steps: [
       "Use the left and right arrows to move each strip.",
       "Place matching moments in vertical columns across all three strips.",
-      "Build a journey from Week 1 on the left to Last day on the right, then add your name below.",
+      "Arrange the aligned moments in their natural chronological order, then add your name below.",
     ],
-    tip: "Every row should begin with Week 1 and finish with Last day. Your name is a signature, not another answer to guess.",
+    tip: "Treat the labels as moments in one journey rather than a repeating loop. Your name is a signature, not another answer to guess.",
   },
   "The Word-Ends Handoff": {
     objective: "Infer the keyboard transformation, then use it to complete the missing four-letter word in the handoff.",
