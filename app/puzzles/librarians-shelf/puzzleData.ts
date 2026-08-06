@@ -108,7 +108,7 @@ export const librariansShelfSolution = "CONTEXT";
 
 export const librariansShelfHints = [
   "You gain this by reading code, reading documentation, and asking questions.",
-  "The three highlighted notes describe the same seven-letter lesson.",
+  "It is the background and understanding that makes an unfamiliar system easier to navigate.",
   "Complete C _ _ T _ _ T. It is what you need before changing an unfamiliar system.",
 ];
 
