@@ -306,12 +306,12 @@ button:focus-visible, input:focus-visible {
 .map-hotspot:hover>span:last-child,.map-hotspot:focus-visible>span:last-child { opacity:1; }
 
 .route-puzzle { min-height:0;flex:1;display:grid;grid-template-columns:minmax(0,1fr) 260px; }
-.route-puzzle__workspace { min-height:0;overflow:auto;position:relative;padding:1.2rem 1.5rem 1.5rem;background:radial-gradient(circle,#343947,#171924 72%); }
-.margin-rules { position:absolute;z-index:5;left:2rem;top:2rem;width:205px;padding:1rem 1.15rem;background:#eee8e5;color:#3f3942;box-shadow:0 5px 18px rgba(0,0,0,.35);border:1px solid #cbbfc7;border-radius:5px; }
+.route-puzzle__workspace { min-height:0;overflow:auto;position:relative;display:grid;grid-template-columns:220px minmax(0,1fr);align-items:start;gap:1rem;padding:1.2rem 1.5rem 1.5rem;background:radial-gradient(circle,#343947,#171924 72%); }
+.margin-rules { position:relative;z-index:5;width:100%;padding:1rem 1.15rem;background:#eee8e5;color:#3f3942;box-shadow:0 5px 18px rgba(0,0,0,.35);border:1px solid #cbbfc7;border-radius:5px; }
 .margin-rules p { margin:0 0 .6rem;color:#755f70;font:.55rem Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase; }
 .margin-rules ol { margin:0;padding-left:1.1rem; }
 .margin-rules li { margin:.4rem 0;font-size:.68rem;line-height:1.35;font-style:italic; }
-.antique-map { position:relative;width:min(850px,94%);height:min(60vh,560px);min-height:430px;margin:auto;background-image:linear-gradient(rgba(91,105,123,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(91,105,123,.1) 1px,transparent 1px);background-size:28px 28px;background-color:#e9e7e7;border:2px solid #a99ba7;border-radius:8px;box-shadow:0 18px 38px rgba(5,6,11,.65),inset 0 0 45px rgba(93,82,96,.08);overflow:hidden; }
+.antique-map { position:relative;width:100%;height:min(60vh,560px);min-height:430px;margin:0;background-image:linear-gradient(rgba(91,105,123,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(91,105,123,.1) 1px,transparent 1px);background-size:28px 28px;background-color:#e9e7e7;border:2px solid #a99ba7;border-radius:8px;box-shadow:0 18px 38px rgba(5,6,11,.65),inset 0 0 45px rgba(93,82,96,.08);overflow:hidden; }
 .antique-map::after { content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 28px rgba(77,67,80,.12); }
 .map-water { position:absolute;z-index:0;color:rgba(82,91,110,.68);font-size:.62rem;font-style:normal;letter-spacing:.08em;border-top:2px dashed rgba(91,105,125,.38);width:44%;transform:rotate(-14deg);padding-top:.2rem; }
 .map-water--lark { left:3%;top:57%; }.map-water--grey { right:5%;top:50%;transform:rotate(-58deg); }
@@ -346,7 +346,7 @@ button:focus-visible, input:focus-visible {
 .flow-trace-icon::after { content:"";position:absolute;left:9px;top:15px;width:8px;height:8px;border-radius:50%;background:#936449;box-shadow:18px 3px 0 #63778a,36px -2px 0 #b18a55; }
 .flow-trace-icon i { position:absolute;right:6px;bottom:5px;width:16px;height:6px;border-bottom:2px solid #936449;border-right:2px solid #936449;transform:skewX(-25deg); }
 .flow-trace-icon--large { transform:scale(1.5);margin-bottom:1.8rem; }
-.route-controls { display:flex;justify-content:center;align-items:center;gap:1rem;margin:.7rem auto 0;color:#a4957e;font-size:.72rem;font-style:italic; }
+.route-controls { grid-column:2;display:flex;justify-content:center;align-items:center;gap:1rem;margin:.7rem auto 0;color:#a4957e;font-size:.72rem;font-style:italic; }
 .route-controls p { min-height:1rem;margin:0; }
 .route-controls button { border:0;border-bottom:1px solid #665536;background:none;color:#8f8778;cursor:pointer;font:.55rem Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase; }
 
@@ -764,7 +764,7 @@ button:focus-visible, input:focus-visible {
   .inventory__slot { min-height:160px;padding:.65rem; }
 
   .route-puzzle { display:block;overflow-y:auto; }
-  .route-puzzle__workspace { min-height:max-content;overflow-x:auto;overflow-y:visible;padding:.8rem .55rem 1.2rem; }
+  .route-puzzle__workspace { min-height:max-content;overflow-x:auto;overflow-y:visible;display:block;padding:.8rem .55rem 1.2rem; }
   .lantern-puzzle { display:block;overflow-y:auto; }
   .lantern-puzzle__workspace { min-height:max-content;overflow:visible;padding:.9rem .65rem 1.2rem; }
   .lantern-puzzle__instruction { font-size:.73rem; }

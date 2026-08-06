@@ -73,12 +73,9 @@ export function CartographersRoute({
         <div className="margin-rules">
           <p>From the request trace notes</p>
           <ol>
-            <li>User intent is translated by the UI Layer before the State Manager records it.</li>
-            <li>The client sends that state through the public API Gateway, where the Auth Check protects the backend.</li>
-            <li>After authentication, reuse the Shared Service; its result still needs the Data Adapter.</li>
-            <li>Queues, workers, and analytics belong to other flows—not this interactive request.</li>
-            <li>Avoid shortcuts, deprecated paths, legacy bridges, dead code, stale dependencies, and caches.</li>
-            <li>The Integration Point is the final stop before the Live Service.</li>
+            <li>Keep the user-facing work together, then cross through the public doorway and verify permission immediately.</li>
+            <li>After permission is confirmed, reuse the dependency that serves several flows and reshape its result before the final shared boundary.</li>
+            <li>Background, reporting, conditional, obsolete, and shortcut branches belong to other paths.</li>
           </ol>
         </div>
 
