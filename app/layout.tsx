@@ -1,24 +1,36 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://flyness01.github.io/the-work-we-shared";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://theworkweshared.com";
+
+const title = "The Work We Shared | An Interactive Story";
+const description =
+  "Five moments from two summers of learning, building, and growing with Team Enterprise.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "The Work We Shared — A Team Story",
-  description:
-    "Five connected moments from two summers of learning, building, and growing with a team.",
+  title,
+  description,
+  applicationName: "The Work We Shared",
+  alternates: { canonical: "/" },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   openGraph: {
-    title: "The Work We Shared — A Team Story",
-    description: "Five moments. Two summers. One story about the work we shared.",
-    images: [{ url: "/og.png", width: 1536, height: 909 }],
+    title,
+    description,
+    url: "/",
+    siteName: "The Work We Shared",
+    type: "website",
+    images: [{
+      url: "/og.png",
+      width: 1200,
+      height: 630,
+      alt: "The Work We Shared — five moments connected by one thread",
+    }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Work We Shared — A Team Story",
-    description: "Five moments. Two summers. One story about the work we shared.",
+    title,
+    description,
     images: ["/og.png"],
   },
 };
