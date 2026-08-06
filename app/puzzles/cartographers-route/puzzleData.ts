@@ -20,7 +20,7 @@ export const mapNodes: MapNode[] = [
     x: 8,
     y: 78,
     kind: "lantern",
-    description: "The user action that begins the request.",
+    description: "The user clicks, taps, or submits something to begin.",
   },
   {
     id: "stone-ford",
@@ -28,7 +28,7 @@ export const mapNodes: MapNode[] = [
     x: 64,
     y: 72,
     kind: "lantern",
-    description: "Verifies the request after it reaches the public API boundary.",
+    description: "The system confirms that the user has permission to continue.",
   },
   {
     id: "broken-mile",
@@ -60,7 +60,7 @@ export const mapNodes: MapNode[] = [
     x: 29,
     y: 70,
     kind: "lantern",
-    description: "The interface translates the user’s intent.",
+    description: "The screen interprets what the user wants to do.",
   },
   {
     id: "watch-hill",
@@ -68,7 +68,7 @@ export const mapNodes: MapNode[] = [
     x: 38,
     y: 78,
     kind: "lantern",
-    description: "Application state determines the next transition.",
+    description: "The app records the information needed for the next step.",
   },
   {
     id: "market-lamp",
@@ -76,7 +76,7 @@ export const mapNodes: MapNode[] = [
     x: 70,
     y: 52,
     kind: "lantern",
-    description: "A busy dependency used by several flows.",
+    description: "The backend performs work that several parts of the product reuse.",
   },
   {
     id: "south-bridge",
@@ -100,7 +100,7 @@ export const mapNodes: MapNode[] = [
     x: 52,
     y: 62,
     kind: "lantern",
-    description: "A public interface into several backend paths.",
+    description: "The request leaves the app and enters the backend here.",
   },
   {
     id: "north-ferry",
@@ -108,7 +108,7 @@ export const mapNodes: MapNode[] = [
     x: 61,
     y: 36,
     kind: "lantern",
-    description: "Transforms application state into the required data shape.",
+    description: "The result is reshaped into the format the app expects.",
   },
   {
     id: "old-quarry",
@@ -156,7 +156,7 @@ export const mapNodes: MapNode[] = [
     x: 82,
     y: 27,
     kind: "lantern",
-    description: "The final shared boundary before delivery.",
+    description: "The prepared result passes through the final shared handoff.",
   },
   {
     id: "archive",
@@ -164,7 +164,7 @@ export const mapNodes: MapNode[] = [
     x: 94,
     y: 12,
     kind: "lantern",
-    description: "The live destination where the requested action completes.",
+    description: "The user’s requested action is now complete.",
   },
 ];
 
@@ -216,8 +216,8 @@ export const cartographersRouteSolution = [
 
 export const cartographersRouteHints = [
   "Several request paths reach the target. Only one respects every documented system constraint.",
-  "Keep the interactive client flow together before crossing the API boundary. Queues, workers, and analytics belong to other flows.",
-  "Follow UI Layer, State Manager, API Gateway, and Auth Check. Then use Shared Service, Data Adapter, and Integration Point before the Live Service.",
+  "Follow the user’s action: the screen understands it, the app records it, and then the request leaves for the backend.",
+  "Start with Entry Point → UI Layer → State Manager. Inspect the component descriptions to continue.",
 ];
 
 export const cartographersRouteMosaicTiles = [

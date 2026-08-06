@@ -21,6 +21,7 @@ export function CartographersRoute({
   alreadySolved: boolean;
 }) {
   const [path, setPath] = useState<string[]>(["west-gate"]);
+  const [inspectedNodeId, setInspectedNodeId] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
     alreadySolved ? "The completed flow trace remains pinned to the board." : "",
@@ -35,6 +36,7 @@ export function CartographersRoute({
       ),
     [path],
   );
+  const inspectedNode = mapNodes.find((node) => node.id === inspectedNodeId);
 
   function selectNode(nodeId: string) {
     if (drawerOpen || nodeId === path.at(-1)) return;
@@ -51,6 +53,7 @@ export function CartographersRoute({
 
     const nextPath = [...path, nodeId];
     setPath(nextPath);
+    setInspectedNodeId(null);
     setFeedback("");
 
     if (nodeId === "archive") {
@@ -61,6 +64,7 @@ export function CartographersRoute({
         setFeedback("The request failed. One or more documented constraints was ignored.");
         window.setTimeout(() => {
           setPath(["west-gate"]);
+          setInspectedNodeId(null);
           setFeedback("");
         }, 4500);
       }
@@ -73,9 +77,9 @@ export function CartographersRoute({
         <div className="margin-rules">
           <p>From the request trace notes</p>
           <ol>
-            <li>Keep the user-facing work together, then cross through the public doorway and verify permission immediately.</li>
-            <li>After permission is confirmed, reuse the dependency that serves several flows and reshape its result before the final shared boundary.</li>
-            <li>Background, reporting, conditional, obsolete, and shortcut branches belong to other paths.</li>
+            <li>Follow what happens after a user takes an action: understand it, record it, then send it out of the app.</li>
+            <li>As soon as the request reaches the backend, verify permission before performing the work.</li>
+            <li>Before the result reaches the live service, reshape it and pass through the final shared boundary.</li>
           </ol>
         </div>
 
@@ -117,10 +121,11 @@ export function CartographersRoute({
                 key={node.id}
                 className={`map-node map-node--${node.kind} ${
                   chosenIndex >= 0 ? "is-chosen" : ""
-                }`}
+                } ${inspectedNodeId === node.id ? "is-inspected" : ""}`}
                 style={{ left: `${node.x}%`, top: `${node.y}%` }}
-                onClick={() => selectNode(node.id)}
-                aria-label={`${node.name}. ${node.description}${
+                onClick={() => setInspectedNodeId(node.id)}
+                aria-pressed={inspectedNodeId === node.id}
+                aria-label={`Inspect ${node.name}. ${node.description}${
                   chosenIndex >= 0 ? ` Route stop ${chosenIndex + 1}.` : ""
                 }`}
               >
@@ -130,6 +135,28 @@ export function CartographersRoute({
               </button>
             );
           })}
+
+          {inspectedNode && !drawerOpen && (
+            <section
+              className="route-node-popover"
+              role="dialog"
+              aria-label={`${inspectedNode.name} details`}
+            >
+              <button
+                className="route-node-popover__close"
+                onClick={() => setInspectedNodeId(null)}
+                aria-label="Close component details"
+              >×</button>
+              <small>Selected component</small>
+              <strong>{inspectedNode.name}</strong>
+              <p>{inspectedNode.description}</p>
+              {inspectedNode.id === path.at(-1) ? (
+                <span>Current stop</span>
+              ) : (
+                <button onClick={() => selectNode(inspectedNode.id)}>Add to flow</button>
+              )}
+            </section>
+          )}
 
           <div className="compass-drawer">
             <div className="flow-trace-icon" aria-hidden="true"><i /></div>
@@ -145,7 +172,11 @@ export function CartographersRoute({
         <div className="route-controls">
           <p aria-live="polite">{feedback || "Choose the next component in the request flow."}</p>
           {!drawerOpen && (
-            <button onClick={() => setPath(["west-gate"])}>Clear flow</button>
+            <button onClick={() => {
+              setPath(["west-gate"]);
+              setInspectedNodeId(null);
+              setFeedback("");
+            }}>Clear flow</button>
           )}
         </div>
       </div>
