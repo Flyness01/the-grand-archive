@@ -107,9 +107,9 @@ export const shelfBooks: ShelfBook[] = [
 export const librariansShelfSolution = "CONTEXT";
 
 export const librariansShelfHints = [
+  "You gain this by reading code, reading documentation, and asking questions.",
   "Three documents carry highlighted lines.",
   "Their gold letters belong to fixed places in a seven-letter engineering instruction.",
-  "You gain this by reading code, reading documentation, and asking questions.",
 ];
 
 export const librariansShelfMosaicTiles = [
