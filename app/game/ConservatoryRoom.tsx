@@ -83,7 +83,7 @@ export function ConservatoryRoom({
           <div className="release-record-icon release-record-icon--large" aria-hidden="true"><i /></div>
           <p>Release Record</p>
           <blockquote>“Shipping well means staying present after deploy.”</blockquote>
-          <small>Healthy metrics reveal a recurring signal. Pattern Review unlocks.</small>
+          <small>The release is live. The Post-Release Check unlocks.</small>
         </div>
       )}
     </section>

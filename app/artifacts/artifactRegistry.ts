@@ -58,8 +58,8 @@ export const artifacts: Record<string, Artifact> = {
   },
   "star-chart": {
     id: "star-chart",
-    name: "Pattern Report",
-    shortDescription: "The right context turned noisy events into reproducible behavior.",
+    name: "Production Finding",
+    shortDescription: "Staying after deployment turned production signals into a useful finding.",
     roomOfOrigin: "observatory",
     symbol: "Loop",
     glowGroup: "Blue",

@@ -69,7 +69,7 @@ export const journeyMessages: JourneyMessage[] = [
     role: "teammate",
     time: "Second summer · Midpoint",
     color: "cyan",
-    text: "The release data looked noisy until I grouped it at the boundary we documented. Then the retry loop became visible and reproducible.",
+    text: "I stayed after the release and compared the timeline, service health, and logs. The growing worker queue and repeated attempts turned a vague alert into a finding the team could act on.",
     reaction: "🌟 5",
   },
   {

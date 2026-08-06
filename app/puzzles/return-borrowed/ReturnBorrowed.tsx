@@ -16,7 +16,7 @@ const pedestalLabels: Record<string, string> = {
   bowl: "Bowl · aligning the team",
   "toothed-circle": "Toothed circle · recovering production",
   teardrop: "Teardrop · shipping responsibly",
-  loop: "Loop · finding repeated behavior",
+  loop: "Loop · observing repeated behavior",
   triangle: "Triangle · protecting quality",
   square: "Square · designing the system",
 };

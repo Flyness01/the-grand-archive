@@ -50,14 +50,14 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     ],
     tip: "Deploy is not the end of the release; observation is part of shipping.",
   },
-  "The Unclassified Trace": {
-    objective: "Review one noisy production trace. Correlate its events at the correct service boundary, then diagnose the repeated behavior.",
+  "The Post-Release Check": {
+    objective: "Review the first fifteen minutes after a release and build one production finding supported by the timeline, metrics, and logs.",
     steps: [
-      "Compare the unclassified telemetry with known healthy patterns.",
-      "Change the service handoff without changing the recorded events.",
-      "Identify the behavior once the events form a reproducible trace.",
+      "Determine when behavior changed by comparing the baseline with the deployment marker.",
+      "Identify the unhealthy component from its service metrics.",
+      "Use the correlated log sample to diagnose what the component is doing.",
     ],
-    tip: "Use the Flow Trace from Puzzle 2 to choose the most meaningful system boundary.",
+    tip: "A strong finding explains every signal without contradicting the healthy ones.",
   },
   "The Unclear Handoff": {
     objective: "Decode a transformed message and complete an actionable engineering handoff.",

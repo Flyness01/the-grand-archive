@@ -120,7 +120,7 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   },
   "constellation-that-should-not-exist": {
     id: "constellation-that-should-not-exist",
-    title: "The Unclassified Trace",
+    title: "The Post-Release Check",
     roomId: "observatory",
     difficulty: 6,
     estimatedMinutes: 10,

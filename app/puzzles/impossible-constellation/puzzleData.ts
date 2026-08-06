@@ -1,6 +1,8 @@
-export const domeDirections = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
-export const correctDomeRotation = 5;
-export const correctConstellationShape = "quill";
+export const productionCheckSolution = {
+  window: "after-deploy",
+  service: "job-worker",
+  behavior: "retries",
+} as const;
 
 export const quillStars = [
   { id: "s1", x: 31, y: 20, size: 1.8 },
@@ -26,9 +28,9 @@ export const quillConnections = [
 ];
 
 export const impossibleConstellationHints = [
-  "The known patterns and recorded events are fixed. Change only the service handoff used to group them.",
-  "Set the handoff to the southwest marker recorded in the earlier Flow Trace.",
-  "At SW, follow repeated calls returning to the same chain. Diagnose the retry loop.",
+  "Start with time: the healthy baseline ends at the deployment marker, and the first warning appears afterward.",
+  "The web client and API success rates stay steady. Find the service whose workload rises while completed work falls.",
+  "The same request ID appears three times with increasing attempt numbers and the same failure response.",
 ];
 
 export const impossibleConstellationMosaicTiles = [

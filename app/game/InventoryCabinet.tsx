@@ -10,7 +10,7 @@ const levels: { puzzleId: string; title: string; lesson: string; roomId: RoomId 
   { puzzleId: "lantern-wall", title: "Signal Alignment", lesson: "Align the team", roomId: "grand-hall" },
   { puzzleId: "stopped-clock", title: "Incident 14", lesson: "Recover production", roomId: "workshop" },
   { puzzleId: "sleeping-conservatory", title: "Release Runbook", lesson: "Ship responsibly", roomId: "conservatory" },
-  { puzzleId: "constellation-that-should-not-exist", title: "Unclassified Trace", lesson: "Find the pattern", roomId: "observatory" },
+  { puzzleId: "constellation-that-should-not-exist", title: "Post-Release Check", lesson: "Observe production", roomId: "observatory" },
   { puzzleId: "mirrored-typewriter", title: "Unclear Handoff", lesson: "Communicate clearly", roomId: "archivists-outer-office" },
   { puzzleId: "hall-of-reflections", title: "Meaningful Difference", lesson: "Protect quality", roomId: "hall-of-reflections" },
   { puzzleId: "master-blueprint", title: "Architecture Decision", lesson: "Design the system", roomId: "workshop" },

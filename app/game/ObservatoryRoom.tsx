@@ -41,18 +41,18 @@ export function ObservatoryRoom({
       <div className="trace-lab-grid" aria-hidden="true" />
       <div className="observatory-room__platform" aria-hidden="true" />
       <header className="library-room__title">
-        <p>Find signal inside noise</p>
-        <h1 id="observatory-title">Trace Lab</h1>
-        <small>{restored ? "The recurring behavior is now reproducible" : "One production trace matches no known healthy pattern"}</small>
+        <p>Observe what happened after shipping</p>
+        <h1 id="observatory-title">Production Review</h1>
+        <small>{restored ? "The post-release finding is documented" : "The release is live, but one production signal has changed"}</small>
       </header>
 
       <Hotspot
         className="telescope-hotspot trace-console-hotspot"
-        label={solved ? "Inspect the documented production pattern" : "Inspect the unclassified telemetry"}
+        label={solved ? "Inspect the documented production finding" : "Review the post-release dashboard"}
         onActivate={() => setPuzzleOpen(true)}
       >
         <span className="trace-console" aria-hidden="true"><i /><i /><i /></span>
-        <span>{solved ? "Pattern documented" : "Group the telemetry"}</span>
+        <span>{solved ? "Finding documented" : "Review production"}</span>
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
@@ -61,8 +61,8 @@ export function ObservatoryRoom({
 
       {puzzleOpen && (
         <PuzzleModal
-          title="The Unclassified Trace"
-          subtitle="Chapter 6 of 10 · Find the pattern"
+          title="The Post-Release Check"
+          subtitle="Chapter 6 of 10 · Observe production"
           onClose={() => setPuzzleOpen(false)}
         >
           <ImpossibleConstellation
@@ -77,8 +77,8 @@ export function ObservatoryRoom({
       {rewardMoment && (
         <div className="reward-moment reward-moment--stars" role="status">
           <div className="pattern-report-icon pattern-report-icon--large" aria-hidden="true"><i /><i /><i /></div>
-          <p>Pattern Report</p>
-          <blockquote>“Noise became useful when the right context made it repeatable.”</blockquote>
+          <p>Production Finding</p>
+          <blockquote>“Shipping became learning when the team stayed to read the signals.”</blockquote>
           <small>The finding needs a clear handoff. Team Lead’s Office unlocks.</small>
         </div>
       )}

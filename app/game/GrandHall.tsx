@@ -158,12 +158,12 @@ export function GrandHall({
         onClick={onEnterObservatory}
         aria-label={
           conservatorySolved
-            ? "Enter Pattern Review"
-            : "Pattern Review is locked"
+            ? "Enter Production Review"
+            : "Production Review is locked"
         }
       >
         <span><i /><i /><i /></span>
-        <b>Pattern Review</b>
+        <b>Production Review</b>
         <small>{conservatorySolved ? "Runtime signals available" : "Waiting for release data"}</small>
       </button>
 
@@ -280,7 +280,7 @@ export function GrandHall({
           : observatorySolved
           ? "The patterns are clear enough to discuss with your team lead."
           : conservatorySolved
-          ? "Release data is ready for Pattern Review."
+          ? "Release data is ready for the Post-Release Check."
           : clockSolved
           ? "The repaired build unlocks the Release Cycle."
           : lanternWallSolved

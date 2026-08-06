@@ -23,7 +23,7 @@ export const pedestalSolution = {
 export const finaleHints = [
   "The Handoff Note completes the center only after the other eight project records have been connected to their lessons.",
   "Match each record’s symbol to a review position, then confirm that its lesson describes the work represented there.",
-  "Crescent Context Card, connected-path Flow Trace, bowl Alignment Note, toothed Incident Review, teardrop Release Record, loop Pattern Report, triangle Defect Report, and square Architecture Decision. The Handoff Note finishes the center.",
+  "Crescent Context Card, connected-path Flow Trace, bowl Alignment Note, toothed Incident Review, teardrop Release Record, loop Production Finding, triangle Defect Report, and square Architecture Decision. The Handoff Note finishes the center.",
 ];
 
 export const finalMosaicTiles = Array.from({ length: 625 }, (_, index) => index);

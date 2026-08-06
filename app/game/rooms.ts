@@ -47,7 +47,7 @@ export const rooms: Record<RoomId, RoomDefinition> = {
   },
   observatory: {
     id: "observatory",
-    name: "Pattern Review",
+    name: "Production Review",
     eyebrow: "Runtime behavior needs explanation",
     connections: ["grand-hall"],
     initiallyUnlocked: false,
