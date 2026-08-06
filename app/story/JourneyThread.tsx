@@ -32,8 +32,8 @@ export function JourneyThread({
         </header>
 
         <div className="journey-thread__progress">
-          <span style={{ width: `${Math.min(100, completedMilestones * 10)}%` }} />
-          <b>{completedMilestones}/10 milestones</b>
+          <span style={{ width: `${Math.min(100, completedMilestones * 20)}%` }} />
+          <b>{completedMilestones}/5 milestones</b>
         </div>
 
         <div className="journey-thread__messages">
@@ -54,7 +54,7 @@ export function JourneyThread({
               </div>
             </article>
           ))}
-          {completedMilestones < 10 && (
+          {completedMilestones < 5 && (
             <div className="journey-thread__next">
               <span>🔒</span>
               The next message appears when you complete another milestone.

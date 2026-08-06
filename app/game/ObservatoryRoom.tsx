@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { ImpossibleConstellation } from "../puzzles/impossible-constellation/ImpossibleConstellation";
 import { impossibleConstellationMosaicTiles } from "../puzzles/impossible-constellation/puzzleData";
 import { Hotspot } from "./Hotspot";
@@ -33,7 +33,7 @@ export function ObservatoryRoom({
       setRewardMoment(false);
       setPuzzleOpen(false);
       onContinueToIncident();
-    }, 5200);
+    }, 10200);
   }
 
   return (
@@ -41,18 +41,18 @@ export function ObservatoryRoom({
       <div className="trace-lab-grid" aria-hidden="true" />
       <div className="observatory-room__platform" aria-hidden="true" />
       <header className="library-room__title">
-        <p>Observe what happened after shipping</p>
-        <h1 id="observatory-title">Production Review</h1>
-        <small>{restored ? "The post-release finding is documented" : "The release is live, but one production signal has changed"}</small>
+        <p>Bring five moments into one shared story</p>
+        <h1 id="observatory-title">Timeline Room</h1>
+        <small>{restored ? "The team story is complete" : "The same journey is recorded from three different viewpoints"}</small>
       </header>
 
       <Hotspot
         className="telescope-hotspot trace-console-hotspot"
-        label={solved ? "Inspect the documented production finding" : "Review the post-release dashboard"}
+        label={solved ? "Inspect the completed shared timeline" : "Align the shared timeline"}
         onActivate={() => setPuzzleOpen(true)}
       >
         <span className="trace-console" aria-hidden="true"><i /><i /><i /></span>
-        <span>{solved ? "Finding documented" : "Review production"}</span>
+        <span>{solved ? "Story complete" : "Open the timelines"}</span>
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
@@ -61,8 +61,8 @@ export function ObservatoryRoom({
 
       {puzzleOpen && (
         <PuzzleModal
-          title="The Post-Release Check"
-          subtitle="Chapter 7 of 10 · Observe production"
+          title="The Shared Timeline"
+          subtitle="Chapter 5 of 5 · Bring the story together"
           onClose={() => setPuzzleOpen(false)}
         >
           <ImpossibleConstellation
@@ -75,11 +75,16 @@ export function ObservatoryRoom({
       )}
 
       {rewardMoment && (
-        <div className="reward-moment reward-moment--stars" role="status">
-          <div className="pattern-report-icon pattern-report-icon--large" aria-hidden="true"><i /><i /><i /></div>
-          <p>Production Finding</p>
-          <blockquote>“Shipping became learning when the team stayed to read the signals.”</blockquote>
-          <small>The unhealthy behavior is visible. Incident Response unlocks.</small>
+        <div className="reward-moment reward-moment--manuscript" role="status">
+          <div className="project-lantern-burst" aria-hidden="true">
+            {["Context", "Questions", "Docs", "Trace", "Systems", "Signals", "Design", "Product", "Frontend", "API", "Reviews", "PRs", "1:1s", "Mentorship", "Patience", "Kindness", "Trust", "Growth", "Learning", "Handoffs", "Support", "Curiosity", "Confidence", "Teamwork", "Trails", "Pets", "Laughter", "Summer One", "Summer Two", "Enterprise", "Memories", "Lessons", "People", "Gratitude", "Care", "Heart"].map((lesson, index) => (
+              <span style={{ "--card-index": index } as CSSProperties} key={lesson}><i>{String(index + 1).padStart(2, "0")}</i><b>{lesson}</b></span>
+            ))}
+          </div>
+          <div className="retrospective-icon retrospective-icon--large" aria-hidden="true"><i /></div>
+          <p>We Built It Together</p>
+          <blockquote>“Five moments. Two summers. One very full heart.”</blockquote>
+          <small>The lanterns are carrying the story into the Debrief Room.</small>
         </div>
       )}
     </section>

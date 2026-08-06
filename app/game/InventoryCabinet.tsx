@@ -8,13 +8,8 @@ const levels: { puzzleId: string; title: string; lesson: string; roomId: RoomId 
   { puzzleId: "librarians-shelf", title: "Documentation Shelf", lesson: "Learn the context", roomId: "library" },
   { puzzleId: "cartographers-missing-route", title: "Missing Request Path", lesson: "Trace the system", roomId: "map-room" },
   { puzzleId: "lantern-wall", title: "Signal Alignment", lesson: "Align the team", roomId: "grand-hall" },
-  { puzzleId: "master-blueprint", title: "Architecture Resilience Review", lesson: "Design for failure", roomId: "workshop" },
-  { puzzleId: "hall-of-reflections", title: "CI Failure Pattern", lesson: "Find the shared failure", roomId: "hall-of-reflections" },
-  { puzzleId: "sleeping-conservatory", title: "Release Runbook", lesson: "Ship responsibly", roomId: "conservatory" },
-  { puzzleId: "constellation-that-should-not-exist", title: "Post-Release Check", lesson: "Observe production", roomId: "observatory" },
-  { puzzleId: "stopped-clock", title: "Incident 14", lesson: "Respond to failure", roomId: "workshop" },
-  { puzzleId: "mirrored-typewriter", title: "Unclear Handoff", lesson: "Communicate clearly", roomId: "archivists-outer-office" },
-  { puzzleId: "return-what-was-borrowed", title: "Final Handoff", lesson: "Tell the project story", roomId: "grand-hall" },
+  { puzzleId: "mirrored-typewriter", title: "Word-Ends Handoff", lesson: "Communicate clearly", roomId: "archivists-outer-office" },
+  { puzzleId: "constellation-that-should-not-exist", title: "Shared Timeline", lesson: "Complete the team story", roomId: "observatory" },
 ];
 
 export function InventoryCabinet({
@@ -52,14 +47,14 @@ export function InventoryCabinet({
         <h2 id="inventory-title">Wins & Lessons</h2>
         <div className="inventory__tabs" role="tablist" aria-label="Wins and levels">
           <button role="tab" aria-selected={activeTab === "wins"} onClick={() => setActiveTab("wins")}>
-            Wins <small>{artifactIds.length}/10</small>
+            Wins <small>{artifactIds.length}/5</small>
           </button>
           <button role="tab" aria-selected={activeTab === "levels"} onClick={() => setActiveTab("levels")}>
-            Levels <small>{solvedPuzzleIds.length}/10</small>
+            Levels <small>{solvedPuzzleIds.length}/5</small>
           </button>
         </div>
         {activeTab === "wins" ? <div className="inventory__shelves">
-          {Array.from({ length: 10 }, (_, index) => {
+          {Array.from({ length: 5 }, (_, index) => {
             const artifact = artifactIds[index]
               ? artifacts[artifactIds[index]]
               : undefined;
@@ -105,10 +100,8 @@ export function InventoryCabinet({
           })}
         </div> : (
           <div className="level-tab" role="tabpanel" aria-label="Level navigator">
-            {levels.map((level, index) => ({ level, index })).filter(({ level, index }) =>
-              index < 8 ||
-              solvedPuzzleIds.includes(level.puzzleId) ||
-              unlockedPuzzleIds.includes(level.puzzleId),
+            {levels.map((level, index) => ({ level, index })).filter(({ level }) =>
+              solvedPuzzleIds.includes(level.puzzleId) || unlockedPuzzleIds.includes(level.puzzleId),
             ).map(({ level, index }) => {
               const completed = solvedPuzzleIds.includes(level.puzzleId);
               const unlocked = completed || unlockedPuzzleIds.includes(level.puzzleId) || index === 0;

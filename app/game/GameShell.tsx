@@ -16,6 +16,22 @@ import { ArchivistsStudy } from "./ArchivistsStudy";
 import { JourneyThread } from "../story/JourneyThread";
 import { createInitialState, gameReducer, readSave, writeSave } from "./state";
 
+const activePuzzleIds = [
+  "librarians-shelf",
+  "cartographers-missing-route",
+  "lantern-wall",
+  "mirrored-typewriter",
+  "constellation-that-should-not-exist",
+];
+
+const activeArtifactIds = [
+  "feather-bookmark",
+  "navigators-compass",
+  "brass-lantern",
+  "leather-journal",
+  "star-chart",
+];
+
 export function GameShell() {
   const [state, dispatch] = useReducer(gameReducer, undefined, createInitialState);
   const [hydrated, setHydrated] = useState(false);
@@ -25,10 +41,6 @@ export function GameShell() {
   const [resetOpen, setResetOpen] = useState(false);
   const [saveVisible, setSaveVisible] = useState(false);
   const [lanternWallOpen, setLanternWallOpen] = useState(false);
-  const [workshopEntry, setWorkshopEntry] = useState<{
-    target: "incident" | "blueprint";
-    request: number;
-  } | null>(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -55,15 +67,10 @@ export function GameShell() {
     [],
   );
 
-  function enterWorkshop(target: "incident" | "blueprint") {
-    setWorkshopEntry((current) => ({
-      target,
-      request: (current?.request ?? 0) + 1,
-    }));
-    dispatch({ type: "ENTER_ROOM", roomId: "workshop" });
-  }
-
   if (!hydrated) return <div className="loading-screen">Opening the workspace…</div>;
+
+  const activeSolvedIds = state.solvedPuzzleIds.filter((id) => activePuzzleIds.includes(id));
+  const activeCollectedIds = state.collectedArtifactIds.filter((id) => activeArtifactIds.includes(id));
 
   const rootClasses = [
     "game",
@@ -87,44 +94,15 @@ export function GameShell() {
               lanternWallUnlocked={state.unlockedPuzzleIds.includes("lantern-wall")}
               lanternWallSolved={state.solvedPuzzleIds.includes("lantern-wall")}
               onInspectLanternWall={() => setLanternWallOpen(true)}
-              onEnterWorkshop={() => enterWorkshop("blueprint")}
-              clockSolved={state.solvedPuzzleIds.includes("stopped-clock")}
-              onEnterConservatory={() =>
-                dispatch({ type: "ENTER_ROOM", roomId: "conservatory" })
-              }
-              conservatorySolved={state.solvedPuzzleIds.includes("sleeping-conservatory")}
-              blueprintSolved={state.solvedPuzzleIds.includes("master-blueprint")}
-              finaleSolved={state.solvedPuzzleIds.includes("return-what-was-borrowed")}
-              finaleHintCount={state.usedHints["return-what-was-borrowed"] ?? 0}
-              onUseFinaleHint={() =>
-                dispatch({ type: "USE_HINT", puzzleId: "return-what-was-borrowed" })
-              }
-              onSolveFinale={(mosaicTileIds) =>
-                dispatch({
-                  type: "SOLVE_PUZZLE",
-                  puzzleId: "return-what-was-borrowed",
-                  artifactId: "final-manuscript",
-                  mosaicTileIds,
-                  restoreRoom: "grand-hall",
-                  clueId: "archivists-study-open",
-                })
-              }
-              onEnterStudy={() =>
-                dispatch({ type: "ENTER_ROOM", roomId: "archivists-study" })
-              }
-              observatorySolved={state.solvedPuzzleIds.includes("constellation-that-should-not-exist")}
+              finaleSolved={state.solvedPuzzleIds.includes("constellation-that-should-not-exist")}
               typewriterSolved={state.solvedPuzzleIds.includes("mirrored-typewriter")}
-              reflectionsSolved={state.solvedPuzzleIds.includes("hall-of-reflections")}
               handoffUnlocked={state.unlockedPuzzleIds.includes("mirrored-typewriter")}
-              finaleUnlocked={state.unlockedPuzzleIds.includes("return-what-was-borrowed")}
+              finaleUnlocked={state.unlockedPuzzleIds.includes("constellation-that-should-not-exist")}
               onEnterObservatory={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "observatory" })
               }
               onEnterOuterOffice={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "archivists-outer-office" })
-              }
-              onEnterReflections={() =>
-                dispatch({ type: "ENTER_ROOM", roomId: "hall-of-reflections" })
               }
               onEnterLibrary={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "library" })
@@ -187,8 +165,7 @@ export function GameShell() {
             />
           ) : state.currentRoom === "workshop" ? (
             <WorkshopRoom
-              key={`workshop-entry-${workshopEntry?.request ?? 0}`}
-              entryTarget={workshopEntry?.target}
+              entryTarget={undefined}
               incidentUnlocked={state.unlockedPuzzleIds.includes("stopped-clock")}
               restored={state.restorationStages.workshop > 0}
               solved={state.solvedPuzzleIds.includes("stopped-clock")}
@@ -203,7 +180,7 @@ export function GameShell() {
                   artifactId: "clockwork-gear",
                   mosaicTileIds,
                   restoreRoom: "workshop",
-                  unlockPuzzleId: "mirrored-typewriter",
+                  unlockPuzzleId: "constellation-that-should-not-exist",
                   clueId: "incident-handoff-ready",
                 })
               }
@@ -275,14 +252,15 @@ export function GameShell() {
                   artifactId: "star-chart",
                   mosaicTileIds,
                   restoreRoom: "observatory",
-                  unlockPuzzleId: "stopped-clock",
-                  clueId: "incident-signal-detected",
+                  clueId: "team-story-complete",
                 })
               }
               onReturn={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }
-              onContinueToIncident={() => enterWorkshop("incident")}
+              onContinueToIncident={() =>
+                dispatch({ type: "ENTER_ROOM", roomId: "archivists-study" })
+              }
             />
           ) : state.currentRoom === "archivists-outer-office" ? (
             <ArchivistsOuterOffice
@@ -299,7 +277,7 @@ export function GameShell() {
                   artifactId: "leather-journal",
                   mosaicTileIds,
                   restoreRoom: "archivists-outer-office",
-                  unlockPuzzleId: "return-what-was-borrowed",
+                  unlockPuzzleId: "constellation-that-should-not-exist",
                   clueId: "final-review-ready",
                 })
               }
@@ -307,7 +285,7 @@ export function GameShell() {
                 dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }
               onContinueToFinale={() =>
-                dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
+                dispatch({ type: "ENTER_ROOM", roomId: "observatory" })
               }
             />
           ) : state.currentRoom === "hall-of-reflections" ? (
@@ -358,23 +336,26 @@ export function GameShell() {
                   artifactId: "brass-lantern",
                   mosaicTileIds,
                   restoreRoom: "grand-hall",
-                  unlockPuzzleId: "master-blueprint",
-                  clueId: "design-review-ready",
+                  unlockPuzzleId: "mirrored-typewriter",
+                  clueId: "handoff-pattern-ready",
                 })
               }
               onClose={() => setLanternWallOpen(false)}
-              onContinueToWorkshop={() => enterWorkshop("blueprint")}
+              onContinueToWorkshop={() => {
+                setLanternWallOpen(false);
+                dispatch({ type: "ENTER_ROOM", roomId: "archivists-outer-office" });
+              }}
             />
           )}
 
           <div className="utility-bar" aria-label="Game controls">
             <button onClick={() => setJourneyOpen(true)}>
               <span aria-hidden="true">#</span>
-              Story thread {state.solvedPuzzleIds.length}/10
+              Story thread {activeSolvedIds.length}/5
             </button>
             <button onClick={() => setInventoryOpen(true)}>
               <span aria-hidden="true">◇</span>
-              Wins {state.collectedArtifactIds.length}/10
+              Wins {activeCollectedIds.length}/5
             </button>
             <button
               onClick={() =>
@@ -400,7 +381,7 @@ export function GameShell() {
 
           {journeyOpen && (
             <JourneyThread
-              completedMilestones={state.solvedPuzzleIds.length}
+              completedMilestones={activeSolvedIds.length}
               onClose={() => setJourneyOpen(false)}
             />
           )}
@@ -512,14 +493,12 @@ export function GameShell() {
           )}
           {inventoryOpen && (
             <InventoryCabinet
-              artifactIds={state.collectedArtifactIds}
-              solvedPuzzleIds={state.solvedPuzzleIds}
+              artifactIds={activeCollectedIds}
+              solvedPuzzleIds={activeSolvedIds}
               unlockedPuzzleIds={state.unlockedPuzzleIds}
               onSelectLevel={(roomId, levelNumber) => {
                 setInventoryOpen(false);
-                if (levelNumber === 4) enterWorkshop("blueprint");
-                else if (levelNumber === 8) enterWorkshop("incident");
-                else dispatch({ type: "ENTER_ROOM", roomId });
+                dispatch({ type: "ENTER_ROOM", roomId });
                 if (levelNumber === 3) setLanternWallOpen(true);
               }}
               onClose={() => setInventoryOpen(false)}

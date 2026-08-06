@@ -36,7 +36,7 @@ export function LanternWallRoom({
     <>
       <PuzzleModal
         title="Signal Alignment"
-        subtitle="Chapter 3 of 10 · Align the team"
+        subtitle="Chapter 3 of 5 · Align the team"
         onClose={onClose}
       >
         <LanternWall

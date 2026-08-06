@@ -2,35 +2,37 @@ export type SignalRowId = "release" | "queue" | "worker";
 
 export const signalRows: { id: SignalRowId; label: string; startOffset: number; entries: { time: string; value: string; incident?: boolean }[] }[] = [
   {
-    id: "release", label: "Release activity", startOffset: 2,
+    id: "release", label: "The work", startOffset: 0,
     entries: [
-      { time: "13:55", value: "Ready" }, { time: "14:00", value: "Deploy" }, { time: "14:05", value: "v2.7 live", incident: true },
-      { time: "14:10", value: "Steady" }, { time: "14:15", value: "Steady" }, { time: "14:20", value: "Steady" }, { time: "14:25", value: "Steady" },
+      { time: "Week 1", value: "Read docs" }, { time: "Week 3", value: "Trace request" }, { time: "Sprint", value: "Align signals" },
+      { time: "Handoff", value: "Decode note" }, { time: "Last day", value: "Reflect", incident: true },
     ],
   },
   {
-    id: "queue", label: "Waiting jobs", startOffset: 5,
+    id: "queue", label: "The team", startOffset: 3,
     entries: [
-      { time: "13:55", value: "18" }, { time: "14:00", value: "21" }, { time: "14:05", value: "96 ↑", incident: true },
-      { time: "14:10", value: "164 ↑" }, { time: "14:15", value: "246 ↑" }, { time: "14:20", value: "301 ↑" }, { time: "14:25", value: "338 ↑" },
+      { time: "Week 1", value: "Welcome" }, { time: "Week 3", value: "Pairing" }, { time: "Sprint", value: "Shared decision" },
+      { time: "Handoff", value: "Clear context" }, { time: "Last day", value: "Thank you", incident: true },
     ],
   },
   {
-    id: "worker", label: "Worker activity", startOffset: 0,
+    id: "worker", label: "What stayed", startOffset: 4,
     entries: [
-      { time: "13:55", value: "Complete" }, { time: "14:00", value: "Complete" }, { time: "14:05", value: "Retry #1", incident: true },
-      { time: "14:10", value: "Retry #2" }, { time: "14:15", value: "Retry #3" }, { time: "14:20", value: "Retry #4" }, { time: "14:25", value: "Retry #5" },
+      { time: "Week 1", value: "Context" }, { time: "Week 3", value: "Understanding" }, { time: "Sprint", value: "Collaboration" },
+      { time: "Handoff", value: "Clarity" }, { time: "Last day", value: "Together", incident: true },
     ],
   },
 ];
 
-// All three 14:05 signals must land in the center inspection column.
-export const productionCheckSolution: Record<SignalRowId, number> = { release: 6, queue: 6, worker: 6 };
+// All three Last day moments must land in the center reflection column.
+export const productionCheckSolution: Record<SignalRowId, number> = { release: 2, queue: 2, worker: 2 };
+export const sharedTimelinePhrase = "WE BUILT IT TOGETHER";
 
 export const impossibleConstellationHints = [
-  "Each strip contains the same times in a different starting position. Use the arrows to put matching times in vertical columns.",
-  "Find 14:05 on every strip. Move all three 14:05 cells into the softly highlighted center column.",
-  "The aligned center should read: v2.7 live, 96 waiting jobs, and Retry #1.",
+  "Each strip contains the same five moments in a different starting position. Put matching moment labels in vertical columns.",
+  "Find Last day on every strip. Move all three Last day cells into the softly highlighted center column.",
+  "The aligned center should read: Reflect, Thank you, and Together.",
+  "The final sentence begins with WE and remembers that no meaningful project is built alone.",
 ];
 
 export const impossibleConstellationMosaicTiles = [

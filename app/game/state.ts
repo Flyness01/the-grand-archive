@@ -7,7 +7,11 @@ import type {
 } from "./types";
 
 export const SAVE_KEY = "grand-archive-save";
-export const SAVE_VERSION = 2;
+export const SAVE_VERSION = 3;
+
+const fivePuzzleIds = ["librarians-shelf", "cartographers-missing-route", "lantern-wall", "mirrored-typewriter", "constellation-that-should-not-exist"];
+const fiveArtifactIds = ["feather-bookmark", "navigators-compass", "brass-lantern", "leather-journal", "star-chart"];
+const fiveRooms: RoomId[] = ["grand-hall", "library", "map-room", "archivists-outer-office", "observatory", "archivists-study"];
 
 const roomIds: RoomId[] = [
   "grand-hall",
@@ -131,14 +135,15 @@ export function readSave(): GameState | null {
     const raw = window.localStorage.getItem(SAVE_KEY);
     if (!raw) return null;
     const saved = JSON.parse(raw) as { version: number; state: GameState };
-    if (saved.version === SAVE_VERSION) return saved.state;
-    if (saved.version === 1) {
+    if (saved.version >= 1 && saved.version <= SAVE_VERSION) {
+      const solvedPuzzleIds = saved.state.solvedPuzzleIds.filter((id) => fivePuzzleIds.includes(id));
+      const unlockedPuzzleIds = fivePuzzleIds.filter((id, index) => index === 0 || solvedPuzzleIds.includes(fivePuzzleIds[index - 1]));
       return {
         ...saved.state,
-        restorationStages: {
-          ...saved.state.restorationStages,
-          "archivists-outer-office": 0,
-        },
+        currentRoom: fiveRooms.includes(saved.state.currentRoom) ? saved.state.currentRoom : "grand-hall",
+        solvedPuzzleIds,
+        unlockedPuzzleIds,
+        collectedArtifactIds: saved.state.collectedArtifactIds.filter((id) => fiveArtifactIds.includes(id)),
       };
     }
     return null;

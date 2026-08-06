@@ -50,16 +50,16 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     ],
     tip: "Deploy is not the end of the release; observation is part of shipping.",
   },
-  "The Post-Release Check": {
-    objective: "Repair a scrambled monitoring export by aligning three timelines on the shared moment production changed.",
+  "The Shared Timeline": {
+    objective: "Align three viewpoints on the same sequence, then use the completed journey to finish the team’s final sentence.",
     steps: [
       "Use the left and right arrows to move each strip.",
-      "Place matching timestamps in vertical columns across all three strips.",
-      "Put 14:05 in the shaded center window, then inspect what happened together.",
+      "Place matching moment labels in vertical columns across all three strips.",
+      "Put Last day in the shaded center window, inspect the completed journey, and finish the sentence below.",
     ],
-    tip: "You only need to match times. At 14:05, the release, queue jump, and first retry should line up.",
+    tip: "You only need to match moment labels. The center should read Reflect, Thank you, and Together.",
   },
-  "The Unclear Handoff": {
+  "The Word-Ends Handoff": {
     objective: "Decode a transformed message and complete an actionable engineering handoff.",
     steps: [
       "Compare the sample inputs with their resulting outputs.",

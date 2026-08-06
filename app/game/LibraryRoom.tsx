@@ -73,7 +73,7 @@ export function LibraryRoom({
       {puzzleOpen && (
         <PuzzleModal
           title="The Documentation Shelf"
-          subtitle="Chapter 1 of 10 · Learn the context"
+          subtitle="Chapter 1 of 5 · Learn the context"
           onClose={() => setPuzzleOpen(false)}
         >
           <LibrariansShelf

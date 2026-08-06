@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { HintPanel } from "../../game/HintPanel";
-import { impossibleConstellationHints, productionCheckSolution, signalRows, type SignalRowId } from "./puzzleData";
+import { impossibleConstellationHints, productionCheckSolution, sharedTimelinePhrase, signalRows, type SignalRowId } from "./puzzleData";
 import { validateImpossibleConstellation } from "./validator";
 
 function rotate<T>(items: T[], offset: number) {
@@ -16,20 +16,33 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
   const initial = Object.fromEntries(signalRows.map((row) => [row.id, alreadySolved ? productionCheckSolution[row.id] : row.startOffset])) as Record<SignalRowId, number>;
   const [offsets, setOffsets] = useState(initial);
   const [solved, setSolved] = useState(alreadySolved);
-  const [feedback, setFeedback] = useState(alreadySolved ? "The three signals remain aligned at 14:05." : "");
+  const [aligned, setAligned] = useState(alreadySolved);
+  const [phrase, setPhrase] = useState(alreadySolved ? sharedTimelinePhrase : "");
+  const [feedback, setFeedback] = useState(alreadySolved ? "The three viewpoints remain aligned on the shared journey." : "");
 
   function shift(id: SignalRowId, amount: number) {
     if (solved) return;
-    setOffsets((current) => ({ ...current, [id]: (current[id] + amount + 7) % 7 }));
+    const length = signalRows[0].entries.length;
+    setOffsets((current) => ({ ...current, [id]: (current[id] + amount + length) % length }));
     setFeedback("");
   }
 
   function inspectWindow() {
-    if (validateImpossibleConstellation(offsets)) {
-      setSolved(true);
-      setFeedback("The shared moment is visible: v2.7 goes live, waiting work jumps, and retries begin at 14:05.");
+    const correct = Object.entries(productionCheckSolution).every(([key, value]) => offsets[key as SignalRowId] === value);
+    if (correct) {
+      setAligned(true);
+      setFeedback("The whole journey now lines up, from the first week to the last day. Finish the sentence below.");
     } else {
-      setFeedback("The center column still mixes different times. Align matching timestamps vertically, with 14:05 in the center.");
+      setFeedback("The center column still mixes different moments. Align matching labels vertically, with Last day in the center.");
+    }
+  }
+
+  function finishStory() {
+    if (validateImpossibleConstellation({ ...offsets, phrase })) {
+      setSolved(true);
+      setFeedback("Exactly. Different viewpoints became one story: we built it together.");
+    } else {
+      setFeedback("Almost. Use the words collected beneath the timeline and complete the sentence exactly.");
     }
   }
 
@@ -37,13 +50,13 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
     <div className="constellation-puzzle production-check telemetry-alignment">
       <div className="constellation-puzzle__workspace production-check__workspace">
         <header className="production-check__header">
-          <p>Release 2.7 · scrambled monitoring export</p>
-          <strong>Align the three timelines to reveal the moment production changed.</strong>
-          <small><b>How it works:</b> matching times belong in the same vertical column. The shaded center is the incident window.</small>
+          <p>Two summers · three scrambled viewpoints</p>
+          <strong>Align the three timelines to reveal one shared journey.</strong>
+          <small><b>How it works:</b> matching moment labels belong in the same vertical column. Put “Last day” in the shaded center.</small>
         </header>
 
-        <div className="telemetry-board" aria-label="Three movable monitoring timelines">
-          <div className="telemetry-focus" aria-hidden="true"><span>Incident window</span></div>
+        <div className="telemetry-board" aria-label="Three movable journey timelines">
+          <div className="telemetry-focus" aria-hidden="true"><span>Final reflection</span></div>
           {signalRows.map((row) => (
             <section className="telemetry-row" key={row.id} aria-label={row.label}>
               <div className="telemetry-row__controls">
@@ -61,9 +74,15 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
           ))}
         </div>
 
+        {aligned && <section className="shared-story-finish" aria-label="Complete the shared story">
+          <p><span>We learned</span><span>We traced</span><span>We aligned</span><span>We handed off</span><span>None of it alone</span></p>
+          <label htmlFor="shared-story-answer">Complete the sentence</label>
+          <div><b>WE</b><input id="shared-story-answer" value={phrase.replace(/^WE\s*/i, "")} onChange={(event) => setPhrase(`WE ${event.target.value}`)} disabled={solved} placeholder="_____ IT ________" autoComplete="off" /><button onClick={finishStory} disabled={solved}>Complete the story</button></div>
+        </section>}
+
         <div className="constellation-actions">
-          <p aria-live="polite">{feedback || "Use the arrows. You are matching times—not interpreting technical metrics."}</p>
-          {!solved ? <button onClick={inspectWindow}>Inspect center window</button> : !alreadySolved ? <button onClick={onCollectReward}>Save the production finding</button> : <small>The production finding has been saved.</small>}
+          <p aria-live="polite">{feedback || "Use the arrows to match the same moments vertically. No engineering knowledge is needed."}</p>
+          {!aligned ? <button onClick={inspectWindow}>Check the timeline</button> : solved && !alreadySolved ? <button onClick={onCollectReward}>Light the final lanterns</button> : solved ? <small>The shared timeline has been saved.</small> : null}
         </div>
       </div>
       <HintPanel hints={impossibleConstellationHints} revealedCount={hintCount} onReveal={onUseHint} />

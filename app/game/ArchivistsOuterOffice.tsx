@@ -42,9 +42,9 @@ export function ArchivistsOuterOffice({
       <div className="outer-office__desk" aria-hidden="true"><i /><i /></div>
       <div className="outer-office__files" aria-hidden="true"><i /><i /><i /><i /></div>
       <header className="library-room__title">
-        <p>Turn a finding into shared context</p>
-        <h1 id="outer-office-title">Team Lead’s Office</h1>
-        <small>{restored ? "The handoff is concise, clear, and actionable" : "A correct finding is useful only when someone else can act on it"}</small>
+        <p>Recognize the pattern hidden inside a message</p>
+        <h1 id="outer-office-title">Handoff Desk</h1>
+        <small>{restored ? "The word pattern has been decoded" : "Examples reveal how the beginning and ending of each word change"}</small>
       </header>
 
       <Hotspot
@@ -60,8 +60,8 @@ export function ArchivistsOuterOffice({
 
       {puzzleOpen && (
         <PuzzleModal
-          title="The Unclear Handoff"
-          subtitle="Chapter 9 of 10 · Communicate clearly"
+          title="The Word-Ends Handoff"
+          subtitle="Chapter 4 of 5 · Communicate clearly"
           onClose={() => setPuzzleOpen(false)}
         >
           <MirroredTypewriter
@@ -78,7 +78,7 @@ export function ArchivistsOuterOffice({
           <div className="handoff-note-icon handoff-note-icon--large" aria-hidden="true"><i /></div>
           <p>Handoff Note</p>
           <blockquote>“Clarity is part of the implementation.”</blockquote>
-          <small>The work is understood and ready to leave behind. The Final Handoff unlocks.</small>
+          <small>The message is understood. The Shared Timeline unlocks.</small>
         </div>
       )}
     </section>
