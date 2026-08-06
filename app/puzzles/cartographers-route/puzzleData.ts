@@ -194,7 +194,6 @@ export const mapRoutes: MapRoute[] = [
   { from: "south-bridge", to: "old-quarry", river: "Greywater" },
   { from: "watch-hill", to: "north-ferry", river: "Greywater" },
   { from: "watch-hill", to: "old-quarry" },
-  { from: "watch-hill", to: "chapel-lamp", river: "Lark" },
   { from: "north-ferry", to: "lantern-cross" },
   { from: "chapel-lamp", to: "lantern-cross" },
   { from: "chapel-lamp", to: "pine-chapel" },
