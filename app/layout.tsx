@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   openGraph: {
     title: "The Work We Shared — A Team Story",
-    description: "Ten moments. Two summers. One story about the work we shared.",
+    description: "Five moments. Two summers. One story about the work we shared.",
     images: [{ url: "/og.png", width: 1536, height: 909 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "The Work We Shared — A Team Story",
-    description: "Ten moments. Two summers. One story about the work we shared.",
+    description: "Five moments. Two summers. One story about the work we shared.",
     images: ["/og.png"],
   },
 };
