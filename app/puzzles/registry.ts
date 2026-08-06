@@ -153,7 +153,7 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   },
   "master-blueprint": {
     id: "master-blueprint",
-    title: "The Architecture Decision",
+    title: "The Architecture Resilience Review",
     roomId: "workshop",
     difficulty: 8,
     estimatedMinutes: 12,

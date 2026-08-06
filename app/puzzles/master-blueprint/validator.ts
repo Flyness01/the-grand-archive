@@ -1,19 +1,8 @@
-import {
-  blueprintLayerOrder,
-  blueprintSolution,
-  type BlueprintLayerId,
-} from "./puzzleData";
-
-export function normalizeBlueprintRotation(value: number) {
-  return ((value % 360) + 360) % 360;
-}
+import { architectureSolution } from "./puzzleData";
 
 export function validateMasterBlueprint(input: unknown) {
-  if (!input || typeof input !== "object") return false;
-  const rotations = input as Partial<Record<BlueprintLayerId, unknown>>;
-  return blueprintLayerOrder.every((layer) =>
-    typeof rotations[layer] === "number"
-    && normalizeBlueprintRotation(rotations[layer] as number) === blueprintSolution[layer],
-  );
+  if (typeof input !== "object" || input === null || Array.isArray(input)) return false;
+  const placements = input as Record<string, unknown>;
+  return Object.entries(architectureSolution).every(([boundary, safeguard]) => placements[boundary] === safeguard)
+    && Object.keys(placements).length === Object.keys(architectureSolution).length;
 }
-

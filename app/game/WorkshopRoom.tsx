@@ -74,9 +74,9 @@ export function WorkshopRoom({
       </div>
       <div className="workshop-room__bench" aria-hidden="true" />
       <header className="library-room__title">
-        <p>Turn shared context into a dependable change</p>
+        <p>Test the proposed design under failure</p>
         <h1 id="workshop-title">Build Lab</h1>
-        <small>{blueprintSolved ? "The design is documented and ready for review" : "Three perspectives must agree before implementation moves forward"}</small>
+        <small>{blueprintSolved ? "The resilience suite passes and the decision is documented" : "A design is not ready until its guarantees survive failure"}</small>
       </header>
 
       {incidentUnlocked && <Hotspot
@@ -91,11 +91,11 @@ export function WorkshopRoom({
       {blueprintUnlocked && (
         <Hotspot
           className="drafting-hotspot"
-          label={blueprintSolved ? "Inspect the architecture decision" : "Inspect the competing system plans"}
+          label={blueprintSolved ? "Inspect the architecture decision" : "Run the architecture resilience tests"}
           onActivate={() => setBlueprintOpen(true)}
         >
           <span className="drafting-table" aria-hidden="true"><i /><i /><i /></span>
-          <span>{blueprintSolved ? "The system remains aligned" : "Align three system perspectives"}</span>
+          <span>{blueprintSolved ? "Resilience suite passing" : "Stress-test the design"}</span>
         </Hotspot>
       )}
 
@@ -129,7 +129,7 @@ export function WorkshopRoom({
 
       {blueprintOpen && (
         <PuzzleModal
-          title="The Architecture Decision"
+          title="The Architecture Resilience Review"
           subtitle="Chapter 4 of 10 · Design the change"
           onClose={() => setBlueprintOpen(false)}
         >

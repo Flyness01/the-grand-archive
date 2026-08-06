@@ -77,14 +77,14 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     ],
     tip: "Severity follows user and system impact—not how visually noticeable a finding appears.",
   },
-  "The Architecture Decision": {
-    objective: "Align user experience, service architecture, and reliability around fixed system constraints.",
+  "The Architecture Resilience Review": {
+    objective: "Inject three realistic failures, read the resulting evidence, and place safeguards where they protect the broken guarantees.",
     steps: [
-      "Review each system perspective and the constraints it must satisfy.",
-      "Rotate each plan toward its corresponding fixed boundary.",
-      "Approve the design only when all three perspectives agree.",
+      "Run the duplicate-request, slow-dependency, and worker-failure tests.",
+      "Select each safeguard and attach it to a system boundary.",
+      "Rerun the complete resilience suite and approve only when every guarantee passes.",
     ],
-    tip: "A locally elegant plan can still fail when combined with the rest of the system.",
+    tip: "Place protection at the boundary where a guarantee can actually be enforced.",
   },
   "The Final Handoff": {
     objective: "Connect every project record to the lesson it represents, then complete the retrospective.",
