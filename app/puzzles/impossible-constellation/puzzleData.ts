@@ -11,15 +11,15 @@ export const signalRows: { id: SignalRowId; label: string; startOffset: number; 
   {
     id: "queue", label: "The team", startOffset: 3,
     entries: [
-      { time: "Week 1", value: "Welcome" }, { time: "Week 3", value: "Pairing" }, { time: "Sprint", value: "Shared decision" },
-      { time: "Handoff", value: "Clear context" }, { time: "Last day", value: "Thank you", incident: true },
+      { time: "Week 1", value: "Welcome" }, { time: "Week 3", value: "Pairing" }, { time: "Sprint", value: "Shared goal" },
+      { time: "Handoff", value: "Clear context" }, { time: "Last day", value: "Support", incident: true },
     ],
   },
   {
     id: "worker", label: "What stayed", startOffset: 4,
     entries: [
       { time: "Week 1", value: "Context" }, { time: "Week 3", value: "Understanding" }, { time: "Sprint", value: "Collaboration" },
-      { time: "Handoff", value: "Clarity" }, { time: "Last day", value: "Together", incident: true },
+      { time: "Handoff", value: "Clarity" }, { time: "Last day", value: "Gratitude", incident: true },
     ],
   },
 ];
@@ -28,8 +28,8 @@ export const signalRows: { id: SignalRowId; label: string; startOffset: number; 
 export const productionCheckSolution: Record<SignalRowId, number> = { release: 0, queue: 0, worker: 0 };
 export const impossibleConstellationHints = [
   "Each column should tell one small story: what happened, how the team supported it, and what lesson remained.",
-  "The first column connects reading the docs with a welcome and the context it created. The final column connects reflection with gratitude and togetherness.",
-  "Pair Read docs / Welcome / Context; Trace request / Pairing / Understanding; Align signals / Shared decision / Collaboration; Decode note / Clear context / Clarity; Reflect / Thank you / Together.",
+  "The first column connects reading the docs with a welcome and the context it created. The final column connects reflection with support and gratitude.",
+  "Pair Read docs / Welcome / Context; Trace request / Pairing / Understanding; Align signals / Shared goal / Collaboration; Decode note / Clear context / Clarity; Reflect / Support / Gratitude.",
 ];
 
 export const impossibleConstellationMosaicTiles = [
