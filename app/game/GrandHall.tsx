@@ -19,7 +19,6 @@ export function GrandHall({
   lanternWallSolved,
   onInspectLanternWall,
   onEnterWorkshop,
-  onEnterBlueprint,
   clockSolved,
   onEnterConservatory,
   conservatorySolved,
@@ -27,8 +26,10 @@ export function GrandHall({
   observatorySolved,
   onEnterOuterOffice,
   typewriterSolved,
+  reflectionsSolved,
+  handoffUnlocked,
+  finaleUnlocked,
   onEnterReflections,
-  blueprintUnlocked,
   blueprintSolved,
   finaleSolved,
   finaleHintCount,
@@ -46,7 +47,6 @@ export function GrandHall({
   lanternWallSolved: boolean;
   onInspectLanternWall: () => void;
   onEnterWorkshop: () => void;
-  onEnterBlueprint: () => void;
   clockSolved: boolean;
   onEnterConservatory: () => void;
   conservatorySolved: boolean;
@@ -54,8 +54,10 @@ export function GrandHall({
   observatorySolved: boolean;
   onEnterOuterOffice: () => void;
   typewriterSolved: boolean;
+  reflectionsSolved: boolean;
+  handoffUnlocked: boolean;
+  finaleUnlocked: boolean;
   onEnterReflections: () => void;
-  blueprintUnlocked: boolean;
   blueprintSolved: boolean;
   finaleSolved: boolean;
   finaleHintCount: number;
@@ -104,24 +106,24 @@ export function GrandHall({
         </div>
       </div>
 
-      {blueprintUnlocked && <nav className="late-level-shortcuts" aria-label="Final project levels">
+      {handoffUnlocked && <nav className="late-level-shortcuts" aria-label="Final project levels">
         <button
           className="is-unlocked"
-          onClick={onEnterBlueprint}
-          aria-label="Enter Level 9, System Design"
+          onClick={onEnterOuterOffice}
+          aria-label="Enter Level 9, Clear Handoff"
         >
           <small>Level 09</small>
-          <b>System Design</b>
-          <span>{blueprintSolved ? "Decision complete" : blueprintUnlocked ? "Architecture task ready" : "Complete QA Review"}</span>
+          <b>Clear Handoff</b>
+          <span>{typewriterSolved ? "Handoff complete" : "Team update ready"}</span>
         </button>
-        {blueprintSolved && <button
+        {finaleUnlocked && <button
           className="is-unlocked"
           onClick={() => setFinaleOpen(true)}
           aria-label="Enter Level 10, Final Handoff"
         >
           <small>Level 10</small>
           <b>Final Handoff</b>
-          <span>{finaleSolved ? "Project story complete" : blueprintSolved ? "Retrospective ready" : "Complete System Design"}</span>
+          <span>{finaleSolved ? "Project story complete" : "Retrospective ready"}</span>
         </button>}
       </nav>}
 
@@ -142,14 +144,14 @@ export function GrandHall({
       </button>
 
       <button
-        className={`reflections-threshold ${typewriterSolved ? "is-unlocked" : ""}`}
-        disabled={!typewriterSolved}
+        className={`reflections-threshold ${blueprintSolved ? "is-unlocked" : ""}`}
+        disabled={!blueprintSolved}
         onClick={onEnterReflections}
-        aria-label={typewriterSolved ? "Enter QA Review" : "QA Review is locked"}
+        aria-label={blueprintSolved ? "Enter QA Review" : "QA Review is locked"}
       >
         <span><i /></span>
         <b>QA Review</b>
-        <small>{typewriterSolved ? "Feedback checklist ready" : "Waiting for a clear update"}</small>
+        <small>{blueprintSolved ? "Design ready to test" : "Waiting for the design"}</small>
       </button>
 
       <button
@@ -168,29 +170,29 @@ export function GrandHall({
       </button>
 
       <button
-        className={`office-threshold ${observatorySolved ? "is-unlocked" : ""}`}
-        disabled={!observatorySolved}
+        className={`office-threshold ${clockSolved ? "is-unlocked" : ""}`}
+        disabled={!clockSolved}
         onClick={onEnterOuterOffice}
-        aria-label={observatorySolved ? "Enter the Team Lead’s Office" : "The Team Lead’s Office is sealed"}
+        aria-label={clockSolved ? "Enter the Team Lead’s Office" : "The Team Lead’s Office is sealed"}
       >
         <span><i /></span>
         <b>Team Lead’s Office</b>
-        <small>{observatorySolved ? "A feedback thread is waiting" : "Waiting for pattern review"}</small>
+        <small>{clockSolved ? "Incident finding ready to share" : "Waiting for incident response"}</small>
       </button>
 
       <button
-        className={`conservatory-threshold ${clockSolved ? "is-unlocked" : ""}`}
-        disabled={!clockSolved}
+        className={`conservatory-threshold ${reflectionsSolved ? "is-unlocked" : ""}`}
+        disabled={!reflectionsSolved}
         onClick={onEnterConservatory}
         aria-label={
-          clockSolved
+          reflectionsSolved
             ? "Enter the Release Cycle"
             : "The Release Cycle is locked"
         }
       >
         <span><i /><i /><i /></span>
         <b>Release Cycle</b>
-        <small>{clockSolved ? "Build dependency repaired" : "Waiting for a stable build"}</small>
+        <small>{reflectionsSolved ? "QA review complete" : "Waiting for a tested build"}</small>
       </button>
 
       <button
@@ -271,20 +273,20 @@ export function GrandHall({
       <p className="hall__invitation">
         {finaleSolved
           ? "Every part of the project is finally in place."
-          : blueprintSolved
-          ? "The final handoff is ready."
-          : blueprintUnlocked
-          ? "QA feedback reveals one final architecture task."
           : typewriterSolved
-          ? "Your written update unlocks QA Review."
+          ? "Nine lessons are ready for the final retrospective."
+          : clockSolved
+          ? "The incident finding is ready for a clear handoff."
           : observatorySolved
-          ? "The patterns are clear enough to discuss with your team lead."
+          ? "The production signal now has enough evidence for incident response."
           : conservatorySolved
           ? "Release data is ready for the Post-Release Check."
-          : clockSolved
-          ? "The repaired build unlocks the Release Cycle."
+          : reflectionsSolved
+          ? "The tested change is ready for the Release Cycle."
+          : blueprintSolved
+          ? "The proposed design is ready for QA Review."
           : lanternWallSolved
-          ? "Aligned signals unlock the Build Lab."
+          ? "Aligned perspectives unlock the design task."
           : lanternWallUnlocked
           ? "The System Map reveals four signals that must agree."
           : restored
@@ -293,20 +295,20 @@ export function GrandHall({
         <span>
           {finaleSolved
             ? "The living frame stands open to the Debrief Room."
-            : blueprintSolved
-            ? "Nine lessons are ready to become the final project story."
-            : blueprintUnlocked
-            ? "Three architecture layers wait in System Design."
             : typewriterSolved
-            ? "Compare intention with the user’s actual experience."
-            : observatorySolved
-            ? "Inside, a communication problem needs a precise correction."
-            : conservatorySolved
-            ? "The runtime behavior contains a pattern nobody documented."
+            ? "Complete the Final Handoff, then open the team’s note."
             : clockSolved
-            ? "The next task is understanding timing, dependencies, and release order."
+            ? "Turn the technical finding into context another person can use."
+            : observatorySolved
+            ? "Use the timeline and dependencies to recover deliberately."
+            : conservatorySolved
+            ? "Compare the timeline, service health, and production logs."
+            : reflectionsSolved
+            ? "Move the change through every release gate, including live monitoring."
+            : blueprintSolved
+            ? "Compare the intended experience with the current build."
             : lanternWallSolved
-            ? "The build is ready for investigation."
+            ? "Align the experience, services, and reliability constraints."
             : lanternWallUnlocked
             ? "Four independent signals must resolve into one result."
             : restored
@@ -338,12 +340,12 @@ export function GrandHall({
               "Context",
               "Trace",
               "Align",
-              "Recover",
-              "Ship",
-              "Patterns",
-              "Handoff",
-              "QA",
               "Design",
+              "QA",
+              "Ship",
+              "Observe",
+              "Recover",
+              "Handoff",
               "Trust",
               "Mentorship",
               "Reviews",

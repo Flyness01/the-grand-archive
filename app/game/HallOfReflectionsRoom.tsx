@@ -13,7 +13,7 @@ export function HallOfReflectionsRoom({
   onUseHint,
   onSolve,
   onReturn,
-  onContinueToWorkshop,
+  onContinueToRelease,
 }: {
   restored: boolean;
   solved: boolean;
@@ -21,7 +21,7 @@ export function HallOfReflectionsRoom({
   onUseHint: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onReturn: () => void;
-  onContinueToWorkshop: () => void;
+  onContinueToRelease: () => void;
 }) {
   const [puzzleOpen, setPuzzleOpen] = useState(false);
   const [rewardMoment, setRewardMoment] = useState(false);
@@ -32,7 +32,7 @@ export function HallOfReflectionsRoom({
     window.setTimeout(() => {
       setRewardMoment(false);
       setPuzzleOpen(false);
-      onContinueToWorkshop();
+      onContinueToRelease();
     }, 5200);
   }
 
@@ -60,7 +60,7 @@ export function HallOfReflectionsRoom({
       {puzzleOpen && (
         <PuzzleModal
           title="The Meaningful Difference"
-          subtitle="Chapter 8 of 10 · Protect quality"
+          subtitle="Chapter 5 of 10 · Protect quality"
           onClose={() => setPuzzleOpen(false)}
         >
           <HallOfReflectionsPuzzle
@@ -77,7 +77,7 @@ export function HallOfReflectionsRoom({
           <div className="defect-report-icon defect-report-icon--large" aria-hidden="true"><i /></div>
           <p>Defect Report</p>
           <blockquote>“Good QA protects meaning, not pixel sameness.”</blockquote>
-          <small>The findings expose three system constraints. System Design unlocks.</small>
+          <small>The meaningful defects are resolved. Release Cycle unlocks.</small>
         </div>
       )}
     </section>

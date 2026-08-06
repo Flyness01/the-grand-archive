@@ -13,7 +13,7 @@ export function ArchivistsOuterOffice({
   onUseHint,
   onSolve,
   onReturn,
-  onContinueToReflections,
+  onContinueToFinale,
 }: {
   restored: boolean;
   solved: boolean;
@@ -21,7 +21,7 @@ export function ArchivistsOuterOffice({
   onUseHint: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onReturn: () => void;
-  onContinueToReflections: () => void;
+  onContinueToFinale: () => void;
 }) {
   const [puzzleOpen, setPuzzleOpen] = useState(false);
   const [rewardMoment, setRewardMoment] = useState(false);
@@ -32,7 +32,7 @@ export function ArchivistsOuterOffice({
     window.setTimeout(() => {
       setRewardMoment(false);
       setPuzzleOpen(false);
-      onContinueToReflections();
+      onContinueToFinale();
     }, 5200);
   }
 
@@ -61,7 +61,7 @@ export function ArchivistsOuterOffice({
       {puzzleOpen && (
         <PuzzleModal
           title="The Unclear Handoff"
-          subtitle="Chapter 7 of 10 · Communicate clearly"
+          subtitle="Chapter 9 of 10 · Communicate clearly"
           onClose={() => setPuzzleOpen(false)}
         >
           <MirroredTypewriter
@@ -78,7 +78,7 @@ export function ArchivistsOuterOffice({
           <div className="handoff-note-icon handoff-note-icon--large" aria-hidden="true"><i /></div>
           <p>Handoff Note</p>
           <blockquote>“Clarity is part of the implementation.”</blockquote>
-          <small>The next review can begin with shared context. QA Review unlocks.</small>
+          <small>The work is understood and ready to leave behind. The Final Handoff unlocks.</small>
         </div>
       )}
     </section>

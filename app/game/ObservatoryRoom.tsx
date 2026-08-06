@@ -13,7 +13,7 @@ export function ObservatoryRoom({
   onUseHint,
   onSolve,
   onReturn,
-  onContinueToOffice,
+  onContinueToIncident,
 }: {
   restored: boolean;
   solved: boolean;
@@ -21,7 +21,7 @@ export function ObservatoryRoom({
   onUseHint: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onReturn: () => void;
-  onContinueToOffice: () => void;
+  onContinueToIncident: () => void;
 }) {
   const [puzzleOpen, setPuzzleOpen] = useState(false);
   const [rewardMoment, setRewardMoment] = useState(false);
@@ -32,7 +32,7 @@ export function ObservatoryRoom({
     window.setTimeout(() => {
       setRewardMoment(false);
       setPuzzleOpen(false);
-      onContinueToOffice();
+      onContinueToIncident();
     }, 5200);
   }
 
@@ -62,7 +62,7 @@ export function ObservatoryRoom({
       {puzzleOpen && (
         <PuzzleModal
           title="The Post-Release Check"
-          subtitle="Chapter 6 of 10 · Observe production"
+          subtitle="Chapter 7 of 10 · Observe production"
           onClose={() => setPuzzleOpen(false)}
         >
           <ImpossibleConstellation
@@ -79,7 +79,7 @@ export function ObservatoryRoom({
           <div className="pattern-report-icon pattern-report-icon--large" aria-hidden="true"><i /><i /><i /></div>
           <p>Production Finding</p>
           <blockquote>“Shipping became learning when the team stayed to read the signals.”</blockquote>
-          <small>The finding needs a clear handoff. Team Lead’s Office unlocks.</small>
+          <small>The unhealthy behavior is visible. Incident Response unlocks.</small>
         </div>
       )}
     </section>

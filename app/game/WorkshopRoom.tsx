@@ -10,34 +10,36 @@ import { PuzzleModal } from "./PuzzleModal";
 
 export function WorkshopRoom({
   entryTarget,
+  incidentUnlocked,
   restored,
   solved,
   hintCount,
   onUseHint,
   onSolve,
   onReturn,
-  onContinueToConservatory,
+  onContinueAfterIncident,
   blueprintUnlocked,
   blueprintSolved,
   blueprintHintCount,
   onUseBlueprintHint,
   onSolveBlueprint,
-  onContinueToGrandHall,
+  onContinueAfterBlueprint,
 }: {
   entryTarget?: "incident" | "blueprint";
+  incidentUnlocked: boolean;
   restored: boolean;
   solved: boolean;
   hintCount: number;
   onUseHint: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onReturn: () => void;
-  onContinueToConservatory: () => void;
+  onContinueAfterIncident: () => void;
   blueprintUnlocked: boolean;
   blueprintSolved: boolean;
   blueprintHintCount: number;
   onUseBlueprintHint: () => void;
   onSolveBlueprint: (mosaicTileIds: number[]) => void;
-  onContinueToGrandHall: () => void;
+  onContinueAfterBlueprint: () => void;
 }) {
   const [puzzleOpen, setPuzzleOpen] = useState(entryTarget === "incident");
   const [rewardMoment, setRewardMoment] = useState(false);
@@ -50,7 +52,7 @@ export function WorkshopRoom({
     window.setTimeout(() => {
       setRewardMoment(false);
       setPuzzleOpen(false);
-      onContinueToConservatory();
+      onContinueAfterIncident();
     }, 5200);
   }
 
@@ -60,7 +62,7 @@ export function WorkshopRoom({
     window.setTimeout(() => {
       setBlueprintRewardMoment(false);
       setBlueprintOpen(false);
-      onContinueToGrandHall();
+      onContinueAfterBlueprint();
     }, 5200);
   }
 
@@ -72,19 +74,19 @@ export function WorkshopRoom({
       </div>
       <div className="workshop-room__bench" aria-hidden="true" />
       <header className="library-room__title">
-        <p>Recover a failing system</p>
+        <p>Turn shared context into a dependable change</p>
         <h1 id="workshop-title">Build Lab</h1>
-        <small>{restored ? "The incident is resolved and documented" : "Production is down, but the timeline tells the story"}</small>
+        <small>{blueprintSolved ? "The design is documented and ready for review" : "Three perspectives must agree before implementation moves forward"}</small>
       </header>
 
-      <Hotspot
+      {incidentUnlocked && <Hotspot
         className="clock-hotspot"
         label={solved ? "Inspect the resolved incident" : "Inspect the active production incident"}
         onActivate={() => setPuzzleOpen(true)}
       >
         <span className="master-clock" aria-hidden="true"><i /><b /></span>
         <span>{solved ? "Incident resolved" : "Recover the services"}</span>
-      </Hotspot>
+      </Hotspot>}
 
       {blueprintUnlocked && (
         <Hotspot
@@ -104,7 +106,7 @@ export function WorkshopRoom({
       {puzzleOpen && (
         <PuzzleModal
           title="Incident 14"
-          subtitle="Chapter 4 of 10 · Recover production"
+          subtitle="Chapter 8 of 10 · Respond to failure"
           onClose={() => setPuzzleOpen(false)}
         >
           <StoppedClock
@@ -121,14 +123,14 @@ export function WorkshopRoom({
           <div className="incident-review-icon incident-review-icon--large" aria-hidden="true">✓</div>
           <p>Incident Review</p>
           <blockquote>“The timeline turned a production failure into a lesson the team could reuse.”</blockquote>
-          <small>The recovery becomes a runbook. Release Cycle unlocks.</small>
+          <small>The incident is understood. A clear team handoff is next.</small>
         </div>
       )}
 
       {blueprintOpen && (
         <PuzzleModal
           title="The Architecture Decision"
-          subtitle="Chapter 9 of 10 · Design the system"
+          subtitle="Chapter 4 of 10 · Design the change"
           onClose={() => setBlueprintOpen(false)}
         >
           <MasterBlueprint
@@ -145,7 +147,7 @@ export function WorkshopRoom({
           <div className="architecture-decision-icon architecture-decision-icon--large" aria-hidden="true"><i /><i /><i /></div>
           <p>Architecture Decision</p>
           <blockquote>“A strong design lets every constraint tell the same story.”</blockquote>
-          <small>The design connects all eight earlier lessons. The Final Handoff is ready.</small>
+          <small>The design is ready to test. QA Review unlocks.</small>
         </div>
       )}
     </section>

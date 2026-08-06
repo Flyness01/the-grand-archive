@@ -66,7 +66,7 @@ export function ConservatoryRoom({
       {puzzleOpen && (
         <PuzzleModal
           title="The Release Runbook"
-          subtitle="Chapter 5 of 10 · Ship responsibly"
+          subtitle="Chapter 6 of 10 · Ship responsibly"
           onClose={() => setPuzzleOpen(false)}
         >
           <SleepingConservatory
