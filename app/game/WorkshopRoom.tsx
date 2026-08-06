@@ -9,6 +9,7 @@ import { Hotspot } from "./Hotspot";
 import { PuzzleModal } from "./PuzzleModal";
 
 export function WorkshopRoom({
+  entryTarget,
   restored,
   solved,
   hintCount,
@@ -23,6 +24,7 @@ export function WorkshopRoom({
   onSolveBlueprint,
   onContinueToGrandHall,
 }: {
+  entryTarget?: "incident" | "blueprint";
   restored: boolean;
   solved: boolean;
   hintCount: number;
@@ -37,9 +39,9 @@ export function WorkshopRoom({
   onSolveBlueprint: (mosaicTileIds: number[]) => void;
   onContinueToGrandHall: () => void;
 }) {
-  const [puzzleOpen, setPuzzleOpen] = useState(false);
+  const [puzzleOpen, setPuzzleOpen] = useState(entryTarget === "incident");
   const [rewardMoment, setRewardMoment] = useState(false);
-  const [blueprintOpen, setBlueprintOpen] = useState(false);
+  const [blueprintOpen, setBlueprintOpen] = useState(entryTarget === "blueprint");
   const [blueprintRewardMoment, setBlueprintRewardMoment] = useState(false);
 
   function collectReward() {

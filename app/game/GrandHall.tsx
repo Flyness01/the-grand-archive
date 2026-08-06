@@ -19,6 +19,7 @@ export function GrandHall({
   lanternWallSolved,
   onInspectLanternWall,
   onEnterWorkshop,
+  onEnterBlueprint,
   clockSolved,
   onEnterConservatory,
   conservatorySolved,
@@ -45,6 +46,7 @@ export function GrandHall({
   lanternWallSolved: boolean;
   onInspectLanternWall: () => void;
   onEnterWorkshop: () => void;
+  onEnterBlueprint: () => void;
   clockSolved: boolean;
   onEnterConservatory: () => void;
   conservatorySolved: boolean;
@@ -105,7 +107,7 @@ export function GrandHall({
       {blueprintUnlocked && <nav className="late-level-shortcuts" aria-label="Final project levels">
         <button
           className="is-unlocked"
-          onClick={onEnterWorkshop}
+          onClick={onEnterBlueprint}
           aria-label="Enter Level 9, System Design"
         >
           <small>Level 09</small>

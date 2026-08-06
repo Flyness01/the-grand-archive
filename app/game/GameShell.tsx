@@ -25,6 +25,10 @@ export function GameShell() {
   const [resetOpen, setResetOpen] = useState(false);
   const [saveVisible, setSaveVisible] = useState(false);
   const [lanternWallOpen, setLanternWallOpen] = useState(false);
+  const [workshopEntry, setWorkshopEntry] = useState<{
+    target: "incident" | "blueprint";
+    request: number;
+  } | null>(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -51,6 +55,14 @@ export function GameShell() {
     [],
   );
 
+  function enterWorkshop(target: "incident" | "blueprint") {
+    setWorkshopEntry((current) => ({
+      target,
+      request: (current?.request ?? 0) + 1,
+    }));
+    dispatch({ type: "ENTER_ROOM", roomId: "workshop" });
+  }
+
   if (!hydrated) return <div className="loading-screen">Opening the workspace…</div>;
 
   const rootClasses = [
@@ -75,9 +87,8 @@ export function GameShell() {
               lanternWallUnlocked={state.unlockedPuzzleIds.includes("lantern-wall")}
               lanternWallSolved={state.solvedPuzzleIds.includes("lantern-wall")}
               onInspectLanternWall={() => setLanternWallOpen(true)}
-              onEnterWorkshop={() =>
-                dispatch({ type: "ENTER_ROOM", roomId: "workshop" })
-              }
+              onEnterWorkshop={() => enterWorkshop("incident")}
+              onEnterBlueprint={() => enterWorkshop("blueprint")}
               clockSolved={state.solvedPuzzleIds.includes("stopped-clock")}
               onEnterConservatory={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "conservatory" })
@@ -175,6 +186,8 @@ export function GameShell() {
             />
           ) : state.currentRoom === "workshop" ? (
             <WorkshopRoom
+              key={`workshop-entry-${workshopEntry?.request ?? 0}`}
+              entryTarget={workshopEntry?.target}
               restored={state.restorationStages.workshop > 0}
               solved={state.solvedPuzzleIds.includes("stopped-clock")}
               hintCount={state.usedHints["stopped-clock"] ?? 0}
@@ -319,9 +332,7 @@ export function GameShell() {
               onReturn={() =>
                 dispatch({ type: "ENTER_ROOM", roomId: "grand-hall" })
               }
-              onContinueToWorkshop={() =>
-                dispatch({ type: "ENTER_ROOM", roomId: "workshop" })
-              }
+              onContinueToWorkshop={() => enterWorkshop("blueprint")}
             />
           ) : (
             <ArchivistsStudy
@@ -350,9 +361,7 @@ export function GameShell() {
                 })
               }
               onClose={() => setLanternWallOpen(false)}
-              onContinueToWorkshop={() =>
-                dispatch({ type: "ENTER_ROOM", roomId: "workshop" })
-              }
+              onContinueToWorkshop={() => enterWorkshop("incident")}
             />
           )}
 
@@ -506,7 +515,9 @@ export function GameShell() {
               unlockedPuzzleIds={state.unlockedPuzzleIds}
               onSelectLevel={(roomId, levelNumber) => {
                 setInventoryOpen(false);
-                dispatch({ type: "ENTER_ROOM", roomId });
+                if (levelNumber === 4) enterWorkshop("incident");
+                else if (levelNumber === 9) enterWorkshop("blueprint");
+                else dispatch({ type: "ENTER_ROOM", roomId });
                 if (levelNumber === 3) setLanternWallOpen(true);
               }}
               onClose={() => setInventoryOpen(false)}
