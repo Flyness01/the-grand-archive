@@ -49,9 +49,9 @@ export const journeyMessages: JourneyMessage[] = [
     milestone: 4,
     author: "Team Lead",
     role: "teammate",
-    time: "Second summer · Handoff",
+    time: "Second summer · Returning",
     color: "aubergine",
-    text: "You found the rule hidden in the message and turned it into a handoff someone else could understand. Communication did not surround the work; it completed it.",
+    text: "When you returned for a second summer, you brought stronger instincts and more confidence with you. You found the rule hidden in the message and turned it into a handoff someone else could understand. Communication did not surround the work; it completed it.",
     reaction: "📝 9",
   },
   {

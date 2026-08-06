@@ -51,7 +51,7 @@ export function LanternWallRoom({
           <div className="alignment-note-icon alignment-note-icon--large" aria-hidden="true"><i /></div>
           <p>Alignment Note</p>
           <blockquote>“Alignment begins when everyone can describe the same outcome.”</blockquote>
-          <small>The decision is clear. Build Lab unlocks.</small>
+          <small>The team is aligned. The Word-Ends Handoff unlocks.</small>
         </div>
       )}
     </>
