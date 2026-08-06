@@ -6,7 +6,7 @@ export type PuzzleInstructions = {
 
 export const puzzleInstructions: Record<string, PuzzleInstructions> = {
   "The Documentation Shelf": {
-    objective: "Review the onboarding documents, uncover three fixed letters, then complete the engineering instruction.",
+    objective: "Review the onboarding documents, uncover three fixed letters, then complete the seven-letter lesson they share.",
     steps: [
       "Open documents and read the team’s notes.",
       "Record the three fixed letters, then reread the highlighted notes for the shared lesson that completes the word.",

@@ -51,9 +51,9 @@ export function LibrariansShelf({
     <div className="shelf-puzzle">
       <div className="shelf-puzzle__workspace">
         <p className="shelf-puzzle__instruction">
-          Review the team’s onboarding documents. Three highlighted notes hold
-          fixed letters from an engineering instruction. Read the highlighted
-          notes again—their shared lesson completes the word.
+          Review the team’s onboarding documents. Three marked documents reveal
+          fixed letters in a seven-letter lesson. Read their highlighted notes
+          again—the idea they share completes the word.
         </p>
         <div className={`bookcase ${compartmentOpen ? "is-open" : ""}`}>
           <div className="bookcase__books">
