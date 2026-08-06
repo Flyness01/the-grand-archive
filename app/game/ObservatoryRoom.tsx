@@ -26,8 +26,10 @@ export function ObservatoryRoom({
 }) {
   const [puzzleOpen, setPuzzleOpen] = useState(false);
   const [rewardMoment, setRewardMoment] = useState(false);
+  const [finaleName, setFinaleName] = useState("");
 
-  function collectReward() {
+  function collectReward(name: string) {
+    setFinaleName(name);
     onSolve(impossibleConstellationMosaicTiles);
     setRewardMoment(true);
     window.setTimeout(() => {
@@ -75,7 +77,7 @@ export function ObservatoryRoom({
         </PuzzleModal>
       )}
 
-      {rewardMoment && <FinalLanternScene />}
+      {rewardMoment && <FinalLanternScene name={finaleName} />}
     </section>
   );
 }

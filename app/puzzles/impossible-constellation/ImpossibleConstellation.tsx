@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { HintPanel } from "../../game/HintPanel";
-import { impossibleConstellationHints, productionCheckSolution, sharedTimelinePhrase, signalRows, type SignalRowId } from "./puzzleData";
+import { impossibleConstellationHints, productionCheckSolution, signalRows, type SignalRowId } from "./puzzleData";
 import { validateImpossibleConstellation } from "./validator";
 
 function rotate<T>(items: T[], offset: number) {
@@ -11,13 +11,13 @@ function rotate<T>(items: T[], offset: number) {
 }
 
 export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward, alreadySolved }: {
-  hintCount: number; onUseHint: () => void; onCollectReward: () => void; alreadySolved: boolean;
+  hintCount: number; onUseHint: () => void; onCollectReward: (name: string) => void; alreadySolved: boolean;
 }) {
   const initial = Object.fromEntries(signalRows.map((row) => [row.id, alreadySolved ? productionCheckSolution[row.id] : row.startOffset])) as Record<SignalRowId, number>;
   const [offsets, setOffsets] = useState(initial);
   const [solved, setSolved] = useState(alreadySolved);
   const [aligned, setAligned] = useState(alreadySolved);
-  const [phrase, setPhrase] = useState(alreadySolved ? sharedTimelinePhrase : "");
+  const [playerName, setPlayerName] = useState("");
   const [feedback, setFeedback] = useState(alreadySolved ? "The three viewpoints remain aligned on the shared journey." : "");
 
   function shift(id: SignalRowId, amount: number) {
@@ -38,11 +38,11 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
   }
 
   function finishStory() {
-    if (validateImpossibleConstellation({ ...offsets, phrase })) {
+    if (validateImpossibleConstellation({ ...offsets, name: playerName })) {
       setSolved(true);
-      setFeedback("Exactly. Different viewpoints became one story: we built it together.");
+      setFeedback(`Thank you, ${playerName.trim()}, for being part of the work we shared.`);
     } else {
-      setFeedback("Almost. Use the words collected beneath the timeline and complete the sentence exactly.");
+      setFeedback("Add your name before continuing. There is no wrong answer here.");
     }
   }
 
@@ -74,15 +74,15 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
           ))}
         </div>
 
-        {aligned && <section className="shared-story-finish" aria-label="Complete the shared story">
-          <p><span>We learned</span><span>We traced</span><span>We aligned</span><span>We handed off</span><span>None of it alone</span></p>
-          <label htmlFor="shared-story-answer">Complete the sentence</label>
-          <div><b>WE</b><input id="shared-story-answer" value={phrase.replace(/^WE\s*/i, "")} onChange={(event) => setPhrase(`WE ${event.target.value}`)} disabled={solved} placeholder="_____ IT ________" autoComplete="off" /><button onClick={finishStory} disabled={solved}>Complete the story</button></div>
+        {aligned && <section className="shared-story-finish" aria-label="Add your name to the shared story">
+          <p><span>We learned</span><span>We traced</span><span>We aligned</span><span>We handed off</span><span>We did it together</span></p>
+          <label htmlFor="shared-story-answer">One last person belongs in this story.</label>
+          <div><input id="shared-story-answer" value={playerName} onChange={(event) => setPlayerName(event.target.value)} disabled={solved} placeholder="Your name" autoComplete="name" maxLength={60} /><button onClick={finishStory} disabled={solved}>Add my name to the story</button></div>
         </section>}
 
         <div className="constellation-actions">
           <p aria-live="polite">{feedback || "Use the arrows to match the same moments vertically. No engineering knowledge is needed."}</p>
-          {!aligned ? <button onClick={inspectWindow}>Check the timeline</button> : solved && !alreadySolved ? <button onClick={onCollectReward}>Light the final lanterns</button> : solved ? <small>The shared timeline has been saved.</small> : null}
+          {!aligned ? <button onClick={inspectWindow}>Check the timeline</button> : solved && !alreadySolved ? <button onClick={() => onCollectReward(playerName.trim())}>Light the final lanterns</button> : solved ? <small>The shared timeline has been saved.</small> : null}
         </div>
       </div>
       <HintPanel hints={impossibleConstellationHints} revealedCount={hintCount} onReveal={onUseHint} />

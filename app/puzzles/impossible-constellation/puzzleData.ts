@@ -26,13 +26,11 @@ export const signalRows: { id: SignalRowId; label: string; startOffset: number; 
 
 // All three Last day moments must land in the center reflection column.
 export const productionCheckSolution: Record<SignalRowId, number> = { release: 2, queue: 2, worker: 2 };
-export const sharedTimelinePhrase = "WE BUILT IT TOGETHER";
-
 export const impossibleConstellationHints = [
   "Each strip contains the same five moments in a different starting position. Put matching moment labels in vertical columns.",
   "Find Last day on every strip. Move all three Last day cells into the softly highlighted center column.",
   "The aligned center should read: Reflect, Thank you, and Together.",
-  "The final sentence begins with WE and remembers that no meaningful project is built alone.",
+  "After the timelines align, add your own name to the shared story. There is no wrong name.",
 ];
 
 export const impossibleConstellationMosaicTiles = [

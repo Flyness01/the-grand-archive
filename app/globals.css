@@ -880,7 +880,7 @@ button:focus-visible, input:focus-visible {
   .telemetry-row__controls { position:sticky;left:0;z-index:2;width:170px;margin-bottom:4px; }
   .telemetry-strip { grid-template-columns:repeat(5,98px); }
   .telemetry-strip>div:nth-child(3) { border-color:#846d7a;background:#29232c; }
-  .shared-story-finish>div { flex-wrap:wrap; }.shared-story-finish input{width:calc(100% - 48px)}.shared-story-finish button{width:100%}
+  .shared-story-finish>div { flex-wrap:wrap; }.shared-story-finish input{width:100%}.shared-story-finish button{width:100%}
 }
 
 /* Team workspace theme */

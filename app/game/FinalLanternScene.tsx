@@ -4,7 +4,7 @@ import type { CSSProperties } from "react";
 
 const lanternLessons = ["Context", "Questions", "Docs", "Trace", "Systems", "Signals", "Design", "Product", "Frontend", "API", "Reviews", "PRs", "1:1s", "Mentorship", "Patience", "Kindness", "Trust", "Growth", "Learning", "Handoffs", "Support", "Curiosity", "Confidence", "Teamwork", "Trails", "Pets", "Laughter", "Summer One", "Summer Two", "Enterprise", "Memories", "Lessons", "People", "Gratitude", "Care", "Heart"];
 
-export function FinalLanternScene({ replay = false }: { replay?: boolean }) {
+export function FinalLanternScene({ replay = false, name }: { replay?: boolean; name?: string }) {
   return (
     <div className="reward-moment reward-moment--manuscript" role="status" aria-label={replay ? "Replaying the final lantern scene" : "The final lantern scene"}>
       <div className="project-lantern-burst" aria-hidden="true">
@@ -13,9 +13,9 @@ export function FinalLanternScene({ replay = false }: { replay?: boolean }) {
         ))}
       </div>
       <div className="retrospective-icon retrospective-icon--large" aria-hidden="true"><i /></div>
-      <p>We Built It Together</p>
+      <p>{name ? `Thank you, ${name}.` : "We Built It Together"}</p>
       <blockquote>“Five moments. Two summers. One very full heart.”</blockquote>
-      <small>{replay ? "A quiet replay of the moments that made the journey." : "The lanterns are carrying the story into the Debrief Room."}</small>
+      <small>{replay ? "A quiet replay of the moments that made the journey." : name ? "Thank you for being part of the work we shared." : "The lanterns are carrying the story into the Debrief Room."}</small>
     </div>
   );
 }
