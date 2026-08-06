@@ -51,13 +51,13 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     tip: "Deploy is not the end of the release; observation is part of shipping.",
   },
   "The Shared Timeline": {
-    objective: "Arrange three viewpoints into the same chronological journey, then add your name to the completed team story.",
+    objective: "Reconnect each work moment with the team response and lasting lesson that belong to it, then add your name to the story.",
     steps: [
       "Use the left and right arrows to move each strip.",
-      "Place matching moments in vertical columns across all three strips.",
-      "Arrange the aligned moments in their natural chronological order, then add your name below.",
+      "Use The work as the chronological anchor for the five columns.",
+      "Align the related team response and lesson beneath each work moment, then add your name below.",
     ],
-    tip: "Treat the labels as moments in one journey rather than a repeating loop. Your name is a signature, not another answer to guess.",
+    tip: "Each column should tell one coherent story: what happened, how people helped, and what stayed with you.",
   },
   "The Word-Ends Handoff": {
     objective: "Identify the missing four-letter word in the handoff, then infer which keys will produce it.",

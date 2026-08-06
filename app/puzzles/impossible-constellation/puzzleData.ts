@@ -27,9 +27,9 @@ export const signalRows: { id: SignalRowId; label: string; startOffset: number; 
 // Every viewpoint must read chronologically from Week 1 through Last day.
 export const productionCheckSolution: Record<SignalRowId, number> = { release: 0, queue: 0, worker: 0 };
 export const impossibleConstellationHints = [
-  "Each strip contains the same five moments in a different starting position. Put matching moment labels in vertical columns.",
-  "The completed journey begins with Week 1 on the left and ends with Last day on the right.",
-  "The columns should read Week 1, Week 3, Sprint, Handoff, and Last day from left to right.",
+  "Each column should tell one small story: what happened, how the team supported it, and what lesson remained.",
+  "The first column connects reading the docs with a welcome and the context it created. The final column connects reflection with gratitude and togetherness.",
+  "Pair Read docs / Welcome / Context; Trace request / Pairing / Understanding; Align signals / Shared decision / Collaboration; Decode note / Clear context / Clarity; Reflect / Thank you / Together.",
 ];
 
 export const impossibleConstellationMosaicTiles = [

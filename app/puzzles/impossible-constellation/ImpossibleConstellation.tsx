@@ -31,9 +31,9 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
     const correct = Object.entries(productionCheckSolution).every(([key, value]) => offsets[key as SignalRowId] === value);
     if (correct) {
       setAligned(true);
-      setFeedback("The whole journey now lines up, from the first week to the last day. Finish the sentence below.");
+      setFeedback("The whole journey now connects, from the first week to the last day. Add your name below.");
     } else {
-      setFeedback("The journey is still out of order. Align matching labels, then read each row as one continuous timeline.");
+      setFeedback("Some columns still combine unrelated moments. Use the work timeline to reconnect each team response and lasting lesson.");
     }
   }
 
@@ -52,7 +52,7 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
         <header className="production-check__header">
           <p>Two summers · three scrambled viewpoints</p>
           <strong>Align the three timelines to reveal one shared journey.</strong>
-          <small><b>How it works:</b> matching moments belong in the same vertical column. Read the labels as a timeline, not a loop.</small>
+          <small><b>How it works:</b> use “The work” as the timeline. Pair each work moment with the team response and lesson that belong with it.</small>
         </header>
 
         <div className="telemetry-board" aria-label="Three movable journey timelines">
@@ -64,8 +64,13 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
               </div>
               <div className="telemetry-strip">
                 {rotate(row.entries, offsets[row.id]).map((entry, index) => (
-                  <div key={`${entry.time}-${index}`} className={solved && entry.incident ? "is-incident" : ""}>
-                    <time>{entry.time}</time><strong>{entry.value}</strong>
+                  <div
+                    key={`${entry.time}-${index}`}
+                    className={`${row.id !== "release" ? "is-unlabeled" : ""} ${solved && entry.incident ? "is-incident" : ""}`}
+                    aria-label={entry.value}
+                  >
+                    {row.id === "release" && <time>{entry.time}</time>}
+                    <strong>{entry.value}</strong>
                   </div>
                 ))}
               </div>
@@ -80,7 +85,7 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
         </section>}
 
         <div className="constellation-actions">
-          <p aria-live="polite">{feedback || "Use the arrows to match the same moments vertically. No engineering knowledge is needed."}</p>
+          <p aria-live="polite">{feedback || "Use the work timeline to connect each team response and lasting lesson. No engineering knowledge is needed."}</p>
           {!aligned ? <button onClick={inspectWindow}>Check the timeline</button> : solved && !alreadySolved ? <button onClick={() => onCollectReward(playerName.trim())}>Light the final lanterns</button> : solved ? <small>The shared timeline has been saved.</small> : null}
         </div>
       </div>
