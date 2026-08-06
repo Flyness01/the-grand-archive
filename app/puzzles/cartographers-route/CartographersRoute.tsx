@@ -21,7 +21,6 @@ export function CartographersRoute({
   alreadySolved: boolean;
 }) {
   const [path, setPath] = useState<string[]>(["west-gate"]);
-  const [inspectedNodeId, setInspectedNodeId] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
     alreadySolved ? "The completed flow trace remains pinned to the board." : "",
@@ -36,8 +35,6 @@ export function CartographersRoute({
       ),
     [path],
   );
-  const inspectedNode = mapNodes.find((node) => node.id === inspectedNodeId);
-
   function selectNode(nodeId: string) {
     if (drawerOpen || nodeId === path.at(-1)) return;
     const last = path.at(-1);
@@ -53,7 +50,6 @@ export function CartographersRoute({
 
     const nextPath = [...path, nodeId];
     setPath(nextPath);
-    setInspectedNodeId(null);
     setFeedback("");
 
     if (nodeId === "archive") {
@@ -64,7 +60,6 @@ export function CartographersRoute({
         setFeedback("The request failed. One or more documented constraints was ignored.");
         window.setTimeout(() => {
           setPath(["west-gate"]);
-          setInspectedNodeId(null);
           setFeedback("");
         }, 4500);
       }
@@ -121,42 +116,25 @@ export function CartographersRoute({
                 key={node.id}
                 className={`map-node map-node--${node.kind} ${
                   chosenIndex >= 0 ? "is-chosen" : ""
-                } ${inspectedNodeId === node.id ? "is-inspected" : ""}`}
+                } ${node.y < 30 ? "tooltip-below" : ""} ${
+                  node.x < 18 ? "tooltip-left" : node.x > 82 ? "tooltip-right" : ""
+                }`}
                 style={{ left: `${node.x}%`, top: `${node.y}%` }}
-                onClick={() => setInspectedNodeId(node.id)}
-                aria-pressed={inspectedNodeId === node.id}
-                aria-label={`Inspect ${node.name}. ${node.description}${
+                onClick={() => selectNode(node.id)}
+                aria-label={`${node.name}. ${node.description}${
                   chosenIndex >= 0 ? ` Route stop ${chosenIndex + 1}.` : ""
                 }`}
               >
                 <i aria-hidden="true" />
                 <span>{node.name}</span>
                 {chosenIndex >= 0 && <b>{chosenIndex + 1}</b>}
+                <em aria-hidden="true">
+                  <strong>{node.name}</strong>
+                  {node.description}
+                </em>
               </button>
             );
           })}
-
-          {inspectedNode && !drawerOpen && (
-            <section
-              className="route-node-popover"
-              role="dialog"
-              aria-label={`${inspectedNode.name} details`}
-            >
-              <button
-                className="route-node-popover__close"
-                onClick={() => setInspectedNodeId(null)}
-                aria-label="Close component details"
-              >×</button>
-              <small>Selected component</small>
-              <strong>{inspectedNode.name}</strong>
-              <p>{inspectedNode.description}</p>
-              {inspectedNode.id === path.at(-1) ? (
-                <span>Current stop</span>
-              ) : (
-                <button onClick={() => selectNode(inspectedNode.id)}>Add to flow</button>
-              )}
-            </section>
-          )}
 
           <div className="compass-drawer">
             <div className="flow-trace-icon" aria-hidden="true"><i /></div>
@@ -174,7 +152,6 @@ export function CartographersRoute({
           {!drawerOpen && (
             <button onClick={() => {
               setPath(["west-gate"]);
-              setInspectedNodeId(null);
               setFeedback("");
             }}>Clear flow</button>
           )}
