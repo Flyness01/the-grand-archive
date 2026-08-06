@@ -36,7 +36,7 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
       </div>
       <div className="intro__copy" aria-live="polite">
         <p>Before you sign off, there is one last thread to follow.</p>
-        <p>Ten connected moments from two summers are waiting. Each lesson unlocks the next.</p>
+        <p>Ten moments return as visual puzzles. Solve each lesson to unlock the next.</p>
       </div>
       <div className="intro__caption" aria-hidden={phase < 1}>
         <span className="sound-wave" />

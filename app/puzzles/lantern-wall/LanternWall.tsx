@@ -88,6 +88,16 @@ export function LanternWall({
           Adjust each signal&apos;s direction and priority until they form one shared implementation.
         </p>
 
+        <aside className="alignment-brief" aria-label="Alignment brief">
+          <p>Notes from the decision thread</p>
+          <ul>
+            <li><b>Design</b> has reached review and carries medium priority.</li>
+            <li><b>Frontend</b> is still exploring, but the user-facing work is high priority.</li>
+            <li><b>API</b> is the most committed direction and the lowest immediate priority.</li>
+            <li><b>Product</b> shares Frontend&apos;s priority; its direction sits between exploring and reviewed.</li>
+          </ul>
+        </aside>
+
         <div className={`shadow-wall ${solved ? "is-solved" : ""}`}>
           <div className="shadow-wall__plaster" aria-hidden="true" />
           <div className="shadow-composition" aria-label={`${alignedParts.filter(Boolean).length} of four team signals aligned`}>
