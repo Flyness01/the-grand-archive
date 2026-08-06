@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import { FinalLanternScene } from "./FinalLanternScene";
+
 const pedestals = Array.from({ length: 5 }, (_, index) => index + 1);
 const tiles = Array.from({ length: 625 }, (_, index) => index);
 
@@ -36,6 +39,13 @@ export function GrandHall({
   onEnterObservatory: () => void;
   finaleSolved: boolean;
 }) {
+  const [replayingLanterns, setReplayingLanterns] = useState(false);
+
+  function replayLanternScene() {
+    setReplayingLanterns(true);
+    window.setTimeout(() => setReplayingLanterns(false), 10200);
+  }
+
   return (
     <section className={`hall five-puzzle-hall ${restored ? "is-restored" : ""} ${lanternWallSolved ? "is-lantern-restored" : ""} ${finaleSolved ? "is-fully-restored" : ""}`} aria-labelledby="room-title">
       <div className="hall__rain" aria-hidden="true" />
@@ -72,13 +82,17 @@ export function GrandHall({
       </button>
 
       {handoffUnlocked && <nav className="late-level-shortcuts five-level-shortcuts" aria-label="Final project levels">
-        <button className="is-unlocked" onClick={onEnterOuterOffice} aria-label="Enter Level 4, Word-Ends Handoff">
-          <small>Level 04</small><b>Word-Ends Handoff</b><span>{typewriterSolved ? "Message decoded" : "A pattern is waiting"}</span>
+        <button className="is-unlocked project-stairway" onClick={onEnterOuterOffice} aria-label="Climb the stairs to Puzzle 4, Word-Ends Handoff">
+          <span className="project-stairway__steps" aria-hidden="true"><i /><i /><i /><i /></span>
+          <small>Climb to the handoff</small><b>Word-Ends</b><span>{typewriterSolved ? "Message decoded" : "A pattern is waiting upstairs"}</span>
         </button>
-        {finaleUnlocked && <button className="is-unlocked" onClick={onEnterObservatory} aria-label="Enter Level 5, Shared Timeline">
-          <small>Level 05</small><b>Shared Timeline</b><span>{finaleSolved ? "Team story complete" : "The final signals are ready"}</span>
+        {finaleUnlocked && <button className="is-unlocked reflection-platform" onClick={onEnterObservatory} aria-label="Step onto the reflection platform for Puzzle 5, Shared Timeline">
+          <span className="reflection-platform__dais" aria-hidden="true"><i /></span>
+          <small>Step onto the platform</small><b>Shared Timeline</b><span>{finaleSolved ? "Team story complete" : "The final reflection is ready"}</span>
         </button>}
       </nav>}
+
+      {finaleSolved && <button className="replay-lanterns" onClick={replayLanternScene}><span aria-hidden="true">◌</span> Replay lantern finale</button>}
 
       <div className="pedestals" aria-label="Five project record positions">{pedestals.map((pedestal) => <span key={pedestal} aria-hidden="true" />)}</div>
       <div className="hall__dust" aria-hidden="true" />
@@ -86,6 +100,7 @@ export function GrandHall({
         {finaleSolved ? "Five moments now tell one complete story." : typewriterSolved ? "A clear handoff unlocks the shared timeline." : lanternWallSolved ? "Aligned perspectives make a clear handoff possible." : floorMechanismActive ? "The traced system reveals the signals the team must align." : restored ? "Context makes the system possible to trace." : "Every project begins with context."}
         <span>{finaleSolved ? "The lanterns carry the story into the Debrief Room." : "Complete each visible level; the next one opens automatically."}</span>
       </p>
+      {replayingLanterns && <FinalLanternScene replay />}
     </section>
   );
 }

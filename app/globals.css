@@ -174,6 +174,9 @@ button:focus-visible, input:focus-visible {
 .brass-button:hover { background:#2b2318; border-color:#b28c50; }
 
 .utility-bar { position:fixed; z-index:20; right:1.5rem; top:1.35rem; display:flex; gap:.55rem; }
+.game:has(.puzzle-backdrop) .utility-bar { z-index:60; }
+.game:has(.puzzle-backdrop) .puzzle-backdrop { padding-top:4.8rem; }
+.game:has(.puzzle-backdrop) .puzzle-modal { height:min(calc(100svh - 5.8rem),850px); }
 .utility-bar button { border:1px solid rgba(149,127,88,.35); background:rgba(8,11,10,.72); backdrop-filter:blur(8px); color:#aaa497; padding:.58rem .75rem; cursor:pointer; font: .62rem Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; }
 .utility-bar button span { color:#bf9656; margin-right:.42rem; }
 .save-indicator { position:fixed; z-index:20; left:1.5rem; bottom:1.4rem; opacity:0; color:#898b83; font: .6rem Arial,sans-serif; letter-spacing:.14em; text-transform:uppercase; transition:opacity .4s; }
@@ -727,7 +730,9 @@ button:focus-visible, input:focus-visible {
 
   .puzzle-backdrop { padding:0;display:block; }
   .puzzle-modal { width:100%;height:100svh;max-height:none;border:0; }
-  .game:has(.puzzle-backdrop) .utility-bar { display:none; }
+  .game:has(.puzzle-backdrop) .utility-bar { display:grid;top:0;bottom:auto;left:0;right:0;padding:max(.45rem,env(safe-area-inset-top)) .5rem .45rem;background:rgba(19,25,33,.96);border-bottom:1px solid rgba(137,157,174,.28); }
+  .game:has(.puzzle-backdrop) .puzzle-backdrop { padding:64px 0 0; }
+  .game:has(.puzzle-backdrop) .puzzle-modal { height:calc(100svh - 64px); }
   .puzzle-modal__header { min-height:86px;padding:.75rem 1rem; }
   .puzzle-modal__header p { font-size:.48rem; }
   .puzzle-modal__header h2 { max-width:76vw;font-size:1.12rem;line-height:1.15; }
@@ -1421,6 +1426,18 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
 .late-level-shortcuts button.is-unlocked { border-color:#9b8072;background:linear-gradient(145deg,rgba(63,55,53,.97),rgba(33,36,39,.97));color:#c0aaa0;box-shadow:0 8px 20px rgba(0,0,0,.3),0 0 18px rgba(163,128,111,.18);cursor:pointer; }
 .late-level-shortcuts button.is-unlocked b { color:#eee4dd; }
 .late-level-shortcuts button.is-unlocked:hover { transform:translateY(-2px);border-color:#c19b88; }
+.five-puzzle-hall .five-level-shortcuts { top:58vh;display:grid;grid-template-columns:repeat(2,210px);gap:1.4rem;align-items:end; }
+.five-puzzle-hall .five-level-shortcuts button { position:relative;width:210px;min-height:132px;padding:68px .8rem .65rem;border:0;background:none;text-align:center;box-shadow:none;overflow:visible; }
+.five-puzzle-hall .five-level-shortcuts button.is-unlocked { border:0;background:none;box-shadow:none; }
+.five-puzzle-hall .five-level-shortcuts button.is-unlocked:hover { transform:translateY(-3px); }
+.five-puzzle-hall .five-level-shortcuts button>b { color:#f0e8e5;font-size:.72rem; }
+.five-puzzle-hall .five-level-shortcuts button>small,.five-puzzle-hall .five-level-shortcuts button>span:last-child { color:#c2aeb3; }
+.project-stairway__steps { position:absolute;left:4px;right:4px;top:0;display:flex!important;align-items:flex-end;justify-content:center;gap:7px;height:68px;perspective:130px;filter:drop-shadow(0 10px 8px rgba(4,7,12,.55)); }
+.project-stairway__steps i { position:relative;width:47px;height:13px;border:1px solid #738397;border-top-color:#aab7c4;background:linear-gradient(#596a7d,#344252);transform:rotateX(55deg);box-shadow:0 5px 8px rgba(4,7,12,.75); }.project-stairway__steps i:nth-child(2){transform:translateY(-10px) rotateX(55deg)}.project-stairway__steps i:nth-child(3){transform:translateY(-20px) rotateX(55deg)}.project-stairway__steps i:nth-child(4){transform:translateY(-30px) rotateX(55deg);border-color:#a27d8a;background:#65515f;box-shadow:0 5px 8px rgba(4,7,12,.75),0 0 12px rgba(194,154,169,.16)}
+.reflection-platform__dais { position:absolute;left:22px;right:22px;top:24px;height:18px;border:1px solid #718397;border-radius:2px;background:linear-gradient(#536477,#303d4c);box-shadow:0 8px 0 -2px #26323f,0 14px 14px rgba(4,7,12,.5);transform:perspective(140px) rotateX(48deg); }
+.reflection-platform__dais::after { content:"";position:absolute;left:18%;right:18%;top:7px;border-top:1px solid rgba(203,157,173,.55);box-shadow:0 0 7px rgba(203,157,173,.18); }
+.reflection-platform__dais i { display:none; }
+.replay-lanterns { position:absolute;z-index:10;right:3vw;bottom:4vh;min-height:42px;padding:.55rem .75rem;border:1px solid #8191a3;border-radius:999px;background:rgba(31,40,51,.9);color:#d9dfe4;cursor:pointer;font:.52rem Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 8px 18px rgba(7,11,18,.35); }.replay-lanterns span{margin-right:.35rem;color:#d5a5b3}.replay-lanterns:hover{border-color:#c79aaa;background:#3a4350}
 .hall.is-fully-restored { background:radial-gradient(ellipse at 50% 28%,#6b7057 0,#34463b 38%,#101713 78%); }
 .hall.is-fully-restored .mosaic { box-shadow:0 15px 50px #000,0 0 55px rgba(230,194,115,.42),inset 0 0 0 2px #d0a85e; }
 .hall.is-fully-restored .mosaic__grid span { background:linear-gradient(135deg,#b37a37,#f0d28d 52%,#5d8b76); }
@@ -1496,6 +1513,11 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
 .reduce-motion .project-lantern-burst { display:none; }
 .reduce-motion .reward-moment--manuscript { animation:none!important; }
 @media (max-width:700px) {
+  .five-puzzle-hall .five-level-shortcuts { top:57vh;width:92vw;grid-template-columns:repeat(2,minmax(0,1fr));gap:.2rem; }
+  .five-puzzle-hall .five-level-shortcuts button { width:100%;min-height:124px;padding-inline:.25rem; }
+  .project-stairway__steps { left:0;right:0;gap:4px; }.project-stairway__steps i{width:35px}
+  .reflection-platform__dais { left:8px;right:8px; }
+  .replay-lanterns { right:50%;bottom:2.5vh;transform:translateX(50%);white-space:nowrap; }
   .alignment-brief ul { grid-template-columns:1fr; }
   .project-lantern-burst span { width:52px;height:70px;padding-bottom:6px;border-width:3px; }
   .project-lantern-burst span::after { top:24px;width:10px;height:20px; }

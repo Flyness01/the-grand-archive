@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, type CSSProperties } from "react";
+import { useState } from "react";
 import { ImpossibleConstellation } from "../puzzles/impossible-constellation/ImpossibleConstellation";
 import { impossibleConstellationMosaicTiles } from "../puzzles/impossible-constellation/puzzleData";
 import { Hotspot } from "./Hotspot";
 import { PuzzleModal } from "./PuzzleModal";
+import { FinalLanternScene } from "./FinalLanternScene";
 
 export function ObservatoryRoom({
   restored,
@@ -74,19 +75,7 @@ export function ObservatoryRoom({
         </PuzzleModal>
       )}
 
-      {rewardMoment && (
-        <div className="reward-moment reward-moment--manuscript" role="status">
-          <div className="project-lantern-burst" aria-hidden="true">
-            {["Context", "Questions", "Docs", "Trace", "Systems", "Signals", "Design", "Product", "Frontend", "API", "Reviews", "PRs", "1:1s", "Mentorship", "Patience", "Kindness", "Trust", "Growth", "Learning", "Handoffs", "Support", "Curiosity", "Confidence", "Teamwork", "Trails", "Pets", "Laughter", "Summer One", "Summer Two", "Enterprise", "Memories", "Lessons", "People", "Gratitude", "Care", "Heart"].map((lesson, index) => (
-              <span style={{ "--card-index": index } as CSSProperties} key={lesson}><i>{String(index + 1).padStart(2, "0")}</i><b>{lesson}</b></span>
-            ))}
-          </div>
-          <div className="retrospective-icon retrospective-icon--large" aria-hidden="true"><i /></div>
-          <p>We Built It Together</p>
-          <blockquote>“Five moments. Two summers. One very full heart.”</blockquote>
-          <small>The lanterns are carrying the story into the Debrief Room.</small>
-        </div>
-      )}
+      {rewardMoment && <FinalLanternScene />}
     </section>
   );
 }
