@@ -329,7 +329,7 @@ button:focus-visible, input:focus-visible {
 .map-node--milestone { border-radius:3px;background:#92836a; }.map-node--milestone i { border-radius:0;background:#534d42; }
 .map-node--landmark { transform:translate(-50%,-50%) rotate(45deg);border-radius:2px; }.map-node--landmark>* { transform:rotate(-45deg); }
 .map-node span { position:absolute;left:50%;top:23px;transform:translateX(-50%);width:max-content;max-width:115px;color:#443b45;font-size:.61rem;line-height:1.05;text-shadow:0 1px rgba(255,255,255,.65); }
-.map-node b { display:none; }
+.map-node b { position:absolute;right:-9px;top:-9px;display:grid;place-items:center;width:17px;height:17px;border:1px solid rgba(91,70,86,.55);border-radius:50%;background:#f3edf0;color:#634d5e;box-shadow:0 1px 4px rgba(30,22,28,.22);font:700 .52rem/1 Arial,sans-serif; }
 .map-node.is-chosen { border-color:#84677d;background:#f0e9ed;box-shadow:0 0 9px rgba(116,86,108,.38); }
 .compass-drawer { position:absolute;z-index:6;left:50%;bottom:-3px;width:270px;height:150px;transform:translate(-50%,105%);padding:1rem;text-align:center;background:#292631;border:2px solid #8e7d8b;border-radius:8px 8px 0 0;color:#d4c8d1;transition:transform .9s ease; }
 .antique-map.is-solved .compass-drawer { transform:translate(-50%,0); }
