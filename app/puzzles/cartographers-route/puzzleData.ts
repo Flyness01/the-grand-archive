@@ -184,7 +184,6 @@ export const mapRoutes: MapRoute[] = [
   { from: "orchard-lamp", to: "market-lamp" },
   { from: "orchard-lamp", to: "south-bridge" },
   { from: "orchard-lamp", to: "mill-lamp" },
-  { from: "market-lamp", to: "north-ferry", river: "Lark" },
   { from: "market-lamp", to: "chapel-lamp", river: "Greywater" },
   { from: "market-lamp", to: "east-gate" },
   { from: "east-gate", to: "lake-beacon" },
