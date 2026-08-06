@@ -12,7 +12,9 @@ describe("The Cartographer's Missing Route validator", () => {
       validateCartographersRoute([
         "west-gate",
         "broken-mile",
-        "watch-hill",
+        "east-gate",
+        "stone-ford",
+        "market-lamp",
         "north-ferry",
         "lantern-cross",
         "archive",

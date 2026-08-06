@@ -24,13 +24,12 @@ export const signalRows: { id: SignalRowId; label: string; startOffset: number; 
   },
 ];
 
-// All three Last day moments must land in the center reflection column.
-export const productionCheckSolution: Record<SignalRowId, number> = { release: 2, queue: 2, worker: 2 };
+// Every viewpoint must read chronologically from Week 1 through Last day.
+export const productionCheckSolution: Record<SignalRowId, number> = { release: 0, queue: 0, worker: 0 };
 export const impossibleConstellationHints = [
   "Each strip contains the same five moments in a different starting position. Put matching moment labels in vertical columns.",
-  "Find Last day on every strip. Move all three Last day cells into the softly highlighted center column.",
-  "The aligned center should read: Reflect, Thank you, and Together.",
-  "After the timelines align, add your own name to the shared story. There is no wrong name.",
+  "The completed journey begins with Week 1 on the left and ends with Last day on the right.",
+  "The columns should read Week 1, Week 3, Sprint, Handoff, and Last day from left to right.",
 ];
 
 export const impossibleConstellationMosaicTiles = [

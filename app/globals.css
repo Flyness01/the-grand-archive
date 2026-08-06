@@ -1845,6 +1845,7 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
 
 .typewriter-puzzle { min-height:0;flex:1;display:grid;grid-template-columns:minmax(0,1fr) 260px; }
 .typewriter-puzzle__workspace { min-height:0;overflow:auto;position:relative;padding:1.2rem;background:radial-gradient(circle at 50% 40%,#49362d,#161310 70%); }
+.typewriter-puzzle__instruction { width:min(520px,65%);margin:0 auto .8rem;text-align:center;color:#b7ad9d;font-size:.72rem;font-style:italic;line-height:1.45; }
 .typing-record { position:absolute;z-index:3;left:1.2rem;top:1.3rem;width:185px;padding:.9rem;background:#cbbc98;color:#3e3428;box-shadow:0 7px 18px #000;transform:rotate(-2deg); }
 .typing-record p { margin:0 0 .7rem;color:#725938;font:.5rem Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase; }
 .typing-record span { display:grid;grid-template-columns:52px 1fr;margin:.35rem 0;font:.59rem "Courier New",monospace;letter-spacing:.14em; }
@@ -1889,6 +1890,7 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
   .typewriter-hotspot>span:last-child { opacity:1;font-size:.48rem; }
   .typewriter-puzzle { display:block;overflow-y:auto; }
   .typewriter-puzzle__workspace { min-height:max-content;overflow:visible;padding:.75rem .6rem 1.2rem; }
+  .typewriter-puzzle__instruction { width:100%;margin-bottom:.75rem;padding-inline:.4rem; }
   .typing-record { position:relative;left:auto;top:auto;width:100%;margin:0 auto .75rem;transform:none; }
   .antique-typewriter { width:100%;min-height:430px;padding-inline:8px;border-width:6px; }
   .typewriter-paper { left:6%;right:6%;padding:1.2rem .8rem; }

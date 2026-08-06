@@ -92,9 +92,9 @@ export function LanternWall({
           <p>Notes from the decision thread</p>
           <ul>
             <li><b>Design</b> has reached review and carries medium priority.</li>
-            <li><b>Frontend</b> is still exploring, but the user-facing work is high priority.</li>
-            <li><b>API</b> is the most committed direction and the lowest immediate priority.</li>
-            <li><b>Product</b> shares Frontend&apos;s priority; its direction sits between exploring and reviewed.</li>
+            <li><b>Frontend</b> is still exploring; its user-facing work matters more immediately than Design&apos;s.</li>
+            <li><b>API</b> is the most committed direction, but its immediate priority sits below Design&apos;s.</li>
+            <li><b>Product</b> sits between exploring and reviewed, and shares Frontend&apos;s priority.</li>
           </ul>
         </aside>
 

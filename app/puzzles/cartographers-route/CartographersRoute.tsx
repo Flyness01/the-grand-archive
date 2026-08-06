@@ -72,7 +72,7 @@ export function CartographersRoute({
         <div className="margin-rules">
           <p>From the request trace notes</p>
           <ol>
-            <li>Follow what happens after a user takes an action: understand it, record it, then send it out of the app.</li>
+            <li>Follow what happens after a user acts in the interface, then send the request out of the app.</li>
             <li>As soon as the request reaches the backend, verify permission before performing the work.</li>
             <li>Before the result reaches the live service, reshape it and pass through the final shared boundary.</li>
           </ol>

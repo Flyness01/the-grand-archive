@@ -16,11 +16,11 @@ export interface MapRoute {
 export const mapNodes: MapNode[] = [
   {
     id: "west-gate",
-    name: "Entry Point",
+    name: "User Interface",
     x: 8,
     y: 78,
     kind: "lantern",
-    description: "The user clicks, taps, or submits something to begin.",
+    description: "The user acts here, and the screen interprets what they want.",
   },
   {
     id: "stone-ford",
@@ -53,22 +53,6 @@ export const mapNodes: MapNode[] = [
     y: 58,
     kind: "lantern",
     description: "An asynchronous branch waiting for a consumer.",
-  },
-  {
-    id: "orchard-lamp",
-    name: "UI Layer",
-    x: 29,
-    y: 70,
-    kind: "lantern",
-    description: "The screen interprets what the user wants to do.",
-  },
-  {
-    id: "watch-hill",
-    name: "State Manager",
-    x: 38,
-    y: 78,
-    kind: "lantern",
-    description: "The app records the information needed for the next step.",
   },
   {
     id: "market-lamp",
@@ -169,9 +153,7 @@ export const mapNodes: MapNode[] = [
 ];
 
 export const mapRoutes: MapRoute[] = [
-  { from: "west-gate", to: "orchard-lamp" },
-  { from: "orchard-lamp", to: "watch-hill" },
-  { from: "watch-hill", to: "east-gate", river: "Lark" },
+  { from: "west-gate", to: "east-gate", river: "Lark" },
   { from: "east-gate", to: "stone-ford" },
   { from: "stone-ford", to: "market-lamp" },
   { from: "market-lamp", to: "north-ferry", river: "Greywater" },
@@ -184,16 +166,15 @@ export const mapRoutes: MapRoute[] = [
   { from: "bell-tower", to: "mill-lamp" },
   { from: "bell-tower", to: "market-lamp" },
   { from: "broken-mile", to: "east-gate" },
-  { from: "orchard-lamp", to: "bell-tower" },
-  { from: "orchard-lamp", to: "south-bridge" },
-  { from: "orchard-lamp", to: "mill-lamp" },
+  { from: "west-gate", to: "bell-tower" },
+  { from: "west-gate", to: "south-bridge" },
+  { from: "west-gate", to: "mill-lamp" },
   { from: "market-lamp", to: "chapel-lamp", river: "Greywater" },
   { from: "east-gate", to: "lake-beacon" },
   { from: "lake-beacon", to: "fallen-mile" },
   { from: "lake-beacon", to: "archive", river: "Greywater" },
   { from: "mill-lamp", to: "old-quarry", river: "Greywater" },
   { from: "south-bridge", to: "old-quarry", river: "Greywater" },
-  { from: "watch-hill", to: "old-quarry" },
   { from: "chapel-lamp", to: "lantern-cross" },
   { from: "chapel-lamp", to: "pine-chapel" },
   { from: "pine-chapel", to: "archive" },
@@ -204,8 +185,6 @@ export const mapRoutes: MapRoute[] = [
 
 export const cartographersRouteSolution = [
   "west-gate",
-  "orchard-lamp",
-  "watch-hill",
   "east-gate",
   "stone-ford",
   "market-lamp",
@@ -216,8 +195,8 @@ export const cartographersRouteSolution = [
 
 export const cartographersRouteHints = [
   "Several request paths reach the target. Only one respects every documented system constraint.",
-  "Follow the user’s action: the screen understands it, the app records it, and then the request leaves for the backend.",
-  "Start with Entry Point → UI Layer → State Manager. Inspect the component descriptions to continue.",
+  "Follow the user’s action from the interface into the backend, then verify permission before work begins.",
+  "Start with User Interface → API Gateway → Auth Check. Hover over the remaining components to continue.",
 ];
 
 export const cartographersRouteMosaicTiles = [

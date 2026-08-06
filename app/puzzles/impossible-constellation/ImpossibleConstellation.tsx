@@ -33,7 +33,7 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
       setAligned(true);
       setFeedback("The whole journey now lines up, from the first week to the last day. Finish the sentence below.");
     } else {
-      setFeedback("The center column still mixes different moments. Align matching labels vertically, with Last day in the center.");
+      setFeedback("The journey is still out of order. Align matching labels, with Week 1 at the left and Last day at the right.");
     }
   }
 
@@ -52,11 +52,10 @@ export function ImpossibleConstellation({ hintCount, onUseHint, onCollectReward,
         <header className="production-check__header">
           <p>Two summers · three scrambled viewpoints</p>
           <strong>Align the three timelines to reveal one shared journey.</strong>
-          <small><b>How it works:</b> matching moment labels belong in the same vertical column. Put “Last day” in the shaded center.</small>
+          <small><b>How it works:</b> matching moments belong in the same vertical column. The finished journey begins with “Week 1” and ends with “Last day.”</small>
         </header>
 
         <div className="telemetry-board" aria-label="Three movable journey timelines">
-          <div className="telemetry-focus" aria-hidden="true"><span>Final reflection</span></div>
           {signalRows.map((row) => (
             <section className="telemetry-row" key={row.id} aria-label={row.label}>
               <div className="telemetry-row__controls">

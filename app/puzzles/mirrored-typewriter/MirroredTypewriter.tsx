@@ -54,6 +54,10 @@ export function MirroredTypewriter({
   return (
     <div className="typewriter-puzzle">
       <div className="typewriter-puzzle__workspace">
+        <p className="typewriter-puzzle__instruction">
+          Each example uses the same keyboard transformation. Infer the rule,
+          then use it to complete the missing four-letter word.
+        </p>
         <aside className="typing-record">
           <p>Decoder samples</p>
           <span><b>Input</b> Q W E R T</span>
@@ -66,7 +70,7 @@ export function MirroredTypewriter({
         <div className={`antique-typewriter ${solved ? "is-solved" : ""}`}>
           <div className="typewriter-paper">
             <small>ENGINEERING HANDOFF · INCOMPLETE</small>
-            <p>A useful handoff starts where ambiguity</p>
+            <p>A useful handoff begins where ambiguity</p>
             <strong>
               {Array.from({ length: 4 }, (_, index) => (
                 <i key={index}>{printed[index] ?? ""}</i>
@@ -89,7 +93,7 @@ export function MirroredTypewriter({
 
         <div className="typewriter-actions">
           <p aria-live="polite">
-            {feedback || "Complete the intended handoff. Each input produces its mirrored output."}
+            {feedback || "Find the missing word, then press the keys that produce it as mirrored output."}
           </p>
           {!solved && <button onClick={clearPaper}>Reset message</button>}
           {solved && !alreadySolved ? (

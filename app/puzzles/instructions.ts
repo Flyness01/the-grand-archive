@@ -51,16 +51,16 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     tip: "Deploy is not the end of the release; observation is part of shipping.",
   },
   "The Shared Timeline": {
-    objective: "Align three viewpoints on the same sequence, then add your name to the completed team story.",
+    objective: "Arrange three viewpoints into the same chronological journey, then add your name to the completed team story.",
     steps: [
       "Use the left and right arrows to move each strip.",
-      "Place matching moment labels in vertical columns across all three strips.",
-      "Put Last day in the shaded center window, inspect the completed journey, and add your name below.",
+      "Place matching moments in vertical columns across all three strips.",
+      "Build a journey from Week 1 on the left to Last day on the right, then add your name below.",
     ],
-    tip: "The center should read Reflect, Thank you, and Together. Your name is a signature, not another answer to guess.",
+    tip: "Every row should begin with Week 1 and finish with Last day. Your name is a signature, not another answer to guess.",
   },
   "The Word-Ends Handoff": {
-    objective: "Decode a transformed message and complete an actionable engineering handoff.",
+    objective: "Infer the keyboard transformation, then use it to complete the missing four-letter word in the handoff.",
     steps: [
       "Compare the sample inputs with their resulting outputs.",
       "Infer the consistent row-by-row transformation.",
