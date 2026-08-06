@@ -9,10 +9,10 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     objective: "Review the onboarding documents, uncover three fixed letters, then complete the engineering instruction.",
     steps: [
       "Open documents and read the team’s notes.",
-      "Record the three letters attached to highlighted lessons.",
+      "Record the three fixed letters, then reread the highlighted notes for the shared lesson that completes the word.",
       "Type the missing letters into the empty boxes and test the completed word.",
     ],
-    tip: "The highlighted letters are fixed in place; the remaining letters are yours to infer.",
+    tip: "The gold letters fix three positions. The highlighted notes also describe the word you need.",
   },
   "The Missing Request Path": {
     objective: "Trace a user request through an unfamiliar system without crossing architectural boundaries.",
