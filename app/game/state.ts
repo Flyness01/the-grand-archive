@@ -83,7 +83,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         usedHints: {
           ...state.usedHints,
           [action.puzzleId]: Math.min(
-            action.puzzleId === "librarians-shelf" ? 4 : 3,
+            3,
             (state.usedHints[action.puzzleId] ?? 0) + 1,
           ),
         },

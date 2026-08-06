@@ -45,15 +45,15 @@ describe("game progression", () => {
     expect(gameReducer(solved, action)).toEqual(solved);
   });
 
-  it("reveals all four shelf hints without exceeding the puzzle's limit", () => {
+  it("reveals no more than three hints", () => {
     let state = createInitialState();
-    for (let index = 0; index < 6; index += 1) {
+    for (let index = 0; index < 5; index += 1) {
       state = gameReducer(state, {
         type: "USE_HINT",
         puzzleId: "librarians-shelf",
       });
     }
-    expect(state.usedHints["librarians-shelf"]).toBe(4);
+    expect(state.usedHints["librarians-shelf"]).toBe(3);
   });
 
   it("clears only the restarted puzzle's hints", () => {
