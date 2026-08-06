@@ -78,10 +78,10 @@ export function ImpossibleConstellation({
     <div className="constellation-puzzle">
       <div className="constellation-puzzle__workspace">
         <div className="chart-cabinet" aria-label="Trace comparison guide">
-          <p>Trace comparison guide</p>
-          <span><i className="chart-mark chart-mark--crown" />Traffic spike: calls continue forward</span>
-          <span><i className="chart-mark chart-mark--stag" />Auth failure: calls stop at access</span>
-          <span><i className="chart-mark chart-mark--ship" />Retry loop: calls return and repeat</span>
+          <p>Known healthy behavior</p>
+          <span><i className="chart-mark chart-mark--crown" />One request ID follows one forward path</span>
+          <span><i className="chart-mark chart-mark--stag" />Each service records a single attempt</span>
+          <span><i className="chart-mark chart-mark--ship" />The request exits after one response</span>
           <small>Group the same recorded events at the service boundary documented in Puzzle 2.</small>
         </div>
 
@@ -107,6 +107,14 @@ export function ImpossibleConstellation({
             <button onClick={compareCharts}>Correlate events</button>
             <button onClick={() => rotateDome(1)} aria-label="Next service boundary">›</button>
           </div>
+        </div>
+
+        <div className={`trace-evidence ${alignmentFound ? "is-visible" : ""}`} aria-live="polite">
+          <p>Correlated request · req-1842</p>
+          <code>14:03:21.104&nbsp; API → Worker&nbsp; attempt 1&nbsp; 503</code>
+          <code>14:03:21.312&nbsp; API → Worker&nbsp; attempt 2&nbsp; 503</code>
+          <code>14:03:21.728&nbsp; API → Worker&nbsp; attempt 3&nbsp; 503</code>
+          <small>Same request ID. Same call. Increasing delay. No successful exit.</small>
         </div>
 
         <div className="compass-bearing-card">

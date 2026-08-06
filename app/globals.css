@@ -616,6 +616,11 @@ button:focus-visible, input:focus-visible {
 .dome-rotation-controls { position:absolute;z-index:4;left:50%;bottom:4%;display:flex;align-items:center;gap:.6rem;transform:translateX(-50%); }
 .dome-rotation-controls button { min-height:40px;border:1px solid #657279;background:#111a20;color:#c4c3ac;padding:.55rem .75rem;cursor:pointer;font:.53rem Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap; }
 .dome-rotation-controls button:first-child,.dome-rotation-controls button:last-child { width:42px;padding:0;font-size:1.2rem; }
+.trace-evidence { position:absolute;z-index:5;left:50%;top:18%;width:290px;transform:translateX(-50%) translateY(8px);padding:.75rem .85rem;border:1px solid rgba(119,154,166,.38);border-radius:6px;background:rgba(7,15,20,.9);box-shadow:0 8px 22px rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.45s; }
+.trace-evidence.is-visible { opacity:1;transform:translateX(-50%) translateY(0); }
+.trace-evidence p { margin:0 0 .5rem;color:#a9c2c9;font:600 .52rem Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase; }
+.trace-evidence code { display:block;margin:.24rem 0;color:#d2dad7;font:.59rem/1.35 ui-monospace,SFMono-Regular,Menlo,monospace; }
+.trace-evidence small { display:block;margin-top:.55rem;padding-top:.45rem;border-top:1px solid rgba(119,154,166,.22);color:#9ba7a6;font-size:.54rem;line-height:1.35; }
 .compass-bearing-card { position:absolute;z-index:4;right:1.6rem;top:1.4rem;width:180px;padding:.9rem;text-align:center;background:#191713;border:4px double #715a38;box-shadow:0 7px 18px #000; }
 .compass-icon--small { width:48px;transform:rotate(225deg); }
 .compass-bearing-card p { margin:.6rem 0 .2rem;color:#aaa086;font-size:.66rem; }
