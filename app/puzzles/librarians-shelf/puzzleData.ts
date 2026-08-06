@@ -110,6 +110,7 @@ export const librariansShelfHints = [
   "You gain this by reading code, reading documentation, and asking questions.",
   "Three documents carry highlighted lines.",
   "Their gold letters belong to fixed places in a seven-letter engineering instruction.",
+  "Complete C _ _ T _ _ T. It is what you need before changing an unfamiliar system.",
 ];
 
 export const librariansShelfMosaicTiles = [
