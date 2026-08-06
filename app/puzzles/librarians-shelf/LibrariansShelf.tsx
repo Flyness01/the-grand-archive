@@ -38,10 +38,10 @@ export function LibrariansShelf({
 
   function submitWord(event: FormEvent) {
     event.preventDefault();
-    const word = `E${missingLetters[0]}${missingLetters[1]}R${missingLetters[2]}${missingLetters[3]}T`;
+    const word = `C${missingLetters[0]}${missingLetters[1]}T${missingLetters[2]}${missingLetters[3]}T`;
     if (validateLibrariansShelf(word)) {
       setCompartmentOpen(true);
-      setFeedback("The documentation drawer unlocks with a quiet click.");
+      setFeedback("CONTEXT completes the first lesson. The next part of the story unlocks.");
     } else {
       setFeedback("That instruction does not fit the highlighted notes yet.");
     }
@@ -90,7 +90,7 @@ export function LibrariansShelf({
             <small>Gold letters found: {foundClues.length}/3</small>
           </span>
           <div aria-label="Seven-letter instruction">
-            <i>{foundClues.includes("history-lanterns") ? "E" : "?"}</i>
+            <i>{foundClues.includes("history-lanterns") ? "C" : "?"}</i>
             {[0, 1].map((index) => (
               <input
                 key={index}
@@ -105,7 +105,7 @@ export function LibrariansShelf({
                 }}
               />
             ))}
-            <i>{foundClues.includes("atlas-forgotten") ? "R" : "?"}</i>
+            <i>{foundClues.includes("atlas-forgotten") ? "T" : "?"}</i>
             {[2, 3].map((index) => (
               <input
                 key={index}

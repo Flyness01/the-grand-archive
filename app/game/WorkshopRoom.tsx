@@ -96,13 +96,13 @@ export function WorkshopRoom({
       )}
 
       <button className="return-hall" onClick={onReturn}>
-        <span aria-hidden="true">←</span> Team Hub
+        <span aria-hidden="true">←</span> Project Room
       </button>
 
       {puzzleOpen && (
         <PuzzleModal
           title="Incident 14"
-          subtitle="Build Lab · Debugging a dependency cascade"
+          subtitle="Chapter 4 of 10 · Recover production"
           onClose={() => setPuzzleOpen(false)}
         >
           <StoppedClock
@@ -126,7 +126,7 @@ export function WorkshopRoom({
       {blueprintOpen && (
         <PuzzleModal
           title="The Architecture Decision"
-          subtitle="System Design · Constraint alignment"
+          subtitle="Chapter 9 of 10 · Design the system"
           onClose={() => setBlueprintOpen(false)}
         >
           <MasterBlueprint
@@ -143,7 +143,7 @@ export function WorkshopRoom({
           <div className="architecture-decision-icon architecture-decision-icon--large" aria-hidden="true"><i /><i /><i /></div>
           <p>Architecture Decision</p>
           <blockquote>“A strong design lets every constraint tell the same story.”</blockquote>
-          <small>The complete body of work is ready for one final review. Debrief Room unlocks.</small>
+          <small>The design connects all eight earlier lessons. The Final Handoff is ready.</small>
         </div>
       )}
     </section>

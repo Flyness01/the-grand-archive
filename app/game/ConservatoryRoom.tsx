@@ -60,13 +60,13 @@ export function ConservatoryRoom({
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
-        <span aria-hidden="true">←</span> Team Hub
+        <span aria-hidden="true">←</span> Project Room
       </button>
 
       {puzzleOpen && (
         <PuzzleModal
           title="The Release Runbook"
-          subtitle="Release Cycle · Sequencing and verification"
+          subtitle="Chapter 5 of 10 · Ship responsibly"
           onClose={() => setPuzzleOpen(false)}
         >
           <SleepingConservatory

@@ -89,12 +89,12 @@ export function GrandHall({
       </div>
 
       <header className="room-title">
-        <p>Your team workspace</p>
-        <h1 id="room-title">Team Hub</h1>
+        <p>The Work We Shared</p>
+        <h1 id="room-title">Project Room</h1>
       </header>
 
       <div className="mosaic">
-        <div className="mosaic__plaque">Project Board · Progress collected</div>
+        <div className="mosaic__plaque">Two Summers · Ten connected moments</div>
         <div className="mosaic__grid" aria-label={`${revealedTiles.length} project board pieces revealed`}>
           {tiles.map((tile) => (
             <span className={revealedTiles.includes(tile) ? "is-revealed" : ""} key={tile} />
@@ -102,28 +102,26 @@ export function GrandHall({
         </div>
       </div>
 
-      <nav className="late-level-shortcuts" aria-label="Final project levels">
+      {blueprintUnlocked && <nav className="late-level-shortcuts" aria-label="Final project levels">
         <button
-          className={blueprintUnlocked ? "is-unlocked" : ""}
-          disabled={!blueprintUnlocked}
+          className="is-unlocked"
           onClick={onEnterWorkshop}
-          aria-label={blueprintUnlocked ? "Enter Level 9, System Design" : "Level 9, System Design, locked until QA Review is complete"}
+          aria-label="Enter Level 9, System Design"
         >
           <small>Level 09</small>
           <b>System Design</b>
           <span>{blueprintSolved ? "Decision complete" : blueprintUnlocked ? "Architecture task ready" : "Complete QA Review"}</span>
         </button>
-        <button
-          className={blueprintSolved ? "is-unlocked" : ""}
-          disabled={!blueprintSolved}
+        {blueprintSolved && <button
+          className="is-unlocked"
           onClick={() => setFinaleOpen(true)}
-          aria-label={blueprintSolved ? "Enter Level 10, Final Handoff" : "Level 10, Final Handoff, locked until System Design is complete"}
+          aria-label="Enter Level 10, Final Handoff"
         >
           <small>Level 10</small>
           <b>Final Handoff</b>
           <span>{finaleSolved ? "Project story complete" : blueprintSolved ? "Retrospective ready" : "Complete System Design"}</span>
-        </button>
-      </nav>
+        </button>}
+      </nav>}
 
       <button
         className="door door--library"
@@ -289,7 +287,7 @@ export function GrandHall({
           ? "The System Map reveals four signals that must agree."
           : restored
             ? "The first piece of the board has returned."
-            : "One doorway holds a little light."}
+            : "Every project begins with context."}
         <span>
           {finaleSolved
             ? "The living frame stands open to the Debrief Room."
@@ -311,14 +309,14 @@ export function GrandHall({
             ? "Four independent signals must resolve into one result."
             : restored
               ? "The Project Board records the first breakthrough."
-              : "Move closer to inspect it."}
+              : "Start in the Docs Room. Each completed lesson will reveal exactly what comes next."}
         </span>
       </p>
 
       {finaleOpen && (
         <PuzzleModal
           title="The Final Handoff"
-          subtitle="Team Hub · Project retrospective"
+          subtitle="Chapter 10 of 10 · Tell the project story"
           onClose={() => setFinaleOpen(false)}
         >
           <ReturnBorrowed

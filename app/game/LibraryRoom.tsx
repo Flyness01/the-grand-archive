@@ -67,13 +67,13 @@ export function LibraryRoom({
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
-        <span aria-hidden="true">←</span> Team Hub
+        <span aria-hidden="true">←</span> Project Room
       </button>
 
       {puzzleOpen && (
         <PuzzleModal
           title="The Documentation Shelf"
-          subtitle="Docs Room · Codebase orientation"
+          subtitle="Chapter 1 of 10 · Learn the context"
           onClose={() => setPuzzleOpen(false)}
         >
           <LibrariansShelf

@@ -3,7 +3,7 @@ import type { RoomDefinition, RoomId } from "./types";
 export const rooms: Record<RoomId, RoomDefinition> = {
   "grand-hall": {
     id: "grand-hall",
-    name: "Team Hub",
+    name: "Project Room",
     eyebrow: "The project workspace",
     connections: [
       "library",

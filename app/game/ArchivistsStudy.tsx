@@ -20,7 +20,7 @@ export function ArchivistsStudy({ onReturn }: { onReturn: () => void }) {
         <span aria-hidden="true">✦</span>
         Open my thank-you note
       </button>
-      <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Team Hub</button>
+      <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Project Room</button>
 
       {letterOpen && (
         <div className="letter-backdrop" onMouseDown={() => setLetterOpen(false)}>

@@ -2,23 +2,23 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://flyness01.github.io/the-grand-archive";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://flyness01.github.io/the-work-we-shared";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Ship It — A Team Story",
+  title: "The Work We Shared — A Team Story",
   description:
-    "A Slack-inspired puzzle mystery about questions, challenges, and the work that changes you.",
+    "Ten connected moments from two summers of learning, building, and growing with a team.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   openGraph: {
-    title: "Ship It — A Team Story",
-    description: "Ten milestones. One project. A story hidden in the work.",
+    title: "The Work We Shared — A Team Story",
+    description: "Ten moments. Two summers. One story about the work we shared.",
     images: [{ url: "/og.png", width: 1536, height: 909 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ship It — A Team Story",
-    description: "Ten milestones. One project. A story hidden in the work.",
+    title: "The Work We Shared — A Team Story",
+    description: "Ten moments. Two summers. One story about the work we shared.",
     images: ["/og.png"],
   },
 };

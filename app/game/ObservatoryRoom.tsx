@@ -57,13 +57,13 @@ export function ObservatoryRoom({
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
-        <span aria-hidden="true">←</span> Team Hub
+        <span aria-hidden="true">←</span> Project Room
       </button>
 
       {puzzleOpen && (
         <PuzzleModal
           title="The Unclassified Trace"
-          subtitle="Pattern Review · Rotation and abstraction"
+          subtitle="Chapter 6 of 10 · Find the pattern"
           onClose={() => setPuzzleOpen(false)}
         >
           <ImpossibleConstellation

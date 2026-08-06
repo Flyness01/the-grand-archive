@@ -30,17 +30,17 @@ export function IntroSequence({ onComplete }: { onComplete: () => void }) {
           <i />
         </aside>
         <div>
-          <small># project-room</small>
-          <p><b>YM</b><span>Your Mentor is typing…</span></p>
+          <small># two-summers</small>
+          <p><b>YM</b><span>Your Mentor pinned one last thread…</span></p>
         </div>
       </div>
       <div className="intro__copy" aria-live="polite">
-        <p>Welcome to your first day.</p>
-        <p>You do not have to know everything. You just have to begin.</p>
+        <p>Before you sign off, there is one last thread to follow.</p>
+        <p>Ten connected moments from two summers are waiting. Each lesson unlocks the next.</p>
       </div>
       <div className="intro__caption" aria-hidden={phase < 1}>
         <span className="sound-wave" />
-        {phase < 2 ? "Monday · 9:02 AM" : "You joined #project-room"}
+        {phase < 2 ? "Last day · 4:42 PM" : "You opened #two-summers"}
       </div>
     </section>
   );

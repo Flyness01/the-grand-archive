@@ -56,12 +56,12 @@ export function ArchivistsOuterOffice({
         <span>{solved ? "Handoff saved" : "Decode the message"}</span>
       </Hotspot>
 
-      <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Team Hub</button>
+      <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Project Room</button>
 
       {puzzleOpen && (
         <PuzzleModal
           title="The Unclear Handoff"
-          subtitle="Team Lead’s Office · Technical communication"
+          subtitle="Chapter 7 of 10 · Communicate clearly"
           onClose={() => setPuzzleOpen(false)}
         >
           <MirroredTypewriter

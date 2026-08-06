@@ -359,7 +359,7 @@ export function GameShell() {
           <div className="utility-bar" aria-label="Game controls">
             <button onClick={() => setJourneyOpen(true)}>
               <span aria-hidden="true">#</span>
-              Field notes {state.solvedPuzzleIds.length}/10
+              Story thread {state.solvedPuzzleIds.length}/10
             </button>
             <button onClick={() => setInventoryOpen(true)}>
               <span aria-hidden="true">◇</span>

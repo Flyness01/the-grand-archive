@@ -16,7 +16,7 @@ export const shelfBooks: ShelfBook[] = [
     passage:
       "The repository was unfamiliar, but the team had left a path through it for anyone willing to slow down and read.",
     highlightedLine: "Read the system before you rush to change it.",
-    goldLetter: "R",
+    goldLetter: "T",
     orderMark: "Position 4",
   },
   {
@@ -40,7 +40,7 @@ export const shelfBooks: ShelfBook[] = [
     passage:
       "A good pull request makes the change understandable, gives reviewers context, and welcomes better ideas.",
     highlightedLine: "Every good first contribution begins with context.",
-    goldLetter: "E",
+    goldLetter: "C",
     orderMark: "Position 1",
   },
   {
@@ -104,12 +104,12 @@ export const shelfBooks: ShelfBook[] = [
   },
 ];
 
-export const librariansShelfSolution = "EXTRACT";
+export const librariansShelfSolution = "CONTEXT";
 
 export const librariansShelfHints = [
   "Three documents carry highlighted lines.",
   "Their gold letters belong to fixed places in a seven-letter engineering instruction.",
-  "Complete E _ _ R _ _ T. The word means to take something out from where it is held.",
+  "Complete C _ _ T _ _ T. It is what you need before changing an unfamiliar system.",
 ];
 
 export const librariansShelfMosaicTiles = [

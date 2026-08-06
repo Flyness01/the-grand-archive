@@ -60,13 +60,13 @@ export function MapRoom({
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}>
-        <span aria-hidden="true">←</span> Team Hub
+        <span aria-hidden="true">←</span> Project Room
       </button>
 
       {puzzleOpen && (
         <PuzzleModal
           title="The Missing Request Path"
-          subtitle="System Map · Architecture tracing"
+          subtitle="Chapter 2 of 10 · Trace the system"
           onClose={() => setPuzzleOpen(false)}
         >
           <CartographersRoute

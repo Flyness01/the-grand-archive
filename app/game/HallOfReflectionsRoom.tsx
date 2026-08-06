@@ -55,12 +55,12 @@ export function HallOfReflectionsRoom({
         <span>{solved ? "Review complete" : "Compare the interfaces"}</span>
       </Hotspot>
 
-      <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Team Hub</button>
+      <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Project Room</button>
 
       {puzzleOpen && (
         <PuzzleModal
           title="The Meaningful Difference"
-          subtitle="QA Review · Behavioral and visual comparison"
+          subtitle="Chapter 8 of 10 · Protect quality"
           onClose={() => setPuzzleOpen(false)}
         >
           <HallOfReflectionsPuzzle
