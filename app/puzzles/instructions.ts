@@ -51,7 +51,7 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     tip: "Deploy is not the end of the release; observation is part of shipping.",
   },
   "The Unclassified Trace": {
-    objective: "The Project Board draws telemetry as points of light. Regroup the events until a recurring engineering pattern becomes visible.",
+    objective: "Review one noisy production trace. Correlate its events at the correct service boundary, then diagnose the repeated behavior.",
     steps: [
       "Compare the unclassified telemetry with known healthy patterns.",
       "Change the service handoff without changing the recorded events.",

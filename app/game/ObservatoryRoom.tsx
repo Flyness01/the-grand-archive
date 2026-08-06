@@ -38,21 +38,20 @@ export function ObservatoryRoom({
 
   return (
     <section className={`observatory-room ${restored ? "is-restored" : ""}`} aria-labelledby="observatory-title">
-      <div className="observatory-room__dome" aria-hidden="true"><i /><i /><i /></div>
-      <div className="observatory-room__stars" aria-hidden="true" />
+      <div className="trace-lab-grid" aria-hidden="true" />
       <div className="observatory-room__platform" aria-hidden="true" />
       <header className="library-room__title">
         <p>Find signal inside noise</p>
-        <h1 id="observatory-title">Pattern Review</h1>
+        <h1 id="observatory-title">Trace Lab</h1>
         <small>{restored ? "The recurring behavior is now reproducible" : "One production trace matches no known healthy pattern"}</small>
       </header>
 
       <Hotspot
-        className="telescope-hotspot"
+        className="telescope-hotspot trace-console-hotspot"
         label={solved ? "Inspect the documented production pattern" : "Inspect the unclassified telemetry"}
         onActivate={() => setPuzzleOpen(true)}
       >
-        <span className="telescope" aria-hidden="true"><i /></span>
+        <span className="trace-console" aria-hidden="true"><i /><i /><i /></span>
         <span>{solved ? "Pattern documented" : "Group the telemetry"}</span>
       </Hotspot>
 

@@ -36,7 +36,7 @@ export function ImpossibleConstellation({
     alreadySolved ? "The recurring retry loop remains documented." : "",
   );
 
-  const starsById = useMemo(
+  const eventsById = useMemo(
     () => new Map(quillStars.map((star) => [star.id, star])),
     [],
   );
@@ -52,7 +52,7 @@ export function ImpossibleConstellation({
     if (rotation === correctDomeRotation) {
       setAlignmentFound(true);
       setFeedback(
-        "The scattered events settle into a recurring trace. It matches none of the known healthy patterns.",
+        "At the documented service boundary, the same calls repeat and fold back into the request path.",
       );
       return;
     }
@@ -77,24 +77,24 @@ export function ImpossibleConstellation({
   return (
     <div className="constellation-puzzle">
       <div className="constellation-puzzle__workspace">
-        <div className="chart-cabinet" aria-label="Known telemetry patterns">
-          <p>Known production patterns</p>
-          <span><i className="chart-mark chart-mark--crown" />Normal traffic</span>
-          <span><i className="chart-mark chart-mark--stag" />Cache miss burst</span>
-          <span><i className="chart-mark chart-mark--ship" />Scheduled batch</span>
-          <small>Unclassified events: no match at the current service handoff.</small>
+        <div className="chart-cabinet" aria-label="Trace comparison guide">
+          <p>Trace comparison guide</p>
+          <span><i className="chart-mark chart-mark--crown" />Traffic spike: calls continue forward</span>
+          <span><i className="chart-mark chart-mark--stag" />Auth failure: calls stop at access</span>
+          <span><i className="chart-mark chart-mark--ship" />Retry loop: calls return and repeat</span>
+          <small>Group the same recorded events at the service boundary documented in Puzzle 2.</small>
         </div>
 
         <div className={`star-dome ${alignmentFound ? "is-aligned" : ""} ${solved ? "is-solved" : ""}`}>
           <div className="dome-bearing" aria-label={`Service handoff ${domeDirections[rotation]}`}>
             <b>{domeDirections[rotation]}</b>
-            <small>Service handoff</small>
+            <small>Boundary under review</small>
           </div>
-          <svg viewBox="0 0 100 100" role="img" aria-label={alignmentFound ? "Connected events forming an unidentified trace" : "A scattered group of production events"}>
+          <svg viewBox="0 0 100 100" role="img" aria-label={alignmentFound ? "Correlated events revealing repeated calls" : "Uncorrelated production events"}>
             <g style={{ transform: `rotate(${rotationDegrees}deg)`, transformOrigin: "50% 50%" }}>
               {quillConnections.map(([fromId, toId]) => {
-                const from = starsById.get(fromId)!;
-                const to = starsById.get(toId)!;
+                const from = eventsById.get(fromId)!;
+                const to = eventsById.get(toId)!;
                 return <line key={`${fromId}-${toId}`} x1={from.x} y1={from.y} x2={to.x} y2={to.y} />;
               })}
               {quillStars.map((star) => (
@@ -103,9 +103,9 @@ export function ImpossibleConstellation({
             </g>
           </svg>
           <div className="dome-rotation-controls">
-            <button onClick={() => rotateDome(-1)} aria-label="Move to previous service handoff">↶</button>
-            <button onClick={compareCharts}>Compare patterns</button>
-            <button onClick={() => rotateDome(1)} aria-label="Move to next service handoff">↷</button>
+            <button onClick={() => rotateDome(-1)} aria-label="Previous service boundary">‹</button>
+            <button onClick={compareCharts}>Correlate events</button>
+            <button onClick={() => rotateDome(1)} aria-label="Next service boundary">›</button>
           </div>
         </div>
 
@@ -117,7 +117,7 @@ export function ImpossibleConstellation({
         </div>
 
         <div className={`shape-identification ${alignmentFound ? "is-visible" : ""}`}>
-          <p>Which engineering pattern best explains this trace?</p>
+          <p>The calls now connect. Which diagnosis explains their behavior?</p>
           <div>
             {shapeChoices.map((choice) => (
               <button key={choice.id} onClick={() => identifyShape(choice.id)} disabled={!alignmentFound || solved}>
@@ -128,7 +128,7 @@ export function ImpossibleConstellation({
         </div>
 
         <div className="constellation-actions">
-          <p aria-live="polite">{feedback || "The unclassified events remain noisy at the current service handoff."}</p>
+          <p aria-live="polite">{feedback || "Choose a service boundary, then correlate the recorded events."}</p>
           {solved && !alreadySolved ? (
             <button onClick={onCollectReward}>Save the pattern report</button>
           ) : solved ? (
