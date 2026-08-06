@@ -68,14 +68,14 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     ],
     tip: "Treat surprising output as data: a consistent error is a pattern you can explain.",
   },
-  "The Meaningful Difference": {
-    objective: "The Project Board presents QA as a reflection test. Compare the reference with the build and report only meaningful defects.",
+  "The Release Readiness Review": {
+    objective: "Review eight release-candidate findings and classify each as a release blocker, tracked follow-up, or expected change.",
     steps: [
-      "Compare corresponding interface elements systematically.",
-      "Separate expected layout changes from differences in behavior, meaning, or access.",
-      "Submit the five actionable findings as a QA report.",
+      "Read the acceptance criterion and observed evidence for every finding.",
+      "Block issues that break required behavior, access, privacy, or integration contracts.",
+      "Track safe polish separately and accept changes already approved by Product.",
     ],
-    tip: "Pixel difference is evidence, not automatically a defect.",
+    tip: "Severity follows user and system impact—not how visually noticeable a finding appears.",
   },
   "The Architecture Decision": {
     objective: "Align user experience, service architecture, and reliability around fixed system constraints.",

@@ -17,7 +17,7 @@ const pedestalLabels: Record<string, string> = {
   "toothed-circle": "Toothed circle · recovering production",
   teardrop: "Teardrop · shipping responsibly",
   loop: "Loop · observing repeated behavior",
-  triangle: "Triangle · protecting quality",
+  triangle: "Triangle · deciding release readiness",
   square: "Square · designing the system",
 };
 
@@ -96,7 +96,7 @@ export function ReturnBorrowed({
               <button
                 key={shape}
                 className={`final-pedestal final-pedestal--${index + 1} ${artifactId ? "is-filled" : ""}`}
-                aria-label={`${pedestalLabels[shape]} pedestal${artifactId ? ` holding ${artifacts[artifactId].name}` : ""}`}
+                aria-label={`${pedestalLabels[shape]} review position${artifactId ? ` containing ${artifacts[artifactId].name}` : ""}`}
                 onClick={() => placeOnPedestal(shape)}
                 disabled={outerAligned}
               >

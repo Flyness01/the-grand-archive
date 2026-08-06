@@ -1,16 +1,16 @@
 import { describe, expect, it } from "vitest";
-import { reflectionDifferences } from "./puzzleData";
+import { qaReviewSolution } from "./puzzleData";
 import { validateHallOfReflections } from "./validator";
 
-describe("hall of reflections", () => {
-  it("accepts all five deliberate inconsistencies", () => {
-    expect(validateHallOfReflections([...reflectionDifferences])).toBe(true);
+describe("release readiness review", () => {
+  it("accepts a complete evidence-based disposition", () => {
+    expect(validateHallOfReflections({ ...qaReviewSolution })).toBe(true);
   });
 
-  it("rejects missing, duplicate, or ordinary mirrored details", () => {
-    expect(validateHallOfReflections(reflectionDifferences.slice(0, 4))).toBe(false);
-    expect(validateHallOfReflections(["backward-clock", "backward-clock"])).toBe(false);
-    expect(validateHallOfReflections([...reflectionDifferences, "reversed-book"])).toBe(false);
+  it("rejects missing findings and incorrect severity", () => {
+    const { "analytics-contract": omitted, ...incomplete } = qaReviewSolution;
+    expect(omitted).toBe("blocker");
+    expect(validateHallOfReflections(incomplete)).toBe(false);
+    expect(validateHallOfReflections({ ...qaReviewSolution, "card-spacing": "blocker" })).toBe(false);
   });
 });
-

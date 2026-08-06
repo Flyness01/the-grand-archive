@@ -2,17 +2,13 @@
 
 import { useState } from "react";
 import { HintPanel } from "../../game/HintPanel";
-import { reflectionDifferences, reflectionHints } from "./puzzleData";
+import { qaFindings, qaReviewSolution, reflectionHints, type ReviewDisposition } from "./puzzleData";
 import { validateHallOfReflections } from "./validator";
 
-const observations = [
-  { id: "backward-clock", label: "Progress indicator runs backward", className: "reflection-clock" },
-  { id: "wrong-pedestal", label: "Action appears in the wrong container", className: "reflection-pedestal" },
-  { id: "phantom-door", label: "Navigation control exists only in the build", className: "reflection-door" },
-  { id: "seven-point-star", label: "Status icon has the wrong number of points", className: "reflection-star" },
-  { id: "unmirrored-label", label: "Encoded label is unexpectedly readable", className: "reflection-label" },
-  { id: "reversed-book", label: "Content shifts to the corresponding side", className: "reflection-book" },
-  { id: "reversed-candle", label: "Decoration shifts to the corresponding side", className: "reflection-candle" },
+const dispositions: { value: ReviewDisposition; label: string }[] = [
+  { value: "blocker", label: "Block release" },
+  { value: "follow-up", label: "Track follow-up" },
+  { value: "expected", label: "Expected change" },
 ];
 
 export function HallOfReflectionsPuzzle({
@@ -26,85 +22,75 @@ export function HallOfReflectionsPuzzle({
   onCollectReward: () => void;
   alreadySolved: boolean;
 }) {
-  const [selected, setSelected] = useState<string[]>(alreadySolved ? [...reflectionDifferences] : []);
+  const [review, setReview] = useState<Record<string, ReviewDisposition>>(
+    alreadySolved ? { ...qaReviewSolution } : {},
+  );
   const [solved, setSolved] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(
-    alreadySolved ? "The review preserves the five meaningful defects you found." : "",
+    alreadySolved ? "The release readiness decision remains documented." : "",
   );
 
-  function toggleObservation(id: string) {
+  function classify(id: string, disposition: ReviewDisposition) {
     if (solved) return;
-    if (selected.includes(id)) {
-      setSelected((current) => current.filter((item) => item !== id));
-      setFeedback("");
-      return;
-    }
-    if (selected.length >= 5) {
-      setFeedback("The report can contain only five defects. Remove one selection before adding another.");
-      return;
-    }
-    setSelected((current) => [...current, id]);
+    setReview((current) => ({ ...current, [id]: disposition }));
     setFeedback("");
   }
 
-  function compareReflections() {
-    if (validateHallOfReflections(selected)) {
+  function submitReview() {
+    if (validateHallOfReflections(review)) {
       setSolved(true);
-      setFeedback("Five meaningful defects remain after visual noise is removed. The QA review is ready.");
+      setFeedback("Review complete: five blockers stop the release, two polish items become follow-ups, and one approved change is accepted.");
       return;
     }
-    const falseMarks = selected.filter((id) => !reflectionDifferences.includes(id as typeof reflectionDifferences[number]));
-    setFeedback(
-      falseMarks.length
-        ? "At least one selection is expected responsive behavior. A position change alone is not a defect."
-        : `${selected.length} meaningful ${selected.length === 1 ? "difference has" : "differences have"} been marked. The review contains five defects.`,
-    );
+    setFeedback("At least one disposition does not match its acceptance criterion. Prioritize user access, required behavior, privacy, and integration contracts.");
   }
 
+  const completed = Object.keys(review).length;
+
   return (
-    <div className="reflections-puzzle">
-      <div className="reflections-puzzle__workspace">
-        <div className="reflection-instruction">
-          <p>QA comparison</p>
-          <strong>Mark only differences that change behavior, meaning, or available actions.</strong>
-          <small>{selected.length} / 5 suspected defects</small>
-        </div>
+    <div className="reflections-puzzle qa-review-puzzle">
+      <div className="reflections-puzzle__workspace qa-review-workspace">
+        <header className="qa-review-header">
+          <p>PR #284 · release candidate 2.7</p>
+          <strong>Classify every finding by release impact.</strong>
+          <small>{completed} / {qaFindings.length} dispositions recorded</small>
+        </header>
 
-        <div className="paired-halls">
-          <section className="comparison-hall comparison-hall--real" aria-label="Approved interface reference">
-            <h3>Reference</h3>
-            <div className="comparison-clock"><i /></div>
-            <div className="comparison-pedestal"><i className="mini-compass" /></div>
-            <div className="comparison-symbol">★</div>
-            <div className="comparison-label">STATUS</div>
-            <div className="comparison-book">CARD</div>
-            <div className="comparison-candle" />
-          </section>
-
-          <section className="comparison-hall comparison-hall--mirror" aria-label="Current implementation build">
-            <h3>Current Build</h3>
-            {observations.map((observation) => (
-              <button
-                key={observation.id}
-                className={`${observation.className} ${selected.includes(observation.id) ? "is-marked" : ""}`}
-                aria-label={observation.label}
-                aria-pressed={selected.includes(observation.id)}
-                onClick={() => toggleObservation(observation.id)}
-                disabled={solved || (selected.length >= 5 && !selected.includes(observation.id))}
-              >
-                {observation.id === "seven-point-star" ? "✷" :
-                  observation.id === "unmirrored-label" ? "STATUS" :
-                  observation.id === "reversed-book" ? "DRAC" : ""}
-              </button>
-            ))}
-          </section>
+        <div className="qa-findings" role="list" aria-label="QA findings">
+          {qaFindings.map((finding, index) => (
+            <article key={finding.id} role="listitem" className={review[finding.id] ? "is-reviewed" : ""}>
+              <div className="qa-finding-copy">
+                <span>{String(index + 1).padStart(2, "0")} · {finding.area}</span>
+                <b>{finding.criterion}</b>
+                <p>{finding.observed}</p>
+              </div>
+              <div className="qa-dispositions" aria-label={`Disposition for ${finding.area}`}>
+                {dispositions.map((option) => (
+                  <button
+                    key={option.value}
+                    type="button"
+                    className={review[finding.id] === option.value ? `is-selected is-${option.value}` : ""}
+                    aria-pressed={review[finding.id] === option.value}
+                    onClick={() => classify(finding.id, option.value)}
+                    disabled={solved}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </article>
+          ))}
         </div>
 
         <div className="reflection-actions">
-          <p aria-live="polite">{feedback || "The reference and current build are close. Separate real defects from expected layout changes."}</p>
-          {!solved ? <button onClick={compareReflections}>Run QA review</button> :
-            !alreadySolved ? <button onClick={onCollectReward}>Save defect report</button> :
-              <small>The defect report has been saved.</small>}
+          <p aria-live="polite">{feedback || "Use the requirement and observed evidence—not visual difference alone—to decide release impact."}</p>
+          {!solved ? (
+            <button onClick={submitReview} disabled={completed !== qaFindings.length}>Submit release review</button>
+          ) : !alreadySolved ? (
+            <button onClick={onCollectReward}>Save readiness report</button>
+          ) : (
+            <small>The readiness report has been saved.</small>
+          )}
         </div>
       </div>
 

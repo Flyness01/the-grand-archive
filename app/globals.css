@@ -1650,6 +1650,22 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
 .reflection-actions { display:flex;align-items:center;justify-content:center;gap:.7rem;min-height:50px;margin:.55rem auto 0; }
 .reflection-actions p { max-width:610px;margin:0;color:#a9b2af;font-size:.69rem;font-style:italic; }
 .reflection-actions button { min-height:40px;border:1px solid #667976;background:#11191a;color:#c0ccca;padding:.55rem .8rem;cursor:pointer;font:.52rem Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase; }
+.reflections-room { background:radial-gradient(ellipse at 50% 42%,#3d3b49,#23242f 48%,#151720 84%); }
+.qa-room__grid { position:absolute;inset:0;opacity:.3;background-image:linear-gradient(rgba(195,187,199,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(195,187,199,.09) 1px,transparent 1px);background-size:44px 44px; }
+.qa-room__panels { position:absolute;inset:18vh 8vw 18vh;display:flex;align-items:center;justify-content:space-between;gap:5vw; }
+.qa-room__panels i { flex:1;height:58%;border:1px solid rgba(193,181,195,.28);border-radius:9px;background:linear-gradient(145deg,rgba(89,88,105,.55),rgba(27,29,40,.82));box-shadow:0 16px 32px rgba(7,8,13,.48); }.qa-room__panels i:nth-child(2){height:78%;}
+.qa-console-hotspot { left:32%;top:25vh;width:36%;height:52vh; }
+.qa-review-console { position:absolute;left:50%;top:7%;width:310px;height:205px;transform:translateX(-50%);border:8px solid #555463;border-radius:10px;background:#171923;box-shadow:0 20px 38px rgba(4,5,9,.7),inset 0 0 35px rgba(116,113,138,.16); }
+.qa-review-console::before { content:"RELEASE CANDIDATE 2.7";position:absolute;left:18px;right:18px;top:16px;padding-bottom:10px;border-bottom:1px solid rgba(186,173,188,.28);color:#b3a6b2;font:600 9px/1 Arial,sans-serif;letter-spacing:.13em; }
+.qa-review-console i { position:absolute;left:22px;right:22px;height:20px;border-left:5px solid #9c8598;border-radius:3px;background:#292b38; }.qa-review-console i:nth-child(1){top:66px}.qa-review-console i:nth-child(2){top:101px;border-left-color:#b48577}.qa-review-console i:nth-child(3){top:136px;border-left-color:#849ba5}
+.qa-review-workspace { background:linear-gradient(145deg,#2d303c,#171922 76%); }
+.qa-review-header { display:flex;align-items:center;gap:1rem;width:min(940px,98%);margin:0 auto .75rem;padding:.75rem .9rem;border:1px solid #575867;border-radius:7px;background:#20222d;color:#d9d6d9; }
+.qa-review-header p { margin:0;color:#aa99a7;font:.5rem Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase; }.qa-review-header strong{flex:1;font-size:.75rem;font-weight:500}.qa-review-header small{color:#92949d;font-size:.56rem}
+.qa-findings { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;width:min(940px,98%);margin:auto; }
+.qa-findings article { display:grid;grid-template-columns:minmax(0,1fr) 145px;gap:.65rem;min-height:132px;padding:.75rem;border:1px solid #4b4e5c;border-radius:7px;background:#1d1f29;transition:.25s; }.qa-findings article.is-reviewed{border-color:#756778;background:#24212b}
+.qa-finding-copy span { display:block;color:#a58f9f;font:.48rem Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase; }.qa-finding-copy b{display:block;margin:.38rem 0;color:#ddd7dc;font-size:.65rem;line-height:1.35}.qa-finding-copy p{margin:0;color:#9ea1a8;font-size:.59rem;line-height:1.4}
+.qa-dispositions { display:flex;flex-direction:column;gap:.3rem; }.qa-dispositions button{flex:1;border:1px solid #505361;border-radius:4px;background:#292b36;color:#9fa1aa;cursor:pointer;font:.48rem Arial,sans-serif;letter-spacing:.03em}.qa-dispositions button.is-selected{color:#f2ecef;border-color:#a28b9d;background:#51404d}.qa-dispositions button.is-blocker{border-color:#b0786d;background:#5b3937}.qa-dispositions button.is-follow-up{border-color:#a08d69;background:#554b38}.qa-dispositions button.is-expected{border-color:#748d91;background:#334b50}
+.qa-review-puzzle .reflection-actions button:disabled { opacity:.35;cursor:not-allowed; }
 .prism-icon { position:relative;width:66px;height:60px;margin:auto;clip-path:polygon(50% 0,100% 100%,0 100%);background:linear-gradient(135deg,#8baeb0,#d8c992 45%,#846f9e);filter:drop-shadow(0 6px 8px #000); }
 .prism-icon::before { content:"";position:absolute;inset:8px;clip-path:inherit;background:#172326; }
 .prism-icon i { position:absolute;left:31px;top:9px;height:45px;border-left:2px solid rgba(228,231,208,.6);transform:rotate(26deg); }
@@ -1683,6 +1699,13 @@ h1,h2,.room-title h1,.library-room__title h1 { font-family:Georgia,"Times New Ro
   .comparison-book,.reflection-book { bottom:14%; }
   .reflection-actions { flex-direction:column;text-align:center; }
   .reflection-actions button { min-height:44px; }
+  .qa-room__panels { inset:18vh 3vw 17vh;gap:2vw; }.qa-room__panels i{height:48%}.qa-room__panels i:nth-child(2){height:68%}
+  .qa-console-hotspot { left:16%;top:23vh;width:68%;height:55vh; }
+  .qa-review-console { width:250px;height:185px; }
+  .qa-review-header { display:block;width:100%; }.qa-review-header strong,.qa-review-header small{display:block;margin-top:.4rem}
+  .qa-findings { grid-template-columns:1fr;width:100%; }
+  .qa-findings article { grid-template-columns:1fr; }
+  .qa-dispositions { display:grid;grid-template-columns:repeat(3,1fr); }.qa-dispositions button{min-height:44px;padding:.35rem .2rem}
   .hall:has(.reflections-threshold.is-unlocked) .reflections-threshold.is-unlocked {
     left:5vw;right:auto;transform:none;
   }

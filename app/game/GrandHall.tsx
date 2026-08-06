@@ -294,7 +294,7 @@ export function GrandHall({
             : "Every project begins with context."}
         <span>
           {finaleSolved
-            ? "The living frame stands open to the Debrief Room."
+            ? "The completed review opens the Debrief Room."
             : typewriterSolved
             ? "Complete the Final Handoff, then open the team’s note."
             : clockSolved

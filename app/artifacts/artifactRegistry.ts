@@ -76,8 +76,8 @@ export const artifacts: Record<string, Artifact> = {
   },
   "prism-lens": {
     id: "prism-lens",
-    name: "Defect Report",
-    shortDescription: "Careful comparison separated actionable problems from harmless noise.",
+    name: "Readiness Report",
+    shortDescription: "Evidence separated release blockers from safe follow-up work.",
     roomOfOrigin: "hall-of-reflections",
     symbol: "Triangle",
     glowGroup: "Violet",
