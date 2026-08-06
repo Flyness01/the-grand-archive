@@ -1,48 +1,39 @@
-export const productionCheckSolution = {
-  window: "after-deploy",
-  service: "job-worker",
-  behavior: "retries",
-} as const;
+export type SignalRowId = "release" | "queue" | "worker";
 
-export const quillStars = [
-  { id: "s1", x: 31, y: 20, size: 1.8 },
-  { id: "s2", x: 42, y: 26, size: 1.2 },
-  { id: "s3", x: 53, y: 33, size: 1.6 },
-  { id: "s4", x: 61, y: 43, size: 1.1 },
-  { id: "s5", x: 65, y: 55, size: 1.7 },
-  { id: "s6", x: 61, y: 66, size: 1.2 },
-  { id: "s7", x: 53, y: 74, size: 1.5 },
-  { id: "s8", x: 43, y: 78, size: 1.1 },
-  { id: "s9", x: 47, y: 61, size: 1.4 },
-  { id: "s10", x: 40, y: 52, size: 1.1 },
-  { id: "s11", x: 37, y: 42, size: 1.5 },
-  { id: "s12", x: 34, y: 31, size: 1.1 },
-  { id: "s13", x: 31, y: 84, size: 1.7 },
+export const signalRows: { id: SignalRowId; label: string; startOffset: number; entries: { time: string; value: string; incident?: boolean }[] }[] = [
+  {
+    id: "release", label: "Release activity", startOffset: 2,
+    entries: [
+      { time: "13:55", value: "Ready" }, { time: "14:00", value: "Deploy" }, { time: "14:05", value: "v2.7 live", incident: true },
+      { time: "14:10", value: "Steady" }, { time: "14:15", value: "Steady" }, { time: "14:20", value: "Steady" }, { time: "14:25", value: "Steady" },
+    ],
+  },
+  {
+    id: "queue", label: "Waiting jobs", startOffset: 5,
+    entries: [
+      { time: "13:55", value: "18" }, { time: "14:00", value: "21" }, { time: "14:05", value: "96 ↑", incident: true },
+      { time: "14:10", value: "164 ↑" }, { time: "14:15", value: "246 ↑" }, { time: "14:20", value: "301 ↑" }, { time: "14:25", value: "338 ↑" },
+    ],
+  },
+  {
+    id: "worker", label: "Worker activity", startOffset: 0,
+    entries: [
+      { time: "13:55", value: "Complete" }, { time: "14:00", value: "Complete" }, { time: "14:05", value: "Retry #1", incident: true },
+      { time: "14:10", value: "Retry #2" }, { time: "14:15", value: "Retry #3" }, { time: "14:20", value: "Retry #4" }, { time: "14:25", value: "Retry #5" },
+    ],
+  },
 ];
 
-export const quillConnections = [
-  ["s1", "s2"], ["s2", "s3"], ["s3", "s4"], ["s4", "s5"],
-  ["s5", "s6"], ["s6", "s7"], ["s7", "s8"], ["s8", "s9"],
-  ["s9", "s10"], ["s10", "s11"], ["s11", "s12"], ["s12", "s1"],
-  ["s2", "s11"], ["s3", "s10"], ["s4", "s9"], ["s5", "s13"],
-];
+// All three 14:05 signals must land in the center inspection column.
+export const productionCheckSolution: Record<SignalRowId, number> = { release: 6, queue: 6, worker: 6 };
 
 export const impossibleConstellationHints = [
-  "Start with time: the healthy baseline ends at the deployment marker, and the first warning appears afterward.",
-  "The web client and API success rates stay steady. Find the service whose workload rises while completed work falls.",
-  "The same request ID appears three times with increasing attempt numbers and the same failure response.",
+  "Each strip contains the same times in a different starting position. Use the arrows to put matching times in vertical columns.",
+  "Find 14:05 on every strip. Move all three 14:05 cells into the softly highlighted center column.",
+  "The aligned center should read: v2.7 live, 96 waiting jobs, and Retry #1.",
 ];
 
 export const impossibleConstellationMosaicTiles = [
-  15, 16, 17, 18, 19, 20, 21,
-  40, 46,
-  65, 71,
-  90, 96,
-  115, 121,
-  140, 146,
-  165, 171,
-  190, 196,
-  215, 221,
-  240, 246,
-  265, 266, 267, 268, 269, 270, 271,
+  15, 16, 17, 18, 19, 20, 21, 40, 46, 65, 71, 90, 96, 115, 121, 140, 146,
+  165, 171, 190, 196, 215, 221, 240, 246, 265, 266, 267, 268, 269, 270, 271,
 ];

@@ -1,71 +1,22 @@
-export type ReviewDisposition = "blocker" | "follow-up" | "expected";
+export const qaRows = ["Chrome", "Safari", "Mobile", "Keyboard", "Screen reader"] as const;
+export const qaColumns = ["Save", "Error", "Retry", "Confirm", "Navigation"] as const;
 
-export const qaFindings = [
-  {
-    id: "keyboard-submit",
-    area: "Accessibility",
-    criterion: "Submit must work with pointer and keyboard.",
-    observed: "Click works; Enter and Space do nothing when the button is focused.",
-  },
-  {
-    id: "mobile-save",
-    area: "Responsive behavior",
-    criterion: "Save remains available at every supported width.",
-    observed: "At 390px, the Save action is clipped outside the viewport.",
-  },
-  {
-    id: "card-spacing",
-    area: "Visual polish",
-    criterion: "Cards use 24px internal spacing.",
-    observed: "One secondary card measures 22px. Content and interaction are unaffected.",
-  },
-  {
-    id: "error-details",
-    area: "Error handling",
-    criterion: "Users receive a useful message; internal details stay private.",
-    observed: "The error state renders the raw service name and stack trace.",
-  },
-  {
-    id: "approved-copy",
-    area: "Content",
-    criterion: "Use the wording approved in the latest product review.",
-    observed: "The build says “Project workspace,” matching the approved copy update.",
-  },
-  {
-    id: "toast-duration",
-    area: "Feedback",
-    criterion: "Success confirmation remains available long enough to perceive.",
-    observed: "The success toast disappears after 200ms with no persistent confirmation.",
-  },
-  {
-    id: "skeleton-color",
-    area: "Loading state",
-    criterion: "Loading skeleton uses the neutral surface token.",
-    observed: "The rendered token is one shade warmer; layout and contrast still pass.",
-  },
-  {
-    id: "analytics-contract",
-    area: "Integration",
-    criterion: "The existing dashboard continues receiving save-complete events.",
-    observed: "The event was renamed, but the analytics consumer was not updated.",
-  },
+// A small nonogram whose failure cells form a recognizable bug-like silhouette.
+export const qaFailureSolution = [
+  "0:1", "0:2", "0:3",
+  "1:0", "1:2", "1:4",
+  "2:0", "2:1", "2:2", "2:3", "2:4",
+  "3:0", "3:2", "3:4",
+  "4:0", "4:2", "4:4",
 ] as const;
 
-export const qaReviewSolution: Record<(typeof qaFindings)[number]["id"], ReviewDisposition> = {
-  "keyboard-submit": "blocker",
-  "mobile-save": "blocker",
-  "card-spacing": "follow-up",
-  "error-details": "blocker",
-  "approved-copy": "expected",
-  "toast-duration": "blocker",
-  "skeleton-color": "follow-up",
-  "analytics-contract": "blocker",
-};
+export const qaRowRuns = ["3", "1 1 1", "5", "1 1 1", "1 1 1"] as const;
+export const qaColumnRuns = ["4", "1 1", "5", "1 1", "4"] as const;
 
 export const reflectionHints = [
-  "A release blocker violates a requirement in a way that prevents use, access, privacy, or a required integration.",
-  "Small token or spacing drift can be tracked without stopping a safe release. An approved product change is expected behavior, not a defect.",
-  "Block keyboard submission, missing mobile Save, exposed internals, imperceptible confirmation, and the broken analytics contract. Follow up on spacing and skeleton color; accept the approved copy.",
+  "A number tells you the length of one unbroken group of failed cells. “1 1” means two single failures with at least one pass between them.",
+  "The middle row and middle column each show 5, so every cell in both must fail. Use those fixed cells to separate the smaller groups.",
+  "Top row: middle three. Second row: first, middle, last. Middle row: all five. Final two rows: first, middle, last.",
 ];
 
 export const reflectionMosaicTiles = [

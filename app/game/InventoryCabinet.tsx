@@ -9,7 +9,7 @@ const levels: { puzzleId: string; title: string; lesson: string; roomId: RoomId 
   { puzzleId: "cartographers-missing-route", title: "Missing Request Path", lesson: "Trace the system", roomId: "map-room" },
   { puzzleId: "lantern-wall", title: "Signal Alignment", lesson: "Align the team", roomId: "grand-hall" },
   { puzzleId: "master-blueprint", title: "Architecture Resilience Review", lesson: "Design for failure", roomId: "workshop" },
-  { puzzleId: "hall-of-reflections", title: "Release Readiness Review", lesson: "Protect quality", roomId: "hall-of-reflections" },
+  { puzzleId: "hall-of-reflections", title: "CI Failure Pattern", lesson: "Find the shared failure", roomId: "hall-of-reflections" },
   { puzzleId: "sleeping-conservatory", title: "Release Runbook", lesson: "Ship responsibly", roomId: "conservatory" },
   { puzzleId: "constellation-that-should-not-exist", title: "Post-Release Check", lesson: "Observe production", roomId: "observatory" },
   { puzzleId: "stopped-clock", title: "Incident 14", lesson: "Respond to failure", roomId: "workshop" },

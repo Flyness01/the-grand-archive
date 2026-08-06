@@ -142,7 +142,7 @@ export const puzzleRegistry: Record<string, PuzzleDefinition> = {
   },
   "hall-of-reflections": {
     id: "hall-of-reflections",
-    title: "The Release Readiness Review",
+    title: "The CI Failure Pattern",
     roomId: "hall-of-reflections",
     difficulty: 7,
     estimatedMinutes: 11,

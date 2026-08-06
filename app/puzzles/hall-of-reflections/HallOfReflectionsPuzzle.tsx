@@ -2,14 +2,8 @@
 
 import { useState } from "react";
 import { HintPanel } from "../../game/HintPanel";
-import { qaFindings, qaReviewSolution, reflectionHints, type ReviewDisposition } from "./puzzleData";
+import { qaColumns, qaColumnRuns, qaFailureSolution, qaRows, qaRowRuns, reflectionHints } from "./puzzleData";
 import { validateHallOfReflections } from "./validator";
-
-const dispositions: { value: ReviewDisposition; label: string }[] = [
-  { value: "blocker", label: "Block release" },
-  { value: "follow-up", label: "Track follow-up" },
-  { value: "expected", label: "Expected change" },
-];
 
 export function HallOfReflectionsPuzzle({
   hintCount,
@@ -22,78 +16,62 @@ export function HallOfReflectionsPuzzle({
   onCollectReward: () => void;
   alreadySolved: boolean;
 }) {
-  const [review, setReview] = useState<Record<string, ReviewDisposition>>(
-    alreadySolved ? { ...qaReviewSolution } : {},
-  );
+  const [failures, setFailures] = useState<string[]>(alreadySolved ? [...qaFailureSolution] : []);
   const [solved, setSolved] = useState(alreadySolved);
-  const [feedback, setFeedback] = useState(
-    alreadySolved ? "The release readiness decision remains documented." : "",
-  );
+  const [feedback, setFeedback] = useState(alreadySolved ? "The CI failure cluster remains isolated." : "");
 
-  function classify(id: string, disposition: ReviewDisposition) {
+  function toggleCell(cell: string) {
     if (solved) return;
-    setReview((current) => ({ ...current, [id]: disposition }));
+    setFailures((current) => current.includes(cell) ? current.filter((item) => item !== cell) : [...current, cell]);
     setFeedback("");
   }
 
-  function submitReview() {
-    if (validateHallOfReflections(review)) {
+  function inspectPattern() {
+    if (validateHallOfReflections(failures)) {
       setSolved(true);
-      setFeedback("Review complete: five blockers stop the release, two polish items become follow-ups, and one approved change is accepted.");
+      setFeedback("Every row and column summary agrees. The hidden failure cluster resolves into one shared component pattern.");
       return;
     }
-    setFeedback("At least one disposition does not match its acceptance criterion. Prioritize user access, required behavior, privacy, and integration contracts.");
+    setFeedback("At least one row or column does not match its run summary. Check group length and the required gap between separate groups.");
   }
 
-  const completed = Object.keys(review).length;
-
   return (
-    <div className="reflections-puzzle qa-review-puzzle">
-      <div className="reflections-puzzle__workspace qa-review-workspace">
-        <header className="qa-review-header">
-          <p>PR #284 · release candidate 2.7</p>
-          <strong>Classify every finding by release impact.</strong>
-          <small>{completed} / {qaFindings.length} dispositions recorded</small>
+    <div className="reflections-puzzle ci-matrix-puzzle">
+      <div className="reflections-puzzle__workspace ci-matrix-workspace">
+        <header className="ci-matrix-header">
+          <p>CI run #284 · 25 hidden test results</p>
+          <strong>Reconstruct the failed cells from the row and column summaries.</strong>
+          <small><b>Example:</b> “3” = three neighboring failures. “1 1” = one failure, a gap, then one failure.</small>
         </header>
 
-        <div className="qa-findings" role="list" aria-label="QA findings">
-          {qaFindings.map((finding, index) => (
-            <article key={finding.id} role="listitem" className={review[finding.id] ? "is-reviewed" : ""}>
-              <div className="qa-finding-copy">
-                <span>{String(index + 1).padStart(2, "0")} · {finding.area}</span>
-                <b>{finding.criterion}</b>
-                <p>{finding.observed}</p>
-              </div>
-              <div className="qa-dispositions" aria-label={`Disposition for ${finding.area}`}>
-                {dispositions.map((option) => (
-                  <button
-                    key={option.value}
-                    type="button"
-                    className={review[finding.id] === option.value ? `is-selected is-${option.value}` : ""}
-                    aria-pressed={review[finding.id] === option.value}
-                    onClick={() => classify(finding.id, option.value)}
-                    disabled={solved}
-                  >
-                    {option.label}
+        <div className="ci-matrix-shell">
+          <div className="ci-column-clues" aria-label="Column failure run summaries">
+            <span />
+            {qaColumns.map((column, index) => <div key={column}><b>{qaColumnRuns[index]}</b><small>{column}</small></div>)}
+          </div>
+          {qaRows.map((row, rowIndex) => (
+            <div className="ci-matrix-row" key={row}>
+              <div className="ci-row-clue"><small>{row}</small><b>{qaRowRuns[rowIndex]}</b></div>
+              {qaColumns.map((column, columnIndex) => {
+                const id = `${rowIndex}:${columnIndex}`;
+                const failed = failures.includes(id);
+                return (
+                  <button key={column} onClick={() => toggleCell(id)} aria-label={`${row} ${column} test ${failed ? "marked failed" : "unmarked"}`} aria-pressed={failed} disabled={solved} className={failed ? "is-failed" : ""}>
+                    {failed ? "×" : ""}
                   </button>
-                ))}
-              </div>
-            </article>
+                );
+              })}
+            </div>
           ))}
         </div>
 
         <div className="reflection-actions">
-          <p aria-live="polite">{feedback || "Use the requirement and observed evidence—not visual difference alone—to decide release impact."}</p>
-          {!solved ? (
-            <button onClick={submitReview} disabled={completed !== qaFindings.length}>Submit release review</button>
-          ) : !alreadySolved ? (
-            <button onClick={onCollectReward}>Save readiness report</button>
-          ) : (
-            <small>The readiness report has been saved.</small>
-          )}
+          <p aria-live="polite">{feedback || `${failures.length} cells marked failed. Empty cells are treated as passing.`}</p>
+          {!solved ? <button onClick={inspectPattern}>Check failure pattern</button> :
+            !alreadySolved ? <button onClick={onCollectReward}>Save CI pattern report</button> :
+              <small>The CI pattern report has been saved.</small>}
         </div>
       </div>
-
       <HintPanel hints={reflectionHints} revealedCount={hintCount} onReveal={onUseHint} />
     </div>
   );

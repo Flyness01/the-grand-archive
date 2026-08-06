@@ -1,8 +1,9 @@
-import { qaReviewSolution } from "./puzzleData";
+import { qaFailureSolution } from "./puzzleData";
 
 export function validateHallOfReflections(input: unknown) {
-  if (typeof input !== "object" || input === null || Array.isArray(input)) return false;
-  const candidate = input as Record<string, unknown>;
-  return Object.entries(qaReviewSolution).every(([id, disposition]) => candidate[id] === disposition)
-    && Object.keys(candidate).length === Object.keys(qaReviewSolution).length;
+  if (!Array.isArray(input) || input.some((cell) => typeof cell !== "string")) return false;
+  const selected = new Set(input);
+  return input.length === qaFailureSolution.length
+    && selected.size === qaFailureSolution.length
+    && qaFailureSolution.every((cell) => selected.has(cell));
 }

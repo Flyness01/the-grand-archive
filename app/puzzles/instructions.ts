@@ -51,13 +51,13 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     tip: "Deploy is not the end of the release; observation is part of shipping.",
   },
   "The Post-Release Check": {
-    objective: "Review the first fifteen minutes after a release and build one production finding supported by the timeline, metrics, and logs.",
+    objective: "Repair a scrambled monitoring export by aligning three timelines on the shared moment production changed.",
     steps: [
-      "Determine when behavior changed by comparing the baseline with the deployment marker.",
-      "Identify the unhealthy component from its service metrics.",
-      "Use the correlated log sample to diagnose what the component is doing.",
+      "Use the left and right arrows to move each strip.",
+      "Place matching timestamps in vertical columns across all three strips.",
+      "Put 14:05 in the shaded center window, then inspect what happened together.",
     ],
-    tip: "A strong finding explains every signal without contradicting the healthy ones.",
+    tip: "You only need to match times. At 14:05, the release, queue jump, and first retry should line up.",
   },
   "The Unclear Handoff": {
     objective: "Decode a transformed message and complete an actionable engineering handoff.",
@@ -68,22 +68,21 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
     ],
     tip: "Treat surprising output as data: a consistent error is a pattern you can explain.",
   },
-  "The Release Readiness Review": {
-    objective: "Review eight release-candidate findings and classify each as a release blocker, tracked follow-up, or expected change.",
+  "The CI Failure Pattern": {
+    objective: "Reconstruct the hidden failed tests using only the number clues beside each row and column.",
     steps: [
-      "Read the acceptance criterion and observed evidence for every finding.",
-      "Block issues that break required behavior, access, privacy, or integration contracts.",
-      "Track safe polish separately and accept changes already approved by Product.",
+      "A single number means one unbroken group: 3 means three neighboring failed cells.",
+      "Two numbers mean separate groups with at least one empty cell between them: 1 1 means fail, gap, fail.",
+      "Mark cells until every row and every column matches its clue, then check the pattern.",
     ],
-    tip: "Severity follows user and system impact—not how visually noticeable a finding appears.",
+    tip: "No software knowledge is needed. Treat it like a small picture-logic puzzle; every mark must satisfy two clues.",
   },
   "The Architecture Resilience Review": {
-    objective: "Run three failure tests, describe each result in plain language, and place the safeguard whose description fixes that exact problem.",
+    objective: "Study three abnormal system streams, recognize what repeats, spikes, or disappears, and repair each pattern at its source.",
     steps: [
-      "Run each test and ask: did something happen twice, wait too long, or disappear?",
-      "Read the plain-language sentence beneath each safeguard; technical vocabulary is not required.",
-      "Select a safeguard and attach it to the labeled place where that failure happened.",
-      "Rerun the complete resilience suite and approve only when every guarantee passes.",
+      "Compare the repeated write, response-time sequence, and accepted-versus-completed job stream.",
+      "Select a repair module and attach it to the boundary where its abnormal pattern begins.",
+      "Rerun the simulation; any unresolved stream remains visibly failed.",
     ],
     tip: "Place protection at the boundary where a guarantee can actually be enforced.",
   },

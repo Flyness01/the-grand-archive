@@ -41,25 +41,25 @@ export function HallOfReflectionsRoom({
       <div className="qa-room__grid" aria-hidden="true" />
       <div className="qa-room__panels" aria-hidden="true"><i /><i /><i /></div>
       <header className="library-room__title">
-        <p>Decide whether the release candidate is ready</p>
-        <h1 id="reflections-title">QA Review</h1>
-        <small>{restored ? "The blockers and follow-ups are documented" : "Not every finding has the same release impact"}</small>
+        <p>Turn a noisy test run into a visible pattern</p>
+        <h1 id="reflections-title">CI Test Lab</h1>
+        <small>{restored ? "The shared failure pattern is documented" : "Twenty-five results are hidden behind row and column clues"}</small>
       </header>
 
       <Hotspot
         className="central-mirror-hotspot qa-console-hotspot"
-        label={solved ? "Inspect the completed readiness report" : "Review the release candidate findings"}
+        label={solved ? "Inspect the completed CI pattern report" : "Reconstruct the hidden CI failures"}
         onActivate={() => setPuzzleOpen(true)}
       >
         <span className="qa-review-console" aria-hidden="true"><i /><i /><i /></span>
-        <span>{solved ? "Review complete" : "Classify the findings"}</span>
+        <span>{solved ? "Pattern found" : "Open the test grid"}</span>
       </Hotspot>
 
       <button className="return-hall" onClick={onReturn}><span aria-hidden="true">←</span> Project Room</button>
 
       {puzzleOpen && (
         <PuzzleModal
-          title="The Release Readiness Review"
+          title="The CI Failure Pattern"
           subtitle="Chapter 5 of 10 · Protect quality"
           onClose={() => setPuzzleOpen(false)}
         >
@@ -75,9 +75,9 @@ export function HallOfReflectionsRoom({
       {rewardMoment && (
         <div className="reward-moment reward-moment--prism" role="status">
           <div className="defect-report-icon defect-report-icon--large" aria-hidden="true"><i /></div>
-          <p>Readiness Report</p>
-          <blockquote>“Good QA turns evidence into a release decision.”</blockquote>
-          <small>The meaningful defects are resolved. Release Cycle unlocks.</small>
+          <p>CI Pattern Report</p>
+          <blockquote>“A confusing test run became useful once the pattern was visible.”</blockquote>
+          <small>The shared failure is isolated. Release Cycle unlocks.</small>
         </div>
       )}
     </section>

@@ -5,14 +5,12 @@ import { HintPanel } from "../../game/HintPanel";
 import {
   architectureSafeguards,
   architectureSolution,
-  architectureTests,
   masterBlueprintHints,
   type BoundaryId,
   type SafeguardId,
 } from "./puzzleData";
 import { validateMasterBlueprint } from "./validator";
 
-type TestId = (typeof architectureTests)[number]["id"];
 type TestResult = "pass" | "fail";
 
 const boundaryLabels: Record<BoundaryId, string> = {
@@ -42,21 +40,11 @@ export function MasterBlueprint({
     alreadySolved ? { ...architectureSolution } : {},
   );
   const [selected, setSelected] = useState<SafeguardId | null>(null);
-  const [testsRun, setTestsRun] = useState<TestId[]>(alreadySolved ? architectureTests.map((test) => test.id) : []);
-  const [results, setResults] = useState<Partial<Record<TestId, TestResult>>>(
-    alreadySolved ? { duplicate: "pass", latency: "pass", worker: "pass" } : {},
+  const [results, setResults] = useState<Partial<Record<BoundaryId, TestResult>>>(
+    alreadySolved ? { "api-write": "pass", "data-call": "pass", "worker-recovery": "pass" } : {},
   );
   const [solved, setSolved] = useState(alreadySolved);
   const [feedback, setFeedback] = useState(alreadySolved ? "The resilience suite remains green." : "");
-
-  function runTest(test: (typeof architectureTests)[number]) {
-    const passed = placements[test.boundary] === architectureSolution[test.boundary];
-    setTestsRun((current) => current.includes(test.id) ? current : [...current, test.id]);
-    setResults((current) => ({ ...current, [test.id]: passed ? "pass" : "fail" }));
-    setFeedback(passed
-      ? `${test.name}: PASS — the required guarantee holds under failure.`
-      : `${test.name}: FAIL — ${test.plainEvidence} (${test.evidence}). Match that plain-language failure to a safeguard description.`);
-  }
 
   function placeSafeguard(boundary: BoundaryId) {
     if (!selected || solved) return;
@@ -74,8 +62,11 @@ export function MasterBlueprint({
   }
 
   function runFullSuite() {
+    const nextResults = Object.fromEntries(
+      Object.entries(architectureSolution).map(([boundary, safeguard]) => [boundary, placements[boundary as BoundaryId] === safeguard ? "pass" : "fail"]),
+    ) as Record<BoundaryId, TestResult>;
     const correct = validateMasterBlueprint(placements);
-    setResults({ duplicate: correct ? "pass" : "fail", latency: correct ? "pass" : "fail", worker: correct ? "pass" : "fail" });
+    setResults(nextResults);
     if (correct) {
       setSolved(true);
       setFeedback("Resilience suite passed: duplicate writes are contained, slow dependencies respect the SLO, and failed work is preserved.");
@@ -95,13 +86,22 @@ export function MasterBlueprint({
           <span>Accepted jobs are never lost</span>
         </header>
 
-        <section className="failure-test-panel" aria-label="Failure injection tests">
-          {architectureTests.map((test) => (
-            <button key={test.id} onClick={() => runTest(test)} disabled={solved} className={results[test.id] ? `is-${results[test.id]}` : ""}>
-              <small>{results[test.id] ? results[test.id]?.toUpperCase() : "NOT RUN"}</small>
-              <b>{test.name}</b>
-            </button>
-          ))}
+        <section className="diagnostic-streams" aria-label="Observed failure patterns">
+          <article className={results["api-write"] ? `is-${results["api-write"]}` : ""}>
+            <small>Write trace</small><b>req-284</b>
+            <div><i>record #91</i><i>record #92</i></div>
+            <p>One request key produced two records.</p>
+          </article>
+          <article className={results["data-call"] ? `is-${results["data-call"]}` : ""}>
+            <small>Response time</small><b>120 · 140 · 2800 · 130 ms</b>
+            <div className="latency-pattern"><i /><i /><i /><i /></div>
+            <p>One dependency wait breaks the 500ms pattern.</p>
+          </article>
+          <article className={results["worker-recovery"] ? `is-${results["worker-recovery"]}` : ""}>
+            <small>Accepted → completed</small><b>31 · 32 · 33 · 34</b>
+            <div><i>31</i><i className="is-missing">—</i><i className="is-missing">—</i><i>34</i></div>
+            <p>Two accepted jobs disappear after the worker stops.</p>
+          </article>
         </section>
 
         <section className="resilience-system" aria-label="System architecture under review">
@@ -128,7 +128,7 @@ export function MasterBlueprint({
         </section>
 
         <section className="safeguard-tray" aria-label="Available architecture safeguards">
-          <p>Select a safeguard, then attach it to a boundary.</p>
+          <p>Recognize what repeats, spikes, or disappears. Select a repair module, then attach it where that pattern begins.</p>
           <div>
             {architectureSafeguards.map((safeguard) => {
               const attached = Object.entries(placements).find(([, value]) => value === safeguard.id)?.[0] as BoundaryId | undefined;
@@ -144,9 +144,9 @@ export function MasterBlueprint({
         </section>
 
         <div className="blueprint-actions resilience-actions">
-          <p aria-live="polite">{feedback || "Run all three failure tests to establish evidence before approving the design."}</p>
+          <p aria-live="polite">{feedback || "The three diagnostic streams already contain the evidence. Repair each abnormal pattern, then rerun the simulation."}</p>
           {!solved ? (
-            <button onClick={runFullSuite} disabled={testsRun.length !== architectureTests.length || Object.keys(placements).length !== 3}>Run full resilience suite</button>
+            <button onClick={runFullSuite} disabled={Object.keys(placements).length !== 3}>Rerun failure simulation</button>
           ) : !alreadySolved ? (
             <button onClick={onCollectReward}>Save architecture decision</button>
           ) : (

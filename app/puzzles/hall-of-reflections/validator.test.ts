@@ -1,16 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { qaReviewSolution } from "./puzzleData";
+import { qaFailureSolution } from "./puzzleData";
 import { validateHallOfReflections } from "./validator";
 
-describe("release readiness review", () => {
-  it("accepts a complete evidence-based disposition", () => {
-    expect(validateHallOfReflections({ ...qaReviewSolution })).toBe(true);
+describe("CI failure matrix", () => {
+  it("accepts the failure pattern encoded by all row and column runs", () => {
+    expect(validateHallOfReflections([...qaFailureSolution])).toBe(true);
   });
 
-  it("rejects missing findings and incorrect severity", () => {
-    const { "analytics-contract": omitted, ...incomplete } = qaReviewSolution;
-    expect(omitted).toBe("blocker");
-    expect(validateHallOfReflections(incomplete)).toBe(false);
-    expect(validateHallOfReflections({ ...qaReviewSolution, "card-spacing": "blocker" })).toBe(false);
+  it("rejects incomplete, duplicate, or extra failure cells", () => {
+    expect(validateHallOfReflections(qaFailureSolution.slice(0, -1))).toBe(false);
+    expect(validateHallOfReflections([...qaFailureSolution, qaFailureSolution[0]])).toBe(false);
+    expect(validateHallOfReflections([...qaFailureSolution, "0:0"])).toBe(false);
   });
 });
