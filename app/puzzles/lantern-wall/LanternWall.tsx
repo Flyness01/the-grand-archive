@@ -90,7 +90,10 @@ export function LanternWall({
 
         <aside className="alignment-brief" aria-label="Alignment brief">
           <p>Notes from the decision thread</p>
-          <small>Use these relationships to reconstruct each team&apos;s direction and priority.</small>
+          <small>
+            Use these relationships to reconstruct each team&apos;s direction and priority.
+            Direction: Exploring → Proposed → Reviewed → Committed · Priority: Low → Medium → High.
+          </small>
           <ul>
             <li>No two teams are at the same point: <b>Frontend</b> is earliest and <b>API</b> is furthest along.</li>
             <li><b>Product</b> is one step ahead of Frontend; <b>Design</b> is one step behind API.</li>

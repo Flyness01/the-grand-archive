@@ -30,7 +30,7 @@ export const puzzleInstructions: Record<string, PuzzleInstructions> = {
       "Adjust each team’s direction and priority independently.",
       "Check alignment when the four fragments describe one coherent outcome.",
     ],
-    tip: "Direction moves from Exploring → Proposed → Reviewed → Committed. Priority moves from Low → Medium → High.",
+    tip: "Local certainty is not shared alignment; judge every decision by the combined plan.",
   },
   "Incident 14": {
     objective: "The Project Board represents a dependency cascade as clockwork. Recover production by reversing the failure timeline.",
