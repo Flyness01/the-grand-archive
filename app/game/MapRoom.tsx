@@ -11,6 +11,7 @@ export function MapRoom({
   solved,
   hintCount,
   onUseHint,
+  onRestartHints,
   onSolve,
   onReturn,
   onContinueToGrandHall,
@@ -19,6 +20,7 @@ export function MapRoom({
   solved: boolean;
   hintCount: number;
   onUseHint: () => void;
+  onRestartHints: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onReturn: () => void;
   onContinueToGrandHall: () => void;
@@ -68,6 +70,7 @@ export function MapRoom({
           title="The Missing Request Path"
           subtitle="Chapter 2 of 5 · Trace the system"
           onClose={() => setPuzzleOpen(false)}
+          onRestart={onRestartHints}
         >
           <CartographersRoute
             hintCount={hintCount}

@@ -8,11 +8,13 @@ export function PuzzleModal({
   title,
   subtitle,
   onClose,
+  onRestart,
   children,
 }: {
   title: string;
   subtitle: string;
   onClose: () => void;
+  onRestart?: () => void;
   children: ReactNode;
 }) {
   const [instructionsOpen, setInstructionsOpen] = useState(true);
@@ -31,6 +33,7 @@ export function PuzzleModal({
     : children;
 
   function restartPuzzle() {
+    onRestart?.();
     setReplayMode(true);
     setAttempt((current) => current + 1);
     setInstructionsOpen(true);

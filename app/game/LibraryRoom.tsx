@@ -11,6 +11,7 @@ export function LibraryRoom({
   solved,
   hintCount,
   onUseHint,
+  onRestartHints,
   onSolve,
   onContinueToMapRoom,
   onReturn,
@@ -19,6 +20,7 @@ export function LibraryRoom({
   solved: boolean;
   hintCount: number;
   onUseHint: () => void;
+  onRestartHints: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onContinueToMapRoom: () => void;
   onReturn: () => void;
@@ -75,6 +77,7 @@ export function LibraryRoom({
           title="The Documentation Shelf"
           subtitle="Chapter 1 of 5 · Learn the context"
           onClose={() => setPuzzleOpen(false)}
+          onRestart={onRestartHints}
         >
           <LibrariansShelf
             hintCount={hintCount}

@@ -56,6 +56,18 @@ describe("game progression", () => {
     expect(state.usedHints["librarians-shelf"]).toBe(3);
   });
 
+  it("clears only the restarted puzzle's hints", () => {
+    const state = {
+      ...createInitialState(),
+      usedHints: { "librarians-shelf": 2, "cartographers-missing-route": 1 },
+    };
+    const restarted = gameReducer(state, {
+      type: "RESET_HINTS",
+      puzzleId: "cartographers-missing-route",
+    });
+    expect(restarted.usedHints).toEqual({ "librarians-shelf": 2 });
+  });
+
   it("unlocks the Lantern Wall after the route puzzle", () => {
     const state = gameReducer(createInitialState(), {
       type: "SOLVE_PUZZLE",

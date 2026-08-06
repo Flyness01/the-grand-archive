@@ -49,6 +49,7 @@ export type GameAction =
   | { type: "COMPLETE_INTRO" }
   | { type: "REPLAY_INTRO" }
   | { type: "USE_HINT"; puzzleId: string }
+  | { type: "RESET_HINTS"; puzzleId: string }
   | {
       type: "SOLVE_PUZZLE";
       puzzleId: string;

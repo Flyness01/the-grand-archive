@@ -9,6 +9,7 @@ export function LanternWallRoom({
   solved,
   hintCount,
   onUseHint,
+  onRestartHints,
   onSolve,
   onClose,
   onContinueToWorkshop,
@@ -16,6 +17,7 @@ export function LanternWallRoom({
   solved: boolean;
   hintCount: number;
   onUseHint: () => void;
+  onRestartHints: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onClose: () => void;
   onContinueToWorkshop: () => void;
@@ -38,6 +40,7 @@ export function LanternWallRoom({
         title="Signal Alignment"
         subtitle="Chapter 3 of 5 · Align the team"
         onClose={onClose}
+        onRestart={onRestartHints}
       >
         <LanternWall
           hintCount={hintCount}

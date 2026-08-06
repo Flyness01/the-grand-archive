@@ -119,6 +119,9 @@ export function GameShell() {
               onUseHint={() =>
                 dispatch({ type: "USE_HINT", puzzleId: "librarians-shelf" })
               }
+              onRestartHints={() =>
+                dispatch({ type: "RESET_HINTS", puzzleId: "librarians-shelf" })
+              }
               onSolve={(mosaicTileIds) =>
                 dispatch({
                   type: "SOLVE_PUZZLE",
@@ -144,6 +147,9 @@ export function GameShell() {
               hintCount={state.usedHints["cartographers-missing-route"] ?? 0}
               onUseHint={() =>
                 dispatch({ type: "USE_HINT", puzzleId: "cartographers-missing-route" })
+              }
+              onRestartHints={() =>
+                dispatch({ type: "RESET_HINTS", puzzleId: "cartographers-missing-route" })
               }
               onSolve={(mosaicTileIds) =>
                 dispatch({
@@ -245,6 +251,9 @@ export function GameShell() {
               onUseHint={() =>
                 dispatch({ type: "USE_HINT", puzzleId: "constellation-that-should-not-exist" })
               }
+              onRestartHints={() =>
+                dispatch({ type: "RESET_HINTS", puzzleId: "constellation-that-should-not-exist" })
+              }
               onSolve={(mosaicTileIds) =>
                 dispatch({
                   type: "SOLVE_PUZZLE",
@@ -269,6 +278,9 @@ export function GameShell() {
               hintCount={state.usedHints["mirrored-typewriter"] ?? 0}
               onUseHint={() =>
                 dispatch({ type: "USE_HINT", puzzleId: "mirrored-typewriter" })
+              }
+              onRestartHints={() =>
+                dispatch({ type: "RESET_HINTS", puzzleId: "mirrored-typewriter" })
               }
               onSolve={(mosaicTileIds) =>
                 dispatch({
@@ -326,9 +338,12 @@ export function GameShell() {
             <LanternWallRoom
               solved={state.solvedPuzzleIds.includes("lantern-wall")}
               hintCount={state.usedHints["lantern-wall"] ?? 0}
-              onUseHint={() =>
-                dispatch({ type: "USE_HINT", puzzleId: "lantern-wall" })
-              }
+                  onUseHint={() =>
+                    dispatch({ type: "USE_HINT", puzzleId: "lantern-wall" })
+                  }
+                  onRestartHints={() =>
+                    dispatch({ type: "RESET_HINTS", puzzleId: "lantern-wall" })
+                  }
               onSolve={(mosaicTileIds) =>
                 dispatch({
                   type: "SOLVE_PUZZLE",

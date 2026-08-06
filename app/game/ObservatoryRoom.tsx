@@ -12,6 +12,7 @@ export function ObservatoryRoom({
   solved,
   hintCount,
   onUseHint,
+  onRestartHints,
   onSolve,
   onReturn,
   onContinueToIncident,
@@ -20,6 +21,7 @@ export function ObservatoryRoom({
   solved: boolean;
   hintCount: number;
   onUseHint: () => void;
+  onRestartHints: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onReturn: () => void;
   onContinueToIncident: () => void;
@@ -67,6 +69,7 @@ export function ObservatoryRoom({
           title="The Shared Timeline"
           subtitle="Chapter 5 of 5 · Bring the story together"
           onClose={() => setPuzzleOpen(false)}
+          onRestart={onRestartHints}
         >
           <ImpossibleConstellation
             hintCount={hintCount}

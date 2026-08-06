@@ -89,6 +89,11 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
           ),
         },
       };
+    case "RESET_HINTS": {
+      const usedHints = { ...state.usedHints };
+      delete usedHints[action.puzzleId];
+      return { ...state, usedHints };
+    }
     case "SOLVE_PUZZLE":
       if (state.solvedPuzzleIds.includes(action.puzzleId)) return state;
       return {

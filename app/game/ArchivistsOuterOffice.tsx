@@ -11,6 +11,7 @@ export function ArchivistsOuterOffice({
   solved,
   hintCount,
   onUseHint,
+  onRestartHints,
   onSolve,
   onReturn,
   onContinueToFinale,
@@ -19,6 +20,7 @@ export function ArchivistsOuterOffice({
   solved: boolean;
   hintCount: number;
   onUseHint: () => void;
+  onRestartHints: () => void;
   onSolve: (mosaicTileIds: number[]) => void;
   onReturn: () => void;
   onContinueToFinale: () => void;
@@ -63,6 +65,7 @@ export function ArchivistsOuterOffice({
           title="The Word-Ends Handoff"
           subtitle="Chapter 4 of 5 · Communicate clearly"
           onClose={() => setPuzzleOpen(false)}
+          onRestart={onRestartHints}
         >
           <MirroredTypewriter
             hintCount={hintCount}
